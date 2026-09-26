@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q10(a) – Cloud Collaboration Tool Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Source+Serif+4:wght@300;400;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a2e;
+    --deep: #16213e;
+    --teams: #5059C9;
+    --teams-light: #7B83EB;
+    --accent: #E8A838;
+    --green: #36B37E;
+    --red: #FF5630;
+    --bg: #F5F4EF;
+    --paper: #FEFDF9;
+    --rule: #D9D4C7;
+    --mark-yellow: #FFF3CD;
+    --mark-blue: #E8F4FD;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Source Serif 4', Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* ── cover band ── */
+  .cover {
+    background: var(--deep);
+    color: #fff;
+    padding: 44px 60px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute; top:-60px; right:-60px;
+    width:320px; height:320px;
+    border-radius:50%;
+    background: radial-gradient(circle, #5059C9 0%, transparent 70%);
+    opacity:.35;
+  }
+  .cover-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size:11px; letter-spacing:.18em;
+    color: var(--teams-light); text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size:30px; line-height:1.25;
+    max-width:680px;
+  }
+  .cover h1 em { color: var(--accent); font-style:normal; }
+  .cover-meta {
+    margin-top:18px;
+    font-size:13px; color:#aab4d4;
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  /* ── main wrapper ── */
+  .wrap { max-width:900px; margin:0 auto; padding:40px 40px 80px; }
+
+  /* ── section heading ── */
+  .sec-head {
+    display:flex; align-items:center; gap:14px;
+    margin: 40px 0 16px;
+  }
+  .sec-num {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; font-weight:600; letter-spacing:.12em;
+    background: var(--teams);
+    color:#fff; border-radius:4px;
+    padding:3px 9px;
+  }
+  .sec-title {
+    font-family:'Playfair Display',serif;
+    font-size:20px; color: var(--deep);
+  }
+
+  /* ── intro card ── */
+  .intro-card {
+    background: var(--paper);
+    border:1px solid var(--rule);
+    border-left: 5px solid var(--teams);
+    border-radius:6px;
+    padding:20px 24px;
+    margin-bottom:28px;
+  }
+  .intro-card p { margin-bottom:8px; }
+  .intro-card p:last-child { margin-bottom:0; }
+  strong.hl { background: var(--mark-yellow); padding:0 3px; border-radius:2px; }
+
+  /* ── why-table ── */
+  table.why {
+    width:100%; border-collapse:collapse;
+    font-size:14px; margin:16px 0 28px;
+    border-radius:6px; overflow:hidden;
+  }
+  table.why thead tr { background: var(--teams); color:#fff; }
+  table.why th { padding:10px 14px; text-align:left; font-weight:600; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.06em; }
+  table.why td { padding:10px 14px; border-bottom:1px solid var(--rule); background:var(--paper); }
+  table.why tr:last-child td { border-bottom:none; }
+
+  /* ── phase divider ── */
+  .phase {
+    margin: 32px 0 0;
+  }
+  .phase-header {
+    display:flex; align-items:center; gap:10px;
+    background: linear-gradient(90deg, var(--teams) 0%, var(--teams-light) 100%);
+    color:#fff; padding:10px 18px; border-radius:6px 6px 0 0;
+  }
+  .phase-header .ph-num {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; font-weight:700; letter-spacing:.1em;
+    background:rgba(255,255,255,.25); padding:2px 8px; border-radius:3px;
+  }
+  .phase-header .ph-title { font-size:15px; font-weight:600; }
+  .phase-body {
+    background: var(--paper);
+    border: 1px solid var(--rule); border-top:none;
+    border-radius: 0 0 6px 6px;
+    padding: 0;
+  }
+
+  /* ── todo item ── */
+  .todo-item {
+    display:grid;
+    grid-template-columns: 28px 1fr;
+    gap:0 12px;
+    padding: 12px 18px;
+    border-bottom: 1px solid var(--rule);
+    align-items:start;
+  }
+  .todo-item:last-child { border-bottom:none; }
+  .todo-item .cb {
+    width:20px; height:20px; margin-top:2px;
+    border: 2px solid var(--teams);
+    border-radius:4px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    color: var(--teams); font-size:13px; font-weight:700;
+  }
+  .todo-item .task-text { font-size:14.5px; }
+  .todo-item .task-text .tool-tag {
+    display:inline-block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; font-weight:600;
+    background: var(--mark-blue);
+    color: var(--teams);
+    border:1px solid #BFD9EE;
+    border-radius:3px; padding:1px 7px; margin-left:6px;
+    vertical-align:middle;
+  }
+  .todo-item .task-note {
+    font-size:12.5px; color:#666; margin-top:3px;
+    font-style:italic;
+  }
+
+  /* ── SCREENSHOT MOCK ── */
+  .mock-wrap {
+    margin: 32px 0;
+  }
+  .mock-label {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:.12em; color:#888;
+    text-transform:uppercase; margin-bottom:8px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .mock-label::after {
+    content:''; flex:1; height:1px; background:var(--rule);
+  }
+
+  /* Teams window chrome */
+  .teams-window {
+    border:1px solid #C8C6C4;
+    border-radius:10px; overflow:hidden;
+    box-shadow: 0 8px 40px rgba(0,0,0,.14);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size:13px;
+  }
+  .teams-titlebar {
+    background:#201f1e; height:32px;
+    display:flex; align-items:center; padding:0 14px; gap:8px;
+  }
+  .teams-titlebar .dot { width:12px;height:12px;border-radius:50%; }
+  .t-red{background:#FF5F57;} .t-yellow{background:#FEBC2E;} .t-green{background:#28C840;}
+  .teams-titlebar .title { color:#aaa; font-size:12px; margin-left:10px; }
+
+  .teams-body {
+    display:grid;
+    grid-template-columns: 56px 220px 1fr;
+    height:520px;
+    background:#fff;
+  }
+
+  /* icon rail */
+  .teams-rail {
+    background:#201f1e;
+    display:flex; flex-direction:column;
+    align-items:center; padding:10px 0; gap:4px;
+  }
+  .rail-item {
+    width:40px;height:40px; border-radius:8px;
+    display:flex;align-items:center;justify-content:center;
+    color:#bbb; font-size:18px; cursor:pointer;
+    transition:background .15s;
+  }
+  .rail-item.active { background:#5059C9; color:#fff; }
+  .rail-item:hover:not(.active) { background:#3a3a3a; }
+  .rail-avatar {
+    width:32px;height:32px; border-radius:50%;
+    background: linear-gradient(135deg,#5059C9,#7B83EB);
+    color:#fff; font-size:12px; font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:auto; margin-bottom:10px;
+  }
+
+  /* sidebar */
+  .teams-sidebar {
+    background:#f3f2f1; border-right:1px solid #ddd;
+    display:flex; flex-direction:column;
+  }
+  .sidebar-search {
+    margin:12px 10px;
+    background:#fff; border:1px solid #ccc; border-radius:4px;
+    padding:6px 10px; font-size:12px; color:#555;
+    display:flex; align-items:center; gap:6px;
+  }
+  .sidebar-search .icon { color:#888; }
+  .sidebar-section-label {
+    font-size:11px; font-weight:700; color:#888;
+    padding:6px 14px 4px; text-transform:uppercase; letter-spacing:.07em;
+  }
+  .sidebar-team {
+    display:flex; align-items:center; gap:8px;
+    padding:7px 14px; cursor:pointer;
+  }
+  .sidebar-team:hover { background:#e8e6e4; }
+  .sidebar-team.active { background:#ddd; }
+  .team-avatar {
+    width:28px;height:28px; border-radius:6px;
+    background:linear-gradient(135deg,#5059C9,#E8A838);
+    color:#fff; font-size:10px; font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .team-name { font-size:12.5px; color:#333; font-weight:500; }
+  .sidebar-channel {
+    padding:4px 14px 4px 42px; font-size:12px; color:#555; cursor:pointer;
+  }
+  .sidebar-channel:hover { background:#e8e6e4; color:#333; }
+  .sidebar-channel.active { background:#e0dfde; color:#1b1a19; font-weight:600; }
+  .sidebar-channel::before { content:'# '; color:#888; }
+
+  /* main content pane */
+  .teams-main {
+    display:flex; flex-direction:column; background:#fff;
+  }
+  .main-header {
+    border-bottom:1px solid #eee; padding:10px 16px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .main-header .ch-name { font-size:14px; font-weight:700; color:#1b1a19; }
+  .main-header .ch-desc { font-size:11px; color:#888; margin-top:1px; }
+  .header-actions { margin-left:auto; display:flex; gap:6px; }
+  .hbtn {
+    padding:5px 12px; border-radius:4px; font-size:12px;
+    border:1px solid #ddd; background:#f3f2f1; cursor:pointer; color:#333;
+  }
+  .hbtn.primary { background:#5059C9; color:#fff; border-color:#5059C9; }
+
+  /* messages */
+  .messages { flex:1; overflow-y:auto; padding:14px 16px; display:flex; flex-direction:column; gap:14px; }
+  .msg { display:flex; gap:10px; }
+  .msg-avatar {
+    width:30px;height:30px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11px;font-weight:700;color:#fff;
+  }
+  .msg-right { flex:1; }
+  .msg-meta { font-size:11.5px; color:#888; margin-bottom:2px; }
+  .msg-meta strong { color:#1b1a19; font-weight:600; margin-right:6px; }
+  .msg-bubble {
+    background:#f3f2f1; border-radius:0 8px 8px 8px;
+    padding:8px 12px; font-size:12.5px; color:#333; display:inline-block;
+    max-width:90%; line-height:1.55;
+  }
+  .msg-bubble.me { background:#eef0ff; border-radius:8px 0 8px 8px; }
+  .msg-bubble .emoji { font-size:15px; }
+  .msg-bubble .link { color:#5059C9; text-decoration:underline; cursor:pointer; }
+
+  /* reply chip */
+  .reply-chip {
+    display:inline-flex; align-items:center; gap:5px;
+    background:#E8F0FE; border:1px solid #BDD1FF; border-radius:20px;
+    padding:3px 10px; font-size:11px; color:#5059C9; margin-top:5px; cursor:pointer;
+  }
+
+  /* compose bar */
+  .compose {
+    border-top:1px solid #eee; padding:10px 14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .compose-box {
+    flex:1; border:1px solid #ccc; border-radius:6px;
+    padding:8px 12px; font-size:12.5px; color:#aaa;
+    background:#fafafa;
+  }
+  .send-btn {
+    width:32px;height:32px; border-radius:6px;
+    background:#5059C9; color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px; cursor:pointer; flex-shrink:0;
+  }
+
+  /* ── Calendar mock ── */
+  .cal-window {
+    border:1px solid #C8C6C4; border-radius:10px; overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.14);
+    font-family:'Segoe UI',Arial,sans-serif; font-size:13px;
+  }
+  .cal-titlebar {
+    background:#5059C9; padding:10px 18px;
+    display:flex; align-items:center; justify-content:space-between;
+    color:#fff;
+  }
+  .cal-titlebar .t { font-size:15px; font-weight:700; }
+  .cal-body { background:#fff; padding:16px; }
+  .cal-month-header {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-bottom:10px;
+  }
+  .cal-month-header .month { font-size:16px; font-weight:700; color:#333; }
+  .cal-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:2px; }
+  .cal-day-label { text-align:center; font-size:11px; font-weight:700; color:#888; padding:4px 0; }
+  .cal-day {
+    text-align:center; font-size:12px; color:#333;
+    padding:6px 2px; border-radius:4px; cursor:pointer; position:relative;
+  }
+  .cal-day:hover { background:#f3f2f1; }
+  .cal-day.today { background:#5059C9; color:#fff; font-weight:700; border-radius:50%; }
+  .cal-day.has-event { font-weight:700; }
+  .cal-day .event-dot {
+    width:5px;height:5px;border-radius:50%;
+    margin:0 auto; margin-top:2px;
+  }
+  .event-row {
+    display:flex; align-items:center; gap:10px;
+    padding:8px 12px; border-radius:6px;
+    margin-bottom:8px; font-size:12.5px;
+  }
+  .event-row .ev-color { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+  .event-row .ev-title { font-weight:600; color:#333; }
+  .event-row .ev-time { color:#888; font-size:11.5px; margin-left:auto; }
+
+  /* ── Meet mock ── */
+  .meet-window {
+    border:1px solid #C8C6C4; border-radius:10px; overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.14);
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:#1c1c1c;
+  }
+  .meet-titlebar {
+    background:#141414; padding:8px 14px; display:flex;align-items:center;gap:8px;
+  }
+  .meet-titlebar .dot { width:12px;height:12px;border-radius:50%; }
+  .meet-grid {
+    display:grid; grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows:1fr 1fr;
+    gap:4px; padding:12px; height:320px;
+  }
+  .participant-tile {
+    border-radius:8px; overflow:hidden; position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .pt-bg { position:absolute;inset:0; }
+  .pt-name {
+    position:absolute; bottom:8px; left:8px;
+    background:rgba(0,0,0,.6); color:#fff;
+    font-size:11px; padding:2px 7px; border-radius:3px;
+  }
+  .pt-mute {
+    position:absolute; bottom:8px; right:8px;
+    background:rgba(200,0,0,.8); width:20px;height:20px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;color:#fff;
+  }
+  .pt-avatar {
+    width:48px;height:48px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:700;color:#fff;
+    position:relative;z-index:1;
+  }
+  .meet-controls {
+    background:#141414; padding:10px 0;
+    display:flex;align-items:center;justify-content:center;gap:12px;
+  }
+  .ctrl-btn {
+    width:40px;height:40px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:15px;cursor:pointer;
+  }
+  .ctrl-btn.on{background:#3a3a3a;color:#fff;}
+  .ctrl-btn.off{background:#C4314B;color:#fff;}
+  .ctrl-btn.green{background:#36B37E;color:#fff;}
+  .meet-info {
+    background:#141414; color:#aaa;
+    padding:6px 14px;font-size:11px;
+    display:flex;justify-content:space-between;
+    border-top:1px solid #333;
+  }
+
+  /* ── Forms mock ── */
+  .form-window {
+    border:1px solid #C8C6C4; border-radius:10px; overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.14);
+    font-family:'Segoe UI',Arial,sans-serif;
+  }
+  .form-header {
+    background:linear-gradient(135deg,#5059C9,#E8A838);
+    padding:22px 24px; color:#fff;
+  }
+  .form-header h3 { font-size:20px; font-weight:700; margin-bottom:4px; }
+  .form-header p { font-size:13px; opacity:.85; }
+  .form-body { background:#fff; padding:20px 24px; }
+  .form-field { margin-bottom:18px; }
+  .form-field label { display:block; font-size:12.5px; font-weight:600; color:#333; margin-bottom:5px; }
+  .form-field label .req { color:#C4314B; }
+  .form-input {
+    width:100%; border:1px solid #ccc; border-radius:4px;
+    padding:8px 12px; font-size:13px; color:#555; background:#fafafa;
+  }
+  .form-select {
+    width:100%; border:1px solid #ccc; border-radius:4px;
+    padding:8px 12px; font-size:13px; color:#555; background:#fafafa;
+    appearance:none;
+  }
+  .form-radio-group { display:flex; gap:16px; flex-wrap:wrap; }
+  .form-radio { display:flex;align-items:center;gap:6px;font-size:13px;color:#444; }
+  .form-radio input { accent-color:#5059C9; }
+  .submit-btn {
+    background:#5059C9; color:#fff; border:none;
+    border-radius:4px; padding:10px 28px; font-size:13px; font-weight:600;
+    cursor:pointer; margin-top:4px;
+  }
+  .form-footer { padding:10px 24px 16px; background:#fff; color:#888; font-size:11.5px; }
+
+  /* ── Drive mock ── */
+  .drive-window {
+    border:1px solid #C8C6C4; border-radius:10px; overflow:hidden;
+    box-shadow:0 8px 40px rgba(0,0,0,.14);
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:#fff;
+  }
+  .drive-topbar {
+    background:#fff; border-bottom:1px solid #eee;
+    padding:10px 16px; display:flex;align-items:center;gap:12px;
+  }
+  .drive-topbar .drive-logo { font-size:16px;font-weight:700;color:#4285F4; }
+  .drive-topbar .drv-search {
+    flex:1;border:1px solid #ddd;border-radius:24px;
+    padding:7px 14px;font-size:12.5px;color:#aaa;background:#f1f3f4;
+  }
+  .drive-body { display:grid; grid-template-columns:180px 1fr; height:320px; }
+  .drive-sidebar { border-right:1px solid #eee; padding:10px 0; }
+  .drv-nav-item {
+    display:flex;align-items:center;gap:8px;
+    padding:7px 16px;font-size:13px;color:#444;cursor:pointer;border-radius:0 24px 24px 0;
+    margin-right:8px;
+  }
+  .drv-nav-item:hover{background:#f1f3f4;}
+  .drv-nav-item.active{background:#E8F0FE;color:#1967D2;font-weight:600;}
+  .drv-nav-item .icon{font-size:15px;}
+  .drive-main { padding:14px 16px; }
+  .drive-main h4 { font-size:13px; color:#888; margin-bottom:10px; }
+  .drive-file-grid {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:10px;
+  }
+  .drive-file {
+    border:1px solid #eee; border-radius:8px; overflow:hidden; cursor:pointer;
+  }
+  .drive-file:hover { border-color:#4285F4; box-shadow:0 2px 8px rgba(66,133,244,.15); }
+  .file-thumb {
+    height:80px; display:flex;align-items:center;justify-content:center;
+    font-size:30px;
+  }
+  .file-info { padding:6px 10px; border-top:1px solid #eee; }
+  .file-info .fname { font-size:11.5px; color:#333; font-weight:600; white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+  .file-info .fdate { font-size:10.5px; color:#888; margin-top:2px; }
+
+  /* ── summary table ── */
+  table.summary {
+    width:100%; border-collapse:collapse; font-size:14px; margin:20px 0 8px;
+    border-radius:6px; overflow:hidden;
+  }
+  table.summary thead tr { background:#201f1e; color:#fff; }
+  table.summary th { padding:10px 14px; text-align:left; font-family:'JetBrains Mono',monospace; font-size:12px; }
+  table.summary td { padding:10px 14px; background:var(--paper); border-bottom:1px solid var(--rule); }
+  table.summary tr:last-child td { border-bottom:none; }
+  table.summary .tool { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--teams); font-weight:600; }
+
+  /* conclusion */
+  .conclusion {
+    background: linear-gradient(135deg, var(--deep), #2d2b6e);
+    color:#fff; border-radius:8px; padding:22px 28px; margin-top:40px;
+  }
+  .conclusion h3 { font-family:'Playfair Display',serif; font-size:18px; margin-bottom:10px; color:var(--accent); }
+  .conclusion p { font-size:14.5px; opacity:.9; line-height:1.7; }
+
+  /* marks badge */
+  .marks-badge {
+    display:inline-block;
+    background:var(--accent); color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; font-weight:700; padding:4px 12px;
+    border-radius:20px; margin-bottom:24px;
+  }
+
+  /* page break hint */
+  @media print { .no-break { page-break-inside:avoid; } }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-label">Part C · Question 10(a) · 10 Marks</div>
+  <h1>Using <em>Microsoft Teams</em> as a Cloud Collaborating Tool for a Hybrid National Technical Symposium</h1>
+  <div class="cover-meta">Subject: Cloud Computing &amp; Services &nbsp;|&nbsp; Answer with Screenshots</div>
+</div>
+
+<div class="wrap">
+
+  <div class="marks-badge">▲ 10 Marks Answer</div>
+
+  <!-- INTRO -->
+  <div class="sec-head">
+    <span class="sec-num">01</span>
+    <span class="sec-title">Introduction</span>
+  </div>
+  <div class="intro-card">
+    <p>
+      The task involves organizing a <strong class="hl">Departmental Annual National Level Technical Symposium</strong>
+      in <strong class="hl">hybrid mode</strong> — inviting PG students from other states while also hosting on-campus activities.
+      A hybrid event requires real-time communication, file sharing, virtual participation, and centralized coordination.
+    </p>
+    <p>
+      The best cloud tool for this purpose is <strong>Microsoft Teams</strong> — a unified communication and
+      collaboration platform that combines chat, video meetings, file storage, and app integrations in one place.
+      It is available free for educational institutions through <strong>Microsoft 365 Education</strong>.
+    </p>
+  </div>
+
+  <!-- WHY TEAMS -->
+  <div class="sec-head">
+    <span class="sec-num">02</span>
+    <span class="sec-title">Why Microsoft Teams?</span>
+  </div>
+  <table class="why">
+    <thead><tr><th>Feature</th><th>How it Helps the Symposium</th></tr></thead>
+    <tbody>
+      <tr><td>📹 Video Conferencing</td><td>Online participants from other states join the symposium in real time</td></tr>
+      <tr><td>💬 Team Channels</td><td>Separate channels for each event: Inauguration, Paper Presentation, Quiz, etc.</td></tr>
+      <tr><td>📁 File Sharing (OneDrive)</td><td>Circulars, schedules, abstracts shared with all members instantly</td></tr>
+      <tr><td>📋 Forms Integration</td><td>Registration, feedback forms created and collected within Teams</td></tr>
+      <tr><td>📅 Calendar &amp; Scheduling</td><td>Event timeline visible to all organizers; reminders sent automatically</td></tr>
+      <tr><td>🔴 Live Events / Streaming</td><td>Sessions broadcast live to hundreds of remote viewers</td></tr>
+      <tr><td>✅ Tasks &amp; Planner</td><td>Assign to-do tasks to committee members, track completion</td></tr>
+    </tbody>
+  </table>
+
+  <!-- PHASE 1 -->
+  <div class="sec-head" style="margin-top:36px;">
+    <span class="sec-num">03</span>
+    <span class="sec-title">To-Do List with Screenshots</span>
+  </div>
+
+  <div class="phase no-break">
+    <div class="phase-header">
+      <span class="ph-num">PHASE 1</span>
+      <span class="ph-title">Setup &amp; Team Creation</span>
+    </div>
+    <div class="phase-body">
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Create a Team called "TechSympo 2025" in Microsoft Teams <span class="tool-tag">MS Teams</span><div class="task-note">Add all faculty coordinators, student committee members as owners/members</div></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Create dedicated channels: #general, #paper-presentation, #quiz, #cultural, #registration, #logistics <span class="tool-tag">Channels</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Upload event poster, brochure and event schedule to the Files tab <span class="tool-tag">OneDrive</span><div class="task-note">All members can access and download the latest version anytime</div></div></div>
+    </div>
+  </div>
+
+  <!-- Screenshot 1: Teams Channel -->
+  <div class="mock-wrap">
+    <div class="mock-label">📸 Screenshot 1 — Microsoft Teams: TechSympo 2025 Channel</div>
+    <div class="teams-window">
+      <div class="teams-titlebar">
+        <div class="dot t-red"></div><div class="dot t-yellow"></div><div class="dot t-green"></div>
+        <div class="title">Microsoft Teams</div>
+      </div>
+      <div class="teams-body">
+        <!-- Rail -->
+        <div class="teams-rail">
+          <div class="rail-item">🏠</div>
+          <div class="rail-item active">💬</div>
+          <div class="rail-item">📅</div>
+          <div class="rail-item">📁</div>
+          <div class="rail-item">⋯</div>
+          <div class="rail-avatar">AR</div>
+        </div>
+        <!-- Sidebar -->
+        <div class="teams-sidebar">
+          <div class="sidebar-search"><span class="icon">🔍</span> Search</div>
+          <div class="sidebar-section-label">Your Teams</div>
+          <div class="sidebar-team active">
+            <div class="team-avatar">TS</div>
+            <div class="team-name">TechSympo 2025</div>
+          </div>
+          <div class="sidebar-channel active">#general</div>
+          <div class="sidebar-channel">#paper-presentation</div>
+          <div class="sidebar-channel">#quiz</div>
+          <div class="sidebar-channel">#registration</div>
+          <div class="sidebar-channel">#logistics</div>
+          <div class="sidebar-section-label" style="margin-top:10px;">Other Teams</div>
+          <div class="sidebar-team">
+            <div class="team-avatar" style="background:linear-gradient(135deg,#36B37E,#00B8D9)">CS</div>
+            <div class="team-name">CS Dept 2025</div>
+          </div>
+        </div>
+        <!-- Main -->
+        <div class="teams-main">
+          <div class="main-header">
+            <div>
+              <div class="ch-name"># general &nbsp;— TechSympo 2025</div>
+              <div class="ch-desc">📌 National Level Technical Symposium · Hybrid Mode · March 28, 2025</div>
+            </div>
+            <div class="header-actions">
+              <div class="hbtn">📁 Files</div>
+              <div class="hbtn primary">📹 Meet Now</div>
+            </div>
+          </div>
+          <div class="messages">
+            <div class="msg">
+              <div class="msg-avatar" style="background:#5059C9">AR</div>
+              <div class="msg-right">
+                <div class="msg-meta"><strong>Arun (Coordinator)</strong> Today 9:15 AM</div>
+                <div class="msg-bubble"><span class="emoji">👋</span> Welcome everyone! TechSympo 2025 is officially planned. Please check the #registration channel to set up the Google Form for inviting PG students from other states.</div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="msg-avatar" style="background:#E8A838">PR</div>
+              <div class="msg-right">
+                <div class="msg-meta"><strong>Priya (Student Lead)</strong> Today 9:22 AM</div>
+                <div class="msg-bubble">Sure! I've uploaded the <span class="link">Event_Brochure_2025.pdf</span> and <span class="link">Schedule.xlsx</span> to Files tab. Everyone can access it 📎</div>
+                <div class="reply-chip">💬 3 replies</div>
+              </div>
+            </div>
+            <div class="msg">
+              <div class="msg-avatar" style="background:#36B37E">SK</div>
+              <div class="msg-right">
+                <div class="msg-meta"><strong>Dr. Suresh (Faculty)</strong> Today 9:40 AM</div>
+                <div class="msg-bubble me">I've scheduled the Teams Live Event for the inauguration. Virtual participants from Tamil Nadu, Karnataka &amp; AP can join using the link in #general 📹<br><br><span class="link">🔗 Join Symposium Live Stream →</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="compose">
+            <div class="compose-box">Type a message in #general...</div>
+            <div class="send-btn">➤</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase no-break">
+    <div class="phase-header">
+      <span class="ph-num">PHASE 2</span>
+      <span class="ph-title">Registration &amp; Invitations</span>
+    </div>
+    <div class="phase-body">
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Create a Registration Form using Microsoft Forms integrated in Teams <span class="tool-tag">MS Forms</span><div class="task-note">Collect: Name, College, State, Department, Event Category</div></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Share the registration link via Teams channel post and email (Outlook) <span class="tool-tag">Outlook</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Add accepted participants as Guests in the Teams environment <span class="tool-tag">Guest Access</span><div class="task-note">Guests get limited access — they can join meetings and view announcements</div></div></div>
+    </div>
+  </div>
+
+  <!-- Screenshot 2: Microsoft Forms -->
+  <div class="mock-wrap">
+    <div class="mock-label">📸 Screenshot 2 — Microsoft Forms: Symposium Registration</div>
+    <div class="form-window">
+      <div class="form-header">
+        <h3>🎓 TechSympo 2025 — Participant Registration</h3>
+        <p>Annual National Level Technical Symposium · Hybrid Mode · CSE Department</p>
+      </div>
+      <div class="form-body">
+        <div class="form-field">
+          <label>Full Name <span class="req">*</span></label>
+          <input class="form-input" type="text" value="" placeholder="Enter your full name" readonly>
+        </div>
+        <div class="form-field">
+          <label>College / Institution <span class="req">*</span></label>
+          <input class="form-input" type="text" placeholder="e.g. PSG College of Technology, Coimbatore" readonly>
+        </div>
+        <div class="form-field">
+          <label>State <span class="req">*</span></label>
+          <select class="form-select">
+            <option>Tamil Nadu</option>
+            <option>Karnataka</option>
+            <option>Andhra Pradesh</option>
+            <option>Kerala</option>
+            <option>Telangana</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>PG Program <span class="req">*</span></label>
+          <input class="form-input" type="text" placeholder="e.g. M.E. Computer Science" readonly>
+        </div>
+        <div class="form-field">
+          <label>Mode of Participation <span class="req">*</span></label>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="radio" name="mode" checked> 🏫 On-Campus (Physical)</label>
+            <label class="form-radio"><input type="radio" name="mode"> 💻 Online (Virtual)</label>
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Events to Participate <span class="req">*</span></label>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="checkbox"> Paper Presentation</label>
+            <label class="form-radio"><input type="checkbox" checked> Technical Quiz</label>
+            <label class="form-radio"><input type="checkbox"> Coding Challenge</label>
+            <label class="form-radio"><input type="checkbox"> Project Expo</label>
+          </div>
+        </div>
+        <button class="submit-btn">Submit Registration →</button>
+      </div>
+      <div class="form-footer">255 responses collected · Last response: 2 mins ago · Closes March 25, 2025</div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase no-break">
+    <div class="phase-header">
+      <span class="ph-num">PHASE 3</span>
+      <span class="ph-title">Scheduling &amp; Calendar Management</span>
+    </div>
+    <div class="phase-body">
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Add all symposium events to the Teams Calendar <span class="tool-tag">Teams Calendar</span><div class="task-note">Inauguration, Paper Presentation, Lunch, Valediction — all scheduled with reminders</div></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Schedule Teams meetings for each event session and send invites <span class="tool-tag">Meeting Invite</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Set up a Teams Live Event for the Keynote address accessible to virtual attendees <span class="tool-tag">Live Events</span></div></div>
+    </div>
+  </div>
+
+  <!-- Screenshot 3: Calendar -->
+  <div class="mock-wrap">
+    <div class="mock-label">📸 Screenshot 3 — Teams Calendar: Symposium Day Schedule</div>
+    <div class="cal-window">
+      <div class="cal-titlebar">
+        <div class="t">📅 Calendar — March 2025</div>
+        <div style="font-size:12px;opacity:.8;">TechSympo 2025 Events</div>
+      </div>
+      <div class="cal-body">
+        <div class="cal-month-header">
+          <div class="month">March 2025</div>
+          <div style="display:flex;gap:8px;">
+            <div style="padding:4px 10px;background:#f1f3f4;border-radius:4px;font-size:12px;cursor:pointer;">◀</div>
+            <div style="padding:4px 10px;background:#f1f3f4;border-radius:4px;font-size:12px;cursor:pointer;">▶</div>
+          </div>
+        </div>
+        <div class="cal-grid">
+          <div class="cal-day-label">Sun</div><div class="cal-day-label">Mon</div><div class="cal-day-label">Tue</div>
+          <div class="cal-day-label">Wed</div><div class="cal-day-label">Thu</div><div class="cal-day-label">Fri</div>
+          <div class="cal-day-label">Sat</div>
+          <!-- Week rows -->
+          <div class="cal-day" style="color:#ccc"></div><div class="cal-day" style="color:#ccc"></div>
+          <div class="cal-day" style="color:#ccc"></div><div class="cal-day" style="color:#ccc"></div>
+          <div class="cal-day" style="color:#ccc"></div>
+          <div class="cal-day">1</div><div class="cal-day">2</div>
+          <div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div>
+          <div class="cal-day">7</div><div class="cal-day">8</div><div class="cal-day">9</div>
+          <div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div>
+          <div class="cal-day">14</div><div class="cal-day">15</div><div class="cal-day">16</div>
+          <div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div>
+          <div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day today">22</div><div class="cal-day">23</div>
+          <div class="cal-day">24</div><div class="cal-day">25</div>
+          <div class="cal-day has-event">26<div class="event-dot" style="background:#5059C9"></div></div>
+          <div class="cal-day">27</div>
+          <div class="cal-day has-event" style="background:#FFF3E0;">28<div class="event-dot" style="background:#E8A838"></div></div>
+          <div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div>
+        </div>
+        <div style="margin-top:16px;">
+          <div style="font-size:12px;font-weight:700;color:#555;margin-bottom:8px;">UPCOMING EVENTS</div>
+          <div class="event-row" style="background:#E8F0FE;">
+            <div class="ev-color" style="background:#5059C9"></div>
+            <div><div class="ev-title">📋 Registration Deadline</div><div style="font-size:11.5px;color:#888">March 26 · All Day</div></div>
+            <div class="ev-time">3 days away</div>
+          </div>
+          <div class="event-row" style="background:#FFF8E1;">
+            <div class="ev-color" style="background:#E8A838"></div>
+            <div><div class="ev-title">🎤 Inauguration Ceremony (Hybrid)</div><div style="font-size:11.5px;color:#888">March 28, 9:00 AM · Teams Live + Hall A</div></div>
+            <div class="ev-time">5 days away</div>
+          </div>
+          <div class="event-row" style="background:#E6F9F1;">
+            <div class="ev-color" style="background:#36B37E"></div>
+            <div><div class="ev-title">📄 Paper Presentation Round 1</div><div style="font-size:11.5px;color:#888">March 28, 11:00 AM · Teams Meeting</div></div>
+            <div class="ev-time">5 days away</div>
+          </div>
+          <div class="event-row" style="background:#FDE8E8;">
+            <div class="ev-color" style="background:#C4314B"></div>
+            <div><div class="ev-title">🏆 Valediction &amp; Prize Distribution</div><div style="font-size:11.5px;color:#888">March 28, 4:30 PM · Hall A + Live Stream</div></div>
+            <div class="ev-time">5 days away</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase no-break">
+    <div class="phase-header">
+      <span class="ph-num">PHASE 4</span>
+      <span class="ph-title">During the Event (Hybrid Execution)</span>
+    </div>
+    <div class="phase-body">
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Host paper presentation sessions as Teams Meetings — presenters share screen <span class="tool-tag">Teams Meeting</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Use Teams Live Events to broadcast the keynote to 500+ virtual attendees <span class="tool-tag">Live Events</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Use in-meeting chat and Q&A for remote participants to interact with speakers <span class="tool-tag">Meeting Chat</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Enable recording — saved automatically to SharePoint/OneDrive for later access <span class="tool-tag">Cloud Recording</span></div></div>
+    </div>
+  </div>
+
+  <!-- Screenshot 4: Meeting -->
+  <div class="mock-wrap">
+    <div class="mock-label">📸 Screenshot 4 — Teams Meeting: Hybrid Paper Presentation in Progress</div>
+    <div class="meet-window">
+      <div class="meet-titlebar">
+        <div class="dot t-red"></div><div class="dot t-yellow"></div><div class="dot t-green"></div>
+        <span style="color:#aaa;font-size:12px;margin-left:10px;">Microsoft Teams · Paper Presentation — TechSympo 2025</span>
+        <span style="margin-left:auto;background:#C4314B;color:#fff;font-size:11px;padding:2px 8px;border-radius:3px;">🔴 RECORDING</span>
+      </div>
+      <div class="meet-grid">
+        <!-- Tiles -->
+        <div class="participant-tile" style="grid-column:1/3;grid-row:1/2;">
+          <div class="pt-bg" style="background:linear-gradient(135deg,#1a1a2e,#2d2b6e);"></div>
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <div style="background:#2a2a4a;border-radius:8px;padding:12px 20px;text-align:center;color:#aaa;font-size:12px;">
+              <div style="font-size:22px;margin-bottom:6px;">🖥️</div>
+              <div>Screen Share Active</div>
+              <div style="font-size:11px;margin-top:4px;color:#7B83EB;">Presenting: Cloud_Security_Paper.pptx</div>
+            </div>
+          </div>
+          <div class="pt-name">📊 Kavya R. — Presenting</div>
+        </div>
+        <div class="participant-tile">
+          <div class="pt-bg" style="background:linear-gradient(135deg,#1c3a4a,#0d2233);"></div>
+          <div class="pt-avatar" style="background:linear-gradient(135deg,#E8A838,#FF5630)">KR</div>
+          <div class="pt-name">Kavya R. (TN)</div>
+        </div>
+        <div class="participant-tile">
+          <div class="pt-bg" style="background:linear-gradient(135deg,#1a3a1a,#0d2a0d);"></div>
+          <div class="pt-avatar" style="background:linear-gradient(135deg,#36B37E,#00B8D9)">MS</div>
+          <div class="pt-name">Dr. M. Suresh</div>
+        </div>
+        <div class="participant-tile">
+          <div class="pt-bg" style="background:linear-gradient(135deg,#2a1a3a,#1a0d2a);"></div>
+          <div class="pt-avatar" style="background:linear-gradient(135deg,#5059C9,#7B83EB)">RK</div>
+          <div class="pt-name">Ravi K. (KA)</div>
+          <div class="pt-mute">🔇</div>
+        </div>
+        <div class="participant-tile">
+          <div class="pt-bg" style="background:linear-gradient(135deg,#3a2a1a,#2a1a0d);"></div>
+          <div class="pt-avatar" style="background:linear-gradient(135deg,#FF5630,#E8A838)">AP</div>
+          <div class="pt-name">Ananya P. (AP)</div>
+        </div>
+        <div class="participant-tile">
+          <div class="pt-bg" style="background:#1c1c1c;display:flex;align-items:center;justify-content:center;">
+            <div style="color:#666;font-size:12px;text-align:center;">+18 more<br>attendees</div>
+          </div>
+        </div>
+      </div>
+      <div class="meet-controls">
+        <div class="ctrl-btn on">🎙️</div>
+        <div class="ctrl-btn on">📹</div>
+        <div class="ctrl-btn on">🖥️</div>
+        <div class="ctrl-btn on">💬</div>
+        <div class="ctrl-btn on">✋</div>
+        <div class="ctrl-btn off">📵 Leave</div>
+        <div class="ctrl-btn green" style="border-radius:4px;width:auto;padding:0 14px;font-size:12px;">👥 24 Participants</div>
+      </div>
+      <div class="meet-info">
+        <span>⏱ Meeting duration: 00:42:17</span>
+        <span>🔴 Cloud Recording Active · Auto-saved to OneDrive</span>
+        <span>📶 Connection: Excellent</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="phase no-break">
+    <div class="phase-header">
+      <span class="ph-num">PHASE 5</span>
+      <span class="ph-title">Post-Event Activities</span>
+    </div>
+    <div class="phase-body">
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Share recorded session links in the Teams channel for participants to review <span class="tool-tag">OneDrive</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Collect feedback using a Microsoft Form — auto-tabulated in Excel Online <span class="tool-tag">MS Forms + Excel</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Send e-certificates via Outlook to all participants (PDF generated from Excel data) <span class="tool-tag">Outlook</span></div></div>
+      <div class="todo-item"><div class="cb">✓</div><div class="task-text">Archive all files in a shared OneDrive folder for future reference <span class="tool-tag">SharePoint</span></div></div>
+    </div>
+  </div>
+
+  <!-- Screenshot 5: Drive / Files -->
+  <div class="mock-wrap">
+    <div class="mock-label">📸 Screenshot 5 — OneDrive / Teams Files: Symposium Folder</div>
+    <div class="drive-window">
+      <div class="drive-topbar">
+        <div class="drive-logo">⬡ OneDrive</div>
+        <div class="drv-search">🔍 &nbsp;Search files in TechSympo 2025...</div>
+        <div style="font-size:12px;color:#5059C9;font-weight:600;cursor:pointer;">+ New ▾</div>
+      </div>
+      <div class="drive-body">
+        <div class="drive-sidebar">
+          <div class="drv-nav-item"><span class="icon">🏠</span> Home</div>
+          <div class="drv-nav-item active"><span class="icon">📁</span> My Files</div>
+          <div class="drv-nav-item"><span class="icon">🔄</span> Shared</div>
+          <div class="drv-nav-item"><span class="icon">🕐</span> Recent</div>
+          <div style="padding:10px 16px;font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;">TechSympo 2025</div>
+          <div class="drv-nav-item" style="padding-left:24px;font-size:12px;"><span>📂</span> Registration</div>
+          <div class="drv-nav-item" style="padding-left:24px;font-size:12px;"><span>📂</span> Presentations</div>
+          <div class="drv-nav-item" style="padding-left:24px;font-size:12px;"><span>📂</span> Recordings</div>
+          <div class="drv-nav-item" style="padding-left:24px;font-size:12px;"><span>📂</span> Certificates</div>
+        </div>
+        <div class="drive-main">
+          <h4>📁 TechSympo 2025 · All Files</h4>
+          <div class="drive-file-grid">
+            <div class="drive-file">
+              <div class="file-thumb" style="background:#FFF3E0;">📄</div>
+              <div class="file-info"><div class="fname">Event_Schedule.xlsx</div><div class="fdate">Modified: Mar 22</div></div>
+            </div>
+            <div class="drive-file">
+              <div class="file-thumb" style="background:#E8F0FE;">📊</div>
+              <div class="file-info"><div class="fname">Registrations_DB.xlsx</div><div class="fdate">Modified: Today</div></div>
+            </div>
+            <div class="drive-file">
+              <div class="file-thumb" style="background:#FCE8F3;">📑</div>
+              <div class="file-info"><div class="fname">Brochure_Final.pdf</div><div class="fdate">Modified: Mar 18</div></div>
+            </div>
+            <div class="drive-file">
+              <div class="file-thumb" style="background:#E6F9F1;">🎬</div>
+              <div class="file-info"><div class="fname">Keynote_Recording.mp4</div><div class="fdate">Modified: Today</div></div>
+            </div>
+            <div class="drive-file">
+              <div class="file-thumb" style="background:#FDE8E8;">🏆</div>
+              <div class="file-info"><div class="fname">Certificates_Batch.pdf</div><div class="fdate">Modified: Today</div></div>
+            </div>
+            <div class="drive-file">
+              <div class="file-thumb" style="background:#E8F4FD;">📝</div>
+              <div class="file-info"><div class="fname">Feedback_Analysis.xlsx</div><div class="fdate">Modified: Today</div></div>
+            </div>
+          </div>
+          <div style="margin-top:14px;font-size:12px;color:#888;">
+            ☁️ All files synced to cloud · <span style="color:#5059C9;cursor:pointer;font-weight:600;">Share folder with participants →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="sec-head">
+    <span class="sec-num">04</span>
+    <span class="sec-title">Complete To-Do Summary Table</span>
+  </div>
+  <table class="summary">
+    <thead><tr><th>Phase</th><th>Task</th><th>Cloud Tool Used</th></tr></thead>
+    <tbody>
+      <tr><td>Setup</td><td>Create Team and Channels</td><td class="tool">MS Teams</td></tr>
+      <tr><td>Setup</td><td>Upload event documents</td><td class="tool">OneDrive</td></tr>
+      <tr><td>Registration</td><td>Online registration form</td><td class="tool">MS Forms</td></tr>
+      <tr><td>Registration</td><td>Email invites to PG students</td><td class="tool">Outlook</td></tr>
+      <tr><td>Scheduling</td><td>Event calendar & reminders</td><td class="tool">Teams Calendar</td></tr>
+      <tr><td>Event Day</td><td>Paper presentations (virtual)</td><td class="tool">Teams Meeting</td></tr>
+      <tr><td>Event Day</td><td>Keynote live broadcast</td><td class="tool">Teams Live Events</td></tr>
+      <tr><td>Event Day</td><td>Real-time Q&A and chat</td><td class="tool">Meeting Chat</td></tr>
+      <tr><td>Event Day</td><td>Auto cloud recording</td><td class="tool">OneDrive / SharePoint</td></tr>
+      <tr><td>Post-Event</td><td>Feedback collection</td><td class="tool">MS Forms + Excel</td></tr>
+      <tr><td>Post-Event</td><td>Certificate distribution</td><td class="tool">Outlook + OneDrive</td></tr>
+      <tr><td>Post-Event</td><td>File archival</td><td class="tool">SharePoint</td></tr>
+    </tbody>
+  </table>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <h3>Conclusion</h3>
+    <p>
+      <strong>Microsoft Teams</strong> serves as a complete, all-in-one cloud collaboration platform for organizing a
+      hybrid national-level technical symposium. It eliminates geographical barriers by enabling PG students from
+      other states to participate virtually via live meetings and streaming, while on-campus students experience
+      the event physically. With integrated tools for registration (Forms), file sharing (OneDrive), scheduling
+      (Calendar), virtual meetings (Teams Meetings), live broadcasting (Live Events), and post-event follow-up
+      (Outlook), Microsoft Teams provides end-to-end cloud collaboration — making it the ideal solution for a
+      modern hybrid technical symposium.
+    </p>
+  </div>
+
+</div>
+</body>
+</html>

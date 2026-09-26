@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cloud Resource Registration & Discovery — Quiz</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#f0f4f9;font-family:'Segoe UI',system-ui,sans-serif;color:#1a1a1a;min-height:100vh}
+.screen{display:none}
+.screen.active{display:block}
+
+.topbar{background:#1a73e8;color:#fff;padding:14px 24px}
+.topbar .label{font-size:11px;letter-spacing:0.8px;text-transform:uppercase;opacity:0.75;margin-bottom:3px}
+.topbar h1{font-size:20px;font-weight:500}
+
+.prog-wrap{background:#d2e3fc;height:5px}
+.prog-fill{height:5px;background:#1a73e8;transition:width 0.35s ease}
+
+.page{max-width:680px;margin:0 auto;padding:24px 16px 60px}
+.card{background:#fff;border-radius:12px;padding:28px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+
+.card h2{font-size:22px;font-weight:500;color:#1a73e8;margin-bottom:10px}
+.card p{font-size:14px;color:#555;line-height:1.7;margin-bottom:16px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.badge{background:#e8f0fe;color:#1a56c4;font-size:12px;padding:4px 12px;border-radius:20px;font-weight:500}
+.field-label{font-size:13px;font-weight:600;color:#444;margin-bottom:6px;display:block}
+input[type=text]{width:100%;padding:12px 14px;border:1.5px solid #ddd;border-radius:8px;font-size:15px;outline:none;color:#1a1a1a;transition:border 0.2s}
+input[type=text]:focus{border-color:#1a73e8}
+.note{font-size:12px;color:#666;margin-top:10px;line-height:1.6;padding:10px 14px;background:#f8f9ff;border-radius:8px;border-left:3px solid #1a73e8}
+
+.q-meta{font-size:12px;font-weight:700;color:#1a73e8;letter-spacing:0.5px;margin-bottom:10px}
+.q-text{font-size:17px;font-weight:400;line-height:1.65;color:#1a1a1a}
+.options{margin-top:20px;display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;border:1.5px solid #e0e0e0;cursor:pointer;transition:all 0.15s;background:#fff;user-select:none}
+.opt:hover:not(.locked){border-color:#1a73e8;background:#f0f6ff}
+.opt.selected{border-color:#1a73e8;background:#e8f0fe}
+.opt.correct{border-color:#34a853;background:#e6f4ea;cursor:default}
+.opt.wrong{border-color:#ea4335;background:#fce8e6;cursor:default}
+.opt.show-correct{border-color:#34a853;background:#e6f4ea;cursor:default}
+.opt.locked{cursor:default}
+.circle{width:26px;height:26px;border-radius:50%;border:2px solid #ccc;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#999;flex-shrink:0;transition:all 0.15s}
+.opt.selected .circle{border-color:#1a73e8;background:#1a73e8;color:#fff}
+.opt.correct .circle{border-color:#34a853;background:#34a853;color:#fff}
+.opt.wrong .circle{border-color:#ea4335;background:#ea4335;color:#fff}
+.opt.show-correct .circle{border-color:#34a853;background:#34a853;color:#fff}
+.opt-text{font-size:15px;color:#1a1a1a;line-height:1.45}
+
+.feedback{margin-top:14px;padding:12px 16px;border-radius:8px;font-size:14px;line-height:1.55}
+.feedback.ok{background:#e6f4ea;color:#1a5c2e;border-left:4px solid #34a853}
+.feedback.fail{background:#fce8e6;color:#7c1a1a;border-left:4px solid #ea4335}
+
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:4px}
+.btn{padding:13px 28px;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;border:none;transition:all 0.15s}
+.btn:active{transform:scale(0.97)}
+.btn-primary{background:#1a73e8;color:#fff}
+.btn-primary:hover{background:#1557b0}
+.btn-outline{background:#fff;color:#1a73e8;border:1.5px solid #1a73e8}
+.btn-outline:hover{background:#e8f0fe}
+.btn:disabled{opacity:0.35;cursor:not-allowed;transform:none}
+
+.result-top{text-align:center;padding:8px 0 20px}
+.result-top .student{font-size:14px;color:#888;margin-bottom:4px}
+.result-top .score{font-size:64px;font-weight:300;color:#1a73e8;line-height:1.1;margin:8px 0 2px}
+.result-top .pct{font-size:16px;color:#888;margin-bottom:14px}
+.result-top .grade{font-size:20px;font-weight:500;color:#1a1a1a;margin-bottom:6px}
+.result-top .msg{font-size:14px;color:#555;line-height:1.6}
+.screenshot-box{background:#fff8e1;border-radius:10px;padding:14px 16px;font-size:13px;color:#6d4600;line-height:1.6;margin:20px 0;border-left:4px solid #f9a825}
+hr.div{border:none;border-top:1px solid #eee;margin:20px 0}
+.bd-title{font-size:12px;font-weight:700;color:#888;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.6px}
+.b-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f5f5f5;font-size:13px;gap:12px}
+.b-row:last-child{border-bottom:none}
+.b-q{color:#444;flex:1;line-height:1.5}
+.b-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.b-dot.pass{background:#34a853}
+.b-dot.fail{background:#ea4335}
+.retake-btn{width:100%;padding:13px;border-radius:8px;font-size:15px;font-weight:500;background:transparent;color:#1a73e8;border:1.5px solid #1a73e8;cursor:pointer;margin-top:16px}
+.retake-btn:hover{background:#e8f0fe}
+
+@media(min-width:600px){
+  .topbar{padding:18px 40px}
+  .topbar h1{font-size:22px}
+  .page{padding:32px 24px 80px}
+  .card{padding:36px}
+  .q-text{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<!-- START -->
+<div id="screen-start" class="screen active">
+  <div class="topbar">
+    <div class="label">Unit Quiz</div>
+    <h1>Cloud Resource Registration &amp; Discovery</h1>
+  </div>
+  <div class="page">
+    <div class="card">
+      <h2>Before you begin</h2>
+      <p>This quiz covers cloud resource types, registration methods, discovery approaches, and key standards. Read each question carefully and select the best answer.</p>
+      <div class="meta">
+        <span class="badge">20 Questions</span>
+        <span class="badge">1 mark each</span>
+        <span class="badge">20 marks total</span>
+        <span class="badge">Instant feedback</span>
+      </div>
+      <label class="field-label" for="sname">Display name (demo) *</label>
+      <input type="text" id="sname" placeholder="e.g. Demo User" autocomplete="off"/>
+      <p class="note">After finishing, <strong>take a screenshot</strong> of your result page and submit it to Google Classroom as your response.</p>
+    </div>
+    <button class="btn btn-primary" style="width:100%" onclick="startQuiz()">Start Quiz →</button>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="screen-quiz" class="screen">
+  <div class="topbar">
+    <div class="label" id="q-label">Question 1 of 20</div>
+    <h1 id="q-name-top" style="font-size:14px;font-weight:400;opacity:0.85;margin-top:2px"></h1>
+  </div>
+  <div class="prog-wrap"><div class="prog-fill" id="prog-fill" style="width:5%"></div></div>
+  <div class="page">
+    <div class="card">
+      <div class="q-meta" id="q-meta"></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback" style="display:none"></div>
+    </div>
+    <div class="nav">
+      <button class="btn btn-outline" id="btn-back" onclick="goBack()" disabled>← Back</button>
+      <button class="btn btn-primary" id="btn-next" onclick="goNext()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="screen-result" class="screen">
+  <div class="topbar">
+    <div class="label">Quiz Complete</div>
+    <h1>Your Results</h1>
+  </div>
+  <div class="page">
+    <div class="card">
+      <div class="result-top">
+        <div class="student" id="res-name"></div>
+        <div class="score" id="res-score"></div>
+        <div class="pct" id="res-pct"></div>
+        <div class="grade" id="res-grade"></div>
+        <div class="msg" id="res-msg"></div>
+      </div>
+      <div class="screenshot-box">
+        For classroom use, submit the result according to your instructor's instructions.
+      </div>
+      <hr class="div"/>
+      <div class="bd-title">Question Breakdown</div>
+      <div id="breakdown"></div>
+    </div>
+    <button class="retake-btn" onclick="retake()">Retake Quiz</button>
+  </div>
+</div>
+
+<script>
+const Qs=[
+  {q:"What best describes a cloud resource?",opts:["A physical library book","Virtual Machines, storage, networks, and APIs","Only CPU and RAM","A shopping mall directory"],ans:1},
+  {q:"What is the best analogy for Resource Registration?",opts:["A customer visiting a store","A mall directory listing all shops","A shop putting up its signboard","A delivery van"],ans:2},
+  {q:"Which of the following is NOT information typically registered by a cloud resource?",opts:["CPU cores and RAM","Data center region and IP address","Active/Offline status","User's browsing history"],ans:3},
+  {q:"What is the purpose of 'heartbeats' in resource registration?",opts:["To speed up the VM","To encrypt data in transit","To signal that the resource is still alive/online","To send user requests to the registry"],ans:2},
+  {q:"What happens when a resource shuts down in dynamic registration?",opts:["It remains listed forever","An admin manually removes it","It notifies the registry and gets de-registered automatically","It sends a heartbeat one last time"],ans:2},
+  {q:"Which type of registration requires manual input by an administrator?",opts:["Static Registration","Dynamic Registration","Federated Registration","Broker Registration"],ans:0},
+  {q:"AWS Auto Scaling is an example of which type of registration?",opts:["Static Registration","Federated Registration","Dynamic Registration","Manual Registration"],ans:2},
+  {q:"A hospital using both AWS and Azure with shared resources is an example of:",opts:["Static Registration","Dynamic Registration","Federated Registration","Centralized Discovery"],ans:2},
+  {q:"What does Resource Discovery allow a user to do?",opts:["Physically access a data center","Register a new VM","Search for and locate cloud resources matching their requirements","Shut down unused resources"],ans:2},
+  {q:"In centralized discovery, what is the major disadvantage?",opts:["Too many registries to search","Queries take too long","Single point of failure — if the registry crashes, nothing works","It requires a broker"],ans:2},
+  {q:"Which discovery approach is compared to a 'gossip network'?",opts:["Centralized Discovery","Broker-Based Discovery","Distributed Discovery","Federated Discovery"],ans:2},
+  {q:"Which major cloud platforms use Broker-Based Discovery?",opts:["OpenStack and Grid computing","UDDI and WSDL","AWS, Microsoft Azure, and Google Cloud","P2P networks"],ans:2},
+  {q:"What does UDDI stand for?",opts:["Unified Data Distribution Interface","Universal Data and Deployment Index","Universal Description, Discovery & Integration","Unified Dynamic Discovery Infrastructure"],ans:2},
+  {q:"What is WSDL used for?",opts:["Storing VM metadata","Describing what a web service does, its inputs and outputs","Encrypting cloud registries","Managing load balancers"],ans:1},
+  {q:"Which protocol do modern clouds like AWS use to access resources via HTTP calls?",opts:["UDDI","WSDL","OGF GLUE","REST API"],ans:3},
+  {q:"What does OpenStack's Keystone service do?",opts:["Manages billing","Hosts virtual machines","Acts as the identity service and registry for all cloud services","Provides GPU acceleration"],ans:2},
+  {q:"What AWS tool allows you to search resources across all regions?",opts:["AWS CloudTrail","AWS Lambda","AWS Resource Explorer","AWS CloudWatch"],ans:2},
+  {q:"What solution helps remove stale/dead entries from a cloud registry?",opts:["RBAC","REST API calls","TTL timers + heartbeat checks","OAuth tokens"],ans:2},
+  {q:"Which challenge involves unauthorized users accessing private cloud resources?",opts:["Scalability","Latency","Interoperability","Security"],ans:3},
+  {q:"Which open standard helps achieve cross-cloud resource compatibility?",opts:["UDDI","REST","OGF GLUE Schema","OAuth"],ans:2}
+];
+
+const L=['A','B','C','D'];
+let cur=0,sname='',answers=new Array(Qs.length).fill(null),shown=new Array(Qs.length).fill(false);
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startQuiz(){
+  sname=document.getElementById('sname').value.trim();
+  if(!sname){alert('Please enter a display name to begin.');return;}
+  showScreen('quiz');renderQ();
+}
+
+function renderQ(){
+  const q=Qs[cur];
+  document.getElementById('q-label').textContent='Question '+(cur+1)+' of '+Qs.length;
+  document.getElementById('q-name-top').textContent=sname;
+  document.getElementById('q-meta').textContent='Q'+(cur+1)+' of '+Qs.length;
+  document.getElementById('q-text').textContent=q.q;
+  document.getElementById('prog-fill').style.width=(((cur+1)/Qs.length)*100)+'%';
+  document.getElementById('btn-back').disabled=(cur===0);
+  document.getElementById('btn-next').textContent=(cur===Qs.length-1)?'Submit Quiz':'Next →';
+  const fb=document.getElementById('feedback');
+  fb.style.display='none';fb.className='feedback';
+  const opts=document.getElementById('options');
+  opts.innerHTML='';
+  q.opts.forEach((o,i)=>{
+    const d=document.createElement('div');
+    d.className='opt'+(shown[cur]?' locked':'');
+    d.innerHTML='<div class="circle">'+L[i]+'</div><div class="opt-text">'+o+'</div>';
+    if(shown[cur]){
+      if(i===q.ans){d.classList.add(answers[cur]===q.ans?'correct':'show-correct');}
+      else if(i===answers[cur]){d.classList.add('wrong');}
+    } else {
+      if(answers[cur]===i)d.classList.add('selected');
+      d.onclick=()=>pick(i);
+    }
+    opts.appendChild(d);
+  });
+  if(shown[cur]){
+    fb.style.display='block';
+    if(answers[cur]===q.ans){fb.classList.add('ok');fb.textContent='Correct!';}
+    else{fb.classList.add('fail');fb.textContent='Incorrect. The correct answer is '+L[q.ans]+': '+q.opts[q.ans];}
+  }
+}
+
+function pick(i){
+  if(shown[cur])return;
+  answers[cur]=i;
+  document.querySelectorAll('.opt').forEach((d,j)=>d.classList.toggle('selected',j===i));
+}
+
+function goNext(){
+  if(cur===Qs.length-1){
+    const u=answers.map((a,i)=>a===null?i+1:null).filter(Boolean);
+    if(u.length>0){alert('Please answer all questions before submitting.\nUnanswered: Q'+u.join(', Q'));return;}
+    showResult();return;
+  }
+  if(answers[cur]===null){alert('Please select an answer to continue.');return;}
+  if(!shown[cur]){shown[cur]=true;renderQ();return;}
+  cur++;renderQ();
+}
+
+function goBack(){if(cur>0){cur--;renderQ();}}
+
+function showResult(){
+  let score=0;
+  answers.forEach((a,i)=>{if(a===Qs[i].ans)score++;});
+  const pct=Math.round(score/Qs.length*100);
+  document.getElementById('res-name').textContent=sname;
+  document.getElementById('res-score').textContent=score+' / '+Qs.length;
+  document.getElementById('res-pct').textContent=pct+'% correct';
+  let grade='',msg='';
+  if(pct>=90){grade='Outstanding';msg='Excellent work! You have a strong command of the topic.';}
+  else if(pct>=75){grade='Good';msg='Well done. Review the questions you missed to strengthen your understanding.';}
+  else if(pct>=50){grade='Satisfactory';msg='A decent start. Go back through your notes, especially on discovery types and standards.';}
+  else{grade='Needs Improvement';msg='Revisit the module carefully and try again — you can do better!';}
+  document.getElementById('res-grade').textContent=grade;
+  document.getElementById('res-msg').textContent=msg;
+  const bd=document.getElementById('breakdown');
+  bd.innerHTML='';
+  Qs.forEach((q,i)=>{
+    const pass=answers[i]===q.ans;
+    const row=document.createElement('div');
+    row.className='b-row';
+    row.innerHTML='<div class="b-q"><strong>Q'+(i+1)+'.</strong> '+q.q+'</div><div class="b-dot '+(pass?'pass':'fail')+'"></div>';
+    bd.appendChild(row);
+  });
+  showScreen('result');
+}
+
+function retake(){
+  cur=0;answers=new Array(Qs.length).fill(null);shown=new Array(Qs.length).fill(false);
+  showScreen('start');
+}
+</script>
+</body>
+</html>
