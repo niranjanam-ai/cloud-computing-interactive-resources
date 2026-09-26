@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Presentation Collaboration – 10 Mark Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Lato:wght@300;400;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --canva-purple: #7D2AE8;
+  --canva-violet: #A259FF;
+  --canva-light: #F3EBFF;
+  --prezi-blue: #2B6BF3;
+  --prezi-sky: #E8F0FE;
+  --prezi-dark: #0D2B6B;
+  --zoho-red: #E42527;
+  --zoho-light: #FFF0F0;
+  --bg: #F8F7F4;
+  --paper: #FFFFFF;
+  --ink: #1A1A2E;
+  --muted: #6B7280;
+  --rule: #E8E4DE;
+  --soft: #F3F1ED;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.75;}
+
+/* ── COVER ── */
+.cover{
+  background:linear-gradient(135deg,#FEFEFE 0%,#F0EBFF 40%,#E8F0FE 100%);
+  padding:52px 62px 46px;
+  border-bottom:3px solid;
+  border-image:linear-gradient(90deg,#7D2AE8,#2B6BF3,#E42527) 1;
+  position:relative;overflow:hidden;
+}
+.cover::before{content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(125,42,232,.1) 0%,transparent 65%);}
+.cover::after{content:'';position:absolute;left:-50px;bottom:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(43,107,243,.08) 0%,transparent 65%);}
+.cover-tag{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--canva-purple);margin-bottom:14px;}
+.cover h1{font-family:'Playfair Display',serif;font-size:38px;line-height:1.2;color:var(--ink);max-width:760px;font-weight:900;}
+.cover h1 .c{color:var(--canva-purple);}
+.cover h1 .p{color:var(--prezi-blue);}
+.cover h1 .z{color:var(--zoho-red);}
+.cover-sub{margin-top:12px;font-size:13.5px;color:var(--muted);max-width:640px;}
+.tool-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.tp{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:700;font-family:'Fira Code',monospace;border:1.5px solid;}
+.tp-c{background:var(--canva-light);border-color:var(--canva-purple);color:var(--canva-purple);}
+.tp-p{background:var(--prezi-sky);border-color:var(--prezi-blue);color:var(--prezi-blue);}
+.tp-z{background:var(--zoho-light);border-color:var(--zoho-red);color:var(--zoho-red);}
+.marks-badge{margin-top:26px;display:inline-block;background:var(--ink);color:#fff;font-family:'Fira Code',monospace;font-size:12px;font-weight:500;padding:6px 20px;border-radius:4px;letter-spacing:.07em;}
+
+/* ── WRAP ── */
+.wrap{max-width:970px;margin:0 auto;padding:50px 44px 80px;}
+
+/* ── SECTION ── */
+.sec{display:flex;align-items:center;gap:14px;margin:50px 0 18px;}
+.sec-tag{font-family:'Fira Code',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:4px 13px;border-radius:20px;flex-shrink:0;}
+.st-intro{background:#F3EBFF;color:var(--canva-purple);border:1px solid #D8AAFF;}
+.st-1{background:#F3EBFF;color:var(--canva-purple);border:1px solid #D8AAFF;}
+.st-2{background:#E8F0FE;color:var(--prezi-blue);border:1px solid #A3C0F8;}
+.st-3{background:#FFF0F0;color:var(--zoho-red);border:1px solid #FFAAAA;}
+.st-cmp{background:var(--soft);color:var(--muted);border:1px solid var(--rule);}
+.st-con{background:#F0F4FF;color:var(--prezi-dark);border:1px solid #A3C0F8;}
+.sec-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);font-weight:700;}
+
+/* ── INTRO CARD ── */
+.intro-card{background:var(--paper);border:1px solid var(--rule);border-left:5px solid var(--canva-purple);border-radius:8px;padding:22px 26px;margin-bottom:10px;}
+.intro-card p+p{margin-top:10px;}
+.hl-c{background:var(--canva-light);color:var(--canva-purple);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-p{background:var(--prezi-sky);color:var(--prezi-blue);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-z{background:var(--zoho-light);color:var(--zoho-red);padding:1px 5px;border-radius:3px;font-weight:700;}
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:28px;margin:18px 0;}
+.flow-wrap h4{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--ink);text-align:center;margin-bottom:22px;}
+.flow-row{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.fbox{border-radius:8px;padding:13px 18px;text-align:center;min-width:120px;border:2px solid;}
+.ficon{font-size:26px;margin-bottom:5px;}
+.fname{font-size:12px;font-weight:700;}
+.fsub{font-family:'Fira Code',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.farrow{font-size:20px;padding:0 8px;color:#CBD5E1;flex-shrink:0;}
+.fb-user{background:#F8F9FA;border-color:#E2E8F0;color:var(--ink);}
+.fb-cloud{background:#F0F4FF;border-color:#A3C0F8;color:var(--prezi-blue);}
+.fb-c{background:var(--canva-light);border-color:var(--canva-purple);color:var(--canva-purple);}
+.fb-p{background:var(--prezi-sky);border-color:var(--prezi-blue);color:var(--prezi-blue);}
+.fb-z{background:var(--zoho-light);border-color:var(--zoho-red);color:var(--zoho-red);}
+
+/* ── TOOL BANNER ── */
+.tool-banner{border-radius:10px;overflow:hidden;margin-bottom:8px;}
+.tb-head{padding:16px 24px;display:flex;align-items:center;gap:14px;}
+.tb-icon{font-size:30px;}
+.tb-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;}
+.tb-url{font-family:'Fira Code',monospace;font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;}
+.tb-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:18px 24px;color:var(--muted);font-size:14px;}
+.tb-body strong{color:var(--ink);}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:10px;}
+.feat-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink);}
+.fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+
+/* ── MOCK LABEL ── */
+.mock-label{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin:26px 0 10px;}
+.mock-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ── CHROME FRAME ── */
+.win{border:1px solid #D1D5DB;border-radius:12px;overflow:hidden;box-shadow:0 6px 30px rgba(0,0,0,.10);}
+.win-bar{background:#F1F0ED;padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E2DDD8;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.url-bar{flex:1;background:#fff;border:1px solid #D1D5DB;border-radius:18px;padding:5px 16px;font-size:12px;color:#9CA3AF;display:flex;align-items:center;gap:7px;}
+
+/* ══════════════════ CANVA ══════════════════ */
+.canva-body{background:#fff;font-family:'Lato',sans-serif;}
+.canva-topbar{background:#fff;border-bottom:1px solid #EFEFEF;padding:0 16px;display:flex;align-items:center;gap:12px;height:52px;}
+.canva-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:var(--canva-purple);letter-spacing:-.02em;}
+.canva-file{font-size:13px;color:#374151;font-weight:600;}
+.canva-tabs{display:flex;margin-left:10px;}
+.canva-tab{padding:8px 14px;font-size:12.5px;color:#9CA3AF;cursor:pointer;border-bottom:2px solid transparent;}
+.canva-tab.active{color:var(--canva-purple);border-bottom-color:var(--canva-purple);font-weight:700;}
+.canva-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.canva-avatar{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;border:2px solid #fff;box-shadow:0 0 0 1px #E5E7EB;}
+.canva-share-btn{background:var(--canva-purple);color:#fff;font-size:13px;font-weight:700;padding:7px 18px;border-radius:8px;cursor:pointer;}
+.canva-layout{display:grid;grid-template-columns:64px 220px 1fr 240px;height:540px;}
+
+/* Icon rail */
+.canva-rail{background:#F9F8FF;border-right:1px solid #EFEFEF;display:flex;flex-direction:column;align-items:center;padding:12px 0;gap:6px;}
+.cr-item{width:44px;height:44px;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:18px;cursor:pointer;color:#9CA3AF;gap:2px;}
+.cr-item span{font-size:9px;font-weight:600;}
+.cr-item:hover{background:#F0EBFF;color:var(--canva-purple);}
+.cr-item.active{background:#F0EBFF;color:var(--canva-purple);}
+
+/* Elements panel */
+.canva-panel{background:#FAFAFF;border-right:1px solid #EFEFEF;display:flex;flex-direction:column;overflow:hidden;}
+.cp-search{margin:10px;background:#fff;border:1.5px solid #E5E7EB;border-radius:8px;padding:7px 12px;font-size:12.5px;color:#9CA3AF;display:flex;align-items:center;gap:7px;}
+.cp-section{font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.1em;padding:8px 12px 4px;}
+.cp-thumb-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 10px;}
+.cp-thumb{border-radius:6px;overflow:hidden;cursor:pointer;border:1.5px solid transparent;}
+.cp-thumb:hover{border-color:var(--canva-purple);}
+.cp-thumb-inner{height:60px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+.cp-thumb-label{font-size:10px;text-align:center;color:var(--muted);padding:3px 0 5px;}
+.canva-slide-list{border-top:1px solid #EFEFEF;flex:1;overflow-y:auto;padding:8px;}
+.csl-head{font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;padding:4px 4px 8px;}
+.csl-slide{border-radius:6px;overflow:hidden;margin-bottom:6px;border:2px solid transparent;cursor:pointer;position:relative;}
+.csl-slide.active{border-color:var(--canva-purple);}
+.csl-slide:hover{border-color:#C4A8FF;}
+.csl-num{position:absolute;bottom:4px;right:5px;font-size:9px;color:rgba(255,255,255,.8);font-weight:600;text-shadow:0 1px 2px rgba(0,0,0,.4);}
+.csl-editing{position:absolute;top:4px;left:4px;font-size:9px;background:rgba(125,42,232,.9);color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;}
+
+/* Canvas */
+.canva-canvas{background:#E8E6E0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.slide-frame{background:#fff;width:580px;height:326px;border-radius:4px;box-shadow:0 4px 24px rgba(0,0,0,.2);position:relative;overflow:hidden;}
+.slide-content{height:100%;display:flex;flex-direction:column;justify-content:center;padding:30px 38px;}
+.slide-collab-indicator{position:absolute;top:8px;right:8px;display:flex;gap:4px;}
+.sci{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;border:1.5px solid #fff;}
+.zoom-controls{position:absolute;bottom:12px;right:14px;display:flex;align-items:center;gap:6px;background:#fff;border-radius:20px;padding:4px 10px;box-shadow:0 2px 8px rgba(0,0,0,.12);}
+.zoom-controls span{font-size:11.5px;color:var(--muted);}
+
+/* Right sidebar */
+.canva-right{background:#FAFAFF;border-left:1px solid #EFEFEF;display:flex;flex-direction:column;overflow:hidden;}
+.cr-head{font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;padding:14px 14px 8px;}
+.collab-user-card{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:8px;margin:0 8px 6px;background:var(--paper);border:1px solid #EFEFEF;}
+.cuc-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.cuc-name{font-size:12.5px;font-weight:700;color:var(--ink);}
+.cuc-status{font-size:11px;color:var(--muted);}
+.comment-box{margin:6px 8px;background:#fff;border:1px solid #EFEFEF;border-radius:8px;padding:10px;}
+.cb-author{font-size:11px;font-weight:700;color:var(--canva-purple);margin-bottom:4px;}
+.cb-text{font-size:12px;color:var(--muted);line-height:1.5;}
+.cb-time{font-size:10.5px;color:#CBD5E1;margin-top:4px;}
+.canva-statusbar{background:#F9F8FF;border-top:1px solid #EFEFEF;padding:6px 16px;display:flex;align-items:center;gap:14px;font-size:11.5px;color:var(--muted);}
+.status-green{color:#059669;font-weight:700;display:flex;align-items:center;gap:4px;}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#10B981;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* ══════════════════ PREZI ══════════════════ */
+.prezi-body{background:#fff;}
+.prezi-topbar{background:#fff;border-bottom:1px solid #E5E7EB;padding:0 16px;display:flex;align-items:center;gap:12px;height:52px;}
+.prezi-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:var(--prezi-blue);}
+.prezi-breadcrumb{font-size:13px;color:#374151;}
+.prezi-breadcrumb span{color:#9CA3AF;margin:0 5px;}
+.prezi-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.prezi-share-btn{background:var(--prezi-blue);color:#fff;font-size:13px;font-weight:700;padding:7px 18px;border-radius:8px;cursor:pointer;}
+.prezi-layout{display:grid;grid-template-columns:200px 1fr 220px;height:520px;}
+.prezi-slides-panel{background:#F8FAFF;border-right:1px solid #E5E7EB;overflow-y:auto;padding:10px;}
+.psp-head{font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;padding:4px 4px 10px;}
+.psl-slide{border-radius:6px;overflow:hidden;margin-bottom:8px;border:2px solid transparent;cursor:pointer;position:relative;}
+.psl-slide.active{border-color:var(--prezi-blue);}
+.psl-slide:hover{border-color:#93C5FD;}
+.psl-num{position:absolute;bottom:3px;left:5px;font-size:9px;color:rgba(255,255,255,.9);font-weight:700;text-shadow:0 1px 2px rgba(0,0,0,.4);}
+.psl-user{position:absolute;top:4px;right:4px;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#fff;border:1.5px solid #fff;}
+.prezi-canvas{background:#E8EFF8;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.prezi-canvas-inner{position:relative;}
+.prezi-map{width:560px;height:380px;background:#EEF4FF;border-radius:12px;border:1px solid #BFDBFE;position:relative;overflow:hidden;}
+.prezi-path{position:absolute;border:2px dashed #93C5FD;border-radius:50%;pointer-events:none;}
+.prezi-topic{position:absolute;border-radius:12px;padding:10px 16px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.1);min-width:120px;text-align:center;}
+.pt-active{box-shadow:0 0 0 3px var(--prezi-blue),0 4px 16px rgba(43,107,243,.25) !important;}
+.pt-title{font-family:'Playfair Display',serif;font-size:13px;font-weight:700;}
+.pt-sub{font-size:10.5px;margin-top:2px;}
+.prezi-toolbar{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;background:#fff;border-radius:24px;padding:6px 14px;box-shadow:0 2px 12px rgba(0,0,0,.12);}
+.pt-tool{padding:5px 12px;border-radius:16px;font-size:12px;cursor:pointer;color:var(--muted);font-weight:600;}
+.pt-tool:hover{background:#F3F4F6;color:var(--ink);}
+.pt-tool.active{background:var(--prezi-sky);color:var(--prezi-blue);}
+.prezi-right{background:#F8FAFF;border-left:1px solid #E5E7EB;display:flex;flex-direction:column;padding:14px;}
+.pr-head{font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.prezi-collab-user{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;margin-bottom:6px;background:#fff;border:1px solid #E5E7EB;}
+.pcu-av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.pcu-name{font-size:12.5px;font-weight:700;color:var(--ink);}
+.pcu-status{font-size:11px;color:var(--muted);}
+.prezi-analytics{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:10px;margin-top:10px;}
+.pa-head{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.pa-stat{display:flex;justify-content:space-between;font-size:12.5px;padding:4px 0;border-bottom:1px solid #F3F4F6;}
+.pa-stat:last-child{border-bottom:none;}
+.pa-val{font-weight:700;color:var(--prezi-blue);}
+.prezi-statusbar{background:#F8FAFF;border-top:1px solid #E5E7EB;padding:6px 16px;display:flex;align-items:center;gap:12px;font-size:11.5px;color:var(--muted);}
+
+/* ══════════════════ ZOHO SHOW ══════════════════ */
+.zoho-body{background:#fff;}
+.zoho-topbar{background:#E42527;padding:0 16px;display:flex;align-items:center;gap:12px;height:48px;}
+.zoho-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:16px;color:#fff;}
+.zoho-file{font-size:13px;color:rgba(255,255,255,.85);}
+.zoho-tabs{display:flex;margin-left:10px;}
+.zoho-tab{padding:8px 14px;font-size:12px;color:rgba(255,255,255,.65);cursor:pointer;border-bottom:2px solid transparent;}
+.zoho-tab.active{color:#fff;border-bottom-color:#fff;font-weight:700;}
+.zoho-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.zoho-share-btn{background:#fff;color:var(--zoho-red);font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:6px;cursor:pointer;}
+.zoho-ribbon{background:#fff;border-bottom:2px solid #F3F4F6;padding:6px 14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.zr-btn{padding:5px 10px;border:1px solid #E5E7EB;border-radius:5px;font-size:12px;cursor:pointer;background:#fff;color:#374151;display:flex;align-items:center;gap:4px;}
+.zr-btn:hover{background:#FFF5F5;border-color:#FFAAAA;}
+.zr-btn.active-btn{background:var(--zoho-light);border-color:var(--zoho-red);color:var(--zoho-red);}
+.zr-btn.primary{background:var(--zoho-red);color:#fff;border-color:var(--zoho-red);font-weight:700;}
+.zoho-layout{display:grid;grid-template-columns:170px 1fr 210px;height:490px;}
+.zoho-slides{background:#F9F9F9;border-right:1px solid #E5E7EB;overflow-y:auto;padding:10px 8px;}
+.zs-head{font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;padding:4px 4px 8px;}
+.zsl-slide{border-radius:5px;overflow:hidden;margin-bottom:6px;border:2px solid transparent;cursor:pointer;position:relative;}
+.zsl-slide.active{border-color:var(--zoho-red);}
+.zsl-slide:hover{border-color:#FFAAAA;}
+.zsl-num{position:absolute;bottom:3px;right:5px;font-size:9px;color:rgba(255,255,255,.9);font-weight:700;}
+.zoho-canvas{background:#E0E0E0;display:flex;align-items:center;justify-content:center;position:relative;}
+.zoho-slide-frame{background:#fff;width:570px;height:322px;border-radius:3px;box-shadow:0 4px 20px rgba(0,0,0,.18);position:relative;overflow:hidden;}
+.zoho-right{background:#FAFAFA;border-left:1px solid #E5E7EB;padding:14px;overflow-y:auto;}
+.zr-head{font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+.zoho-collab-user{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;margin-bottom:6px;background:#fff;border:1px solid #E5E7EB;}
+.zcu-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.zcu-name{font-size:12.5px;font-weight:700;color:var(--ink);}
+.zcu-action{font-size:11px;color:var(--muted);}
+.zoho-version-list{background:#fff;border:1px solid #E5E7EB;border-radius:8px;padding:10px;margin-top:10px;}
+.zvl-head{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;}
+.zvl-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid #F3F4F6;font-size:12px;}
+.zvl-item:last-child{border-bottom:none;}
+.zv-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.zv-saved{background:#10B981;} .zv-prev{background:#D1D5DB;}
+.zoho-statusbar{background:#F9F9F9;border-top:1px solid #E5E7EB;padding:6px 14px;display:flex;gap:14px;font-size:11.5px;color:var(--muted);}
+
+/* ── COMPARISON TABLE ── */
+table.cmp{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin:16px 0;font-size:13.5px;}
+table.cmp thead tr{background:var(--ink);color:#fff;}
+table.cmp th{padding:11px 16px;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:.04em;text-align:left;}
+table.cmp td{padding:10px 16px;background:var(--paper);border-bottom:1px solid var(--rule);color:var(--ink);}
+table.cmp tr:last-child td{border-bottom:none;}
+table.cmp .yes{color:#059669;font-weight:700;}
+table.cmp .par{color:#D97706;}
+table.cmp .no{color:#DC2626;}
+
+/* ── CONCLUSION ── */
+.conclusion{border-radius:10px;overflow:hidden;margin-top:46px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.con-head{background:linear-gradient(90deg,#7D2AE8,#2B6BF3);padding:18px 30px;}
+.con-head h3{font-family:'Playfair Display',serif;font-size:21px;color:#fff;font-weight:700;}
+.con-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:24px 30px;}
+.con-body p{font-size:14.5px;color:var(--muted);line-height:1.8;}
+.con-body strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<div class="cover">
+  <div class="cover-tag">Cloud Computing · 10 Mark Answer · Presentation Collaboration</div>
+  <h1>Collaborating on<br><span class="c">Presentations</span> in the Cloud —<br>Real-Time Tools &amp; Interfaces</h1>
+  <div class="cover-sub">Three real, production-grade cloud presentation platforms · No Google Slides, No Microsoft PowerPoint Online · Light theme throughout</div>
+  <div class="tool-pills">
+    <span class="tp tp-c">🎨 Canva — canva.com</span>
+    <span class="tp tp-p">🔵 Prezi — prezi.com</span>
+    <span class="tp tp-z">🔴 Zoho Show — zoho.com/show</span>
+  </div>
+  <div class="marks-badge">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- ════ INTRO ════ -->
+<div class="sec"><span class="sec-tag st-intro">01</span><span class="sec-title">What is Cloud Presentation Collaboration?</span></div>
+<div class="intro-card">
+  <p><strong>Cloud presentation collaboration</strong> is the ability for multiple users in different locations to simultaneously <strong>create, edit, design, comment on, and present</strong> the same presentation — stored on a remote cloud server — in real time, without installing software or sending files by email.</p>
+  <p>Traditional tools like PowerPoint require one person to edit, save, and share a file. In contrast, cloud tools like <span class="hl-c">Canva</span>, <span class="hl-p">Prezi</span>, and <span class="hl-z">Zoho Show</span> allow every team member to see each other's cursors, edits, and comments live — enabling seamless teamwork from any device and any location.</p>
+  <p>Key benefits include: <strong>real-time co-editing</strong>, <strong>version history</strong>, <strong>comment threads on slides</strong>, <strong>role-based access</strong>, <strong>instant sharing via link</strong>, and <strong>live presentation features</strong> — all managed in the browser with no installation needed.</p>
+</div>
+
+<!-- ════ FLOW DIAGRAM ════ -->
+<div class="sec"><span class="sec-tag st-cmp">02</span><span class="sec-title">How Cloud Presentation Collaboration Works</span></div>
+<div class="flow-wrap">
+  <h4>Architecture — Real-Time Cloud Presentation Collaboration</h4>
+  <div class="flow-row" style="margin-bottom:16px;">
+    <div class="fbox fb-user"><div class="ficon">👩‍💻</div><div class="fname">User A</div><div class="fsub">Chennai · Browser</div></div>
+    <div class="farrow">→</div>
+    <div class="fbox fb-cloud"><div class="ficon">☁️</div><div class="fname">Cloud Server</div><div class="fsub">Canva / Prezi / Zoho</div></div>
+    <div class="farrow">→</div>
+    <div class="fbox fb-user"><div class="ficon">👨‍💻</div><div class="fname">User B</div><div class="fsub">Bangalore · App</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:var(--muted);margin:8px 0 16px;">↕ Edits sync in milliseconds · Cursors visible · Comments live · No file sharing needed</div>
+  <div class="flow-row" style="gap:16px;">
+    <div class="fbox fb-c"><div class="ficon">🎨</div><div class="fname">Canva</div><div class="fsub">Design-first · Templates</div></div>
+    <div class="fbox fb-p"><div class="ficon">🔵</div><div class="fname">Prezi</div><div class="fsub">Zoom canvas · Non-linear</div></div>
+    <div class="fbox fb-z"><div class="ficon">🔴</div><div class="fname">Zoho Show</div><div class="fsub">Full suite · Business</div></div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 1: CANVA ════════════ -->
+<div class="sec"><span class="sec-tag st-1">TOOL 1</span><span class="sec-title">Canva — canva.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#7D2AE8,#A259FF);">
+    <span class="tb-icon">🎨</span>
+    <div><div class="tb-name">Canva</div><div class="tb-url">canva.com · Free + Pro · 150M+ users · Used in 190 countries</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Canva is the world's most popular cloud-based visual design and presentation tool. Its Presentations feature allows teams to collaboratively design visually rich slides using thousands of templates, drag-and-drop elements, and brand kits. Real-time collaboration is built in — every editor's cursor is visible live.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>Real-time co-editing — see teammates' colored cursors live on every slide</div>
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>Comments on any element — @mention teammates for feedback</div>
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>Brand Kit — shared fonts, colors, logos for consistency across the team</div>
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>Present Live — audience joins via link and follows speaker in real time</div>
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>Version history — restore any previous design state</div>
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>Share with role: View, Comment, or Edit access per person</div>
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>Export: PDF, PPTX, MP4, GIF, PNG — all from browser</div>
+      <div class="feat-item"><div class="fdot" style="background:#7D2AE8;"></div>50,000+ templates · AI design generation (Magic Design)</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 1 — Canva: Real-time Collaborative Presentation Editor (TechSympo 2025 Deck)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>canva.com/design/DAFxTechSympo2025/edit · 4 collaborators active</div></div>
+  <div class="canva-body">
+    <!-- Topbar -->
+    <div class="canva-topbar">
+      <div class="canva-logo">Canva</div>
+      <div class="canva-file">TechSympo 2025 — Keynote Presentation</div>
+      <div class="canva-tabs">
+        <div class="canva-tab active">Design</div>
+        <div class="canva-tab">Transitions</div>
+        <div class="canva-tab">Present ▾</div>
+        <div class="canva-tab">Share</div>
+      </div>
+      <div class="canva-topbar-right">
+        <div style="display:flex;margin-right:4px;">
+          <div class="canva-avatar" style="background:#7D2AE8;">KR</div>
+          <div class="canva-avatar" style="background:#2B6BF3;margin-left:-6px;">AM</div>
+          <div class="canva-avatar" style="background:#E42527;margin-left:-6px;">PR</div>
+          <div class="canva-avatar" style="background:#059669;margin-left:-6px;">SM</div>
+        </div>
+        <div style="font-size:11.5px;color:#059669;font-weight:700;margin-right:8px;">4 editing</div>
+        <div style="padding:7px 14px;border:1.5px solid #E5E7EB;border-radius:8px;font-size:12.5px;cursor:pointer;color:#374151;font-weight:600;">⬇ Download</div>
+        <div class="canva-share-btn">Share</div>
+      </div>
+    </div>
+
+    <div class="canva-layout">
+      <!-- Icon Rail -->
+      <div class="canva-rail">
+        <div class="cr-item active">🎨<span>Design</span></div>
+        <div class="cr-item">📝<span>Text</span></div>
+        <div class="cr-item">🖼<span>Photos</span></div>
+        <div class="cr-item">⬟<span>Elements</span></div>
+        <div class="cr-item">📊<span>Charts</span></div>
+        <div class="cr-item">📁<span>Uploads</span></div>
+        <div class="cr-item" style="margin-top:auto;">💬<span>Comments</span></div>
+      </div>
+
+      <!-- Left panel — slide list -->
+      <div class="canva-panel">
+        <div class="cp-section">Templates</div>
+        <div class="cp-thumb-grid">
+          <div class="cp-thumb">
+            <div class="cp-thumb-inner" style="background:linear-gradient(135deg,#7D2AE8,#A259FF);">📊</div>
+            <div class="cp-thumb-label">Corporate</div>
+          </div>
+          <div class="cp-thumb">
+            <div class="cp-thumb-inner" style="background:linear-gradient(135deg,#2B6BF3,#60A5FA);">🎓</div>
+            <div class="cp-thumb-label">Education</div>
+          </div>
+          <div class="cp-thumb">
+            <div class="cp-thumb-inner" style="background:linear-gradient(135deg,#059669,#34D399);">📈</div>
+            <div class="cp-thumb-label">Report</div>
+          </div>
+          <div class="cp-thumb">
+            <div class="cp-thumb-inner" style="background:linear-gradient(135deg,#E42527,#F87171);">🏆</div>
+            <div class="cp-thumb-label">Award</div>
+          </div>
+        </div>
+        <div class="cp-section" style="margin-top:10px;">Slides (6)</div>
+        <div class="canva-slide-list">
+          <!-- Slide thumbs -->
+          <div class="csl-slide active">
+            <div style="background:linear-gradient(135deg,#7D2AE8,#1e1e2e);padding:12px 10px;text-align:center;">
+              <div style="font-size:9px;font-weight:700;color:#fff;">TechSympo 2025</div>
+              <div style="font-size:7px;color:rgba(255,255,255,.6);margin-top:2px;">CSE Department</div>
+            </div>
+            <div class="csl-num">1</div>
+          </div>
+          <div class="csl-slide">
+            <div style="background:linear-gradient(135deg,#2B6BF3,#1e1e2e);padding:12px 10px;">
+              <div style="font-size:8px;font-weight:700;color:#fff;">About the Event</div>
+              <div style="width:80%;height:2px;background:rgba(255,255,255,.3);margin:4px 0;border-radius:1px;"></div>
+              <div style="width:60%;height:2px;background:rgba(255,255,255,.2);border-radius:1px;"></div>
+            </div>
+            <div class="csl-editing">✎ KR</div>
+            <div class="csl-num">2</div>
+          </div>
+          <div class="csl-slide">
+            <div style="background:linear-gradient(135deg,#059669,#1e1e2e);padding:12px 10px;">
+              <div style="font-size:8px;font-weight:700;color:#fff;">Schedule</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:4px;">
+                <div style="height:8px;background:rgba(255,255,255,.3);border-radius:1px;"></div>
+                <div style="height:8px;background:rgba(255,255,255,.2);border-radius:1px;"></div>
+                <div style="height:8px;background:rgba(255,255,255,.2);border-radius:1px;"></div>
+                <div style="height:8px;background:rgba(255,255,255,.15);border-radius:1px;"></div>
+              </div>
+            </div>
+            <div class="csl-editing" style="background:rgba(43,107,243,.9);">✎ AM</div>
+            <div class="csl-num">3</div>
+          </div>
+          <div class="csl-slide">
+            <div style="background:linear-gradient(135deg,#E42527,#1e1e2e);padding:12px 10px;text-align:center;">
+              <div style="font-size:8px;font-weight:700;color:#fff;">Events</div>
+            </div>
+            <div class="csl-num">4</div>
+          </div>
+          <div class="csl-slide">
+            <div style="background:linear-gradient(135deg,#D97706,#1e1e2e);padding:12px 10px;text-align:center;">
+              <div style="font-size:8px;font-weight:700;color:#fff;">Results</div>
+            </div>
+            <div class="csl-num">5</div>
+          </div>
+          <div class="csl-slide">
+            <div style="background:linear-gradient(135deg,#0D2B6B,#1e1e2e);padding:12px 10px;text-align:center;">
+              <div style="font-size:8px;font-weight:700;color:#fff;">Thank You</div>
+            </div>
+            <div class="csl-num">6</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Canvas -->
+      <div class="canva-canvas">
+        <div class="slide-frame">
+          <!-- Slide content -->
+          <div style="background:linear-gradient(135deg,#7D2AE8 0%,#1e1e2e 100%);height:100%;padding:32px 40px;display:flex;flex-direction:column;justify-content:center;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:.16em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:12px;">Annual National Level Technical Symposium</div>
+            <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px;">TechSympo<br>2025</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.7);margin-bottom:18px;">CSE Department · Hybrid Mode · March 28, 2025</div>
+            <div style="display:flex;gap:8px;">
+              <span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;padding:4px 12px;border-radius:12px;">📅 March 28</span>
+              <span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;padding:4px 12px;border-radius:12px;">🏛 CSE + Online</span>
+              <span style="background:rgba(162,89,255,.4);color:#fff;font-size:11px;padding:4px 12px;border-radius:12px;">✨ 300+ Participants</span>
+            </div>
+          </div>
+          <!-- Live collab cursors on slide -->
+          <div style="position:absolute;top:22px;left:180px;pointer-events:none;">
+            <div style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #2B6BF3;"></div>
+            <div style="background:#2B6BF3;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;margin-top:1px;font-weight:700;white-space:nowrap;">Arjun</div>
+          </div>
+          <div style="position:absolute;bottom:40px;right:80px;pointer-events:none;">
+            <div style="width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-bottom:14px solid #059669;"></div>
+            <div style="background:#059669;color:#fff;font-size:9px;padding:2px 6px;border-radius:4px;margin-top:1px;font-weight:700;white-space:nowrap;">Sneha</div>
+          </div>
+          <!-- Slide collab indicators -->
+          <div class="slide-collab-indicator">
+            <div class="sci" style="background:#2B6BF3;">AM</div>
+            <div class="sci" style="background:#059669;">SM</div>
+          </div>
+        </div>
+        <div class="zoom-controls">
+          <span>−</span>
+          <span style="font-weight:700;color:var(--ink);">85%</span>
+          <span>+</span>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="canva-right">
+        <div class="cr-head" style="padding:14px 14px 8px;">Collaborators</div>
+        <div class="collab-user-card">
+          <div class="cuc-av" style="background:#7D2AE8;">KR</div>
+          <div><div class="cuc-name">Kavya R.</div><div class="cuc-status">🟣 Slide 2 — editing title</div></div>
+        </div>
+        <div class="collab-user-card">
+          <div class="cuc-av" style="background:#2B6BF3;">AM</div>
+          <div><div class="cuc-name">Arjun M.</div><div class="cuc-status">🔵 Slide 1 — moving text</div></div>
+        </div>
+        <div class="collab-user-card">
+          <div class="cuc-av" style="background:#E42527;">PR</div>
+          <div><div class="cuc-name">Priya R.</div><div class="cuc-status">🔴 Slide 3 — adding chart</div></div>
+        </div>
+        <div class="collab-user-card">
+          <div class="cuc-av" style="background:#059669;">SM</div>
+          <div><div class="cuc-name">Sneha M.</div><div class="cuc-status">🟢 Slide 1 — viewing</div></div>
+        </div>
+        <div class="cr-head" style="padding:14px 14px 8px;margin-top:4px;">Comments</div>
+        <div class="comment-box">
+          <div class="cb-author">💬 Dr. Ramesh (Faculty)</div>
+          <div class="cb-text">"Please use the department's brand colours on the title slide — violet + white only."</div>
+          <div class="cb-time">Slide 1 · 5 min ago · Unresolved</div>
+        </div>
+        <div class="comment-box" style="margin-top:6px;">
+          <div class="cb-author" style="color:#2B6BF3;">💬 Arjun M.</div>
+          <div class="cb-text">"Can we add a QR code to slide 5 for the feedback form?"</div>
+          <div class="cb-time">Slide 5 · 12 min ago</div>
+        </div>
+        <div style="margin:8px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:9px;font-size:11.5px;color:#059669;font-weight:700;">✔ Auto-saved · 6 slides · v14</div>
+      </div>
+    </div>
+    <div class="canva-statusbar">
+      <span class="status-green"><div class="status-dot"></div>Live collaboration active</span>
+      <span>Slide 1 of 6</span>
+      <span>4 collaborators</span>
+      <div style="margin-left:auto;display:flex;gap:12px;">
+        <span>📜 Version history</span>
+        <span>🔗 Share link: Anyone can comment</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 2: PREZI ════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-2">TOOL 2</span><span class="sec-title">Prezi — prezi.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#0D2B6B,#2B6BF3);">
+    <span class="tb-icon">🔵</span>
+    <div><div class="tb-name">Prezi</div><div class="tb-url">prezi.com · Free + Premium · 100M+ presentations created · Used in 200 countries</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Prezi is a cloud presentation tool famous for its unique <strong>zooming canvas</strong> approach — instead of linear slides, content lives on one infinite canvas and the presentation "zooms" between topics. Multiple collaborators can work on the shared canvas simultaneously from a browser.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Real-time co-editing on the shared zooming canvas — collaborator avatars visible</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Prezi Present — audience joins live presentation via link, follows presenter zoom</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Comments on specific topics or elements on the canvas</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Non-linear storytelling — jump to any topic dynamically during presentation</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Prezi Video — present with your webcam overlay on the content</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Team workspaces — shared folder of all presentations for a department</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Analytics — see who viewed your presentation and for how long</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6BF3;"></div>Import PowerPoint/PDF and convert to Prezi format in the cloud</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 2 — Prezi: Collaborative Zooming Canvas Editor (TechSympo 2025 Topic Map)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>prezi.com/present/techsympo2025-keynote/edit · Team workspace · 3 collaborators</div></div>
+  <div class="prezi-body">
+    <div class="prezi-topbar">
+      <div class="prezi-logo">Prezi</div>
+      <div class="prezi-breadcrumb">CSE Dept Workspace <span>/</span> TechSympo 2025 Keynote</div>
+      <div class="prezi-topbar-right">
+        <div style="display:flex;margin-right:6px;">
+          <div class="canva-avatar" style="background:#2B6BF3;width:28px;height:28px;font-size:11px;">AK</div>
+          <div class="canva-avatar" style="background:#7D2AE8;width:28px;height:28px;font-size:11px;margin-left:-7px;">KR</div>
+          <div class="canva-avatar" style="background:#059669;width:28px;height:28px;font-size:11px;margin-left:-7px;">DR</div>
+        </div>
+        <div style="padding:6px 14px;border:1.5px solid #E5E7EB;border-radius:8px;font-size:12.5px;cursor:pointer;color:#374151;font-weight:600;">📤 Export</div>
+        <div class="prezi-share-btn">▶ Present</div>
+      </div>
+    </div>
+    <div class="prezi-layout">
+      <!-- Slides panel -->
+      <div class="prezi-slides-panel">
+        <div class="psp-head">Path (6 Steps)</div>
+        <div class="psl-slide active">
+          <div style="background:linear-gradient(135deg,#0D2B6B,#2B6BF3);padding:14px 10px;text-align:center;">
+            <div style="font-size:8.5px;font-weight:700;color:#fff;">🏠 Overview</div>
+          </div>
+          <div class="psl-num">1</div>
+        </div>
+        <div class="psl-slide">
+          <div style="background:linear-gradient(135deg,#7D2AE8,#A259FF);padding:14px 10px;text-align:center;">
+            <div style="font-size:8.5px;font-weight:700;color:#fff;">🎓 About Symposium</div>
+          </div>
+          <div class="psl-user" style="background:#2B6BF3;">AK</div>
+          <div class="psl-num">2</div>
+        </div>
+        <div class="psl-slide">
+          <div style="background:linear-gradient(135deg,#059669,#10B981);padding:14px 10px;text-align:center;">
+            <div style="font-size:8.5px;font-weight:700;color:#fff;">📅 Schedule</div>
+          </div>
+          <div class="psl-num">3</div>
+        </div>
+        <div class="psl-slide">
+          <div style="background:linear-gradient(135deg,#E42527,#F87171);padding:14px 10px;text-align:center;">
+            <div style="font-size:8.5px;font-weight:700;color:#fff;">🏆 Events</div>
+          </div>
+          <div class="psl-user" style="background:#7D2AE8;">KR</div>
+          <div class="psl-num">4</div>
+        </div>
+        <div class="psl-slide">
+          <div style="background:linear-gradient(135deg,#D97706,#FCD34D);padding:14px 10px;text-align:center;">
+            <div style="font-size:8.5px;font-weight:700;color:#fff;">💻 Cloud Tools</div>
+          </div>
+          <div class="psl-num">5</div>
+        </div>
+        <div class="psl-slide">
+          <div style="background:linear-gradient(135deg,#0D2B6B,#2B6BF3);padding:14px 10px;text-align:center;">
+            <div style="font-size:8.5px;font-weight:700;color:#fff;">📊 Results</div>
+          </div>
+          <div class="psl-num">6</div>
+        </div>
+        <div style="padding:8px 4px;font-size:12px;color:#2B6BF3;cursor:pointer;text-align:center;font-weight:600;">+ Add topic</div>
+      </div>
+
+      <!-- Canvas -->
+      <div class="prezi-canvas">
+        <div class="prezi-canvas-inner">
+          <div class="prezi-map">
+            <!-- Background circle path -->
+            <div class="prezi-path" style="width:320px;height:320px;top:30px;left:30px;opacity:.3;"></div>
+            <!-- Topic nodes -->
+            <div class="prezi-topic pt-active" style="background:linear-gradient(135deg,#0D2B6B,#2B6BF3);top:50px;left:50%;transform:translateX(-50%);color:#fff;">
+              <div class="pt-title" style="color:#fff;font-size:14px;">TechSympo 2025</div>
+              <div class="pt-sub" style="color:rgba(255,255,255,.7);">Overview · CSE Dept</div>
+              <div style="position:absolute;top:-10px;right:-8px;width:18px;height:18px;border-radius:50%;background:#2B6BF3;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;border:1.5px solid #fff;">AK</div>
+            </div>
+            <div class="prezi-topic" style="background:#EEF4FF;border:2px solid #93C5FD;top:160px;left:30px;color:var(--ink);">
+              <div class="pt-title" style="color:#1D4ED8;">🎓 About</div>
+              <div class="pt-sub">Hybrid · 300 students</div>
+            </div>
+            <div class="prezi-topic" style="background:#F0FDF4;border:2px solid #6EE7B7;top:160px;right:30px;color:var(--ink);">
+              <div class="pt-title" style="color:#065F46;">📅 Schedule</div>
+              <div class="pt-sub">9AM – 5PM · 6 events</div>
+            </div>
+            <div class="prezi-topic" style="background:#FFF7ED;border:2px solid #FCD34D;bottom:40px;left:60px;color:var(--ink);">
+              <div class="pt-title" style="color:#92400E;">🏆 Events</div>
+              <div class="pt-sub">Paper · Quiz · Code</div>
+              <div style="position:absolute;top:-8px;right:-6px;width:16px;height:16px;border-radius:50%;background:#7D2AE8;display:flex;align-items:center;justify-content:center;font-size:7.5px;font-weight:700;color:#fff;border:1.5px solid #fff;">KR</div>
+            </div>
+            <div class="prezi-topic" style="background:#FDF2F8;border:2px solid #F9A8D4;bottom:40px;right:60px;color:var(--ink);">
+              <div class="pt-title" style="color:#9D174D;">📊 Results</div>
+              <div class="pt-sub">Winners · Certificates</div>
+            </div>
+            <!-- Zoom path arrows on canvas -->
+            <div style="position:absolute;top:12px;right:12px;background:#2B6BF3;color:#fff;font-size:10px;padding:3px 9px;border-radius:10px;font-weight:700;">Step 1 of 6</div>
+          </div>
+          <div class="prezi-toolbar">
+            <div class="pt-tool active">🔎 Zoom Canvas</div>
+            <div class="pt-tool">✏ Edit</div>
+            <div class="pt-tool">+ Add Topic</div>
+            <div class="pt-tool">🔗 Path</div>
+            <div class="pt-tool">▶ Preview</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="prezi-right">
+        <div class="pr-head">Collaborators (3)</div>
+        <div class="prezi-collab-user">
+          <div class="pcu-av" style="background:#2B6BF3;">AK</div>
+          <div><div class="pcu-name">Arjun K.</div><div class="pcu-status">🔵 Overview topic</div></div>
+        </div>
+        <div class="prezi-collab-user">
+          <div class="pcu-av" style="background:#7D2AE8;">KR</div>
+          <div><div class="pcu-name">Kavya R.</div><div class="pcu-status">🟣 Events topic</div></div>
+        </div>
+        <div class="prezi-collab-user">
+          <div class="pcu-av" style="background:#059669;">DR</div>
+          <div><div class="pcu-name">Dr. Ramesh</div><div class="pcu-status">🟢 Reviewing path</div></div>
+        </div>
+        <div class="prezi-analytics">
+          <div class="pa-head">📊 Presentation Analytics</div>
+          <div class="pa-stat"><span>Total Views</span><span class="pa-val">248</span></div>
+          <div class="pa-stat"><span>Avg. View Time</span><span class="pa-val">4m 32s</span></div>
+          <div class="pa-stat"><span>Topics Explored</span><span class="pa-val">5 / 6</span></div>
+          <div class="pa-stat"><span>Last Viewed</span><span class="pa-val">12 min ago</span></div>
+        </div>
+        <div style="margin-top:10px;background:#EEF4FF;border:1px solid #93C5FD;border-radius:8px;padding:10px;font-size:12px;color:#1D4ED8;">
+          <div style="font-weight:700;margin-bottom:4px;">💬 Comment · Dr. Ramesh</div>
+          <div>"Add a transition from Events → Results for smoother flow."</div>
+          <div style="font-size:10.5px;color:#9CA3AF;margin-top:4px;">5 min ago · Canvas overview</div>
+        </div>
+        <div style="margin-top:8px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:8px;text-align:center;font-size:11.5px;color:#059669;font-weight:700;">✔ Auto-saved · Cloud synced</div>
+      </div>
+    </div>
+    <div class="prezi-statusbar">
+      <span class="status-green"><div class="status-dot" style="background:#2B6BF3;"></div>Live editing</span>
+      <span>6 topics on canvas</span>
+      <span>3 collaborators</span>
+      <div style="margin-left:auto;display:flex;gap:12px;">
+        <span>📜 Version history</span>
+        <span>📊 Analytics: 248 views</span>
+        <span>🔗 Share link active</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 3: ZOHO SHOW ════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-3">TOOL 3</span><span class="sec-title">Zoho Show — zoho.com/show</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#B91C1C,#E42527);">
+    <span class="tb-icon">🔴</span>
+    <div><div class="tb-name">Zoho Show</div><div class="tb-url">zoho.com/show · Part of Zoho Workplace · Free + Paid · 75M+ Zoho users</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Zoho Show is a cloud-based presentation tool from Zoho — a full-featured alternative to PowerPoint with real-time collaboration built in. It supports slide-based presentations with hundreds of themes, transitions, charts, tables, and media — all editable in a browser by multiple users simultaneously.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Real-time co-authoring — live cursor positions of all collaborators visible per slide</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Broadcast — present live to remote audience who follow your slides in browser</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Comments and annotation on any slide element</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Version history — named versions for each major revision</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Import/Export: .pptx, .pdf, .odp with full fidelity</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Slide locking — lock specific slides to prevent edits during review</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Integrates with Zoho Mail, Zoho Cliq (chat), and Zoho WorkDrive</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Offline mode — work without internet, sync on reconnect</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 3 — Zoho Show: Collaborative Slide Editor with Version History Panel</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>show.zoho.com/presentation/TechSympo2025-keynote · 3 collaborators · Auto-saved</div></div>
+  <div class="zoho-body">
+    <div class="zoho-topbar">
+      <div class="zoho-logo">Z Show</div>
+      <div class="zoho-file">TechSympo2025_Keynote.show</div>
+      <div class="zoho-tabs">
+        <div class="zoho-tab active">Home</div>
+        <div class="zoho-tab">Insert</div>
+        <div class="zoho-tab">Design</div>
+        <div class="zoho-tab">Transitions</div>
+        <div class="zoho-tab">Animations</div>
+        <div class="zoho-tab">Collaborate</div>
+      </div>
+      <div class="zoho-topbar-right">
+        <div style="display:flex;">
+          <div class="canva-avatar" style="background:#E42527;width:26px;height:26px;font-size:10px;">KR</div>
+          <div class="canva-avatar" style="background:#2B6BF3;width:26px;height:26px;font-size:10px;margin-left:-6px;">AK</div>
+          <div class="canva-avatar" style="background:#059669;width:26px;height:26px;font-size:10px;margin-left:-6px;">DR</div>
+        </div>
+        <div style="padding:6px 14px;border:1px solid rgba(255,255,255,.3);border-radius:6px;font-size:12px;cursor:pointer;color:rgba(255,255,255,.85);font-weight:600;">📤 Export</div>
+        <div class="zoho-share-btn">🔗 Share</div>
+      </div>
+    </div>
+    <div class="zoho-ribbon">
+      <div class="zr-btn">✂</div><div class="zr-btn">📋 Paste</div>
+      <div style="width:1px;height:20px;background:#E5E7EB;margin:0 4px;"></div>
+      <div class="zr-btn active-btn"><b>B</b></div><div class="zr-btn"><i>I</i></div><div class="zr-btn"><u>U</u></div>
+      <div style="width:1px;height:20px;background:#E5E7EB;margin:0 4px;"></div>
+      <div class="zr-btn">🖼 Image</div><div class="zr-btn">📊 Chart</div><div class="zr-btn">🔷 Shape</div><div class="zr-btn">📝 Text</div>
+      <div style="width:1px;height:20px;background:#E5E7EB;margin:0 4px;"></div>
+      <div class="zr-btn primary">▶ Broadcast</div>
+      <div style="margin-left:auto;font-size:11.5px;color:#059669;font-weight:700;display:flex;align-items:center;gap:5px;"><div class="status-dot"></div>Auto-saved · 3 editing</div>
+    </div>
+    <div class="zoho-layout">
+      <!-- Slides panel -->
+      <div class="zoho-slides">
+        <div class="zs-head">Slides (6)</div>
+        <div class="zsl-slide active">
+          <div style="background:linear-gradient(135deg,#E42527,#1e1e2e);padding:14px 10px;text-align:center;">
+            <div style="font-size:9px;font-weight:700;color:#fff;">TechSympo 2025</div>
+            <div style="font-size:7px;color:rgba(255,255,255,.6);margin-top:2px;">Title Slide</div>
+          </div>
+          <div class="zsl-num">1</div>
+        </div>
+        <div class="zsl-slide">
+          <div style="background:linear-gradient(135deg,#2B6BF3,#1e1e2e);padding:14px 10px;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">About the Event</div>
+            <div style="width:70%;height:2px;background:rgba(255,255,255,.3);margin:4px 0 2px;border-radius:1px;"></div>
+          </div>
+          <div style="position:absolute;top:4px;left:4px;font-size:8.5px;background:rgba(43,107,243,.9);color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;">✎ AK</div>
+          <div class="zsl-num">2</div>
+        </div>
+        <div class="zsl-slide">
+          <div style="background:linear-gradient(135deg,#059669,#1e1e2e);padding:14px 10px;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Event Schedule</div>
+          </div>
+          <div class="zsl-num">3</div>
+        </div>
+        <div class="zsl-slide">
+          <div style="background:linear-gradient(135deg,#7D2AE8,#1e1e2e);padding:14px 10px;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Participants</div>
+          </div>
+          <div style="position:absolute;top:4px;left:4px;font-size:8.5px;background:rgba(229,37,39,.9);color:#fff;padding:1px 5px;border-radius:3px;font-weight:700;">✎ KR</div>
+          <div class="zsl-num">4</div>
+        </div>
+        <div class="zsl-slide">
+          <div style="background:linear-gradient(135deg,#D97706,#1e1e2e);padding:14px 10px;text-align:center;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Results</div>
+          </div>
+          <div class="zsl-num">5</div>
+        </div>
+        <div class="zsl-slide">
+          <div style="background:linear-gradient(135deg,#0D2B6B,#1e1e2e);padding:14px 10px;text-align:center;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Thank You</div>
+          </div>
+          <div class="zsl-num">6</div>
+        </div>
+      </div>
+
+      <!-- Canvas -->
+      <div class="zoho-canvas">
+        <div class="zoho-slide-frame">
+          <div style="background:linear-gradient(135deg,#E42527 0%,#1e1e2e 100%);height:100%;padding:30px 38px;display:flex;flex-direction:column;justify-content:center;position:relative;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.15em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:10px;">CSE Department · National Level Technical Symposium</div>
+            <div style="font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:12px;">TechSympo 2025</div>
+            <div style="font-size:13px;color:rgba(255,255,255,.75);margin-bottom:16px;">Hybrid Mode · March 28, 2025 · 300+ Participants</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;padding:4px 12px;border-radius:12px;">📅 March 28</span>
+              <span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;padding:4px 12px;border-radius:12px;">🌐 Online + Campus</span>
+              <span style="background:rgba(255,80,80,.4);color:#fff;font-size:11px;padding:4px 12px;border-radius:12px;">🏆 6 Events</span>
+            </div>
+            <!-- Collab cursors -->
+            <div style="position:absolute;top:16px;right:16px;display:flex;gap:4px;align-items:center;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#2B6BF3;animation:pulse 1.5s infinite;"></div>
+              <div style="background:#2B6BF3;color:#fff;font-size:9px;padding:2px 7px;border-radius:10px;font-weight:700;">AK · Slide 2</div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#7D2AE8;animation:pulse 1.5s infinite 0.3s;margin-left:4px;"></div>
+              <div style="background:#7D2AE8;color:#fff;font-size:9px;padding:2px 7px;border-radius:10px;font-weight:700;">KR · Slide 4</div>
+            </div>
+            <!-- Slide lock badge -->
+            <div style="position:absolute;bottom:10px;left:14px;background:rgba(255,255,255,.15);color:#fff;font-size:9.5px;padding:2px 8px;border-radius:10px;font-family:'Fira Code',monospace;">🔒 Slide 1 locked by Dr. Ramesh</div>
+          </div>
+        </div>
+        <!-- Zoom bar -->
+        <div style="position:absolute;bottom:12px;right:14px;display:flex;align-items:center;gap:6px;background:#fff;border-radius:20px;padding:4px 12px;box-shadow:0 2px 8px rgba(0,0,0,.12);font-size:11.5px;color:var(--muted);">
+          <span>−</span><span style="font-weight:700;color:var(--ink);">90%</span><span>+</span>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="zoho-right">
+        <div class="zr-head">Collaborators (3)</div>
+        <div class="zoho-collab-user">
+          <div class="zcu-av" style="background:#E42527;">KR</div>
+          <div><div class="zcu-name">Kavya R.</div><div class="zcu-action">🔴 Slide 4 — editing text</div></div>
+        </div>
+        <div class="zoho-collab-user">
+          <div class="zcu-av" style="background:#2B6BF3;">AK</div>
+          <div><div class="zcu-name">Arjun K.</div><div class="zcu-action">🔵 Slide 2 — adding chart</div></div>
+        </div>
+        <div class="zoho-collab-user">
+          <div class="zcu-av" style="background:#059669;">DR</div>
+          <div><div class="zcu-name">Dr. Ramesh</div><div class="zcu-action">🟢 Slide 1 — locked</div></div>
+        </div>
+        <div class="zoho-version-list">
+          <div class="zvl-head">📜 Version History</div>
+          <div class="zvl-item"><div class="zv-dot zv-saved"></div><div><div style="font-size:12px;font-weight:600;color:var(--ink);">v14 · Current</div><div style="font-size:10.5px;color:var(--muted);">Kavya · 2 min ago</div></div><div style="margin-left:auto;font-size:10.5px;color:#059669;font-weight:700;">Latest</div></div>
+          <div class="zvl-item"><div class="zv-dot zv-prev"></div><div><div style="font-size:12px;color:var(--muted);">v13</div><div style="font-size:10.5px;color:var(--muted);">Arjun · 18 min ago</div></div><div style="margin-left:auto;font-size:10.5px;color:#9CA3AF;cursor:pointer;">Restore</div></div>
+          <div class="zvl-item"><div class="zv-dot zv-prev"></div><div><div style="font-size:12px;color:var(--muted);">v12 · "After review"</div><div style="font-size:10.5px;color:var(--muted);">Dr. Ramesh · 1 hr ago</div></div><div style="margin-left:auto;font-size:10.5px;color:#9CA3AF;cursor:pointer;">Restore</div></div>
+          <div class="zvl-item"><div class="zv-dot zv-prev"></div><div><div style="font-size:12px;color:var(--muted);">v11 · "First draft"</div><div style="font-size:10.5px;color:var(--muted);">Kavya · 3 hrs ago</div></div><div style="margin-left:auto;font-size:10.5px;color:#9CA3AF;cursor:pointer;">Restore</div></div>
+        </div>
+        <div style="margin-top:10px;background:#FFF0F0;border:1px solid #FFAAAA;border-radius:8px;padding:10px;font-size:12px;color:var(--zoho-red);">
+          <div style="font-weight:700;margin-bottom:4px;">💬 Comment · Dr. Ramesh</div>
+          <div style="color:var(--muted);">"Slide 1 is locked for final review. Do not edit."</div>
+          <div style="font-size:10.5px;color:#9CA3AF;margin-top:4px;">Slide 1 · 8 min ago</div>
+        </div>
+        <div style="margin-top:8px;background:#F0FDF4;border:1px solid #A7F3D0;border-radius:8px;padding:8px;text-align:center;font-size:11.5px;color:#059669;font-weight:700;">✔ Auto-saved · v14 · All synced</div>
+      </div>
+    </div>
+    <div class="zoho-statusbar">
+      <span class="status-green" style="color:#059669;"><div class="status-dot"></div>Live collaboration</span>
+      <span>Slide 1 of 6</span>
+      <span>3 collaborators · 1 slide locked</span>
+      <div style="margin-left:auto;display:flex;gap:12px;">
+        <span>📜 14 versions saved</span>
+        <span>📤 Export as .pptx</span>
+        <span>▶ Broadcast ready</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-cmp">04</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>🎨 Canva</th>
+      <th>🔵 Prezi</th>
+      <th>🔴 Zoho Show</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Real-time Collaboration</td><td class="yes">✔ Live cursors + edits</td><td class="yes">✔ Live on canvas</td><td class="yes">✔ Live cursors</td></tr>
+    <tr><td>Slide Format</td><td>Traditional slides</td><td>Zooming canvas (unique)</td><td>Traditional slides</td></tr>
+    <tr><td>Design Quality</td><td class="yes">✔ Best-in-class templates</td><td class="par">⚠ Limited templates</td><td class="par">⚠ Good templates</td></tr>
+    <tr><td>Live Presentation to Audience</td><td class="yes">✔ Present Live (link)</td><td class="yes">✔ Prezi Present</td><td class="yes">✔ Broadcast mode</td></tr>
+    <tr><td>Version History</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Named versions</td></tr>
+    <tr><td>Comments on Slides</td><td class="yes">✔ Per element</td><td class="yes">✔ Per topic</td><td class="yes">✔ Per slide</td></tr>
+    <tr><td>Slide Locking</td><td class="no">✗ No</td><td class="no">✗ No</td><td class="yes">✔ Yes (unique)</td></tr>
+    <tr><td>Import PowerPoint (.pptx)</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Full fidelity</td></tr>
+    <tr><td>Analytics (who viewed, how long)</td><td class="par">⚠ Basic</td><td class="yes">✔ Detailed analytics</td><td class="par">⚠ Basic</td></tr>
+    <tr><td>Free Plan</td><td class="yes">✔ Generous free tier</td><td class="yes">✔ Basic free plan</td><td class="yes">✔ Free for up to 5 users</td></tr>
+    <tr><td>Best Use Case</td><td>Visually rich event decks</td><td>Storytelling, non-linear talks</td><td>Business/academic formal presentations</td></tr>
+  </tbody>
+</table>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Cloud presentation collaboration eliminates the traditional workflow of one person editing a file and emailing it around. All three tools covered here are real, widely-used platforms that enable true multi-user simultaneous collaboration:
+      <br><br>
+      <strong>🎨 Canva</strong> — the world's leading visual design platform with 150M+ users. Its Presentations tool offers the richest template library, AI-powered design suggestions (Magic Design), live co-editing with colored cursors, and a Present Live mode where any audience member follows the speaker's slide in their browser — ideal for visually polished event and academic presentations.
+      <br><br>
+      <strong>🔵 Prezi</strong> — unique for its zooming canvas approach where all content exists on one infinite canvas and the presentation zooms between topics rather than flipping through flat slides. Multiple collaborators edit the shared canvas live, and Prezi's built-in analytics show exactly how long viewers spent on each topic — making it powerful for storytelling and dynamic presentations.
+      <br><br>
+      <strong>🔴 Zoho Show</strong> — a full-featured business presentation tool with real-time co-authoring, slide locking (preventing edits to approved slides), named version history, Broadcast mode for live remote audiences, and deep integration with the Zoho Workplace ecosystem. It is especially suitable for academic institutions and enterprises already using Zoho.
+      <br><br>
+      All three tools store presentations securely in the cloud, auto-save every change, support sharing via a link with access control, and enable live presentation to remote audiences — making cloud presentation collaboration effortless, reliable, and professional.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Collaborating on Calendars in Cloud – 10 Mark Exam Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --zo-red:    #E42527;
+  --zo-light:  #FFF0F0;
+  --zo-dark:   #7A0000;
+  --tu-teal:   #00897B;
+  --tu-light:  #E0F5F2;
+  --tu-dark:   #004D40;
+  --fa-purple: #7C3AED;
+  --fa-light:  #EDE9FE;
+  --fa-dark:   #4C1D95;
+  --bg:        #F6F5F2;
+  --paper:     #FFFFFF;
+  --ink:       #1C1917;
+  --muted:     #78716C;
+  --rule:      #E7E5E4;
+  --soft:      #F5F4F1;
+  --accent:    #0EA5E9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.75;}
+
+/* ── COVER ── */
+.cover{
+  background:linear-gradient(150deg,#FAFBFF 0%,#FFF0F0 35%,#E0F5F2 70%,#EDE9FE 100%);
+  padding:54px 64px 48px;
+  border-bottom:3px solid;
+  border-image:linear-gradient(90deg,#E42527,#00897B,#7C3AED) 1;
+  position:relative;overflow:hidden;
+}
+.cover::before{content:'';position:absolute;right:-90px;top:-90px;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle,rgba(228,37,39,.08) 0%,transparent 65%);}
+.cover::after{content:'';position:absolute;left:-60px;bottom:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.07) 0%,transparent 65%);}
+.cover-eyebrow{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--tu-teal);margin-bottom:14px;}
+.cover h1{font-family:'Spectral',serif;font-size:38px;line-height:1.2;color:var(--ink);max-width:760px;font-weight:700;}
+.cover h1 .z{color:var(--zo-red);}
+.cover h1 .t{color:var(--tu-teal);}
+.cover h1 .f{color:var(--fa-purple);}
+.cover-sub{margin-top:12px;font-size:13.5px;color:var(--muted);max-width:680px;}
+.tool-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.tp{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:700;font-family:'Fira Code',monospace;border:1.5px solid;}
+.tp-z{background:var(--zo-light);border-color:var(--zo-red);color:var(--zo-red);}
+.tp-t{background:var(--tu-light);border-color:var(--tu-teal);color:var(--tu-teal);}
+.tp-f{background:var(--fa-light);border-color:var(--fa-purple);color:var(--fa-purple);}
+.marks{margin-top:26px;display:inline-block;background:var(--ink);color:#fff;font-family:'Fira Code',monospace;font-size:12px;padding:6px 20px;border-radius:4px;letter-spacing:.07em;}
+
+/* ── WRAP ── */
+.wrap{max-width:980px;margin:0 auto;padding:50px 44px 80px;}
+
+/* ── EXAM NOTE ── */
+.exam-note{background:#FFFBEA;border:1.5px solid #F0D060;border-left:5px solid #D4A017;border-radius:8px;padding:14px 20px;margin:22px 0 10px;font-size:13.5px;}
+.exam-note strong{color:#7A5C00;}
+
+/* ── SECTION ── */
+.sec{display:flex;align-items:center;gap:14px;margin:50px 0 18px;}
+.sec-tag{font-family:'Fira Code',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 13px;border-radius:20px;flex-shrink:0;border:1.5px solid;}
+.st-i {background:var(--zo-light);color:var(--zo-red);border-color:#FFAAAA;}
+.st-1 {background:var(--zo-light);color:var(--zo-red);border-color:#FFAAAA;}
+.st-2 {background:var(--tu-light);color:var(--tu-teal);border-color:#80CBC4;}
+.st-3 {background:var(--fa-light);color:var(--fa-purple);border-color:#C4B5FD;}
+.st-c {background:var(--soft);color:var(--muted);border-color:var(--rule);}
+.sec-title{font-family:'Spectral',serif;font-size:22px;color:var(--ink);font-weight:700;}
+
+/* ── INTRO ── */
+.intro-card{background:var(--paper);border:1px solid var(--rule);border-left:5px solid var(--tu-teal);border-radius:8px;padding:22px 26px;margin-bottom:10px;}
+.intro-card p+p{margin-top:10px;}
+.hl-z{background:var(--zo-light);color:var(--zo-red);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-t{background:var(--tu-light);color:var(--tu-teal);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-f{background:var(--fa-light);color:var(--fa-purple);padding:1px 5px;border-radius:3px;font-weight:700;}
+
+/* ── DEF BOX ── */
+.def-box{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 22px;margin:12px 0;}
+.def-box h4{font-family:'Spectral',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.def-box p{font-size:13.5px;color:var(--muted);}
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:26px;margin:16px 0;}
+.flow-wrap h4{font-family:'Spectral',serif;font-size:16px;font-weight:700;text-align:center;margin-bottom:20px;color:var(--ink);}
+.flow-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;}
+.fbox{border-radius:8px;padding:12px 16px;text-align:center;min-width:115px;border:2px solid;}
+.fi{font-size:24px;margin-bottom:4px;}
+.fn{font-size:12px;font-weight:700;}
+.fs{font-family:'Fira Code',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.farr{font-size:20px;padding:0 7px;color:#D6D3D1;flex-shrink:0;}
+.fb-u{background:var(--soft);border-color:var(--rule);color:var(--ink);}
+.fb-c{background:#F0F9FF;border-color:#7DD3FC;color:#0369A1;}
+.fb-z{background:var(--zo-light);border-color:var(--zo-red);color:var(--zo-red);}
+.fb-t{background:var(--tu-light);border-color:var(--tu-teal);color:var(--tu-teal);}
+.fb-f{background:var(--fa-light);border-color:var(--fa-purple);color:var(--fa-purple);}
+
+/* ── TOOL BANNER ── */
+.tool-banner{border-radius:10px;overflow:hidden;margin-bottom:8px;}
+.tb-head{padding:16px 24px;display:flex;align-items:center;gap:14px;}
+.tb-icon{font-size:30px;}
+.tb-name{font-family:'Spectral',serif;font-size:18px;font-weight:700;color:#fff;}
+.tb-url{font-family:'Fira Code',monospace;font-size:11px;color:rgba(255,255,255,.6);margin-top:2px;}
+.tb-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:18px 24px;color:var(--muted);font-size:14px;}
+.tb-body strong{color:var(--ink);}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:10px;}
+.feat-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink);}
+.fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+
+/* ── MOCK LABEL ── */
+.mock-label{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin:26px 0 10px;}
+.mock-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ── CHROME ── */
+.win{border:1px solid #D6D3D1;border-radius:12px;overflow:hidden;box-shadow:0 8px 36px rgba(0,0,0,.11);}
+.win-bar{background:#EDEBE8;padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #DDD9D5;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.url-bar{flex:1;background:#fff;border:1px solid #D6D3D1;border-radius:18px;padding:5px 16px;font-size:12px;color:#A8A29E;display:flex;align-items:center;gap:7px;}
+
+/* pulse anim */
+.pulse-dot{width:6px;height:6px;border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+
+/* ════════════════ ZOHO CALENDAR ════════════════ */
+.zo-body{background:#fff;font-family:'Plus Jakarta Sans',sans-serif;}
+.zo-topbar{background:#E42527;padding:0 16px;display:flex;align-items:center;gap:12px;height:50px;}
+.zo-logo{font-family:'Spectral',serif;font-weight:700;font-size:17px;color:#fff;display:flex;align-items:center;gap:7px;}
+.zo-topbar-center{flex:1;display:flex;align-items:center;justify-content:center;gap:10px;}
+.zo-today-btn{background:rgba(255,255,255,.2);color:#fff;font-size:12.5px;font-weight:600;padding:5px 14px;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,.3);}
+.zo-nav-arrows{display:flex;gap:2px;}
+.zo-arrow{background:rgba(255,255,255,.15);color:#fff;width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:13px;}
+.zo-month-title{color:#fff;font-size:15px;font-weight:700;}
+.zo-topbar-right{display:flex;align-items:center;gap:8px;}
+.zo-view-btn{background:rgba(255,255,255,.15);color:#fff;font-size:12px;padding:5px 12px;border-radius:5px;cursor:pointer;border:1px solid rgba(255,255,255,.2);}
+.zo-view-btn.active{background:#fff;color:var(--zo-red);font-weight:700;}
+.zo-share-btn{background:#fff;color:var(--zo-red);font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:6px;cursor:pointer;}
+.zo-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
+
+/* Main layout */
+.zo-layout{display:grid;grid-template-columns:220px 1fr 240px;height:520px;}
+
+/* Left sidebar */
+.zo-sidebar{background:#FAFAFA;border-right:1px solid #F0EFEE;overflow-y:auto;padding:10px 0;}
+.zo-mini-cal{padding:10px 12px;}
+.zo-mini-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.zo-mini-month{font-size:12.5px;font-weight:700;color:var(--ink);}
+.zo-mini-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;}
+.zo-md-label{text-align:center;font-size:10px;font-weight:700;color:#A8A29E;padding:2px 0;}
+.zo-md{text-align:center;font-size:11.5px;color:var(--ink);padding:4px 2px;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin:0 auto;cursor:pointer;}
+.zo-md:hover{background:#FEE2E2;}
+.zo-md.today{background:var(--zo-red);color:#fff;font-weight:700;}
+.zo-md.has-ev{color:var(--zo-red);font-weight:700;}
+.zo-cal-section{padding:8px 12px 4px;font-size:10px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.1em;}
+.zo-cal-item{display:flex;align-items:center;gap:8px;padding:6px 12px;font-size:12.5px;cursor:pointer;color:var(--ink);}
+.zo-cal-item:hover{background:#FEF2F2;}
+.zo-cal-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.zo-cal-item .check{color:var(--zo-red);font-size:10px;margin-left:auto;}
+.zo-add-cal{display:flex;align-items:center;gap:6px;padding:6px 12px;font-size:12px;color:var(--zo-red);cursor:pointer;font-weight:600;}
+
+/* Main calendar grid */
+.zo-cal-main{overflow:hidden;display:flex;flex-direction:column;}
+.zo-day-headers{display:grid;grid-template-columns:repeat(7,1fr);background:#FAFAFA;border-bottom:1px solid #F0EFEE;}
+.zo-dh{text-align:center;padding:8px 0;font-size:11.5px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.06em;}
+.zo-grid{display:grid;grid-template-columns:repeat(7,1fr);grid-template-rows:repeat(5,1fr);flex:1;overflow:hidden;}
+.zo-cell{border-right:1px solid #F0EFEE;border-bottom:1px solid #F0EFEE;padding:4px 5px;min-height:80px;cursor:pointer;position:relative;}
+.zo-cell:nth-child(7n){border-right:none;}
+.zo-cell:hover{background:#FFFAF9;}
+.zo-cell.today-cell{background:#FFF5F5;}
+.zo-cell.other-month .zo-cell-date{color:#D6D3D1;}
+.zo-cell-date{font-size:12px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.zo-cell.today-cell .zo-cell-date{width:22px;height:22px;background:var(--zo-red);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11.5px;}
+.zo-event{border-radius:4px;padding:2px 6px;font-size:10.5px;font-weight:600;margin-bottom:2px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px;}
+.zo-ev-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+
+/* Right panel */
+.zo-right{background:#FAFAFA;border-left:1px solid #F0EFEE;overflow-y:auto;padding:0;}
+.zo-rp-head{padding:14px 14px 10px;font-size:11px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid #F0EFEE;}
+.zo-event-card{padding:10px 14px;border-bottom:1px solid #F5F4F3;cursor:pointer;}
+.zo-event-card:hover{background:#FFF5F5;}
+.zo-ec-time{font-size:11px;font-weight:700;color:var(--zo-red);margin-bottom:2px;font-family:'Fira Code',monospace;}
+.zo-ec-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.zo-ec-meta{font-size:11.5px;color:var(--muted);}
+.zo-ec-attendees{display:flex;gap:-3px;margin-top:5px;}
+.zo-att-av{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#fff;border:1.5px solid #fff;margin-left:-4px;}
+.zo-att-av:first-child{margin-left:0;}
+.zo-notif{padding:10px 14px;background:#FFF0F0;border-left:3px solid var(--zo-red);margin:8px;border-radius:0 6px 6px 0;font-size:12px;color:var(--ink);}
+.zo-statusbar{background:#FAFAFA;border-top:1px solid #F0EFEE;padding:6px 14px;display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--muted);grid-column:1/-1;}
+
+/* ════════════════ TEAMUP ════════════════ */
+.tu-body{background:#fff;}
+.tu-topbar{background:#fff;border-bottom:1px solid #E7E5E4;padding:0 16px;display:flex;align-items:center;gap:12px;height:52px;}
+.tu-logo{font-family:'Spectral',serif;font-weight:700;font-size:18px;color:var(--tu-teal);}
+.tu-calendar-name{font-size:13.5px;font-weight:700;color:var(--ink);margin-left:8px;border-left:1px solid var(--rule);padding-left:12px;}
+.tu-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.tu-link-btn{background:var(--tu-light);color:var(--tu-teal);font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:6px;cursor:pointer;border:1px solid #80CBC4;}
+.tu-layout{display:grid;grid-template-columns:220px 1fr 250px;height:520px;}
+
+/* Teamup sidebar */
+.tu-sidebar{background:#F5F4F1;border-right:1px solid #E7E5E4;overflow-y:auto;padding:10px 0;}
+.tu-sub-cal{padding:8px 12px 4px;font-size:10px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.1em;}
+.tu-cal-row{display:flex;align-items:center;gap:8px;padding:7px 12px;font-size:12.5px;cursor:pointer;color:var(--ink);border-radius:0 6px 6px 0;margin-right:6px;}
+.tu-cal-row:hover{background:#E0F5F2;}
+.tu-cal-row.active{background:var(--tu-light);color:var(--tu-teal);font-weight:700;}
+.tu-cal-swatch{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+.tu-member-section{padding:10px 12px 6px;}
+.tu-ms-head{font-size:10px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px;}
+.tu-member{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12.5px;color:var(--ink);}
+.tu-m-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;color:#fff;flex-shrink:0;}
+.tu-m-status{font-size:10px;color:var(--muted);}
+.tu-access-section{padding:8px 12px;margin-top:4px;}
+.tu-as-head{font-size:10px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+.tu-access-link{background:#E0F5F2;border:1px solid #80CBC4;border-radius:6px;padding:8px 10px;font-size:11.5px;color:var(--tu-teal);}
+.tu-link-url{font-family:'Fira Code',monospace;font-size:10px;color:var(--muted);word-break:break-all;margin-top:4px;}
+.tu-copy-btn{background:var(--tu-teal);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:5px;cursor:pointer;margin-top:6px;display:inline-block;}
+
+/* Teamup main calendar */
+.tu-cal-main{display:flex;flex-direction:column;overflow:hidden;}
+.tu-toolbar{background:#fff;border-bottom:1px solid #E7E5E4;padding:8px 14px;display:flex;align-items:center;gap:8px;}
+.tu-tb-btn{padding:5px 12px;border:1px solid #E7E5E4;border-radius:6px;font-size:12px;cursor:pointer;background:#fff;color:var(--muted);font-weight:600;}
+.tu-tb-btn.active{background:var(--tu-light);color:var(--tu-teal);border-color:#80CBC4;}
+.tu-tb-btn.primary{background:var(--tu-teal);color:#fff;border-color:var(--tu-teal);}
+.tu-week-grid{flex:1;display:grid;grid-template-columns:60px repeat(7,1fr);overflow:hidden;}
+.tu-time-col{border-right:1px solid #F0EFEE;background:#FAFAFA;}
+.tu-time-slot{height:52px;display:flex;align-items:flex-start;justify-content:flex-end;padding-right:8px;padding-top:4px;font-size:10.5px;color:#A8A29E;font-family:'Fira Code',monospace;border-bottom:1px solid #F0EFEE;}
+.tu-day-col{border-right:1px solid #F0EFEE;position:relative;}
+.tu-day-col:last-child{border-right:none;}
+.tu-day-header{padding:6px 4px 6px;text-align:center;background:#FAFAFA;border-bottom:1px solid #E7E5E4;position:sticky;top:0;}
+.tu-dh-name{font-size:10.5px;font-weight:700;color:#A8A29E;text-transform:uppercase;}
+.tu-dh-num{font-size:18px;font-weight:800;color:var(--ink);line-height:1.1;}
+.tu-dh-num.today-num{color:var(--tu-teal);}
+.tu-slots{position:relative;height:calc(52px * 8);}
+.tu-slot-bg{position:absolute;left:0;right:0;border-bottom:1px solid #F5F4F1;}
+.tu-ev-block{position:absolute;left:2px;right:2px;border-radius:5px;padding:3px 6px;cursor:pointer;overflow:hidden;}
+.tu-ev-title{font-size:11px;font-weight:700;color:#fff;line-height:1.3;}
+.tu-ev-time{font-size:9.5px;color:rgba(255,255,255,.8);font-family:'Fira Code',monospace;}
+.tu-ev-att{display:flex;gap:-3px;margin-top:3px;}
+.tu-ev-av{width:14px;height:14px;border-radius:50%;font-size:6px;font-weight:700;color:#fff;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;margin-left:-3px;}
+.tu-ev-av:first-child{margin-left:0;}
+/* Right panel */
+.tu-right{border-left:1px solid #E7E5E4;overflow-y:auto;padding:14px;}
+.tu-rp-head{font-size:11px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+.tu-event-detail{background:var(--soft);border-radius:8px;padding:12px;margin-bottom:10px;}
+.tu-ed-title{font-family:'Spectral',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.tu-ed-row{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;padding:4px 0;border-bottom:1px solid #EEE;}
+.tu-ed-row:last-child{border-bottom:none;}
+.tu-ed-icon{width:16px;text-align:center;flex-shrink:0;font-size:13px;}
+.tu-ed-label{color:var(--muted);}
+.tu-ed-value{color:var(--ink);font-weight:600;font-size:12px;}
+.tu-sub-calendars-preview{margin-top:10px;}
+.tu-scp-head{font-size:11px;font-weight:700;color:#A8A29E;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.tu-scp-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12.5px;color:var(--ink);border-bottom:1px solid #F5F4F1;}
+.tu-scp-row:last-child{border-bottom:none;}
+.tu-scp-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.tu-link-card{background:var(--tu-light);border:1px solid #80CBC4;border-radius:8px;padding:10px;margin-top:10px;}
+.tu-lc-head{font-size:11.5px;font-weight:700;color:var(--tu-teal);margin-bottom:6px;}
+.tu-lc-row{display:flex;justify-content:space-between;font-size:12px;padding:3px 0;border-bottom:1px solid #C8E6E3;}
+.tu-lc-row:last-child{border-bottom:none;}
+.tu-lc-perm{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:8px;}
+.perm-edit{background:#E0F5F2;color:var(--tu-teal);}
+.perm-view{background:#F5F5F5;color:#636366;}
+.perm-add{background:#E8F4E8;color:#15803D;}
+.tu-statusbar{background:#FAFAFA;border-top:1px solid #E7E5E4;padding:6px 14px;display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--muted);}
+
+/* ════════════════ FANTASTICAL ════════════════ */
+.fa-body{background:#fff;}
+.fa-topbar{background:linear-gradient(135deg,#6D28D9,#7C3AED);padding:0 16px;display:flex;align-items:center;gap:12px;height:52px;}
+.fa-logo{font-family:'Spectral',serif;font-weight:700;font-size:17px;color:#fff;display:flex;align-items:center;gap:8px;}
+.fa-logo-mark{width:26px;height:26px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.fa-breadcrumb{font-size:13px;color:rgba(255,255,255,.75);}
+.fa-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.fa-share-btn{background:rgba(255,255,255,.2);color:#fff;font-size:12.5px;font-weight:700;padding:6px 16px;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,.3);}
+.fa-upgrade-btn{background:#fff;color:var(--fa-purple);font-size:12px;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer;}
+.fa-layout{display:grid;grid-template-columns:240px 1fr 260px;height:530px;}
+
+/* Fantastical sidebar */
+.fa-sidebar{background:#F8F7FF;border-right:1px solid #EDE9FE;overflow-y:auto;padding:10px 0;}
+.fa-mini-cal{padding:12px 14px;}
+.fa-mini-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.fa-mini-month{font-size:13px;font-weight:700;color:var(--ink);}
+.fa-mini-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;}
+.fa-md-label{text-align:center;font-size:10px;font-weight:700;color:#A78BFA;padding:2px 0;}
+.fa-md{text-align:center;font-size:11.5px;color:var(--ink);padding:4px 2px;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;margin:0 auto;cursor:pointer;}
+.fa-md:hover{background:var(--fa-light);}
+.fa-md.today{background:var(--fa-purple);color:#fff;font-weight:700;}
+.fa-md.has-ev::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--fa-purple);margin:0 auto;margin-top:-1px;}
+.fa-section-head{font-size:10px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.1em;padding:8px 14px 4px;}
+.fa-cal-item{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:12.5px;cursor:pointer;color:var(--ink);border-radius:0 8px 8px 0;margin-right:8px;}
+.fa-cal-item:hover{background:var(--fa-light);}
+.fa-cal-item.active{background:var(--fa-light);color:var(--fa-purple);font-weight:700;}
+.fa-cal-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.fa-weather-widget{margin:10px 14px;background:linear-gradient(135deg,#5B21B6,#7C3AED);border-radius:10px;padding:12px;}
+.fa-ww-city{font-size:11px;color:rgba(255,255,255,.7);margin-bottom:2px;}
+.fa-ww-temp{font-size:22px;font-weight:800;color:#fff;}
+.fa-ww-desc{font-size:11.5px;color:rgba(255,255,255,.8);}
+
+/* Fantastical main */
+.fa-main{display:flex;flex-direction:column;overflow:hidden;}
+.fa-view-bar{background:#fff;border-bottom:1px solid #EDE9FE;padding:8px 14px;display:flex;align-items:center;gap:8px;}
+.fa-view-btn{padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--muted);border:1.5px solid var(--rule);}
+.fa-view-btn.active{background:var(--fa-purple);color:#fff;border-color:var(--fa-purple);}
+.fa-day-grid{flex:1;display:grid;grid-template-columns:64px 1fr;overflow-y:auto;}
+.fa-time-col{background:#FAFAFA;border-right:1px solid #EDE9FE;}
+.fa-time-label{height:56px;display:flex;align-items:flex-start;justify-content:flex-end;padding:4px 8px 0 0;font-size:10.5px;color:#A78BFA;font-family:'Fira Code',monospace;border-bottom:1px solid #F3F0FF;}
+.fa-day-col{position:relative;overflow:hidden;}
+.fa-hour-line{height:56px;border-bottom:1px solid #F3F0FF;}
+.fa-half-line{position:absolute;left:0;right:0;border-bottom:1px dashed #F3F0FF;}
+.fa-ev-block{position:absolute;left:4px;right:4px;border-radius:8px;padding:6px 8px;cursor:pointer;overflow:hidden;}
+.fa-ev-title{font-size:12px;font-weight:700;color:#fff;line-height:1.3;}
+.fa-ev-time{font-size:10px;color:rgba(255,255,255,.8);font-family:'Fira Code',monospace;margin-top:1px;}
+.fa-ev-tag{display:inline-block;background:rgba(255,255,255,.2);color:#fff;font-size:9.5px;padding:1px 6px;border-radius:8px;margin-top:3px;}
+.fa-now-line{position:absolute;left:0;right:0;height:2px;background:var(--fa-purple);z-index:5;}
+.fa-now-dot{position:absolute;left:-4px;top:-4px;width:10px;height:10px;border-radius:50%;background:var(--fa-purple);}
+
+/* Right panel */
+.fa-right{background:#F8F7FF;border-left:1px solid #EDE9FE;overflow-y:auto;display:flex;flex-direction:column;}
+.fa-rp-head{padding:14px 14px 8px;font-size:11px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid #EDE9FE;}
+.fa-event-detail{padding:12px 14px;border-bottom:1px solid #EDE9FE;}
+.fa-ed-color-bar{height:4px;border-radius:2px;margin-bottom:10px;}
+.fa-ed-title{font-family:'Spectral',serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.fa-ed-row{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;padding:5px 0;border-bottom:1px solid #F3F0FF;}
+.fa-ed-row:last-child{border-bottom:none;}
+.fa-ed-icon{font-size:14px;flex-shrink:0;width:18px;text-align:center;}
+.fa-ed-content{flex:1;}
+.fa-ed-main{font-weight:600;color:var(--ink);font-size:12.5px;}
+.fa-ed-sub{font-size:11px;color:var(--muted);margin-top:1px;}
+.fa-attendee-list{padding:10px 14px;border-bottom:1px solid #EDE9FE;}
+.fa-al-head{font-size:11px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.fa-attendee{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12.5px;}
+.fa-att-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}
+.fa-att-name{flex:1;color:var(--ink);font-weight:500;}
+.fa-att-status{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:8px;}
+.att-yes{background:#DCFCE7;color:#15803D;}
+.att-no{background:#FEF2F2;color:#DC2626;}
+.att-wait{background:#FEF9C3;color:#A16207;}
+.fa-natural-lang{padding:10px 14px;}
+.fa-nl-head{font-size:11px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.fa-nl-input{background:#fff;border:1.5px solid #DDD6FE;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#A8A29E;display:flex;align-items:center;gap:7px;}
+.fa-nl-examples{margin-top:8px;}
+.fa-nl-ex{display:flex;align-items:center;gap:6px;font-size:11.5px;padding:4px 0;color:var(--muted);}
+.fa-nl-ex .ex-chip{background:var(--fa-light);color:var(--fa-purple);font-size:11px;padding:2px 8px;border-radius:10px;font-weight:600;cursor:pointer;}
+.fa-statusbar{background:#F8F7FF;border-top:1px solid #EDE9FE;padding:6px 14px;display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--muted);}
+
+/* ── KEY POINTS ── */
+.key-points{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 22px;margin:16px 0;}
+.key-points h4{font-family:'Spectral',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.kp-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid var(--soft);font-size:13.5px;}
+.kp-item:last-child{border-bottom:none;}
+.kp-num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+
+/* ── COMPARISON TABLE ── */
+table.cmp{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin:16px 0;}
+table.cmp thead tr{background:var(--ink);color:#fff;}
+table.cmp th{padding:11px 16px;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:.04em;text-align:left;}
+table.cmp td{padding:10px 16px;background:var(--paper);border-bottom:1px solid var(--rule);font-size:13.5px;color:var(--ink);}
+table.cmp tr:last-child td{border-bottom:none;}
+table.cmp .yes{color:#059669;font-weight:700;}
+table.cmp .par{color:#D97706;}
+table.cmp .no {color:#DC2626;}
+
+/* ── CONCLUSION ── */
+.conclusion{border-radius:10px;overflow:hidden;margin-top:46px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.con-head{background:linear-gradient(90deg,#E42527,#00897B,#7C3AED);padding:18px 30px;}
+.con-head h3{font-family:'Spectral',serif;font-size:21px;color:#fff;font-weight:700;}
+.con-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:24px 30px;}
+.con-body p{font-size:14.5px;color:var(--muted);line-height:1.8;}
+.con-body strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<div class="cover">
+  <div class="cover-eyebrow">Cloud Computing · 10 Mark Exam Answer · Calendar Collaboration</div>
+  <h1>Collaborating on<br><span class="z">Calendars</span> in the<br>Cloud — Real-Time Tools</h1>
+  <div class="cover-sub">Three real, production-grade cloud calendar platforms · Exam-focused with definitions, diagrams, features &amp; UI mock-ups · No Google Calendar, No Apple Calendar, No Outlook</div>
+  <div class="tool-pills">
+    <span class="tp tp-z">📅 Zoho Calendar — zoho.com/calendar</span>
+    <span class="tp tp-t">🗓 Teamup — teamup.com</span>
+    <span class="tp tp-f">✨ Fantastical — fantastical.app</span>
+  </div>
+  <div class="marks">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- ════ EXAM NOTE ════ -->
+<div class="exam-note">
+  <strong>📝 Exam Tip:</strong> For "Collaborating on Calendars" answers, always cover: (1) Definition, (2) Why cloud calendars are better than local ones, (3) Real tools with key features, (4) Diagram, (5) Comparison table, and (6) Conclusion. Use the TechSympo 2025 scenario throughout to make the answer contextual and application-oriented.
+</div>
+
+<!-- ════ INTRO ════ -->
+<div class="sec"><span class="sec-tag st-i">01</span><span class="sec-title">Definition &amp; Introduction</span></div>
+<div class="intro-card">
+  <p><strong>Cloud calendar collaboration</strong> refers to the use of cloud-hosted calendar applications that allow multiple users — from different locations and devices — to <strong>create, view, edit, and share events, schedules, and reminders</strong> in real time, without installing software or manually syncing files.</p>
+  <p>Unlike traditional desktop calendars that store data locally, cloud calendars store all event data on remote servers. Any change made by one team member is <span class="hl-z">instantly visible</span> to all other members. This enables <span class="hl-t">team scheduling</span>, <span class="hl-f">event planning</span>, <span class="hl-z">automated reminders</span>, and <span class="hl-t">availability tracking</span> across organisations, departments, and multi-city teams.</p>
+  <p>The three real tools covered are: <span class="hl-z"><strong>Zoho Calendar</strong></span> (part of Zoho Workplace), <span class="hl-t"><strong>Teamup</strong></span> (multi-user scheduling with sub-calendars), and <span class="hl-f"><strong>Fantastical</strong></span> (AI-powered natural language calendar). All are production-grade, real platforms used globally.</p>
+</div>
+
+<!-- DEF BOXES -->
+<div class="def-box">
+  <h4>📘 Key Terminology for Exam</h4>
+  <p>
+    <strong>Shared Calendar:</strong> A calendar visible to multiple users with controlled permissions (view/edit/manage).<br>
+    <strong>Sub-calendar:</strong> A colour-coded calendar layer for different teams or event types within one shared view.<br>
+    <strong>iCal / ICS:</strong> An open calendar file format (RFC 5545) used to share events between different calendar apps.<br>
+    <strong>CalDAV:</strong> A cloud protocol that allows calendar data to sync across devices and applications in real time.<br>
+    <strong>Availability View:</strong> A view showing free/busy times of all team members to schedule meetings without conflicts.<br>
+    <strong>Recurring Event:</strong> An event automatically repeated on a schedule — daily, weekly, monthly.<br>
+    <strong>RSVP:</strong> Attendees can accept, decline, or tentatively accept event invitations from the calendar itself.
+  </p>
+</div>
+
+<!-- ════ FLOW DIAGRAM ════ -->
+<div class="sec"><span class="sec-tag st-c">02</span><span class="sec-title">How Cloud Calendar Collaboration Works</span></div>
+<div class="flow-wrap">
+  <h4>Architecture — Real-Time Cloud Calendar Collaboration</h4>
+  <div class="flow-row" style="margin-bottom:14px;">
+    <div class="fbox fb-u"><div class="fi">👤</div><div class="fn">User Creates Event</div><div class="fs">Browser / App</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-c"><div class="fi">☁️</div><div class="fn">Cloud Server</div><div class="fs">Stored via CalDAV</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">🔔</div><div class="fn">Invite Sent</div><div class="fs">Email / Notification</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">✅</div><div class="fn">RSVP Response</div><div class="fs">Accept / Decline</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">📅</div><div class="fn">All Members See Update</div><div class="fs">Real-time sync</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:var(--muted);margin:8px 0 14px;">Changes sync instantly · Reminders sent automatically · Works on all devices · No manual file sharing</div>
+  <div class="flow-row" style="gap:16px;">
+    <div class="fbox fb-z"><div class="fi">📅</div><div class="fn">Zoho Calendar</div><div class="fs">Workplace · Rooms</div></div>
+    <div class="fbox fb-t"><div class="fi">🗓</div><div class="fn">Teamup</div><div class="fs">Sub-cals · Links</div></div>
+    <div class="fbox fb-f"><div class="fi">✨</div><div class="fn">Fantastical</div><div class="fs">NLP · Weather</div></div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 1: ZOHO CALENDAR ════════════ -->
+<div class="sec"><span class="sec-tag st-1">TOOL 1</span><span class="sec-title">Zoho Calendar — zoho.com/calendar</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#7A0000,#E42527);">
+    <span class="tb-icon">📅</span>
+    <div><div class="tb-name">Zoho Calendar</div><div class="tb-url">zoho.com/calendar · Free + Zoho Workplace · 75M+ Zoho users · Full CalDAV support</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Zoho Calendar is a cloud-based calendar application within the Zoho Workplace suite. It enables teams to create, share, and manage events collaboratively in real time. It integrates tightly with Zoho Mail, Zoho Meet, and Zoho Cliq — making it a complete workplace scheduling solution. Multiple team members can view each other's availability and schedule events without calendar conflicts.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Shared team calendars — all members see a unified event view in real time</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Availability checker — see all members' free/busy slots before scheduling</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Event RSVP — attendees accept/decline/maybe directly from calendar invite</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Resource Booking — book conference rooms, labs, or equipment for events</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Recurring events — auto-schedule weekly/monthly review meetings</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Zoho Meet integration — add online meeting link to any event in one click</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Email reminders — automatic notifications before events, configurable per user</div>
+      <div class="feat-item"><div class="fdot" style="background:#E42527;"></div>Import/Export iCal (.ics) — compatible with all other calendar apps</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 1 — Zoho Calendar: TechSympo 2025 Shared Team Calendar (Month View)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>calendar.zoho.com/techsympo2025 · Shared team calendar · 5 members · March 2025</div></div>
+  <div class="zo-body">
+    <!-- Topbar -->
+    <div class="zo-topbar">
+      <div class="zo-logo">Z Calendar</div>
+      <div class="zo-topbar-center">
+        <div class="zo-today-btn">Today</div>
+        <div class="zo-nav-arrows"><div class="zo-arrow">‹</div><div class="zo-arrow">›</div></div>
+        <div class="zo-month-title">March 2025</div>
+      </div>
+      <div class="zo-topbar-right">
+        <div class="zo-view-btn">Day</div>
+        <div class="zo-view-btn">Week</div>
+        <div class="zo-view-btn active">Month</div>
+        <div style="display:flex;margin-left:6px;"><div class="zo-av" style="background:#E42527;">AK</div><div class="zo-av" style="background:#0078d4;margin-left:-6px;">KR</div><div class="zo-av" style="background:#059669;margin-left:-6px;">SM</div><div class="zo-av" style="background:#7C3AED;margin-left:-6px;">PR</div><div class="zo-av" style="background:#D97706;margin-left:-6px;">DR</div></div>
+        <div class="zo-share-btn">+ New Event</div>
+      </div>
+    </div>
+
+    <div class="zo-layout">
+      <!-- Left sidebar -->
+      <div class="zo-sidebar">
+        <div class="zo-mini-cal">
+          <div class="zo-mini-head">
+            <div class="zo-mini-month">March 2025</div>
+            <div style="display:flex;gap:4px;font-size:12px;color:#A8A29E;cursor:pointer;"><span>‹</span><span>›</span></div>
+          </div>
+          <div class="zo-mini-grid">
+            <div class="zo-md-label">S</div><div class="zo-md-label">M</div><div class="zo-md-label">T</div><div class="zo-md-label">W</div><div class="zo-md-label">T</div><div class="zo-md-label">F</div><div class="zo-md-label">S</div>
+            <div class="zo-md" style="color:#D6D3D1;">23</div><div class="zo-md" style="color:#D6D3D1;">24</div><div class="zo-md" style="color:#D6D3D1;">25</div><div class="zo-md" style="color:#D6D3D1;">26</div><div class="zo-md" style="color:#D6D3D1;">27</div><div class="zo-md">1</div><div class="zo-md">2</div>
+            <div class="zo-md">3</div><div class="zo-md">4</div><div class="zo-md">5</div><div class="zo-md has-ev">6</div><div class="zo-md">7</div><div class="zo-md">8</div><div class="zo-md">9</div>
+            <div class="zo-md">10</div><div class="zo-md has-ev">11</div><div class="zo-md">12</div><div class="zo-md">13</div><div class="zo-md">14</div><div class="zo-md has-ev">15</div><div class="zo-md">16</div>
+            <div class="zo-md">17</div><div class="zo-md">18</div><div class="zo-md">19</div><div class="zo-md">20</div><div class="zo-md">21</div><div class="zo-md has-ev">22</div><div class="zo-md today">23</div>
+            <div class="zo-md has-ev">24</div><div class="zo-md">25</div><div class="zo-md has-ev">26</div><div class="zo-md">27</div><div class="zo-md has-ev">28</div><div class="zo-md">29</div><div class="zo-md">30</div>
+            <div class="zo-md">31</div>
+          </div>
+        </div>
+        <div class="zo-cal-section">My Calendars</div>
+        <div class="zo-cal-item"><div class="zo-cal-dot" style="background:#E42527;border-radius:50%;"></div>My Calendar<span class="check">✔</span></div>
+        <div class="zo-cal-item"><div class="zo-cal-dot" style="background:#0078d4;border-radius:50%;"></div>Work<span class="check">✔</span></div>
+        <div class="zo-cal-section">Shared Calendars</div>
+        <div class="zo-cal-item"><div class="zo-cal-dot" style="background:#E42527;"></div>TechSympo 2025<span class="check">✔</span></div>
+        <div class="zo-cal-item"><div class="zo-cal-dot" style="background:#059669;"></div>CSE Department<span class="check">✔</span></div>
+        <div class="zo-cal-item"><div class="zo-cal-dot" style="background:#7C3AED;"></div>Exam Schedule<span class="check">✔</span></div>
+        <div class="zo-cal-item"><div class="zo-cal-dot" style="background:#D97706;"></div>Holidays<span class="check">✔</span></div>
+        <div class="zo-add-cal">+ Add Calendar</div>
+      </div>
+
+      <!-- Main calendar grid -->
+      <div class="zo-cal-main">
+        <div class="zo-day-headers">
+          <div class="zo-dh">Sun</div><div class="zo-dh">Mon</div><div class="zo-dh">Tue</div><div class="zo-dh">Wed</div><div class="zo-dh">Thu</div><div class="zo-dh">Fri</div><div class="zo-dh">Sat</div>
+        </div>
+        <div class="zo-grid">
+          <!-- Row 1 -->
+          <div class="zo-cell other-month"><div class="zo-cell-date">23</div></div>
+          <div class="zo-cell other-month"><div class="zo-cell-date">24</div></div>
+          <div class="zo-cell other-month"><div class="zo-cell-date">25</div></div>
+          <div class="zo-cell other-month"><div class="zo-cell-date">26</div></div>
+          <div class="zo-cell other-month"><div class="zo-cell-date">27</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">1</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">2</div></div>
+          <!-- Row 2 -->
+          <div class="zo-cell"><div class="zo-cell-date">3</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">4</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">5</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">6</div>
+            <div class="zo-event" style="background:#FEE2E2;color:#E42527;"><div class="zo-ev-dot" style="background:#E42527;"></div>Reg Opens</div>
+          </div>
+          <div class="zo-cell"><div class="zo-cell-date">7</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">8</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">9</div></div>
+          <!-- Row 3 -->
+          <div class="zo-cell"><div class="zo-cell-date">10</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">11</div>
+            <div class="zo-event" style="background:#DBEAFE;color:#0078d4;"><div class="zo-ev-dot" style="background:#0078d4;"></div>Planning Meet</div>
+          </div>
+          <div class="zo-cell"><div class="zo-cell-date">12</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">13</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">14</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">15</div>
+            <div class="zo-event" style="background:#D1FAE5;color:#059669;"><div class="zo-ev-dot" style="background:#059669;"></div>Brochure Due</div>
+          </div>
+          <div class="zo-cell"><div class="zo-cell-date">16</div></div>
+          <!-- Row 4 -->
+          <div class="zo-cell"><div class="zo-cell-date">17</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">18</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">19</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">20</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">21</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">22</div>
+            <div class="zo-event" style="background:#EDE9FE;color:#7C3AED;"><div class="zo-ev-dot" style="background:#7C3AED;"></div>Reg Closes</div>
+          </div>
+          <div class="zo-cell today-cell"><div class="zo-cell-date">23</div>
+            <div class="zo-event" style="background:#FEE2E2;color:#E42527;"><div class="zo-ev-dot" style="background:#E42527;"></div>Committee Meet</div>
+          </div>
+          <!-- Row 5 -->
+          <div class="zo-cell"><div class="zo-cell-date">24</div>
+            <div class="zo-event" style="background:#DBEAFE;color:#0078d4;"><div class="zo-ev-dot" style="background:#0078d4;"></div>Final Rehearsal</div>
+          </div>
+          <div class="zo-cell"><div class="zo-cell-date">25</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">26</div>
+            <div class="zo-event" style="background:#D1FAE5;color:#059669;"><div class="zo-ev-dot" style="background:#059669;"></div>Tech Check</div>
+            <div class="zo-event" style="background:#FEF3C7;color:#D97706;"><div class="zo-ev-dot" style="background:#D97706;"></div>Meet Speakers</div>
+          </div>
+          <div class="zo-cell"><div class="zo-cell-date">27</div></div>
+          <div class="zo-cell" style="background:#FFFBEB;"><div class="zo-cell-date">28</div>
+            <div class="zo-event" style="background:#E42527;color:#fff;font-weight:700;"><div class="zo-ev-dot" style="background:#fff;"></div>🎉 TechSympo Day!</div>
+            <div class="zo-event" style="background:#FEE2E2;color:#E42527;"><div class="zo-ev-dot" style="background:#E42527;"></div>9AM Inauguration</div>
+            <div class="zo-event" style="background:#DBEAFE;color:#0078d4;"><div class="zo-ev-dot" style="background:#0078d4;"></div>11AM Paper Pres.</div>
+          </div>
+          <div class="zo-cell"><div class="zo-cell-date">29</div></div>
+          <div class="zo-cell"><div class="zo-cell-date">30</div></div>
+        </div>
+        <div class="zo-statusbar">
+          <div style="display:inline-flex;align-items:center;gap:5px;background:#FEE2E2;color:#E42527;border:1px solid #FECACA;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;"><div class="pulse-dot" style="background:#E42527;"></div>Live sync</div>
+          <span>5 members · TechSympo 2025 Calendar · March 2025</span>
+          <span style="margin-left:auto;">iCal export · Zoho Meet integration · Auto-reminders ON</span>
+        </div>
+      </div>
+
+      <!-- Right panel: upcoming events -->
+      <div class="zo-right">
+        <div class="zo-rp-head">Upcoming Events</div>
+        <div class="zo-event-card">
+          <div class="zo-ec-time">TODAY · 3:00 PM</div>
+          <div class="zo-ec-title">🏛 Committee Planning Meeting</div>
+          <div class="zo-ec-meta">📍 Room 204, CSE Dept · Zoho Meet link included</div>
+          <div class="zo-ec-attendees">
+            <div class="zo-att-av" style="background:#E42527;">AK</div><div class="zo-att-av" style="background:#0078d4;">KR</div><div class="zo-att-av" style="background:#059669;">SM</div><div class="zo-att-av" style="background:#7C3AED;">PR</div><div class="zo-att-av" style="background:#D97706;">DR</div>
+            <span style="font-size:11px;color:var(--muted);margin-left:8px;">5 attending</span>
+          </div>
+        </div>
+        <div class="zo-event-card">
+          <div class="zo-ec-time">MAR 24 · 10:00 AM</div>
+          <div class="zo-ec-title">🎬 Final Rehearsal &amp; AV Check</div>
+          <div class="zo-ec-meta">📍 Auditorium · All organisers</div>
+          <div class="zo-ec-attendees"><div class="zo-att-av" style="background:#E42527;">AK</div><div class="zo-att-av" style="background:#0078d4;">KR</div><div class="zo-att-av" style="background:#059669;">SM</div></div>
+        </div>
+        <div class="zo-event-card">
+          <div class="zo-ec-time">MAR 26 · 2:00 PM</div>
+          <div class="zo-ec-title">💻 Tech Check &amp; Live Stream Test</div>
+          <div class="zo-ec-meta">📍 Server Room + Zoho Meet</div>
+          <div class="zo-ec-attendees"><div class="zo-att-av" style="background:#0078d4;">KR</div><div class="zo-att-av" style="background:#D97706;">DR</div></div>
+        </div>
+        <div class="zo-event-card" style="background:#FFFBEB;">
+          <div class="zo-ec-time">MAR 28 · ALL DAY ⭐</div>
+          <div class="zo-ec-title">🎉 TechSympo 2025 — Main Event</div>
+          <div class="zo-ec-meta">📍 CSE Dept + Online · Hybrid Mode</div>
+          <div class="zo-ec-attendees"><div class="zo-att-av" style="background:#E42527;">AK</div><div class="zo-att-av" style="background:#0078d4;">KR</div><div class="zo-att-av" style="background:#059669;">SM</div><div class="zo-att-av" style="background:#7C3AED;">PR</div><div class="zo-att-av" style="background:#D97706;">DR</div></div>
+        </div>
+        <div class="zo-notif">🔔 <strong>Reminder:</strong> "Committee Meeting" starts in 2 hours. <span style="color:#E42527;cursor:pointer;font-weight:700;">View event →</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 2: TEAMUP ════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-2">TOOL 2</span><span class="sec-title">Teamup — teamup.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#004D40,#00897B);">
+    <span class="tb-icon">🗓</span>
+    <div><div class="tb-name">Teamup Calendar</div><div class="tb-url">teamup.com · Free for basic use · No account required to view · Sub-calendars · Link-based sharing</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Teamup is a unique cloud calendar built specifically for group and organisational scheduling. Its standout feature is <strong>sub-calendars</strong> — colour-coded calendar layers for different teams, resources, or event types — and <strong>link-based access control</strong> where different links give different permissions (view-only, add-only, modify specific sub-calendars) without requiring a user account. It is especially popular in schools, events teams, and sports organisations.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>Sub-calendars — colour-coded layers for each team/resource in one shared view</div>
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>Link-based sharing — no account needed; different links give different permissions</div>
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>Up to 8 permission levels per calendar link (view, add, modify, delete, admin)</div>
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>Password-protected calendar links for sensitive events</div>
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>Scheduler — share a link for attendees to pick available time slots</div>
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>Resource management — book rooms, equipment, labs from the calendar</div>
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>Multiple views: Month, Week, Day, Agenda, Grid (all people side-by-side)</div>
+      <div class="feat-item"><div class="fdot" style="background:#00897B;"></div>iCal feed — subscribe to calendar in any calendar app automatically</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 2 — Teamup: Week View with Sub-Calendars, Event Blocks &amp; Link Access Panel</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>teamup.com/ks-techsympo2025-organizers · Sub-calendars · No login needed · Week of Mar 24</div></div>
+  <div class="tu-body">
+    <div class="tu-topbar">
+      <div class="tu-logo">Teamup</div>
+      <div class="tu-calendar-name">📅 TechSympo 2025 — Organiser Calendar</div>
+      <div class="tu-topbar-right">
+        <div style="display:flex;align-items:center;gap:5px;background:var(--tu-light);color:var(--tu-teal);border:1px solid #80CBC4;padding:4px 10px;border-radius:10px;font-size:11.5px;font-weight:700;"><div class="pulse-dot" style="background:#00897B;"></div>Live · 4 viewing</div>
+        <div class="tu-link-btn">🔗 Share Link</div>
+        <div style="background:var(--tu-teal);color:#fff;font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer;">+ New Event</div>
+      </div>
+    </div>
+    <div class="tu-layout">
+      <!-- Sidebar -->
+      <div class="tu-sidebar">
+        <div class="tu-sub-cal">Sub-Calendars</div>
+        <div class="tu-cal-row active"><div class="tu-cal-swatch" style="background:#E42527;"></div>🎤 Inauguration</div>
+        <div class="tu-cal-row active"><div class="tu-cal-swatch" style="background:#0078d4;"></div>📄 Paper Presentation</div>
+        <div class="tu-cal-row active"><div class="tu-cal-swatch" style="background:#217346;"></div>🧠 Technical Quiz</div>
+        <div class="tu-cal-row active"><div class="tu-cal-swatch" style="background:#7C3AED;"></div>💻 Coding Challenge</div>
+        <div class="tu-cal-row active"><div class="tu-cal-swatch" style="background:#D97706;"></div>🏗 Project Expo</div>
+        <div class="tu-cal-row active"><div class="tu-cal-swatch" style="background:#059669;"></div>🏆 Valediction</div>
+        <div class="tu-cal-row"><div class="tu-cal-swatch" style="background:#94A3B8;"></div>🛠 Logistics</div>
+        <div class="tu-member-section">
+          <div class="tu-ms-head">Active Now (4)</div>
+          <div class="tu-member"><div class="tu-m-av" style="background:#E42527;">AK</div><div><div>Arjun K.</div><div class="tu-m-status">Editing events</div></div></div>
+          <div class="tu-member"><div class="tu-m-av" style="background:#0078d4;">KR</div><div><div>Kavya R.</div><div class="tu-m-status">Viewing week</div></div></div>
+          <div class="tu-member"><div class="tu-m-av" style="background:#059669;">SM</div><div><div>Sneha M.</div><div class="tu-m-status">Adding event</div></div></div>
+          <div class="tu-member"><div class="tu-m-av" style="background:#7C3AED;">DR</div><div><div>Dr. Ramesh</div><div class="tu-m-status">Reviewing</div></div></div>
+        </div>
+        <div class="tu-access-section">
+          <div class="tu-as-head">Share Links</div>
+          <div class="tu-access-link">
+            <div style="font-size:11.5px;font-weight:700;color:var(--tu-teal);margin-bottom:4px;">🔧 Admin Link</div>
+            <div class="tu-link-url">teamup.com/ks-abc123admin</div>
+            <div class="tu-copy-btn">📋 Copy</div>
+          </div>
+          <div class="tu-access-link" style="margin-top:6px;">
+            <div style="font-size:11.5px;font-weight:700;color:#0078d4;margin-bottom:4px;">👁 View-Only Link</div>
+            <div class="tu-link-url">teamup.com/ks-abc123readonly</div>
+            <div class="tu-copy-btn" style="background:#0078d4;">📋 Copy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Week calendar main -->
+      <div class="tu-cal-main">
+        <div class="tu-toolbar">
+          <div style="display:flex;align-items:center;gap:6px;font-weight:700;font-size:14px;color:var(--ink);">
+            <span style="cursor:pointer;color:var(--muted);">‹</span>
+            Mar 24 – Mar 30, 2025
+            <span style="cursor:pointer;color:var(--muted);">›</span>
+          </div>
+          <div class="tu-tb-btn">Today</div>
+          <div style="display:flex;border:1px solid #E7E5E4;border-radius:6px;overflow:hidden;margin-left:4px;">
+            <div class="tu-tb-btn" style="border:none;border-radius:0;">Month</div>
+            <div class="tu-tb-btn active" style="border:none;border-radius:0;">Week</div>
+            <div class="tu-tb-btn" style="border:none;border-radius:0;">Day</div>
+          </div>
+          <div class="tu-tb-btn primary" style="margin-left:auto;">+ Add Event</div>
+        </div>
+        <div class="tu-week-grid" style="overflow-y:auto;">
+          <!-- Time column -->
+          <div class="tu-time-col">
+            <div style="height:56px;border-bottom:1px solid #E7E5E4;background:#fff;"></div>
+            <div class="tu-time-slot">8 AM</div>
+            <div class="tu-time-slot">9 AM</div>
+            <div class="tu-time-slot">10 AM</div>
+            <div class="tu-time-slot">11 AM</div>
+            <div class="tu-time-slot">12 PM</div>
+            <div class="tu-time-slot">1 PM</div>
+            <div class="tu-time-slot">2 PM</div>
+            <div class="tu-time-slot">3 PM</div>
+          </div>
+          <!-- Day columns Mon-Sun -->
+          <!-- Mon Mar 24 -->
+          <div class="tu-day-col">
+            <div class="tu-day-header"><div class="tu-dh-name">Mon</div><div class="tu-dh-num">24</div></div>
+            <div class="tu-slots">
+              <div class="tu-slot-bg" style="top:0;height:52px;"></div><div class="tu-slot-bg" style="top:52px;height:52px;"></div><div class="tu-slot-bg" style="top:104px;height:52px;"></div><div class="tu-slot-bg" style="top:156px;height:52px;"></div><div class="tu-slot-bg" style="top:208px;height:52px;"></div><div class="tu-slot-bg" style="top:260px;height:52px;"></div><div class="tu-slot-bg" style="top:312px;height:52px;"></div><div class="tu-slot-bg" style="top:364px;height:52px;"></div>
+              <div class="tu-ev-block" style="background:#0078d4;top:52px;height:104px;">
+                <div class="tu-ev-title">Final Rehearsal &amp; AV Check</div>
+                <div class="tu-ev-time">9:00 – 11:00 AM</div>
+                <div class="tu-ev-att"><div class="tu-ev-av" style="background:#E42527;">A</div><div class="tu-ev-av" style="background:#059669;">S</div></div>
+              </div>
+            </div>
+          </div>
+          <!-- Tue Mar 25 -->
+          <div class="tu-day-col">
+            <div class="tu-day-header"><div class="tu-dh-name">Tue</div><div class="tu-dh-num">25</div></div>
+            <div class="tu-slots">
+              <div class="tu-slot-bg" style="top:0;height:52px;"></div><div class="tu-slot-bg" style="top:52px;height:52px;"></div><div class="tu-slot-bg" style="top:104px;height:52px;"></div><div class="tu-slot-bg" style="top:156px;height:52px;"></div><div class="tu-slot-bg" style="top:208px;height:52px;"></div><div class="tu-slot-bg" style="top:260px;height:52px;"></div><div class="tu-slot-bg" style="top:312px;height:52px;"></div>
+            </div>
+          </div>
+          <!-- Wed Mar 26 -->
+          <div class="tu-day-col" style="background:#F0FAF9;">
+            <div class="tu-day-header" style="background:#E0F5F2;"><div class="tu-dh-name">Wed</div><div class="tu-dh-num today-num">26</div></div>
+            <div class="tu-slots">
+              <div class="tu-slot-bg" style="top:0;height:52px;"></div><div class="tu-slot-bg" style="top:52px;height:52px;"></div><div class="tu-slot-bg" style="top:104px;height:52px;"></div><div class="tu-slot-bg" style="top:156px;height:52px;"></div><div class="tu-slot-bg" style="top:208px;height:52px;"></div><div class="tu-slot-bg" style="top:260px;height:52px;"></div>
+              <div class="tu-ev-block" style="background:#059669;top:104px;height:52px;">
+                <div class="tu-ev-title">Tech Check &amp; Live Stream Test</div>
+                <div class="tu-ev-time">10 – 11 AM</div>
+              </div>
+              <div class="tu-ev-block" style="background:#D97706;top:208px;height:78px;">
+                <div class="tu-ev-title">Speaker Coordination Meet</div>
+                <div class="tu-ev-time">12:00 – 1:30 PM</div>
+                <div class="tu-ev-att"><div class="tu-ev-av" style="background:#E42527;">A</div><div class="tu-ev-av" style="background:#7C3AED;">D</div></div>
+              </div>
+            </div>
+          </div>
+          <!-- Thu Mar 27 -->
+          <div class="tu-day-col">
+            <div class="tu-day-header"><div class="tu-dh-name">Thu</div><div class="tu-dh-num">27</div></div>
+            <div class="tu-slots">
+              <div class="tu-slot-bg" style="top:0;height:52px;"></div><div class="tu-slot-bg" style="top:52px;height:52px;"></div><div class="tu-slot-bg" style="top:104px;height:52px;"></div><div class="tu-slot-bg" style="top:156px;height:52px;"></div>
+              <div class="tu-ev-block" style="background:#94A3B8;top:0;height:52px;">
+                <div class="tu-ev-title">Venue Setup &amp; Decoration</div>
+                <div class="tu-ev-time">8:00 – 9:00 AM</div>
+              </div>
+              <div class="tu-ev-block" style="background:#7C3AED;top:104px;height:78px;">
+                <div class="tu-ev-title">Sponsor Banner Placement</div>
+                <div class="tu-ev-time">10 AM – 11:30 AM</div>
+              </div>
+            </div>
+          </div>
+          <!-- Fri Mar 28 — MAIN DAY -->
+          <div class="tu-day-col" style="background:#FFF9F9;">
+            <div class="tu-day-header" style="background:#FEE2E2;"><div class="tu-dh-name" style="color:#E42527;">Fri 🎉</div><div class="tu-dh-num" style="color:#E42527;">28</div></div>
+            <div class="tu-slots">
+              <div class="tu-slot-bg" style="top:0;height:52px;"></div><div class="tu-slot-bg" style="top:52px;height:52px;"></div><div class="tu-slot-bg" style="top:104px;height:52px;"></div><div class="tu-slot-bg" style="top:156px;height:52px;"></div><div class="tu-slot-bg" style="top:208px;height:52px;"></div><div class="tu-slot-bg" style="top:260px;height:52px;"></div><div class="tu-slot-bg" style="top:312px;height:52px;"></div>
+              <div class="tu-ev-block" style="background:#E42527;top:52px;height:52px;">
+                <div class="tu-ev-title">🎤 Inauguration</div><div class="tu-ev-time">9 – 10 AM</div>
+              </div>
+              <div class="tu-ev-block" style="background:#0078d4;top:156px;height:104px;">
+                <div class="tu-ev-title">📄 Paper Presentation</div><div class="tu-ev-time">11 AM – 1 PM</div>
+              </div>
+              <div class="tu-ev-block" style="background:#217346;top:260px;height:78px;">
+                <div class="tu-ev-title">🧠 Technical Quiz</div><div class="tu-ev-time">2 – 3:30 PM</div>
+              </div>
+              <div class="tu-ev-block" style="background:#059669;top:364px;height:52px;">
+                <div class="tu-ev-title">🏆 Valediction</div><div class="tu-ev-time">4 – 5 PM</div>
+              </div>
+            </div>
+          </div>
+          <!-- Sat/Sun -->
+          <div class="tu-day-col"><div class="tu-day-header"><div class="tu-dh-name">Sat</div><div class="tu-dh-num">29</div></div><div class="tu-slots"><div class="tu-slot-bg" style="top:0;height:52px;"></div></div></div>
+          <div class="tu-day-col"><div class="tu-day-header"><div class="tu-dh-name">Sun</div><div class="tu-dh-num">30</div></div><div class="tu-slots"><div class="tu-slot-bg" style="top:0;height:52px;"></div></div></div>
+        </div>
+        <div class="tu-statusbar">
+          <div style="display:inline-flex;align-items:center;gap:5px;background:var(--tu-light);color:var(--tu-teal);border:1px solid #80CBC4;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;"><div class="pulse-dot" style="background:#00897B;"></div>4 users viewing now</div>
+          <span>7 sub-calendars · Week: Mar 24–30 · TechSympo 2025</span>
+          <span style="margin-left:auto;">iCal Feed · No account needed · Link-based access</span>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="tu-right">
+        <div class="tu-rp-head">Selected Event</div>
+        <div class="tu-event-detail">
+          <div class="tu-ed-title">📄 Paper Presentation Session</div>
+          <div class="tu-ed-row"><div class="tu-ed-icon">📅</div><div><div class="tu-ed-label">Date &amp; Time</div><div class="tu-ed-value">Mar 28 · 11:00 AM – 1:00 PM</div></div></div>
+          <div class="tu-ed-row"><div class="tu-ed-icon">📍</div><div><div class="tu-ed-label">Location</div><div class="tu-ed-value">Seminar Hall + Google Meet</div></div></div>
+          <div class="tu-ed-row"><div class="tu-ed-icon">📂</div><div><div class="tu-ed-label">Sub-Calendar</div><div class="tu-ed-value" style="color:#0078d4;">📄 Paper Presentation</div></div></div>
+          <div class="tu-ed-row"><div class="tu-ed-icon">👥</div><div><div class="tu-ed-label">Organisers</div><div class="tu-ed-value">Arjun K., Kavya R.</div></div></div>
+          <div class="tu-ed-row"><div class="tu-ed-icon">📝</div><div><div class="tu-ed-label">Notes</div><div class="tu-ed-value">48 participants · 3 panels</div></div></div>
+        </div>
+        <div class="tu-sub-calendars-preview">
+          <div class="tu-scp-head">All Sub-Calendars — Mar 28</div>
+          <div class="tu-scp-row"><div class="tu-scp-dot" style="background:#E42527;"></div><span>🎤 Inauguration · 9–10 AM</span></div>
+          <div class="tu-scp-row"><div class="tu-scp-dot" style="background:#0078d4;"></div><span>📄 Paper Pres. · 11 AM–1 PM</span></div>
+          <div class="tu-scp-row"><div class="tu-scp-dot" style="background:#217346;"></div><span>🧠 Quiz · 2–3:30 PM</span></div>
+          <div class="tu-scp-row"><div class="tu-scp-dot" style="background:#7C3AED;"></div><span>💻 Coding · 2–4 PM</span></div>
+          <div class="tu-scp-row"><div class="tu-scp-dot" style="background:#059669;"></div><span>🏆 Valediction · 4–5 PM</span></div>
+        </div>
+        <div class="tu-link-card">
+          <div class="tu-lc-head">🔗 Shared Access Links</div>
+          <div class="tu-lc-row"><span>Organiser Team</span><span class="tu-lc-perm perm-edit">Full Edit</span></div>
+          <div class="tu-lc-row"><span>Faculty Advisors</span><span class="tu-lc-perm perm-view">View Only</span></div>
+          <div class="tu-lc-row"><span>Participants</span><span class="tu-lc-perm perm-view">View Only</span></div>
+          <div class="tu-lc-row"><span>Volunteers</span><span class="tu-lc-perm perm-add">Add Events</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 3: FANTASTICAL ════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-3">TOOL 3</span><span class="sec-title">Fantastical — fantastical.app</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#4C1D95,#7C3AED);">
+    <span class="tb-icon">✨</span>
+    <div><div class="tb-name">Fantastical</div><div class="tb-url">fantastical.app · Free + Premium · Mac, iPhone, iPad, Watch · Natural Language Parsing · 4.8★ App Store</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Fantastical is a premium cloud calendar app for Apple devices and the web, famous for its <strong>Natural Language Parsing</strong> — you can type "Paper presentation session March 28 11am in Seminar Hall with Kavya and Sneha" and Fantastical automatically creates the event with all details filled in. It integrates with any CalDAV or Exchange calendar in the cloud, including Zoho Calendar, making it a powerful front-end for cloud calendar collaboration.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Natural Language Input — create events instantly by typing/speaking naturally</div>
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Proposed Events — suggest meeting times; attendees accept/decline from their device</div>
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Weather integration — see weather forecast for each day overlaid on calendar</div>
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Connects to all cloud calendars: Zoho, Exchange, iCloud, Fastmail via CalDAV</div>
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Meeting invitations with RSVP — attendee status shown per event</div>
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Tasks integration — manage Reminders and tasks alongside calendar events</div>
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Conference call detection — auto-detects Zoom/Teams/Meet links from invites</div>
+      <div class="feat-item"><div class="fdot" style="background:#7C3AED;"></div>Availability view — see all attendees' free/busy without leaving the app</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 3 — Fantastical: Day View with Natural Language Input, RSVP Status &amp; Weather Overlay</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>fantastical.app/calendar · Mar 28, 2025 · TechSympo Day · Synced via CalDAV</div></div>
+  <div class="fa-body">
+    <div class="fa-topbar">
+      <div class="fa-logo"><div class="fa-logo-mark">✨</div>Fantastical</div>
+      <div class="fa-breadcrumb">Friday, March 28, 2025 · ☀️ 32°C Chennai</div>
+      <div class="fa-topbar-right">
+        <div style="display:flex;"><div style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">AK</div><div style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;margin-left:-6px;">KR</div><div style="width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;margin-left:-6px;">SM</div></div>
+        <div class="fa-share-btn">Share Calendar</div>
+        <div class="fa-upgrade-btn">Premium ✦</div>
+      </div>
+    </div>
+    <div class="fa-layout">
+      <!-- Sidebar -->
+      <div class="fa-sidebar">
+        <div class="fa-mini-cal">
+          <div class="fa-mini-head">
+            <div class="fa-mini-month">March 2025</div>
+            <div style="font-size:12px;color:#A78BFA;cursor:pointer;display:flex;gap:4px;"><span>‹</span><span>›</span></div>
+          </div>
+          <div class="fa-mini-grid">
+            <div class="fa-md-label">S</div><div class="fa-md-label">M</div><div class="fa-md-label">T</div><div class="fa-md-label">W</div><div class="fa-md-label">T</div><div class="fa-md-label">F</div><div class="fa-md-label">S</div>
+            <div class="fa-md" style="color:#D6D3D1;">23</div><div class="fa-md" style="color:#D6D3D1;">24</div><div class="fa-md" style="color:#D6D3D1;">25</div><div class="fa-md" style="color:#D6D3D1;">26</div><div class="fa-md" style="color:#D6D3D1;">27</div><div class="fa-md">1</div><div class="fa-md">2</div>
+            <div class="fa-md">3</div><div class="fa-md">4</div><div class="fa-md">5</div><div class="fa-md has-ev">6</div><div class="fa-md">7</div><div class="fa-md">8</div><div class="fa-md">9</div>
+            <div class="fa-md">10</div><div class="fa-md has-ev">11</div><div class="fa-md">12</div><div class="fa-md">13</div><div class="fa-md">14</div><div class="fa-md has-ev">15</div><div class="fa-md">16</div>
+            <div class="fa-md">17</div><div class="fa-md">18</div><div class="fa-md">19</div><div class="fa-md">20</div><div class="fa-md">21</div><div class="fa-md has-ev">22</div><div class="fa-md has-ev">23</div>
+            <div class="fa-md has-ev">24</div><div class="fa-md">25</div><div class="fa-md has-ev">26</div><div class="fa-md">27</div><div class="fa-md today">28</div><div class="fa-md">29</div><div class="fa-md">30</div>
+            <div class="fa-md">31</div>
+          </div>
+        </div>
+        <div class="fa-section-head">My Calendars</div>
+        <div class="fa-cal-item active"><div class="fa-cal-dot" style="background:#7C3AED;"></div>Personal</div>
+        <div class="fa-cal-item active"><div class="fa-cal-dot" style="background:#E42527;"></div>TechSympo 2025</div>
+        <div class="fa-cal-item active"><div class="fa-cal-dot" style="background:#059669;"></div>CSE Department</div>
+        <div class="fa-cal-item active"><div class="fa-cal-dot" style="background:#0078d4;"></div>Work Tasks</div>
+        <div class="fa-section-head" style="margin-top:6px;">Other Calendars</div>
+        <div class="fa-cal-item"><div class="fa-cal-dot" style="background:#D97706;"></div>Zoho Calendar</div>
+        <div class="fa-cal-item"><div class="fa-cal-dot" style="background:#94A3B8;"></div>Birthdays</div>
+        <!-- Weather widget -->
+        <div class="fa-weather-widget">
+          <div class="fa-ww-city">Chennai · Mar 28</div>
+          <div class="fa-ww-temp">☀️ 32°C</div>
+          <div class="fa-ww-desc">Clear · Perfect outdoor event weather</div>
+          <div style="display:flex;gap:10px;margin-top:8px;font-size:10.5px;color:rgba(255,255,255,.7);">
+            <div>🌅 6:12 AM</div><div>🌇 6:34 PM</div><div>💨 12 km/h</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main day view -->
+      <div class="fa-main">
+        <div class="fa-view-bar">
+          <div style="font-weight:700;font-size:14.5px;color:var(--ink);">Friday, March 28, 2025</div>
+          <div style="display:flex;border:1.5px solid #EDE9FE;border-radius:20px;overflow:hidden;margin-left:10px;">
+            <div class="fa-view-btn" style="border:none;border-radius:0;">Month</div>
+            <div class="fa-view-btn" style="border:none;border-radius:0;">Week</div>
+            <div class="fa-view-btn active" style="border:none;border-radius:0;">Day</div>
+            <div class="fa-view-btn" style="border:none;border-radius:0;">List</div>
+          </div>
+          <div style="margin-left:auto;background:var(--fa-light);color:var(--fa-purple);border:1px solid #DDD6FE;border-radius:6px;padding:5px 12px;font-size:12.5px;font-weight:700;cursor:pointer;">+ New Event</div>
+        </div>
+        <div class="fa-day-grid">
+          <div class="fa-time-col">
+            <div style="height:56px;background:#fff;border-bottom:1px solid #EDE9FE;"></div>
+            <div class="fa-time-label">8 AM</div>
+            <div class="fa-time-label">9 AM</div>
+            <div class="fa-time-label">10 AM</div>
+            <div class="fa-time-label">11 AM</div>
+            <div class="fa-time-label">12 PM</div>
+            <div class="fa-time-label">1 PM</div>
+            <div class="fa-time-label">2 PM</div>
+            <div class="fa-time-label">3 PM</div>
+            <div class="fa-time-label">4 PM</div>
+          </div>
+          <div class="fa-day-col" style="position:relative;">
+            <div class="fa-hour-line" style="top:56px;"></div>
+            <div class="fa-hour-line"></div><div class="fa-hour-line"></div><div class="fa-hour-line"></div><div class="fa-hour-line"></div><div class="fa-hour-line"></div><div class="fa-hour-line"></div><div class="fa-hour-line"></div><div class="fa-hour-line"></div><div class="fa-hour-line"></div>
+            <!-- Now line at ~9:30 -->
+            <div class="fa-now-line" style="top:188px;"><div class="fa-now-dot"></div></div>
+            <!-- Events -->
+            <div class="fa-ev-block" style="background:linear-gradient(135deg,#E42527,#FF6B6B);top:112px;height:56px;">
+              <div class="fa-ev-title">🎤 Inauguration Ceremony</div>
+              <div class="fa-ev-time">9:00 – 10:00 AM</div>
+              <div class="fa-ev-tag">Hall A + Online</div>
+            </div>
+            <div class="fa-ev-block" style="background:linear-gradient(135deg,#0078d4,#38BDF8);top:168px;height:56px;">
+              <div class="fa-ev-title">🎤 Keynote Address</div>
+              <div class="fa-ev-time">10:00 – 11:00 AM</div>
+              <div class="fa-ev-tag">YouTube Live</div>
+            </div>
+            <div class="fa-ev-block" style="background:linear-gradient(135deg,#7C3AED,#A78BFA);top:224px;height:112px;">
+              <div class="fa-ev-title">📄 Paper Presentation</div>
+              <div class="fa-ev-time">11:00 AM – 1:00 PM</div>
+              <div class="fa-ev-tag">Seminar Hall + Meet</div>
+            </div>
+            <div class="fa-ev-block" style="background:linear-gradient(135deg,#217346,#34D399);top:392px;height:84px;">
+              <div class="fa-ev-title">🧠 Technical Quiz &amp; Coding</div>
+              <div class="fa-ev-time">2:00 – 3:30 PM</div>
+              <div class="fa-ev-tag">Lab + Online</div>
+            </div>
+            <div class="fa-ev-block" style="background:linear-gradient(135deg,#D97706,#FCD34D);top:504px;height:56px;">
+              <div class="fa-ev-title">🏆 Valediction &amp; Prize Distribution</div>
+              <div class="fa-ev-time">4:00 – 5:00 PM</div>
+            </div>
+          </div>
+        </div>
+        <div class="fa-statusbar">
+          <div style="display:inline-flex;align-items:center;gap:5px;background:var(--fa-light);color:var(--fa-purple);border:1px solid #DDD6FE;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;"><div class="pulse-dot" style="background:#7C3AED;"></div>CalDAV Synced</div>
+          <span>5 events today · TechSympo Day</span>
+          <span style="margin-left:auto;">☀️ 32°C · Synced from Zoho Calendar · RSVP tracking ON</span>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="fa-right">
+        <div class="fa-rp-head">Event Details</div>
+        <div class="fa-event-detail">
+          <div class="fa-ed-color-bar" style="background:linear-gradient(90deg,#7C3AED,#A78BFA);"></div>
+          <div class="fa-ed-title">📄 Paper Presentation Session</div>
+          <div class="fa-ed-row"><div class="fa-ed-icon">🕐</div><div class="fa-ed-content"><div class="fa-ed-main">11:00 AM – 1:00 PM</div><div class="fa-ed-sub">Friday, March 28, 2025 · 2 hours</div></div></div>
+          <div class="fa-ed-row"><div class="fa-ed-icon">📍</div><div class="fa-ed-content"><div class="fa-ed-main">Seminar Hall, CSE Block</div><div class="fa-ed-sub">+ Google Meet link detected</div></div></div>
+          <div class="fa-ed-row"><div class="fa-ed-icon">📅</div><div class="fa-ed-content"><div class="fa-ed-main">TechSympo 2025 Calendar</div><div class="fa-ed-sub">Synced via Zoho CalDAV</div></div></div>
+          <div class="fa-ed-row"><div class="fa-ed-icon">🔔</div><div class="fa-ed-content"><div class="fa-ed-main">Reminder: 30 min before</div><div class="fa-ed-sub">Notification sent to all attendees</div></div></div>
+          <div class="fa-ed-row"><div class="fa-ed-icon">📝</div><div class="fa-ed-content"><div class="fa-ed-main">48 participants · 3 panels · Judges assigned</div></div></div>
+        </div>
+        <!-- RSVP attendees -->
+        <div class="fa-attendee-list">
+          <div class="fa-al-head">Attendees &amp; RSVP Status</div>
+          <div class="fa-attendee"><div class="fa-att-av" style="background:#E42527;">AK</div><div class="fa-att-name">Arjun Kumar (Organiser)</div><span class="fa-att-status att-yes">✔ Going</span></div>
+          <div class="fa-attendee"><div class="fa-att-av" style="background:#0078d4;">KR</div><div class="fa-att-name">Kavya Rajan</div><span class="fa-att-status att-yes">✔ Going</span></div>
+          <div class="fa-attendee"><div class="fa-att-av" style="background:#059669;">SM</div><div class="fa-att-name">Sneha Menon</div><span class="fa-att-status att-yes">✔ Going</span></div>
+          <div class="fa-attendee"><div class="fa-att-av" style="background:#7C3AED;">DR</div><div class="fa-att-name">Dr. Ramesh (Judge)</div><span class="fa-att-status att-wait">? Maybe</span></div>
+          <div class="fa-attendee"><div class="fa-att-av" style="background:#D97706;">PR</div><div class="fa-att-name">Priya R.</div><span class="fa-att-status att-no">✗ Declined</span></div>
+        </div>
+        <!-- Natural language -->
+        <div class="fa-natural-lang">
+          <div class="fa-nl-head">✨ Natural Language Input</div>
+          <div class="fa-nl-input">🎙 <span>Type or speak: "Quiz finals Mar 28 2pm Room 101 with Arjun"...</span></div>
+          <div class="fa-nl-examples">
+            <div style="font-size:11px;color:#A78BFA;font-weight:700;margin:6px 0 4px;">Try these examples:</div>
+            <div class="fa-nl-ex"><span class="ex-chip">Lunch meet tomorrow 1pm</span></div>
+            <div class="fa-nl-ex"><span class="ex-chip">Weekly sync every Monday 9am</span></div>
+            <div class="fa-nl-ex"><span class="ex-chip">Result announcement April 1 all day</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ KEY EXAM POINTS ════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-c">04</span><span class="sec-title">Key Points for Exam</span></div>
+<div class="key-points">
+  <h4>📝 8 Important Points to Write in Exam</h4>
+  <div class="kp-item"><div class="kp-num">1</div><div><strong>Definition:</strong> Cloud calendar collaboration = multiple users create, share, and manage events on a cloud-hosted calendar, visible in real time to all authorised team members from any device.</div></div>
+  <div class="kp-item"><div class="kp-num">2</div><div><strong>CalDAV Protocol:</strong> The standard protocol that allows cloud calendars to sync events across devices and applications — all three tools support CalDAV.</div></div>
+  <div class="kp-item"><div class="kp-num">3</div><div><strong>Zoho Calendar</strong> is best for teams already using Zoho Workplace — it integrates with Zoho Mail, Meet, and Cliq, offers shared team calendars, availability checking, and resource booking.</div></div>
+  <div class="kp-item"><div class="kp-num">4</div><div><strong>Teamup</strong> is unique for its sub-calendar system and no-login link-based sharing — perfect for events with multiple tracks, since each track gets its own coloured sub-calendar visible in one unified view.</div></div>
+  <div class="kp-item"><div class="kp-num">5</div><div><strong>Fantastical</strong> is unique for Natural Language Parsing — events can be created by typing sentences like "Paper presentation March 28 11am" and it auto-fills all fields. Also integrates weather into the calendar.</div></div>
+  <div class="kp-item"><div class="kp-num">6</div><div><strong>RSVP &amp; Attendee Status:</strong> All cloud calendars allow invited attendees to accept, decline, or tentatively accept events — this status is visible to the organiser in real time.</div></div>
+  <div class="kp-item"><div class="kp-num">7</div><div><strong>iCal (.ics) Format:</strong> An open standard that allows calendar events to be exported from one app and imported into any other — ensuring interoperability between cloud calendar platforms.</div></div>
+  <div class="kp-item"><div class="kp-num">8</div><div><strong>Advantages over paper/local calendars:</strong> Real-time updates, accessible anywhere, automatic reminders, conflict-free scheduling, no data loss, multi-device sync, and team-wide visibility.</div></div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="sec"><span class="sec-tag st-c">05</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead><tr><th>Feature</th><th>📅 Zoho Calendar</th><th>🗓 Teamup</th><th>✨ Fantastical</th></tr></thead>
+  <tbody>
+    <tr><td>Free Plan</td><td class="yes">✔ Free (Zoho account)</td><td class="yes">✔ Free basic</td><td class="par">⚠ Free + Premium</td></tr>
+    <tr><td>Real-time Sync</td><td class="yes">✔ CalDAV + Zoho</td><td class="yes">✔ Live multi-user</td><td class="yes">✔ CalDAV sync</td></tr>
+    <tr><td>Sub-Calendars</td><td class="par">⚠ Multiple calendars</td><td class="yes">✔ Yes (unique feature)</td><td class="par">⚠ Via linked cals</td></tr>
+    <tr><td>Link-based Access (No Login)</td><td class="no">✗ No</td><td class="yes">✔ Yes (unique)</td><td class="no">✗ No</td></tr>
+    <tr><td>Natural Language Input</td><td class="no">✗ No</td><td class="no">✗ No</td><td class="yes">✔ Yes (unique)</td></tr>
+    <tr><td>RSVP / Attendee Tracking</td><td class="yes">✔ Yes</td><td class="par">⚠ Basic</td><td class="yes">✔ Yes (detailed)</td></tr>
+    <tr><td>Weather Integration</td><td class="no">✗ No</td><td class="no">✗ No</td><td class="yes">✔ Yes (unique)</td></tr>
+    <tr><td>Resource Booking (Rooms)</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="no">✗ No</td></tr>
+    <tr><td>iCal Export / Subscribe</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td></tr>
+    <tr><td>Mobile App</td><td class="yes">✔ Android + iOS</td><td class="yes">✔ iOS + Web</td><td class="yes">✔ Mac + iOS</td></tr>
+    <tr><td>Best For</td><td>Workplace team scheduling</td><td>Multi-track events &amp; groups</td><td>Personal power users &amp; Apple ecosystem</td></tr>
+  </tbody>
+</table>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Cloud calendar collaboration has transformed how teams plan, schedule, and coordinate events. Unlike traditional desk calendars or locally stored digital calendars, cloud-based calendar tools store all event data on remote servers, enabling real-time visibility and editing for every authorised team member — regardless of their device or location.
+      <br><br>
+      <strong>📅 Zoho Calendar</strong> is a full-featured workplace calendar deeply integrated with the Zoho Workplace ecosystem. Teams can share calendars, check availability before scheduling meetings, book conference rooms as resources, attach Zoho Meet links, and receive automatic reminders — all within one platform, making it ideal for organisations already using Zoho tools.
+      <br><br>
+      <strong>🗓 Teamup</strong> is purpose-built for group and event scheduling with its unique sub-calendar system — each event type or team gets its own colour-coded calendar layer visible in a single unified view. Its no-login link-based access means external participants can view or add to the calendar without creating an account, making it uniquely accessible for open teams, academic events, and volunteer groups.
+      <br><br>
+      <strong>✨ Fantastical</strong> is the most innovative calendar app with its Natural Language Parsing — organisers can create events by simply typing a sentence, and Fantastical automatically extracts the event name, date, time, location, and attendees. Its weather integration, RSVP attendee tracking, conference call detection, and CalDAV sync with any cloud calendar provider make it the most powerful front-end calendar experience available.
+      <br><br>
+      Together, these three tools illustrate the breadth and depth of cloud calendar collaboration — from enterprise scheduling (Zoho Calendar), to multi-track event management (Teamup), to AI-powered intelligent planning (Fantastical). All three sync in real time via CalDAV, support iCal sharing, and work across devices — making them essential tools for modern cloud-based teamwork and event management.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

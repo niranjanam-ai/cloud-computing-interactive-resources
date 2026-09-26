@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Word Processing Collaboration – 10 Mark Exam Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --no-black:  #191919;
+  --no-brown:  #A0522D;
+  --no-light:  #FFF8F4;
+  --zo-red:    #C0392B;
+  --zo-light:  #FEF0EE;
+  --zo-dark:   #7B2018;
+  --dp-blue:   #0061FF;
+  --dp-light:  #EBF3FF;
+  --dp-sky:    #E8F4FD;
+  --bg:        #FAF9F6;
+  --paper:     #FFFFFF;
+  --ink:       #1A1917;
+  --muted:     #706D68;
+  --rule:      #E8E5DF;
+  --soft:      #F2F0EB;
+  --green:     #0D7A4E;
+  --amber:     #C05C00;
+  --red:       #C0392B;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Karla', sans-serif; background:var(--bg); color:var(--ink); font-size:14.5px; line-height:1.75; }
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(160deg, #FDFCF9 0%, #FFF8F4 35%, #EBF3FF 70%, #FAF9F6 100%);
+  padding: 54px 64px 48px;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, #191919, #C0392B, #0061FF) 1;
+  position: relative; overflow: hidden;
+}
+.cover::before { content:''; position:absolute; right:-80px; top:-80px; width:420px; height:420px; border-radius:50%; background:radial-gradient(circle,rgba(25,25,25,.06) 0%,transparent 65%); }
+.cover::after  { content:''; position:absolute; left:-60px; bottom:-60px; width:360px; height:360px; border-radius:50%; background:radial-gradient(circle,rgba(0,97,255,.07) 0%,transparent 65%); }
+.cover-eyebrow { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--zo-red); margin-bottom:14px; }
+.cover h1 { font-family:'Playfair Display',serif; font-size:40px; line-height:1.2; color:var(--ink); max-width:760px; font-weight:700; }
+.cover h1 .n { color:var(--no-black); }
+.cover h1 .z { color:var(--zo-red); }
+.cover h1 .d { color:var(--dp-blue); }
+.cover-sub { margin-top:12px; font-size:13.5px; color:var(--muted); max-width:700px; line-height:1.65; }
+.tool-pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.tp { display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:6px; font-size:12px; font-weight:700; font-family:'JetBrains Mono',monospace; border:1.5px solid; }
+.tp-n { background:var(--no-light); border-color:var(--no-black); color:var(--no-black); }
+.tp-z { background:var(--zo-light); border-color:var(--zo-red); color:var(--zo-red); }
+.tp-d { background:var(--dp-light); border-color:var(--dp-blue); color:var(--dp-blue); }
+.marks { margin-top:26px; display:inline-block; background:var(--ink); color:#fff; font-family:'JetBrains Mono',monospace; font-size:12px; padding:6px 20px; border-radius:4px; letter-spacing:.07em; }
+
+/* ── WRAP ── */
+.wrap { max-width:990px; margin:0 auto; padding:50px 44px 80px; }
+
+/* ── EXAM NOTE ── */
+.exam-note { background:#FFFBEA; border:1.5px solid #F0D060; border-left:5px solid #C8960A; border-radius:8px; padding:14px 20px; margin:22px 0 10px; font-size:13.5px; }
+.exam-note strong { color:#7A5500; }
+
+/* ── SECTION ── */
+.sec { display:flex; align-items:center; gap:14px; margin:50px 0 18px; }
+.sec-tag { font-family:'JetBrains Mono',monospace; font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; padding:4px 13px; border-radius:20px; flex-shrink:0; border:1.5px solid; }
+.st-i { background:var(--no-light); color:var(--no-black); border-color:#9C8A7A; }
+.st-1 { background:var(--no-light); color:var(--no-black); border-color:#9C8A7A; }
+.st-2 { background:var(--zo-light); color:var(--zo-red); border-color:#EFA8A0; }
+.st-3 { background:var(--dp-light); color:var(--dp-blue); border-color:#99C0FF; }
+.st-c { background:var(--soft); color:var(--muted); border-color:var(--rule); }
+.sec-title { font-family:'Playfair Display',serif; font-size:22px; color:var(--ink); font-weight:700; }
+
+/* ── INTRO ── */
+.intro-card { background:var(--paper); border:1px solid var(--rule); border-left:5px solid var(--no-black); border-radius:8px; padding:22px 26px; margin-bottom:10px; }
+.intro-card p+p { margin-top:10px; }
+.hl-n { background:var(--no-light); color:var(--no-black); padding:1px 5px; border-radius:3px; font-weight:700; }
+.hl-z { background:var(--zo-light); color:var(--zo-red); padding:1px 5px; border-radius:3px; font-weight:700; }
+.hl-d { background:var(--dp-light); color:var(--dp-blue); padding:1px 5px; border-radius:3px; font-weight:700; }
+
+/* ── DEF BOX ── */
+.def-box { background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:18px 22px; margin:12px 0; }
+.def-box h4 { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:var(--ink); margin-bottom:7px; }
+.def-box p { font-size:13.5px; color:var(--muted); line-height:1.7; }
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap { background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:26px; margin:16px 0; }
+.flow-wrap h4 { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; text-align:center; margin-bottom:20px; color:var(--ink); }
+.flow-row { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; }
+.fbox { border-radius:8px; padding:12px 16px; text-align:center; min-width:115px; border:2px solid; }
+.fi { font-size:24px; margin-bottom:4px; }
+.fn { font-size:12px; font-weight:700; }
+.fs { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); margin-top:2px; }
+.farr { font-size:20px; padding:0 7px; color:#CCC8C0; flex-shrink:0; }
+.fb-u  { background:var(--soft); border-color:var(--rule); color:var(--ink); }
+.fb-c  { background:#EEF6FF; border-color:#93C5FD; color:#1D4ED8; }
+.fb-n  { background:var(--no-light); border-color:var(--no-black); color:var(--no-black); }
+.fb-z  { background:var(--zo-light); border-color:var(--zo-red); color:var(--zo-red); }
+.fb-dp { background:var(--dp-light); border-color:var(--dp-blue); color:var(--dp-blue); }
+
+/* ── TOOL BANNER ── */
+.tool-banner { border-radius:10px; overflow:hidden; margin-bottom:8px; }
+.tb-head { padding:16px 24px; display:flex; align-items:center; gap:14px; }
+.tb-icon { font-size:30px; }
+.tb-name { font-family:'Playfair Display',serif; font-size:19px; font-weight:700; color:#fff; }
+.tb-url { font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(255,255,255,.6); margin-top:2px; }
+.tb-body { background:var(--paper); border:1px solid var(--rule); border-top:none; border-radius:0 0 10px 10px; padding:18px 24px; color:var(--muted); font-size:14px; }
+.tb-body strong { color:var(--ink); }
+.feat-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; margin-top:10px; }
+.feat-item { display:flex; align-items:flex-start; gap:8px; font-size:13.5px; color:var(--ink); }
+.fdot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+
+/* ── MOCK LABEL ── */
+.mock-label { font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:10px; margin:26px 0 10px; }
+.mock-label::after { content:''; flex:1; height:1px; background:var(--rule); }
+
+/* ── CHROME ── */
+.win { border:1px solid #CCC8C0; border-radius:12px; overflow:hidden; box-shadow:0 8px 36px rgba(0,0,0,.11); }
+.win-bar { background:#EDEBE6; padding:9px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #DDD9D2; }
+.dot { width:12px; height:12px; border-radius:50%; }
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.url-bar { flex:1; background:#fff; border:1px solid #D6D3CC; border-radius:18px; padding:5px 16px; font-size:12px; color:#9CA3AF; display:flex; align-items:center; gap:7px; }
+.pdot { width:6px; height:6px; border-radius:50%; animation:blink 1.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1;}50%{opacity:.2;} }
+
+/* ══════════════ NOTION ══════════════ */
+.no-body { background:#fff; font-family:'Karla',sans-serif; }
+.no-topbar { background:#fff; border-bottom:1px solid #F0EFED; padding:0 16px; display:flex; align-items:center; height:46px; gap:10px; }
+.no-logo { font-family:'Playfair Display',serif; font-weight:900; font-size:17px; color:var(--no-black); display:flex; align-items:center; gap:6px; }
+.no-logo-mark { width:24px; height:24px; background:var(--no-black); border-radius:5px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:13px; font-weight:900; }
+.no-page-title { font-size:13px; color:var(--muted); margin-left:4px; display:flex; align-items:center; gap:6px; }
+.no-page-title .sep { color:#D6D3CC; }
+.no-topbar-right { margin-left:auto; display:flex; align-items:center; gap:8px; }
+.no-av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; }
+.no-share-btn { background:var(--no-black); color:#fff; font-size:12px; font-weight:700; padding:6px 14px; border-radius:6px; cursor:pointer; }
+.no-layout { display:grid; grid-template-columns:220px 1fr 260px; height:560px; }
+
+/* Sidebar */
+.no-sidebar { background:#F7F7F5; border-right:1px solid #EFEFED; overflow-y:auto; padding:10px 0; }
+.no-workspace { display:flex; align-items:center; gap:8px; padding:8px 12px; font-size:13.5px; font-weight:700; color:var(--ink); cursor:pointer; border-radius:6px; margin:0 6px 6px; }
+.no-workspace:hover { background:#EBEBEB; }
+.no-ws-icon { width:22px; height:22px; background:var(--no-black); border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:11px; color:#fff; font-weight:900; }
+.no-sidebar-section { font-size:11px; font-weight:700; color:#9CA3AF; text-transform:uppercase; letter-spacing:.1em; padding:8px 14px 4px; }
+.no-sidebar-item { display:flex; align-items:center; gap:7px; padding:5px 12px; font-size:13px; color:#57534E; cursor:pointer; border-radius:0 6px 6px 0; margin-right:6px; }
+.no-sidebar-item:hover { background:#EBEBEB; }
+.no-sidebar-item.active { background:#EDECEA; color:var(--ink); font-weight:600; }
+.no-page-icon { font-size:14px; }
+.no-sidebar-nested { padding-left:24px; }
+
+/* Document canvas */
+.no-main { display:flex; flex-direction:column; overflow:hidden; }
+.no-doc-topbar { padding:10px 20px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #F5F4F2; }
+.no-breadcrumb { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:5px; }
+.no-bc-link { color:var(--ink); font-weight:600; cursor:pointer; }
+.no-bc-link:hover { text-decoration:underline; }
+.no-doc-actions { margin-left:auto; display:flex; gap:6px; }
+.no-da-btn { padding:4px 11px; border:1px solid #E4E2DC; border-radius:5px; font-size:12px; cursor:pointer; color:var(--muted); background:#fff; display:flex; align-items:center; gap:4px; }
+.no-da-btn:hover { background:#F7F7F5; }
+.no-da-btn.active { background:var(--no-light); color:var(--no-black); border-color:#9C8A7A; }
+
+/* Document body */
+.no-doc-scroll { flex:1; overflow-y:auto; padding:0 20px; }
+.no-doc-cover { height:160px; background:linear-gradient(135deg,#1A1917,#3D3632); border-radius:8px; margin:16px 0 24px; position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:20px 24px; }
+.no-doc-cover-emoji { font-size:48px; position:absolute; top:20px; left:24px; }
+.no-doc-cover-text { color:rgba(255,255,255,.6); font-size:12px; font-family:'JetBrains Mono',monospace; }
+.no-doc-h1 { font-family:'Playfair Display',serif; font-size:32px; font-weight:700; color:var(--ink); margin-bottom:8px; line-height:1.2; }
+.no-doc-meta { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:20px; font-size:13px; color:var(--muted); align-items:center; }
+.no-doc-meta .meta-item { display:flex; align-items:center; gap:6px; }
+.no-doc-meta .meta-label { font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:#9CA3AF; }
+.no-doc-meta .meta-value { color:var(--ink); font-weight:500; }
+.no-divider { height:1px; background:var(--rule); margin:16px 0; }
+
+/* Notion blocks */
+.no-heading2 { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--ink); margin:20px 0 8px; display:flex; align-items:center; gap:8px; }
+.no-heading3 { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--ink); margin:14px 0 6px; }
+.no-para { font-size:14px; color:#3D3A36; line-height:1.75; margin-bottom:8px; }
+.no-callout { background:#F7F6F3; border-radius:6px; padding:12px 14px; margin:10px 0; display:flex; gap:10px; font-size:13.5px; color:var(--ink); border-left:3px solid #9C8A7A; }
+.no-callout .callout-icon { font-size:16px; flex-shrink:0; }
+.no-bullet { display:flex; gap:8px; padding:3px 0; font-size:14px; color:#3D3A36; }
+.no-bullet::before { content:'•'; color:#9CA3AF; flex-shrink:0; }
+.no-todo { display:flex; align-items:center; gap:8px; padding:3px 0; font-size:14px; color:#3D3A36; }
+.no-todo-box { width:16px; height:16px; border:1.5px solid #D6D3CC; border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; color:#059669; }
+.no-todo-box.checked { background:#059669; border-color:#059669; }
+.no-todo.done span { text-decoration:line-through; color:#9CA3AF; }
+
+/* Comment thread sidebar */
+.no-comment-bubble { position:relative; }
+.no-inline-comment { background:#FFF8DC; border:1.5px solid #F0D060; border-radius:6px; padding:8px 10px; margin:6px 0; font-size:12.5px; }
+.no-ic-author { font-weight:700; color:var(--amber); font-size:11.5px; margin-bottom:3px; }
+.no-ic-text { color:var(--ink); }
+.no-ic-time { font-size:10.5px; color:var(--muted); margin-top:3px; }
+
+/* Collaborator cursors */
+.no-cursor { display:inline-flex; align-items:center; gap:3px; font-size:9.5px; font-weight:700; color:#fff; padding:2px 6px; border-radius:3px; font-family:'JetBrains Mono',monospace; }
+
+/* Right panel — page info */
+.no-right { background:#F9F8F6; border-left:1px solid #F0EFED; overflow-y:auto; padding:0; }
+.no-rp-head { padding:14px 14px 10px; border-bottom:1px solid #F0EFED; display:flex; align-items:center; justify-content:space-between; }
+.no-rph-title { font-size:12px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.08em; }
+.no-collab-section { padding:10px 14px; border-bottom:1px solid #F0EFED; }
+.no-cs-head { font-size:11px; font-weight:700; color:#9CA3AF; text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px; }
+.no-collab-user { display:flex; align-items:center; gap:9px; padding:6px 0; font-size:13px; }
+.no-cu-av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; flex-shrink:0; }
+.no-cu-name { flex:1; color:var(--ink); font-weight:500; }
+.no-cu-action { font-size:11px; color:var(--muted); }
+.no-cu-status { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.no-history-item { display:flex; gap:8px; padding:7px 0; border-bottom:1px solid #F5F4F2; font-size:12px; }
+.no-hi-av { width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:700; color:#fff; flex-shrink:0; margin-top:2px; }
+.no-hi-text { color:var(--ink); line-height:1.5; }
+.no-hi-time { font-size:10.5px; color:#9CA3AF; margin-top:2px; }
+.no-statusbar { background:#F7F7F5; border-top:1px solid #F0EFED; padding:6px 14px; display:flex; align-items:center; gap:10px; font-size:11.5px; color:var(--muted); }
+.no-live-pill { display:inline-flex; align-items:center; gap:5px; background:var(--no-light); color:var(--no-black); border:1px solid #9C8A7A; padding:2px 10px; border-radius:10px; font-size:11px; font-weight:700; }
+
+/* ══════════════ ZOHO WRITER ══════════════ */
+.zo-body { background:#fff; }
+.zo-topbar { background:#C0392B; padding:0 16px; display:flex; align-items:center; height:48px; gap:12px; }
+.zo-logo { font-family:'Playfair Display',serif; font-weight:700; font-size:17px; color:#fff; display:flex; align-items:center; gap:7px; }
+.zo-logo-mark { background:#fff; color:#C0392B; width:22px; height:22px; border-radius:4px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900; }
+.zo-file-name { color:rgba(255,255,255,.85); font-size:13px; flex:1; text-align:center; }
+.zo-topbar-right { display:flex; align-items:center; gap:8px; }
+.zo-av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; border:1.5px solid rgba(255,255,255,.4); }
+.zo-share-btn { background:#fff; color:#C0392B; font-size:12.5px; font-weight:700; padding:5px 14px; border-radius:6px; cursor:pointer; }
+
+/* Ribbon */
+.zo-ribbon { background:#fff; border-bottom:2px solid #C0392B; }
+.zo-ribbon-tabs { display:flex; background:#F9F9F9; border-bottom:1px solid #EFEFEF; }
+.zo-rtab { padding:7px 16px; font-size:12.5px; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; }
+.zo-rtab.active { color:#C0392B; border-bottom-color:#C0392B; font-weight:700; background:#fff; }
+.zo-ribbon-commands { padding:6px 14px; display:flex; align-items:center; gap:5px; flex-wrap:wrap; }
+.zo-rb-btn { padding:4px 10px; border:1px solid #EFEFEF; border-radius:4px; font-size:12px; cursor:pointer; color:#374151; background:#fff; display:flex; align-items:center; gap:4px; }
+.zo-rb-btn:hover { background:#FEF0EE; border-color:#EFA8A0; }
+.zo-rb-sep { width:1px; height:20px; background:#EFEFEF; margin:0 3px; }
+.zo-rb-btn.primary { background:#C0392B; color:#fff; border-color:#C0392B; font-weight:700; }
+
+/* Layout */
+.zo-layout { display:grid; grid-template-columns:48px 1fr 260px; height:490px; }
+
+/* Left tool rail */
+.zo-tool-rail { background:#F9F9F9; border-right:1px solid #EFEFEF; display:flex; flex-direction:column; align-items:center; padding:10px 0; gap:6px; }
+.zo-tr-btn { width:36px; height:36px; border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:14px; cursor:pointer; color:var(--muted); gap:2px; }
+.zo-tr-btn span { font-size:8px; color:var(--muted); }
+.zo-tr-btn:hover { background:#FEF0EE; color:#C0392B; }
+.zo-tr-btn.active { background:#FEF0EE; color:#C0392B; }
+
+/* Document area */
+.zo-doc-area { background:#F5F5F5; overflow-y:auto; display:flex; flex-direction:column; align-items:center; padding:20px; }
+.zo-page { background:#fff; width:100%; max-width:600px; min-height:400px; box-shadow:0 2px 16px rgba(0,0,0,.12); border-radius:2px; padding:40px 48px; position:relative; }
+.zo-ruler { background:#E9E9E9; height:24px; width:100%; max-width:600px; border-radius:2px 2px 0 0; margin-bottom:0; display:flex; align-items:center; padding:0 48px; }
+.zo-ruler-mark { font-size:9px; color:#9CA3AF; font-family:'JetBrains Mono',monospace; }
+
+/* Document content */
+.zo-doc-title { font-family:'Playfair Display',serif; font-size:22px; font-weight:700; color:var(--ink); margin-bottom:8px; text-align:center; }
+.zo-doc-subtitle { font-size:13px; color:var(--muted); text-align:center; margin-bottom:20px; }
+.zo-doc-h2 { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:#C0392B; margin:14px 0 6px; border-bottom:1.5px solid #FEF0EE; padding-bottom:4px; }
+.zo-doc-para { font-size:13px; color:#374151; line-height:1.75; margin-bottom:8px; }
+.zo-doc-table { width:100%; border-collapse:collapse; margin:10px 0; font-size:12.5px; }
+.zo-doc-table th { background:#C0392B; color:#fff; padding:7px 10px; text-align:left; font-size:12px; font-weight:600; }
+.zo-doc-table td { padding:6px 10px; border:1px solid #F0EFED; color:#374151; }
+.zo-doc-table tr:nth-child(even) td { background:#FEF0EE; }
+.zo-doc-list { padding-left:18px; margin:6px 0; }
+.zo-doc-list li { font-size:13px; color:#374151; line-height:1.65; padding:2px 0; }
+
+/* Collaborator indicators */
+.zo-collab-cursor { display:inline-flex; align-items:center; gap:3px; font-size:9px; font-weight:700; padding:2px 5px; border-radius:3px; color:#fff; font-family:'JetBrains Mono',monospace; vertical-align:middle; }
+.zo-tracked-change { background:#FFF3CD; border-bottom:1.5px solid #F59E0B; }
+.zo-tracked-del { background:#FFE4E1; text-decoration:line-through; color:#C0392B; }
+.zo-comment-marker { display:inline-block; background:#FFF3CD; border-bottom:2px solid #F59E0B; cursor:pointer; }
+
+/* Right panel */
+.zo-right { background:#FAFAF8; border-left:1px solid #F0EFED; overflow-y:auto; }
+.zo-rp-section { padding:10px 14px; border-bottom:1px solid #F0EFED; }
+.zo-rps-head { font-size:10.5px; font-weight:700; color:#9CA3AF; text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px; }
+.zo-collab-user { display:flex; align-items:center; gap:8px; padding:6px 0; font-size:12.5px; border-bottom:1px solid #F5F4F2; }
+.zo-collab-user:last-child { border-bottom:none; }
+.zo-cu-av { width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:9.5px; font-weight:700; color:#fff; flex-shrink:0; }
+.zo-cu-action { font-size:11.5px; color:var(--muted); flex:1; }
+.zo-comment-card { background:#FFF8DC; border:1px solid #F0D060; border-radius:6px; padding:9px 10px; margin-bottom:8px; }
+.zo-cc-author { font-size:11.5px; font-weight:700; color:var(--amber); margin-bottom:3px; }
+.zo-cc-text { font-size:12.5px; color:var(--ink); line-height:1.5; }
+.zo-cc-actions { display:flex; gap:6px; margin-top:6px; }
+.zo-cc-btn { font-size:11px; padding:2px 8px; border-radius:4px; cursor:pointer; border:1px solid #E4E2DC; background:#fff; color:var(--muted); }
+.zo-cc-btn.resolve { background:#059669; color:#fff; border-color:#059669; }
+.zo-version-item { display:flex; gap:8px; padding:7px 0; border-bottom:1px solid #F5F4F2; font-size:12px; }
+.zo-vi-av { width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8px; font-weight:700; color:#fff; flex-shrink:0; }
+.zo-vi-text { color:var(--ink); line-height:1.5; }
+.zo-vi-time { font-size:10.5px; color:#9CA3AF; }
+.zo-statusbar { background:#F9F9F9; border-top:1px solid #EFEFEF; padding:6px 14px; display:flex; gap:14px; font-size:11.5px; color:var(--muted); }
+
+/* ══════════════ DROPBOX PAPER ══════════════ */
+.dp-body { background:#fff; }
+.dp-topbar { background:#fff; border-bottom:1px solid #EFEFED; padding:0 16px; display:flex; align-items:center; height:50px; gap:12px; }
+.dp-logo { font-family:'Playfair Display',serif; font-weight:700; font-size:17px; color:var(--dp-blue); display:flex; align-items:center; gap:7px; }
+.dp-logo-mark { width:24px; height:24px; background:var(--dp-blue); border-radius:5px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px; font-weight:900; }
+.dp-topbar-center { flex:1; display:flex; justify-content:center; font-size:13px; color:var(--muted); align-items:center; gap:8px; }
+.dp-topbar-right { display:flex; align-items:center; gap:8px; }
+.dp-av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; }
+.dp-share-btn { background:var(--dp-blue); color:#fff; font-size:12.5px; font-weight:700; padding:6px 16px; border-radius:7px; cursor:pointer; }
+
+/* Layout */
+.dp-layout { display:grid; grid-template-columns:220px 1fr 260px; height:530px; }
+
+/* Left sidebar */
+.dp-sidebar { background:#F9F9F7; border-right:1px solid #EFEFED; overflow-y:auto; padding:12px 0; }
+.dp-sb-section { font-size:10.5px; font-weight:700; color:#9CA3AF; text-transform:uppercase; letter-spacing:.1em; padding:8px 14px 4px; }
+.dp-sb-item { display:flex; align-items:center; gap:8px; padding:7px 14px; font-size:13px; color:#57534E; cursor:pointer; border-radius:0 6px 6px 0; margin-right:6px; }
+.dp-sb-item:hover { background:#EBEBEB; }
+.dp-sb-item.active { background:var(--dp-light); color:var(--dp-blue); font-weight:700; }
+.dp-sb-item .unseen { margin-left:auto; width:7px; height:7px; border-radius:50%; background:var(--dp-blue); }
+
+/* Main document */
+.dp-main { display:flex; flex-direction:column; overflow:hidden; }
+.dp-doc-topbar { padding:8px 20px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #F5F4F2; }
+.dp-breadcrumb { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:5px; flex:1; }
+.dp-bc-link { color:var(--dp-blue); font-weight:600; cursor:pointer; }
+.dp-doc-btns { display:flex; gap:6px; }
+.dp-db-btn { padding:4px 11px; border:1px solid #E4E2DC; border-radius:5px; font-size:12px; cursor:pointer; color:var(--muted); background:#fff; display:flex; align-items:center; gap:4px; }
+.dp-db-btn:hover { background:#F5F4F2; }
+.dp-db-btn.primary { background:var(--dp-blue); color:#fff; border-color:var(--dp-blue); }
+
+/* Document scroll */
+.dp-doc-scroll { flex:1; overflow-y:auto; padding:20px 40px; }
+.dp-doc-h1 { font-family:'Playfair Display',serif; font-size:30px; font-weight:700; color:var(--ink); margin-bottom:12px; line-height:1.25; }
+.dp-doc-authors { display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:13px; color:var(--muted); }
+.dp-doc-date { font-size:12.5px; color:#9CA3AF; font-family:'JetBrains Mono',monospace; margin-bottom:18px; }
+.dp-doc-h2 { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink); margin:18px 0 7px; }
+.dp-doc-para { font-size:13.5px; color:#374151; line-height:1.75; margin-bottom:10px; }
+.dp-mention { background:var(--dp-light); color:var(--dp-blue); padding:1px 5px; border-radius:3px; font-weight:700; font-size:13.5px; }
+.dp-doc-checklist { margin:8px 0; }
+.dp-check-item { display:flex; align-items:center; gap:9px; padding:4px 0; font-size:13.5px; }
+.dp-check-box { width:16px; height:16px; border:1.5px solid #D6D3CC; border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; }
+.dp-check-box.done { background:#059669; border-color:#059669; color:#fff; }
+.dp-check-item.done-item span { text-decoration:line-through; color:#9CA3AF; }
+.dp-code-block { background:#1E1E1E; border-radius:6px; padding:12px 16px; margin:10px 0; font-family:'JetBrains Mono',monospace; font-size:12px; color:#D4D4D4; line-height:1.6; }
+.dp-kw { color:#569CD6; } .dp-str { color:#CE9178; } .dp-cmt { color:#6A9955; }
+.dp-inline-comment-highlight { background:#FFF3CD; border-bottom:2px solid #F59E0B; cursor:pointer; }
+.dp-cursor-badge { display:inline-flex; align-items:center; gap:3px; font-size:9.5px; font-weight:700; color:#fff; padding:2px 6px; border-radius:3px; font-family:'JetBrains Mono',monospace; vertical-align:middle; }
+
+/* Right panel */
+.dp-right { background:#F9F9F7; border-left:1px solid #EFEFED; overflow-y:auto; }
+.dp-rp-section { padding:12px 14px; border-bottom:1px solid #EFEFED; }
+.dp-rps-head { font-size:11px; font-weight:700; color:#9CA3AF; text-transform:uppercase; letter-spacing:.1em; margin-bottom:8px; }
+.dp-collab-user { display:flex; align-items:center; gap:8px; padding:7px 0; font-size:12.5px; border-bottom:1px solid #F5F4F2; }
+.dp-collab-user:last-child { border-bottom:none; }
+.dp-cu-av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; flex-shrink:0; }
+.dp-cu-name { flex:1; color:var(--ink); font-weight:500; }
+.dp-cu-where { font-size:11px; color:var(--muted); }
+.dp-comment-thread { background:#fff; border:1px solid #EFEFED; border-radius:8px; margin-bottom:8px; overflow:hidden; }
+.dp-ct-highlight { background:var(--dp-sky); padding:7px 10px; font-size:12px; font-style:italic; color:#374151; border-left:3px solid var(--dp-blue); }
+.dp-ct-comment { padding:8px 10px; }
+.dp-ctc-author { font-size:11.5px; font-weight:700; color:var(--dp-blue); margin-bottom:3px; }
+.dp-ctc-text { font-size:12.5px; color:var(--ink); }
+.dp-ctc-time { font-size:10.5px; color:#9CA3AF; margin-top:3px; }
+.dp-ctc-reply { font-size:11px; color:var(--dp-blue); cursor:pointer; font-weight:700; margin-top:4px; }
+.dp-like-pill { display:inline-flex; align-items:center; gap:5px; background:var(--dp-light); color:var(--dp-blue); border:1px solid #BFDBFE; padding:2px 8px; border-radius:10px; font-size:11px; font-weight:700; margin-top:4px; }
+.dp-statusbar { background:#F9F9F7; border-top:1px solid #EFEFED; padding:6px 14px; display:flex; gap:14px; font-size:11.5px; color:var(--muted); }
+.dp-live-pill { display:inline-flex; align-items:center; gap:5px; background:var(--dp-light); color:var(--dp-blue); border:1px solid #BFDBFE; padding:2px 10px; border-radius:10px; font-size:11px; font-weight:700; }
+
+/* ─── KEY POINTS ─── */
+.key-points { background:var(--paper); border:1px solid var(--rule); border-radius:8px; padding:18px 22px; margin:16px 0; }
+.key-points h4 { font-family:'Playfair Display',serif; font-size:15px; font-weight:700; color:var(--ink); margin-bottom:10px; }
+.kp-item { display:flex; align-items:flex-start; gap:10px; padding:7px 0; border-bottom:1px solid var(--soft); font-size:13.5px; }
+.kp-item:last-child { border-bottom:none; }
+.kp-num { width:22px; height:22px; border-radius:50%; background:var(--ink); color:#fff; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+
+/* ─── COMPARISON TABLE ─── */
+table.cmp { width:100%; border-collapse:collapse; border-radius:8px; overflow:hidden; margin:16px 0; }
+table.cmp thead tr { background:var(--ink); color:#fff; }
+table.cmp th { padding:11px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.04em; text-align:left; }
+table.cmp td { padding:10px 16px; background:var(--paper); border-bottom:1px solid var(--rule); font-size:13.5px; color:var(--ink); }
+table.cmp tr:last-child td { border-bottom:none; }
+table.cmp .yes { color:#059669; font-weight:700; }
+table.cmp .par { color:#C05C00; }
+table.cmp .no  { color:#C0392B; }
+
+/* ─── CONCLUSION ─── */
+.conclusion { border-radius:10px; overflow:hidden; margin-top:46px; box-shadow:0 4px 20px rgba(0,0,0,.08); }
+.con-head { background:linear-gradient(90deg,#191919,#C0392B,#0061FF); padding:18px 30px; }
+.con-head h3 { font-family:'Playfair Display',serif; font-size:22px; color:#fff; font-weight:700; }
+.con-body { background:var(--paper); border:1px solid var(--rule); border-top:none; border-radius:0 0 10px 10px; padding:24px 30px; }
+.con-body p { font-size:14.5px; color:var(--muted); line-height:1.8; }
+.con-body strong { color:var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<div class="cover">
+  <div class="cover-eyebrow">Cloud Computing · 10 Mark Exam Answer · Word Processing</div>
+  <h1>Collaborating on<br>Word Processing<br>in the <span class="n">Cloud</span></h1>
+  <div class="cover-sub">Three real, production-grade cloud word processing and document collaboration platforms · Exam-focused: definitions, terminology, flow diagram, UI screenshot clones, key points, comparison & conclusion · No Google Docs, No Microsoft Word Online</div>
+  <div class="tool-pills">
+    <span class="tp tp-n">⬛ Notion — notion.so</span>
+    <span class="tp tp-z">🔴 Zoho Writer — zoho.com/writer</span>
+    <span class="tp tp-d">📄 Dropbox Paper — paper.dropbox.com</span>
+  </div>
+  <div class="marks">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- EXAM NOTE -->
+<div class="exam-note">
+  <strong>📝 Exam Tip:</strong> "Collaborating on Word Processing" covers cloud-based document editing tools that allow multiple users to simultaneously write, edit, comment on, and review the same document in real time. Always define cloud word processing, explain real-time collaboration features (co-editing, tracked changes, comments, version history), cover 3 real tools with features and a UI description, then compare them and conclude. Use the TechSympo 2025 scenario for application marks.
+</div>
+
+<!-- INTRO -->
+<div class="sec"><span class="sec-tag st-i">01</span><span class="sec-title">Definition &amp; Introduction</span></div>
+<div class="intro-card">
+  <p><strong>Cloud-based word processing collaboration</strong> refers to the ability of multiple users — located anywhere in the world — to simultaneously write, edit, format, comment on, and review the same document stored on a cloud server, in real time, through a web browser or application, without installing desktop software or exchanging file attachments.</p>
+  <p>Unlike traditional word processors (where one person edits a file locally and emails it to others), cloud word processors provide <span class="hl-n">live co-editing</span> where all authors' cursors are visible, <span class="hl-z">tracked changes and comment threads</span> for structured review, <span class="hl-d">automatic version history</span> for recovery, and <span class="hl-n">role-based sharing</span> (view-only, comment, edit) to control access.</p>
+  <p>The three real tools covered — <span class="hl-n"><strong>Notion</strong></span>, <span class="hl-z"><strong>Zoho Writer</strong></span>, and <span class="hl-d"><strong>Dropbox Paper</strong></span> — are production-grade, widely-used cloud document platforms, each with a distinct strength: Notion for structured wikis and documents, Zoho Writer for full word-processor features, and Dropbox Paper for minimal collaborative writing.</p>
+</div>
+
+<!-- DEF BOX -->
+<div class="def-box">
+  <h4>📘 Key Terminology for Exam</h4>
+  <p>
+    <strong>Real-Time Co-editing:</strong> Multiple users type in the same document simultaneously — each person's cursor is visible to others in a different colour.<br>
+    <strong>Tracked Changes:</strong> Every edit (insertion or deletion) is recorded with the author's name, shown as coloured text, and can be accepted or rejected.<br>
+    <strong>Comment Thread:</strong> A note attached to a specific word or paragraph — team members can reply, resolve, or reopen the discussion.<br>
+    <strong>Version History:</strong> A log of all previous states of the document — any earlier version can be restored at any time.<br>
+    <strong>Suggestion Mode:</strong> An edit mode where changes are proposed but not applied until the document owner accepts them.<br>
+    <strong>@Mention:</strong> Tagging a specific collaborator in a comment to notify them and assign the feedback to them.<br>
+    <strong>Export:</strong> Downloading the cloud document as a local file — typically .docx, .pdf, or .odt.<br>
+    <strong>Offline Mode:</strong> Editing the document without internet; changes sync automatically when the connection is restored.
+  </p>
+</div>
+
+<!-- FLOW DIAGRAM -->
+<div class="sec"><span class="sec-tag st-c">02</span><span class="sec-title">How Cloud Word Processing Collaboration Works</span></div>
+<div class="flow-wrap">
+  <h4>Real-Time Document Collaboration — Step by Step</h4>
+  <div class="flow-row" style="margin-bottom:14px;">
+    <div class="fbox fb-u"><div class="fi">📄</div><div class="fn">Doc Created</div><div class="fs">In browser / app</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-c"><div class="fi">☁️</div><div class="fn">Stored on Cloud</div><div class="fs">Auto-saved always</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">🔗</div><div class="fn">Link Shared</div><div class="fs">View / Comment / Edit</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">✍️</div><div class="fn">Co-Editing</div><div class="fs">All cursors visible</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">✅</div><div class="fn">Review & Publish</div><div class="fs">Comments resolved</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:var(--muted);margin:8px 0 14px;">Every keystroke syncs in milliseconds · Version history preserved · No file emailing needed · Works on any device</div>
+  <div class="flow-row" style="gap:16px;">
+    <div class="fbox fb-n"><div class="fi">⬛</div><div class="fn">Notion</div><div class="fs">Wiki + Blocks</div></div>
+    <div class="fbox fb-z"><div class="fi">🔴</div><div class="fn">Zoho Writer</div><div class="fs">Full Word Processor</div></div>
+    <div class="fbox fb-dp"><div class="fi">📄</div><div class="fn">Dropbox Paper</div><div class="fs">Minimal + Media</div></div>
+  </div>
+</div>
+
+<!-- ════════ TOOL 1: NOTION ════════ -->
+<div class="sec"><span class="sec-tag st-1">TOOL 1</span><span class="sec-title">Notion — notion.so</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#1A1917,#3D3530);">
+    <span class="tb-icon">⬛</span>
+    <div><div class="tb-name">Notion</div><div class="tb-url">notion.so · Free plan · 30M+ users · Used by Figma, Duolingo, Pixar · All-in-one workspace</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Notion is an all-in-one cloud workspace that combines word processing, databases, wikis, and task management. Documents are built using a <strong>block-based editor</strong> — every paragraph, heading, image, table, or checklist is a draggable "block." Multiple team members can co-edit a Notion page in real time, and the entire workspace is organised as a wiki with linked pages.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Real-time co-editing — every collaborator's cursor shown with their name and a unique colour</div>
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Inline comments — highlight any text and start a comment thread with @mentions</div>
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Block-based editing — drag, reorder, embed any content type (text, table, image, code, video)</div>
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Page nesting — organise documents hierarchically like a wiki</div>
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Share with link — Public, Team, or specific members with view/comment/edit access</div>
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Version history — 30 days on free, unlimited on paid plans</div>
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Notion AI — AI writing assistant that can draft, summarise, or improve text</div>
+      <div class="feat-item"><div class="fdot" style="background:#191919;"></div>Export to PDF, Markdown, HTML, or CSV</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 1 — Notion: TechSympo 2025 Event Report — Real-Time Co-editing with Cursors, Comments &amp; Version History</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>notion.so/techsympo2025/event-report · 4 collaborators editing · Auto-saved</div></div>
+  <div class="no-body">
+    <!-- Topbar -->
+    <div class="no-topbar">
+      <div class="no-logo"><div class="no-logo-mark">N</div>Notion</div>
+      <div class="no-page-title">
+        <span>TechSympo 2025</span><span class="sep">/</span>
+        <span>Docs</span><span class="sep">/</span>
+        <span style="color:var(--ink);font-weight:600;">Event Report</span>
+      </div>
+      <div class="no-topbar-right">
+        <div style="display:flex;"><div class="no-av" style="background:#191919;">AK</div><div class="no-av" style="background:#C0392B;margin-left:-6px;">KR</div><div class="no-av" style="background:#0061FF;margin-left:-6px;">SM</div><div class="no-av" style="background:#059669;margin-left:-6px;">DR</div></div>
+        <div class="no-live-pill"><div class="pdot" style="background:var(--no-black);"></div>4 editing</div>
+        <div class="no-share-btn">Share</div>
+      </div>
+    </div>
+    <div class="no-layout">
+      <!-- Sidebar -->
+      <div class="no-sidebar">
+        <div class="no-workspace"><div class="no-ws-icon">T</div>TechSympo 2025</div>
+        <div class="no-sidebar-section">Workspace</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">🏠</span>Home</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">🔍</span>Search</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">📥</span>Inbox</div>
+        <div class="no-sidebar-section">Pages</div>
+        <div class="no-sidebar-item active"><span class="no-page-icon">📄</span>Event Report</div>
+        <div class="no-sidebar-nested">
+          <div class="no-sidebar-item" style="font-size:12.5px;"><span>↳</span> Abstract DB</div>
+          <div class="no-sidebar-item" style="font-size:12.5px;"><span>↳</span> Participant List</div>
+          <div class="no-sidebar-item" style="font-size:12.5px;"><span>↳</span> Budget Sheet</div>
+        </div>
+        <div class="no-sidebar-item"><span class="no-page-icon">📋</span>Task Board</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">🗓</span>Event Calendar</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">📊</span>Registration DB</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">📸</span>Photo Gallery</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">🤝</span>Sponsors</div>
+        <div class="no-sidebar-section" style="margin-top:8px;">Shared with Team</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">📁</span>Faculty Notes</div>
+        <div class="no-sidebar-item"><span class="no-page-icon">📁</span>Logistics</div>
+      </div>
+
+      <!-- Document area -->
+      <div class="no-main">
+        <div class="no-doc-topbar">
+          <div class="no-breadcrumb">
+            <span class="no-bc-link">TechSympo 2025</span> / <span class="no-bc-link">Docs</span> / <span style="color:var(--ink);font-weight:600;">Event Report</span>
+          </div>
+          <div class="no-doc-actions">
+            <div class="no-da-btn">💬 Comments (5)</div>
+            <div class="no-da-btn active">📜 History</div>
+            <div class="no-da-btn">📤 Export</div>
+            <div class="no-da-btn">⋯</div>
+          </div>
+        </div>
+        <div class="no-doc-scroll">
+          <!-- Cover block -->
+          <div class="no-doc-cover">
+            <div class="no-doc-cover-emoji">🎓</div>
+            <div class="no-doc-cover-text">Cover Photo — Uploaded by Arjun K.</div>
+          </div>
+
+          <div class="no-doc-h1">TechSympo 2025 — Post-Event Report</div>
+          <div class="no-doc-meta">
+            <div class="meta-item"><span class="meta-label">Authors</span><span class="meta-value" style="display:flex;gap:5px;align-items:center;"><div class="no-av" style="background:#191919;width:18px;height:18px;font-size:7px;">AK</div><div class="no-av" style="background:#C0392B;width:18px;height:18px;font-size:7px;">KR</div><div class="no-av" style="background:#0061FF;width:18px;height:18px;font-size:7px;">SM</div></span></div>
+            <div class="meta-item"><span class="meta-label">Status</span><span style="background:#D1FAE5;color:#065F46;padding:2px 9px;border-radius:10px;font-size:11.5px;font-weight:700;">✔ Published</span></div>
+            <div class="meta-item"><span class="meta-label">Date</span><span class="meta-value">March 28, 2025</span></div>
+            <div class="meta-item"><span class="meta-label">Department</span><span class="meta-value">CSE</span></div>
+          </div>
+          <div class="no-divider"></div>
+
+          <div class="no-callout"><div class="callout-icon">📌</div><div>This report documents the TechSympo 2025 Annual National Level Technical Symposium — organised in hybrid mode by the CSE Department. <strong>All sections are collaboratively written</strong> by the organising committee.</div></div>
+
+          <div class="no-heading2">📊 Event Overview</div>
+          <div class="no-para">TechSympo 2025 was successfully conducted on <strong>March 28, 2025</strong> in hybrid mode — with on-campus participants in Chennai and virtual participants joining from <span style="background:#FEF9C3;border-bottom:2px solid #F59E0B;" class="no-comment-bubble">Tamil Nadu, Karnataka, Kerala, Andhra Pradesh, and Delhi</span>. <span class="no-cursor" style="background:#C0392B;">KR ✎</span></div>
+
+          <!-- Inline comment -->
+          <div class="no-inline-comment">
+            <div class="no-ic-author">💬 Kavya R. commenting on "Tamil Nadu, Karnataka..."</div>
+            <div class="no-ic-text">"Should we also mention Telangana? We had 3 participants from JNTU."</div>
+            <div class="no-ic-time">Today 10:25 AM · <span style="color:var(--no-black);font-weight:700;cursor:pointer;">Reply</span> · <span style="color:#059669;font-weight:700;cursor:pointer;">Resolve</span></div>
+          </div>
+
+          <div class="no-heading2">✅ Event Completion Checklist</div>
+          <div class="no-todo"><div class="no-todo-box checked">✓</div><span>Inauguration ceremony conducted with 300+ attendees</span></div>
+          <div class="no-todo"><div class="no-todo-box checked">✓</div><span>Paper presentation — 48 papers across 3 panels</span></div>
+          <div class="no-todo"><div class="no-todo-box checked">✓</div><span>Technical quiz — 86 participants in 3 rounds</span></div>
+          <div class="no-todo"><div class="no-todo-box"></div><span style="color:var(--muted);">Upload session recordings to shared drive <span class="no-cursor" style="background:#0061FF;">SM ✎</span></span></div>
+          <div class="no-todo"><div class="no-todo-box"></div><span style="color:var(--muted);">Send e-certificates to all confirmed participants</span></div>
+
+          <div class="no-heading2">🏆 Key Outcomes</div>
+          <div class="no-bullet">Total registrations: <strong>312</strong> from 8 states across India</div>
+          <div class="no-bullet">Online participants: <strong>198</strong> (63%) · On-campus: <strong>114</strong> (37%)</div>
+          <div class="no-bullet">Best Paper Award: Kavya Rajan, VIT Vellore — "Cloud-IoT Integration for Smart Cities"</div>
+          <div class="no-bullet">Event NPS Score: <strong>4.7 / 5.0</strong> from post-event feedback</div>
+        </div>
+        <div class="no-statusbar">
+          <div class="no-live-pill"><div class="pdot" style="background:var(--no-black);"></div>Auto-saved · 4 editing</div>
+          <span>1,284 words · 5 open comments</span>
+          <span style="margin-left:auto;">📜 Version history · 📤 Export PDF · Notion AI ✨</span>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="no-right">
+        <div class="no-rp-head">
+          <div class="no-rph-title">Page Info</div>
+          <span style="font-size:11px;color:var(--muted);cursor:pointer;">✕</span>
+        </div>
+        <div class="no-collab-section">
+          <div class="no-cs-head">Collaborators (4)</div>
+          <div class="no-collab-user"><div class="no-cu-av" style="background:#191919;">AK</div><div class="no-cu-name">Arjun K.</div><div class="no-cu-action">Overview section</div><div class="no-cu-status" style="background:#22C55E;"></div></div>
+          <div class="no-collab-user"><div class="no-cu-av" style="background:#C0392B;">KR</div><div class="no-cu-name">Kavya R.</div><div class="no-cu-action">Commenting ✎</div><div class="no-cu-status" style="background:#22C55E;"></div></div>
+          <div class="no-collab-user"><div class="no-cu-av" style="background:#0061FF;">SM</div><div class="no-cu-name">Sneha M.</div><div class="no-cu-action">Checklist section</div><div class="no-cu-status" style="background:#22C55E;"></div></div>
+          <div class="no-collab-user"><div class="no-cu-av" style="background:#059669;">DR</div><div class="no-cu-name">Dr. Ramesh</div><div class="no-cu-action">Reviewing</div><div class="no-cu-status" style="background:#F59E0B;"></div></div>
+        </div>
+        <div class="no-collab-section">
+          <div class="no-cs-head">Version History (14 versions)</div>
+          <div class="no-history-item"><div class="no-hi-av" style="background:#191919;">AK</div><div><div class="no-hi-text"><strong>Arjun K.</strong> added Key Outcomes section</div><div class="no-hi-time">Today 10:31 AM <span style="background:#D1FAE5;color:#059669;padding:1px 6px;border-radius:6px;font-size:10px;font-weight:700;">Current</span></div></div></div>
+          <div class="no-history-item"><div class="no-hi-av" style="background:#C0392B;">KR</div><div><div class="no-hi-text"><strong>Kavya R.</strong> added inline comment</div><div class="no-hi-time">Today 10:25 AM</div></div></div>
+          <div class="no-history-item"><div class="no-hi-av" style="background:#0061FF;">SM</div><div><div class="no-hi-text"><strong>Sneha M.</strong> updated checklist items</div><div class="no-hi-time">Today 10:10 AM</div></div></div>
+          <div class="no-history-item"><div class="no-hi-av" style="background:#059669;">DR</div><div><div class="no-hi-text"><strong>Dr. Ramesh</strong> added cover page emoji</div><div class="no-hi-time">Today 9:45 AM</div></div></div>
+        </div>
+        <div class="no-collab-section">
+          <div class="no-cs-head">Share Settings</div>
+          <div style="font-size:12.5px;color:var(--ink);padding:4px 0;"><strong>🔗 Team link:</strong> Anyone in TechSympo 2025 workspace can edit</div>
+          <div style="font-size:12.5px;color:var(--ink);padding:4px 0;"><strong>🌐 Public link:</strong> Anyone with link can view</div>
+          <div style="margin-top:8px;background:#D1FAE5;border-radius:6px;padding:8px 10px;font-size:11.5px;color:#065F46;font-weight:700;">✔ Auto-saved · 30-day version history</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ TOOL 2: ZOHO WRITER ════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-2">TOOL 2</span><span class="sec-title">Zoho Writer — zoho.com/writer</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#7B2018,#C0392B);">
+    <span class="tb-icon">🔴</span>
+    <div><div class="tb-name">Zoho Writer</div><div class="tb-url">zoho.com/writer · Free with Zoho account · Part of Zoho WorkDrive · Full .docx compatibility</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Zoho Writer is a full-featured cloud word processor — the most feature-complete alternative to Microsoft Word for cloud collaboration. It supports all traditional word processing features (styles, tables of contents, mail merge, footnotes, headers/footers, page layout) while enabling real-time collaboration with tracked changes, inline comments, and a document review workflow. It has 100% compatibility with .docx files.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>Real-time co-editing — multiple authors' cursors shown simultaneously in colour</div>
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>Tracked Changes — every edit marked with author and timestamp; accept/reject individually</div>
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>Inline Comments — highlight text, add comment, @mention colleagues to notify</div>
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>Review Mode — send document for review; reviewer can only suggest, not overwrite</div>
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>Full .docx / .odt import and export — 100% format compatibility</div>
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>Mail Merge — merge contact data from Zoho CRM into document templates</div>
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>e-Signature integration — send document for signing without leaving Writer</div>
+      <div class="feat-item"><div class="fdot" style="background:#C0392B;"></div>Offline editing — works without internet, syncs when reconnected</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 2 — Zoho Writer: TechSympo Report with Tracked Changes, Inline Comments &amp; Review Panel</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>writer.zoho.com/writer/open/techsympo2025-event-report · 3 collaborators · Tracked changes ON</div></div>
+  <div class="zo-body">
+    <!-- Topbar -->
+    <div class="zo-topbar">
+      <div class="zo-logo"><div class="zo-logo-mark">W</div>Zoho Writer</div>
+      <div class="zo-file-name">TechSympo2025_EventReport.docx</div>
+      <div class="zo-topbar-right">
+        <div style="display:flex;"><div class="zo-av" style="background:#C0392B;">AK</div><div class="zo-av" style="background:#0061FF;margin-left:-6px;">KR</div><div class="zo-av" style="background:#059669;margin-left:-6px;">DR</div></div>
+        <div style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.2);color:#fff;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;"><div class="pdot" style="background:#fff;"></div>3 editing</div>
+        <div class="zo-share-btn">Share</div>
+      </div>
+    </div>
+    <!-- Ribbon -->
+    <div class="zo-ribbon">
+      <div class="zo-ribbon-tabs">
+        <div class="zo-rtab active">Home</div>
+        <div class="zo-rtab">Insert</div>
+        <div class="zo-rtab">Format</div>
+        <div class="zo-rtab">Table</div>
+        <div class="zo-rtab">Review</div>
+        <div class="zo-rtab">View</div>
+        <div class="zo-rtab">Collaborate</div>
+      </div>
+      <div class="zo-ribbon-commands">
+        <div class="zo-rb-btn"><b>B</b></div>
+        <div class="zo-rb-btn"><i>I</i></div>
+        <div class="zo-rb-btn"><u>U</u></div>
+        <div class="zo-rb-sep"></div>
+        <div class="zo-rb-btn">H1</div>
+        <div class="zo-rb-btn">H2</div>
+        <div class="zo-rb-btn">¶</div>
+        <div class="zo-rb-sep"></div>
+        <div class="zo-rb-btn">📊 Table</div>
+        <div class="zo-rb-btn">🖼 Image</div>
+        <div class="zo-rb-btn">📋 TOC</div>
+        <div class="zo-rb-sep"></div>
+        <div class="zo-rb-btn primary" style="background:#C05C00;border-color:#C05C00;">✎ Tracked Changes: ON</div>
+        <div class="zo-rb-btn">💬 Comment</div>
+        <div class="zo-rb-btn">✅ Accept All</div>
+        <div class="zo-rb-btn">❌ Reject</div>
+        <div style="margin-left:auto;font-size:11.5px;color:var(--muted);">Words: 1,284 · 🔄 Auto-saved</div>
+      </div>
+    </div>
+
+    <div class="zo-layout">
+      <!-- Tool rail -->
+      <div class="zo-tool-rail">
+        <div class="zo-tr-btn active"><span>🏠</span><span>Home</span></div>
+        <div class="zo-tr-btn"><span>✍</span><span>Edit</span></div>
+        <div class="zo-tr-btn"><span>💬</span><span>Review</span></div>
+        <div class="zo-tr-btn"><span>📜</span><span>History</span></div>
+        <div class="zo-tr-btn"><span>📤</span><span>Share</span></div>
+      </div>
+
+      <!-- Document canvas -->
+      <div class="zo-doc-area">
+        <div class="zo-ruler">
+          <div class="zo-ruler-mark">1"</div>
+          <div style="flex:1;display:flex;justify-content:center;"><div class="zo-ruler-mark">3"</div></div>
+          <div class="zo-ruler-mark">5"</div>
+        </div>
+        <div class="zo-page">
+          <div class="zo-doc-title">TechSympo 2025 — Post-Event Report</div>
+          <div class="zo-doc-subtitle">CSE Department · Hybrid Mode · March 28, 2025</div>
+          <div style="height:1px;background:#EFEFEF;margin:12px 0;"></div>
+
+          <div class="zo-doc-h2">1. Executive Summary</div>
+          <div class="zo-doc-para">The annual <strong>TechSympo 2025</strong> was successfully conducted on March 28, 2025, in hybrid mode. A total of <span class="zo-tracked-change">312 participants</span><span class="zo-collab-cursor" style="background:#C0392B;"> ✎ KR</span> from <span class="zo-tracked-del">8 states</span><span style="background:#FFF3CD;color:var(--ink);">9 states</span> registered and participated across six events.</div>
+
+          <div class="zo-doc-h2">2. Participation Statistics</div>
+          <table class="zo-doc-table">
+            <thead><tr><th>Event</th><th>Registrations</th><th>Online</th><th>On-Campus</th></tr></thead>
+            <tbody>
+              <tr><td>Paper Presentation</td><td>96</td><td>72</td><td>24</td></tr>
+              <tr><td>Technical Quiz</td><td>86</td><td>52</td><td>34</td></tr>
+              <tr><td>Coding Challenge</td><td>74</td><td>50</td><td>24</td></tr>
+              <tr><td>Project Expo</td><td>56</td><td>24</td><td>32</td></tr>
+            </tbody>
+          </table>
+          <div class="zo-doc-h2">3. Key Highlights</div>
+          <ul class="zo-doc-list">
+            <li>Best Paper: <strong>Kavya Rajan</strong> — "Cloud-IoT Integration for Smart Cities" (VIT Vellore)</li>
+            <li>Event NPS Score: <strong>4.7 / 5.0</strong> — collected via post-event feedback form</li>
+            <li>Live stream peak viewers: <strong>680 concurrent</strong> on YouTube Live</li>
+          </ul>
+
+          <!-- Collaborator cursor on doc -->
+          <div style="margin-top:14px;padding:8px 10px;background:#FFF3CD;border-left:3px solid #F59E0B;border-radius:0 4px 4px 0;font-size:12.5px;">
+            <span class="zo-collab-cursor" style="background:#059669;">DR ✎</span>
+            <span style="color:var(--muted);"> Dr. Ramesh is currently editing Section 4 — Recommendations</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="zo-right">
+        <div class="zo-rp-section">
+          <div class="zo-rps-head">Live Collaborators (3)</div>
+          <div class="zo-collab-user"><div class="zo-cu-av" style="background:#C0392B;">AK</div><div class="zo-cu-action">Arjun K. — Sec. 1 (tracked change)</div></div>
+          <div class="zo-collab-user"><div class="zo-cu-av" style="background:#0061FF;">KR</div><div class="zo-cu-action">Kavya R. — Commenting</div></div>
+          <div class="zo-collab-user"><div class="zo-cu-av" style="background:#059669;">DR</div><div class="zo-cu-action">Dr. Ramesh — Sec. 4 editing</div></div>
+        </div>
+        <div class="zo-rp-section">
+          <div class="zo-rps-head">Comments (3 open)</div>
+          <div class="zo-comment-card">
+            <div class="zo-cc-author">💬 Kavya R. — on "8 states"</div>
+            <div class="zo-cc-text">"Should be 9 states — Telangana had 3 registrations. I've tracked the change above."</div>
+            <div class="zo-cc-actions">
+              <div class="zo-cc-btn resolve">✔ Resolve</div>
+              <div class="zo-cc-btn">Reply</div>
+            </div>
+          </div>
+          <div class="zo-comment-card">
+            <div class="zo-cc-author">💬 Dr. Ramesh — on Table</div>
+            <div class="zo-cc-text">"Please add a 'Total' row at the bottom of the participation table."</div>
+            <div class="zo-cc-actions">
+              <div class="zo-cc-btn resolve">✔ Resolve</div>
+              <div class="zo-cc-btn">Reply</div>
+            </div>
+          </div>
+        </div>
+        <div class="zo-rp-section">
+          <div class="zo-rps-head">Tracked Changes (2)</div>
+          <div class="zo-version-item"><div class="zo-vi-av" style="background:#C0392B;">AK</div><div><div class="zo-vi-text"><strong>Arjun K.</strong> changed "312" → "312 participants" (insertion)</div><div class="zo-vi-time">Today 10:45 AM · <span style="color:#059669;font-weight:700;cursor:pointer;">Accept</span> · <span style="color:#C0392B;font-weight:700;cursor:pointer;">Reject</span></div></div></div>
+          <div class="zo-version-item"><div class="zo-vi-av" style="background:#0061FF;">KR</div><div><div class="zo-vi-text"><strong>Kavya R.</strong> changed "8 states" → "9 states" (replacement)</div><div class="zo-vi-time">Today 10:25 AM · <span style="color:#059669;font-weight:700;cursor:pointer;">Accept</span> · <span style="color:#C0392B;font-weight:700;cursor:pointer;">Reject</span></div></div></div>
+        </div>
+        <div class="zo-rp-section">
+          <div class="zo-rps-head">Version History</div>
+          <div class="zo-version-item"><div class="zo-vi-av" style="background:#059669;">DR</div><div><div class="zo-vi-text"><strong>v12 — Current</strong></div><div class="zo-vi-time">Today 10:48 AM · <span style="color:#C0392B;cursor:pointer;font-weight:700;">Restore</span></div></div></div>
+          <div class="zo-version-item"><div class="zo-vi-av" style="background:#C0392B;">AK</div><div><div class="zo-vi-text">v11 — Added table</div><div class="zo-vi-time">Today 10:30 AM · <span style="color:#C0392B;cursor:pointer;font-weight:700;">Restore</span></div></div></div>
+          <div class="zo-version-item"><div class="zo-vi-av" style="background:#0061FF;">KR</div><div><div class="zo-vi-text">v10 — "First draft"</div><div class="zo-vi-time">Yesterday 5:00 PM · <span style="color:#C0392B;cursor:pointer;font-weight:700;">Restore</span></div></div></div>
+        </div>
+        <div style="margin:10px 14px;background:#D1FAE5;border:1px solid #A7F3D0;border-radius:8px;padding:8px 10px;font-size:11.5px;color:#065F46;font-weight:700;">✔ Auto-saved · v12 · Tracked changes ON · .docx compatible</div>
+      </div>
+    </div>
+    <div class="zo-statusbar">
+      <div style="display:inline-flex;align-items:center;gap:5px;background:var(--zo-light);color:var(--zo-red);border:1px solid #EFA8A0;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;"><div class="pdot" style="background:var(--zo-red);"></div>Live sync</div>
+      <span>Words: 1,284 · Pages: 4 · 3 collaborators</span>
+      <span style="margin-left:auto;">📜 v12 · 🔄 Auto-saved · .docx export · Offline mode available</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ TOOL 3: DROPBOX PAPER ════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-3">TOOL 3</span><span class="sec-title">Dropbox Paper — paper.dropbox.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#002E99,#0061FF);">
+    <span class="tb-icon">📄</span>
+    <div><div class="tb-name">Dropbox Paper</div><div class="tb-url">paper.dropbox.com · Included with Dropbox · 700M+ Dropbox users · Minimal rich editor · Code block support</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Dropbox Paper is a minimalist cloud document editor built into Dropbox. It strips away the complexity of traditional word processors and focuses purely on collaborative writing. Its unique strengths are an extremely clean interface, excellent support for <strong>embedded media</strong> (videos, code blocks, Google Maps, SoundCloud), <strong>interactive checklists</strong> with due dates and assignees per item, and real-time presence indicators.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Real-time co-editing — collaborator cursors with names visible in document</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Inline comments — highlight text, leave threaded comment, reply, resolve, or emoji react</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Action items — add @mentioned task items with due dates directly in the document</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Embed rich media — YouTube, code, Google Maps, images directly in doc</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Document timeline — see all edits, who made them, and when</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Present mode — single-click presentation of the document, no export needed</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Share link — anyone with the link can view or edit; works without a Dropbox account</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Export to .docx, .pdf, or Markdown</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 3 — Dropbox Paper: TechSympo 2025 Planning Document with Action Items, Code Block &amp; Comment Threads</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>paper.dropbox.com/doc/techsympo2025-event-planning--AABxyzT · 4 collaborators · Auto-saved</div></div>
+  <div class="dp-body">
+    <!-- Topbar -->
+    <div class="dp-topbar">
+      <div class="dp-logo"><div class="dp-logo-mark">P</div>Paper</div>
+      <div class="dp-topbar-center">
+        <span style="font-weight:700;color:var(--ink);">TechSympo 2025 — Event Planning Doc</span>
+        <span style="font-size:11px;color:var(--muted);">Auto-saved 12s ago</span>
+      </div>
+      <div class="dp-topbar-right">
+        <div style="display:flex;"><div class="dp-av" style="background:#0061FF;">AK</div><div class="dp-av" style="background:#C0392B;margin-left:-6px;">KR</div><div class="dp-av" style="background:#059669;margin-left:-6px;">SM</div><div class="dp-av" style="background:#D97706;margin-left:-6px;">DR</div></div>
+        <div class="dp-live-pill"><div class="pdot" style="background:var(--dp-blue);"></div>4 editing</div>
+        <div class="dp-share-btn">Share</div>
+      </div>
+    </div>
+    <div class="dp-layout">
+      <!-- Sidebar -->
+      <div class="dp-sidebar">
+        <div class="dp-sb-section">My Docs</div>
+        <div class="dp-sb-item active">📄 Event Planning Doc <div class="dp-sb-item unseen"></div></div>
+        <div class="dp-sb-item">📄 Post-Event Report</div>
+        <div class="dp-sb-item">📄 Budget Overview</div>
+        <div class="dp-sb-item">📄 Speaker Briefing</div>
+        <div class="dp-sb-item">📄 Volunteer Guide</div>
+        <div class="dp-sb-section" style="margin-top:8px;">Shared with Me</div>
+        <div class="dp-sb-item">📄 Faculty Notes <div class="dp-sb-item unseen"></div></div>
+        <div class="dp-sb-item">📄 Sponsor Deck</div>
+        <div class="dp-sb-item">📄 Logistics Plan</div>
+        <div class="dp-sb-section" style="margin-top:8px;">Folders</div>
+        <div class="dp-sb-item">📁 TechSympo 2025</div>
+        <div class="dp-sb-item">📁 CSE Department</div>
+      </div>
+
+      <!-- Main doc -->
+      <div class="dp-main">
+        <div class="dp-doc-topbar">
+          <div class="dp-breadcrumb">
+            <span>Dropbox</span> / <span class="dp-bc-link">TechSympo 2025</span> / <span style="color:var(--ink);font-weight:600;">Event Planning Doc</span>
+          </div>
+          <div class="dp-doc-btns">
+            <div class="dp-db-btn">🖥 Present</div>
+            <div class="dp-db-btn">💬 5 comments</div>
+            <div class="dp-db-btn">📜 Timeline</div>
+            <div class="dp-db-btn primary">📤 Export</div>
+          </div>
+        </div>
+        <div class="dp-doc-scroll">
+          <div class="dp-doc-h1">TechSympo 2025 — Hybrid Symposium Planning</div>
+          <div class="dp-doc-authors">
+            <div style="display:flex;"><div class="dp-av" style="background:#0061FF;width:22px;height:22px;font-size:9px;">AK</div><div class="dp-av" style="background:#C0392B;width:22px;height:22px;font-size:9px;margin-left:-5px;">KR</div><div class="dp-av" style="background:#059669;width:22px;height:22px;font-size:9px;margin-left:-5px;">SM</div><div class="dp-av" style="background:#D97706;width:22px;height:22px;font-size:9px;margin-left:-5px;">DR</div></div>
+            <span>Created by Arjun Kumar · 4 collaborators</span>
+          </div>
+          <div class="dp-doc-date">📅 Created Mar 10, 2025 · Last edited: Today 10:52 AM</div>
+
+          <div class="dp-doc-h2">📌 Overview</div>
+          <div class="dp-doc-para">This document serves as the central planning reference for <strong>TechSympo 2025</strong> — the Annual National Level Technical Symposium organised by the CSE Department in <span class="dp-inline-comment-highlight">hybrid mode</span> on March 28, 2025. <span class="dp-cursor-badge" style="background:#C0392B;">KR ✎</span></div>
+
+          <div class="dp-doc-h2">✅ Pre-Event Action Items</div>
+          <div class="dp-doc-checklist">
+            <div class="dp-check-item done-item"><div class="dp-check-box done">✓</div><span>Design and publish event brochure</span>&nbsp;<span style="font-size:11px;color:var(--muted);">· @KavyaR · Done Mar 15</span></div>
+            <div class="dp-check-item done-item"><div class="dp-check-box done">✓</div><span>Set up online registration form</span>&nbsp;<span style="font-size:11px;color:var(--muted);">· @ArjunK · Done Mar 18</span></div>
+            <div class="dp-check-item"><div class="dp-check-box"></div><span>Send invitations to PG colleges</span>&nbsp;<span style="font-size:11px;color:var(--red);font-weight:700;">· @PriyaR · Due Mar 22 ⚠ Overdue</span></div>
+            <div class="dp-check-item"><div class="dp-check-box"></div><span>Test hybrid streaming setup</span>&nbsp;<span style="font-size:11px;color:var(--muted);">· @KavyaR · Due Mar 26</span></div>
+            <div class="dp-check-item"><div class="dp-check-box"></div><span>Upload certificates post-event</span>&nbsp;<span style="font-size:11px;color:var(--muted);">· @SnehaM · Due Mar 29</span></div>
+          </div>
+
+          <div class="dp-doc-h2">🔌 API Integration Notes</div>
+          <div class="dp-code-block"><span class="dp-cmt">// Zoom API for hybrid meeting — added by Kavya R.</span><br><span class="dp-kw">const</span> joinUrl = <span class="dp-str">"https://example.com/demo-meeting"</span>;<br><span class="dp-kw">const</span> meetingId = <span class="dp-str">"DEMO-MEETING-ID"</span>;<br><span class="dp-kw">const</span> passcode = <span class="dp-str">"DEMO-PASSCODE"</span>;&nbsp;<span class="dp-cursor-badge" style="background:#059669;">SM ✎</span></div>
+
+          <div class="dp-doc-h2">📊 Key Statistics — Final</div>
+          <div class="dp-doc-para">Total registrations: <strong>312</strong> · Online: <strong>198 (63%)</strong> · On-campus: <strong>114 (37%)</strong> · States represented: <strong class="dp-mention">@Dr.Ramesh</strong> please confirm the count here — I have 8 or 9 states?</div>
+        </div>
+        <div class="dp-statusbar">
+          <div class="dp-live-pill"><div class="pdot" style="background:var(--dp-blue);"></div>4 collaborators</div>
+          <span>1,142 words · 5 comments · 5 action items</span>
+          <span style="margin-left:auto;">🖥 Present mode · 📤 Export .docx / .pdf / .md · Auto-saved</span>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="dp-right">
+        <div class="dp-rp-section">
+          <div class="dp-rps-head">Active Now (4)</div>
+          <div class="dp-collab-user"><div class="dp-cu-av" style="background:#0061FF;">AK</div><div class="dp-cu-name">Arjun K.</div><div class="dp-cu-where">Overview section</div></div>
+          <div class="dp-collab-user"><div class="dp-cu-av" style="background:#C0392B;">KR</div><div class="dp-cu-name">Kavya R.</div><div class="dp-cu-where">Overview · editing ✎</div></div>
+          <div class="dp-collab-user"><div class="dp-cu-av" style="background:#059669;">SM</div><div class="dp-cu-name">Sneha M.</div><div class="dp-cu-where">Code block ✎</div></div>
+          <div class="dp-collab-user"><div class="dp-cu-av" style="background:#D97706;">DR</div><div class="dp-cu-name">Dr. Ramesh</div><div class="dp-cu-where">Reviewing</div></div>
+        </div>
+        <div class="dp-rp-section">
+          <div class="dp-rps-head">Comment Threads (5)</div>
+          <div class="dp-comment-thread">
+            <div class="dp-ct-highlight">"hybrid mode"</div>
+            <div class="dp-ct-comment">
+              <div class="dp-ctc-author">💬 Dr. Ramesh</div>
+              <div class="dp-ctc-text">"Clarify 'hybrid mode' — specify physical + virtual platforms used."</div>
+              <div class="dp-ctc-time">Today 10:15 AM</div>
+              <div class="dp-ctc-reply">↩ Reply</div>
+              <div class="dp-like-pill">👍 2</div>
+            </div>
+          </div>
+          <div class="dp-comment-thread">
+            <div class="dp-ct-highlight">"8 or 9 states"</div>
+            <div class="dp-ct-comment">
+              <div class="dp-ctc-author">💬 Kavya R.</div>
+              <div class="dp-ctc-text">"It's 9 — Telangana had 3 registrations. I'll update."</div>
+              <div class="dp-ctc-time">Today 10:28 AM</div>
+              <div class="dp-ctc-reply">↩ Reply · ✔ Resolve</div>
+            </div>
+          </div>
+          <div class="dp-comment-thread">
+            <div class="dp-ct-highlight">Action: "Send invitations"</div>
+            <div class="dp-ct-comment">
+              <div class="dp-ctc-author">💬 Arjun K.</div>
+              <div class="dp-ctc-text">"@PriyaR This is overdue by 1 day. Please send today!"</div>
+              <div class="dp-ctc-time">Today 9:00 AM</div>
+            </div>
+          </div>
+        </div>
+        <div class="dp-rp-section">
+          <div class="dp-rps-head">Share Settings</div>
+          <div style="font-size:12.5px;color:var(--ink);padding:3px 0;"><strong>🔗 Edit link:</strong> techsympo-team · Can edit</div>
+          <div style="font-size:12.5px;color:var(--ink);padding:3px 0;"><strong>🌐 View link:</strong> Public · View only</div>
+          <div style="margin-top:8px;background:var(--dp-sky);border:1px solid #BFDBFE;border-radius:6px;padding:8px;font-size:11.5px;color:#1D4ED8;font-weight:700;">📄 Stored in TechSympo 2025 Dropbox folder</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY EXAM POINTS -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-c">04</span><span class="sec-title">Key Points for Exam</span></div>
+<div class="key-points">
+  <h4>📝 8 Important Points to Write in Exam</h4>
+  <div class="kp-item"><div class="kp-num">1</div><div><strong>Definition:</strong> Cloud word processing collaboration = multiple users write, edit, and review the same document stored on a cloud server simultaneously in real time, without installing software or emailing file attachments.</div></div>
+  <div class="kp-item"><div class="kp-num">2</div><div><strong>Real-Time Co-editing:</strong> All collaborators' cursors are visible in the same document simultaneously, each in a unique colour with the user's name — enabling true parallel editing without conflicts.</div></div>
+  <div class="kp-item"><div class="kp-num">3</div><div><strong>Notion</strong> is best for structured documentation, wikis, and linked pages — it uses a block-based editor, supports databases alongside documents, and organises all team knowledge in one place. Best for event teams, startups, and educational institutions.</div></div>
+  <div class="kp-item"><div class="kp-num">4</div><div><strong>Zoho Writer</strong> is the most feature-complete cloud word processor — it has full .docx compatibility, Tracked Changes, inline comments, Review Mode, Mail Merge, e-Signature integration, and offline editing. Best for formal documents requiring traditional word processing features.</div></div>
+  <div class="kp-item"><div class="kp-num">5</div><div><strong>Dropbox Paper</strong> is the most minimal cloud document editor — with a clean interface, embedded code blocks, YouTube/image embeds, action items with @mentions and due dates, and a Present mode. Best for planning docs, meeting notes, and technical writing.</div></div>
+  <div class="kp-item"><div class="kp-num">6</div><div><strong>Tracked Changes:</strong> A critical feature — every insertion or deletion is marked with the author's name and timestamp. Other collaborators can accept or reject each change individually, enabling structured review.</div></div>
+  <div class="kp-item"><div class="kp-num">7</div><div><strong>Version History:</strong> Cloud word processors automatically save every version of the document. Any previous state can be restored instantly — protecting against accidental deletions or unwanted edits.</div></div>
+  <div class="kp-item"><div class="kp-num">8</div><div><strong>Advantages over emailing files:</strong> No duplicate versions, no "which file is latest?" confusion, no attachment size limits, any team member can edit from any device at any time, and changes are immediately visible to all collaborators.</div></div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="sec"><span class="sec-tag st-c">05</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead><tr><th>Feature</th><th>⬛ Notion</th><th>🔴 Zoho Writer</th><th>📄 Dropbox Paper</th></tr></thead>
+  <tbody>
+    <tr><td>Primary Type</td><td>Wiki + Block Editor</td><td>Full Word Processor</td><td>Minimal Doc Editor</td></tr>
+    <tr><td>Real-Time Co-editing</td><td class="yes">✔ Yes (coloured cursors)</td><td class="yes">✔ Yes (coloured cursors)</td><td class="yes">✔ Yes (coloured cursors)</td></tr>
+    <tr><td>Tracked Changes</td><td class="no">✗ No</td><td class="yes">✔ Yes (unique feature)</td><td class="no">✗ No</td></tr>
+    <tr><td>Inline Comments</td><td class="yes">✔ Yes (threaded)</td><td class="yes">✔ Yes (threaded)</td><td class="yes">✔ Yes (emoji reactions)</td></tr>
+    <tr><td>Version History</td><td class="yes">✔ Yes (30 days free)</td><td class="yes">✔ Yes (unlimited)</td><td class="yes">✔ Yes (timeline view)</td></tr>
+    <tr><td>.docx Export / Import</td><td class="par">⚠ Export only (basic)</td><td class="yes">✔ Full .docx compat.</td><td class="par">⚠ Export only</td></tr>
+    <tr><td>Action Items / Checklists</td><td class="yes">✔ Yes</td><td class="par">⚠ Basic checklist</td><td class="yes">✔ Yes + @mention + due date</td></tr>
+    <tr><td>Code Blocks</td><td class="yes">✔ Yes (syntax highlight)</td><td class="par">⚠ Basic</td><td class="yes">✔ Yes</td></tr>
+    <tr><td>Database / Wiki features</td><td class="yes">✔ Yes (core feature)</td><td class="no">✗ No</td><td class="no">✗ No</td></tr>
+    <tr><td>Offline Editing</td><td class="par">⚠ Partial (app only)</td><td class="yes">✔ Yes (full offline)</td><td class="par">⚠ Partial</td></tr>
+    <tr><td>Present Mode</td><td class="no">✗ No</td><td class="no">✗ No</td><td class="yes">✔ Yes (unique)</td></tr>
+    <tr><td>Best For</td><td>Team wiki, structured docs</td><td>Formal reports, review workflow</td><td>Meeting notes, planning docs</td></tr>
+  </tbody>
+</table>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Cloud-based word processing collaboration has fundamentally changed how teams create and review documents. Instead of one person writing a file locally, saving it, and emailing it to colleagues — who then make changes, rename the file, and send it back — cloud word processors allow every team member to write in the same document simultaneously, see each other's changes in real time, and discuss edits through inline comment threads, all auto-saved to the cloud.
+      <br><br>
+      <strong>⬛ Notion</strong> is the most versatile cloud document tool — its block-based editor combines word processing with databases, wikis, and task management in one workspace. Teams can nest documents hierarchically, embed any content type, use Notion AI for writing assistance, and organise all their team knowledge in one searchable, interlinked platform. It is the ideal choice for teams that want documents, databases, and task boards in one place.
+      <br><br>
+      <strong>🔴 Zoho Writer</strong> is the most feature-complete cloud word processor for formal document creation and collaborative review. Its Tracked Changes feature — marking every edit with the author's name and allowing individual acceptance or rejection — makes it the best tool for structured editorial workflows such as writing official reports, proposals, and academic papers that require a formal review and approval process before publishing.
+      <br><br>
+      <strong>📄 Dropbox Paper</strong> is the most minimal and distraction-free cloud document editor, tightly integrated with Dropbox file storage. Its action items with @mentions and due dates, embedded code blocks, YouTube and media embedding, and single-click Present mode make it ideal for collaborative planning documents, meeting notes, and technical specifications where the focus is on writing and doing — rather than formatting and styling.
+      <br><br>
+      All three tools auto-save every keystroke, provide complete version history, enable sharing with role-based access controls, and work in any modern web browser — making cloud word processing collaboration accessible, efficient, and reliable for any team, institution, or event organisation.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

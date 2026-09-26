@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sharing Digital Photographs in Cloud – 10 Mark Exam Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --fl-pink:   #FF0084;
+  --fl-blue:   #0063DC;
+  --fl-light:  #FFF0F8;
+  --sm-green:  #2B6358;
+  --sm-gold:   #C9A84C;
+  --sm-light:  #EFF7F5;
+  --px-dark:   #161616;
+  --px-gold:   #E8C84A;
+  --px-blue:   #1D7CE1;
+  --px-light:  #F5F5F5;
+  --bg:        #F5F4F0;
+  --paper:     #FFFFFF;
+  --ink:       #1A1A1A;
+  --muted:     #6B6B6B;
+  --rule:      #E2E0DA;
+  --soft:      #F0EEE9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.75;}
+
+/* ── COVER ── */
+.cover{
+  background:linear-gradient(150deg,#FFF5FB 0%,#FFF0F8 30%,#EFF7F5 70%,#F5F4F0 100%);
+  padding:52px 64px 46px;
+  border-bottom:3px solid;
+  border-image:linear-gradient(90deg,#FF0084,#0063DC,#2B6358) 1;
+  position:relative;overflow:hidden;
+}
+.cover::before{content:'';position:absolute;right:-80px;top:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,0,132,.09) 0%,transparent 65%);}
+.cover::after{content:'';position:absolute;left:-60px;bottom:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(43,99,88,.07) 0%,transparent 65%);}
+.cover-tag{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--fl-pink);margin-bottom:14px;}
+.cover h1{font-family:'Lora',serif;font-size:36px;line-height:1.22;color:var(--ink);max-width:760px;font-weight:700;}
+.cover h1 .f{color:var(--fl-pink);}
+.cover h1 .s{color:var(--sm-green);}
+.cover h1 .p{color:var(--px-blue);}
+.cover-sub{margin-top:12px;font-size:13.5px;color:var(--muted);max-width:680px;line-height:1.6;}
+.tool-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.tp{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:700;font-family:'Fira Code',monospace;border:1.5px solid;}
+.tp-f{background:var(--fl-light);border-color:var(--fl-pink);color:var(--fl-pink);}
+.tp-s{background:var(--sm-light);border-color:var(--sm-green);color:var(--sm-green);}
+.tp-p{background:#F0F5FF;border-color:var(--px-blue);color:var(--px-blue);}
+.marks{margin-top:26px;display:inline-block;background:var(--ink);color:#fff;font-family:'Fira Code',monospace;font-size:12px;padding:6px 20px;border-radius:4px;letter-spacing:.07em;}
+
+/* ── EXAM NOTE BOX ── */
+.exam-note{background:#FFFBEA;border:1.5px solid #F0D060;border-left:5px solid #D4A017;border-radius:8px;padding:14px 20px;margin:22px 0 10px;font-size:13.5px;}
+.exam-note strong{color:#7A5C00;}
+
+/* ── WRAP ── */
+.wrap{max-width:980px;margin:0 auto;padding:48px 44px 80px;}
+
+/* ── SECTION ── */
+.sec{display:flex;align-items:center;gap:14px;margin:50px 0 18px;}
+.sec-tag{font-family:'Fira Code',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 13px;border-radius:20px;flex-shrink:0;border:1.5px solid;}
+.st-i  {background:var(--fl-light);color:var(--fl-pink);border-color:#FFB3D9;}
+.st-1  {background:var(--fl-light);color:var(--fl-pink);border-color:#FFB3D9;}
+.st-2  {background:var(--sm-light);color:var(--sm-green);border-color:#A3C8C0;}
+.st-3  {background:#F0F5FF;color:var(--px-blue);border-color:#A3C0F8;}
+.st-c  {background:var(--soft);color:var(--muted);border-color:var(--rule);}
+.sec-title{font-family:'Lora',serif;font-size:22px;color:var(--ink);font-weight:700;}
+
+/* ── INTRO CARD ── */
+.intro-card{background:var(--paper);border:1px solid var(--rule);border-left:5px solid var(--fl-pink);border-radius:8px;padding:22px 26px;margin-bottom:10px;}
+.intro-card p+p{margin-top:10px;}
+.hl-f{background:var(--fl-light);color:var(--fl-pink);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-s{background:var(--sm-light);color:var(--sm-green);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-p{background:#EEF4FF;color:var(--px-blue);padding:1px 5px;border-radius:3px;font-weight:700;}
+
+/* ── DEFINITION BOX ── */
+.def-box{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 22px;margin:14px 0;}
+.def-box h4{font-family:'Lora',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.def-box p{font-size:13.5px;color:var(--muted);}
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:26px;margin:16px 0;}
+.flow-wrap h4{font-family:'Lora',serif;font-size:16px;font-weight:700;text-align:center;margin-bottom:20px;color:var(--ink);}
+.flow-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;}
+.fbox{border-radius:8px;padding:12px 16px;text-align:center;min-width:115px;border:2px solid;}
+.fi{font-size:24px;margin-bottom:4px;}
+.fn{font-size:12px;font-weight:700;}
+.fs{font-family:'Fira Code',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.farr{font-size:20px;padding:0 7px;color:#C7C7CC;flex-shrink:0;}
+.fb-u{background:var(--soft);border-color:var(--rule);color:var(--ink);}
+.fb-f{background:var(--fl-light);border-color:var(--fl-pink);color:var(--fl-pink);}
+.fb-s{background:var(--sm-light);border-color:var(--sm-green);color:var(--sm-green);}
+.fb-px{background:#EEF4FF;border-color:var(--px-blue);color:var(--px-blue);}
+.fb-c{background:#EEF6FF;border-color:#93C5FD;color:#1D4ED8;}
+
+/* ── TOOL BANNER ── */
+.tool-banner{border-radius:10px;overflow:hidden;margin-bottom:8px;}
+.tb-head{padding:16px 24px;display:flex;align-items:center;gap:14px;}
+.tb-icon{font-size:30px;}
+.tb-name{font-family:'Lora',serif;font-size:18px;font-weight:700;color:#fff;}
+.tb-url{font-family:'Fira Code',monospace;font-size:11px;color:rgba(255,255,255,.6);margin-top:2px;}
+.tb-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:18px 24px;color:var(--muted);font-size:14px;}
+.tb-body strong{color:var(--ink);}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:10px;}
+.feat-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink);}
+.fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+
+/* ── MOCK LABEL ── */
+.mock-label{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin:26px 0 10px;}
+.mock-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ── CHROME ── */
+.win{border:1px solid #D1CBC0;border-radius:12px;overflow:hidden;box-shadow:0 8px 34px rgba(0,0,0,.11);}
+.win-bar{background:#EFEFEC;padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E0DDD8;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.url-bar{flex:1;background:#fff;border:1px solid #DCDCDC;border-radius:18px;padding:5px 16px;font-size:12px;color:#9CA3AF;display:flex;align-items:center;gap:7px;}
+
+/* ═══════════════ FLICKR UI ═══════════════ */
+.fl-body{background:#fff;font-family:'Nunito',sans-serif;}
+.fl-topbar{background:#0f0f0f;padding:0 18px;display:flex;align-items:center;gap:14px;height:52px;}
+.fl-logo{font-family:'Lora',serif;font-weight:700;font-size:20px;display:flex;align-items:center;gap:1px;}
+.fl-logo span:first-child{color:#FF0084;}
+.fl-logo span:last-child{color:#0063DC;}
+.fl-nav{display:flex;gap:0;}
+.fl-nav-item{padding:8px 16px;font-size:13px;color:#AAA;cursor:pointer;border-bottom:2px solid transparent;}
+.fl-nav-item:hover{color:#fff;}
+.fl-nav-item.active{color:#fff;border-bottom-color:#FF0084;font-weight:700;}
+.fl-topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.fl-avatar{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;}
+.fl-upload-btn{background:#FF0084;color:#fff;font-size:12.5px;font-weight:700;padding:7px 16px;border-radius:6px;cursor:pointer;}
+/* Album bar */
+.fl-album-bar{background:#181818;border-bottom:1px solid #2A2A2A;padding:10px 18px;display:flex;align-items:center;gap:12px;}
+.fl-album-title{font-family:'Lora',serif;font-size:18px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px;}
+.fl-album-meta{font-size:12px;color:#888;margin-top:2px;}
+.fl-album-actions{margin-left:auto;display:flex;gap:8px;}
+.fl-ab-btn{padding:6px 14px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;border:1px solid;}
+.fl-ab-primary{background:#FF0084;color:#fff;border-color:#FF0084;}
+.fl-ab-sec{background:transparent;color:#CCC;border-color:#444;}
+/* Photo grid */
+.fl-layout{display:grid;grid-template-columns:1fr 280px;height:520px;}
+.fl-grid-area{background:#111;overflow-y:auto;padding:14px;}
+.fl-grid-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.fl-grid-head h4{font-size:12px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.1em;}
+.fl-grid-head .contrib{font-size:12px;color:#FF0084;font-weight:700;}
+.fl-photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;}
+.fl-photo-tile{position:relative;border-radius:4px;overflow:hidden;cursor:pointer;aspect-ratio:1;}
+.fl-photo-tile:hover .fl-tile-overlay{opacity:1;}
+.fl-tile-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:30px;}
+.fl-tile-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:opacity .2s;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;}
+.fl-tile-title{font-size:11px;color:#fff;font-weight:700;}
+.fl-tile-meta{font-size:9.5px;color:#ddd;margin-top:2px;}
+.fl-tile-actions{position:absolute;top:6px;right:6px;display:flex;gap:4px;}
+.fl-ta-btn{background:rgba(0,0,0,.6);color:#fff;font-size:9px;padding:2px 6px;border-radius:10px;font-weight:700;}
+.fl-featured{grid-column:1/3;grid-row:1/3;}
+/* Sidebar */
+.fl-sidebar{background:#1A1A1A;border-left:1px solid #2A2A2A;overflow-y:auto;display:flex;flex-direction:column;}
+.fl-side-section{padding:14px 16px;border-bottom:1px solid #252525;}
+.fl-ss-head{font-size:10.5px;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+.fl-stat-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12.5px;color:#BBB;}
+.fl-stat-val{font-weight:700;color:#fff;}
+.fl-member-row{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12.5px;color:#BBB;}
+.fl-m-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;}
+.fl-m-name{flex:1;}
+.fl-m-count{font-size:11px;color:#666;}
+.fl-tag{display:inline-block;background:#2A2A2A;color:#AAA;font-size:11px;padding:3px 8px;border-radius:10px;margin:2px;cursor:pointer;}
+.fl-tag:hover{background:#FF0084;color:#fff;}
+.fl-comment{display:flex;gap:8px;padding:8px 0;border-bottom:1px solid #222;}
+.fl-comment:last-child{border-bottom:none;}
+.fl-c-text{font-size:12px;color:#CCC;line-height:1.5;}
+.fl-c-author{color:#FF0084;font-weight:700;}
+.fl-c-time{font-size:10.5px;color:#555;margin-top:2px;}
+/* Status */
+.fl-statusbar{background:#0f0f0f;padding:6px 18px;display:flex;gap:14px;font-size:11.5px;color:#555;border-top:1px solid #222;}
+.fl-sync-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,0,132,.1);color:#FF0084;border:1px solid rgba(255,0,132,.3);padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;}
+.fl-dot{width:6px;height:6px;border-radius:50%;background:#FF0084;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* ═══════════════ SMUGMUG UI ═══════════════ */
+.sm-body{background:#fff;}
+.sm-topbar{background:#fff;border-bottom:1px solid #E8E4DE;padding:0 18px;display:flex;align-items:center;gap:14px;height:56px;}
+.sm-logo{font-family:'Lora',serif;font-weight:700;font-size:20px;color:var(--sm-green);letter-spacing:-.01em;}
+.sm-logo span{color:var(--sm-gold);}
+.sm-nav{display:flex;gap:0;margin-left:16px;}
+.sm-nav-item{padding:9px 16px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;}
+.sm-nav-item:hover{color:var(--ink);}
+.sm-nav-item.active{color:var(--sm-green);border-bottom-color:var(--sm-green);font-weight:700;}
+.sm-topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.sm-add-photos{background:var(--sm-green);color:#fff;font-size:12.5px;font-weight:700;padding:7px 18px;border-radius:6px;cursor:pointer;}
+/* Gallery header */
+.sm-gallery-header{background:linear-gradient(135deg,#1B3F35 0%,#2B6358 100%);padding:28px 28px 22px;}
+.sm-gallery-title{font-family:'Lora',serif;font-size:24px;font-weight:700;color:#fff;margin-bottom:6px;}
+.sm-gallery-meta{font-size:13px;color:rgba(255,255,255,.65);display:flex;gap:16px;align-items:center;}
+.sm-gallery-meta .sep{color:rgba(255,255,255,.3);}
+.sm-gallery-actions{display:flex;gap:8px;margin-top:14px;}
+.sm-ga-btn{padding:7px 16px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;border:1px solid;}
+.sm-ga-primary{background:var(--sm-gold);color:#1B3F35;border-color:var(--sm-gold);font-weight:700;}
+.sm-ga-sec{background:rgba(255,255,255,.1);color:#fff;border-color:rgba(255,255,255,.3);}
+/* Layout */
+.sm-layout{display:grid;grid-template-columns:200px 1fr 240px;height:480px;}
+.sm-albums-nav{background:#FAF9F6;border-right:1px solid #E8E4DE;overflow-y:auto;padding:12px 0;}
+.sm-an-section{font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.1em;padding:8px 14px 4px;}
+.sm-an-item{padding:7px 14px;font-size:13px;color:var(--ink);cursor:pointer;display:flex;align-items:center;gap:7px;}
+.sm-an-item:hover{background:#F0EDE8;}
+.sm-an-item.active{background:var(--sm-light);color:var(--sm-green);font-weight:700;}
+.sm-an-count{margin-left:auto;font-size:11px;color:#9CA3AF;background:#EEE;padding:1px 6px;border-radius:8px;}
+/* Photo masonry-style */
+.sm-photo-area{overflow-y:auto;background:#F5F4F0;}
+.sm-photo-toolbar{background:#fff;border-bottom:1px solid #E8E4DE;padding:8px 16px;display:flex;align-items:center;gap:8px;}
+.sm-pt-btn{padding:5px 12px;border:1px solid #E2DDD8;border-radius:6px;font-size:12.5px;cursor:pointer;color:var(--muted);background:#fff;}
+.sm-pt-btn:hover{background:#F5F4F0;}
+.sm-pt-btn.active{background:var(--sm-light);color:var(--sm-green);border-color:var(--sm-green);}
+.sm-masonry{columns:3;gap:8px;padding:12px;}
+.sm-photo-card{break-inside:avoid;margin-bottom:8px;border-radius:8px;overflow:hidden;position:relative;cursor:pointer;display:block;}
+.sm-photo-card:hover .sm-card-overlay{opacity:1;}
+.sm-card-bg{width:100%;display:flex;align-items:center;justify-content:center;font-size:36px;}
+.sm-card-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,transparent 50%);opacity:0;transition:opacity .2s;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;}
+.sm-card-title{font-size:12px;color:#fff;font-weight:700;}
+.sm-card-meta{font-size:10.5px;color:rgba(255,255,255,.75);margin-top:2px;}
+.sm-card-buy{position:absolute;top:8px;right:8px;background:var(--sm-gold);color:#1B3F35;font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;}
+.sm-card-fav{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.5);color:#fff;font-size:12px;padding:3px 7px;border-radius:10px;}
+/* Info panel */
+.sm-info-panel{border-left:1px solid #E8E4DE;overflow-y:auto;padding:16px;}
+.sm-ip-head{font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.sm-ip-photo-preview{width:100%;height:120px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:12px;}
+.sm-ip-title{font-family:'Lora',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.sm-ip-meta-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid #F0EDE8;font-size:12.5px;}
+.sm-ip-meta-row:last-child{border-bottom:none;}
+.sm-ip-label{color:var(--muted);}
+.sm-ip-value{font-weight:700;color:var(--ink);}
+.sm-share-section{background:var(--sm-light);border-radius:8px;padding:12px;margin-top:12px;}
+.sm-ss-head{font-size:11.5px;font-weight:700;color:var(--sm-green);margin-bottom:8px;}
+.sm-share-btns{display:flex;flex-direction:column;gap:6px;}
+.sm-share-btn-row{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#fff;border-radius:6px;border:1px solid #E2DDD8;font-size:12.5px;cursor:pointer;color:var(--ink);font-weight:600;}
+.sm-share-btn-row:hover{background:var(--sm-light);}
+.sm-statusbar{background:#FAF9F6;border-top:1px solid #E8E4DE;padding:6px 16px;display:flex;gap:14px;font-size:11.5px;color:var(--muted);}
+
+/* ═══════════════ 500px UI ═══════════════ */
+.px-body{background:#fff;}
+.px-topbar{background:#fff;border-bottom:1px solid #EBEBEB;padding:0 18px;display:flex;align-items:center;gap:14px;height:54px;}
+.px-logo{font-family:'Lora',serif;font-weight:700;font-size:19px;color:var(--px-dark);letter-spacing:-.02em;}
+.px-logo span{color:var(--px-blue);}
+.px-nav{display:flex;gap:0;margin-left:14px;}
+.px-nav-item{padding:9px 14px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;}
+.px-nav-item.active{color:var(--px-dark);border-bottom-color:var(--px-dark);font-weight:700;}
+.px-topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.px-upload-btn{background:var(--px-blue);color:#fff;font-size:12.5px;font-weight:700;padding:7px 16px;border-radius:6px;cursor:pointer;}
+/* Profile header */
+.px-profile-header{background:#F8F8F8;border-bottom:1px solid #EBEBEB;padding:22px 24px;display:flex;align-items:center;gap:18px;}
+.px-profile-av{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--px-blue),#60A5FA);display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:700;color:#fff;flex-shrink:0;}
+.px-profile-name{font-family:'Lora',serif;font-size:20px;font-weight:700;color:var(--ink);}
+.px-profile-handle{font-size:13px;color:var(--muted);margin-top:2px;}
+.px-profile-stats{display:flex;gap:20px;margin-top:8px;}
+.px-stat{text-align:center;}
+.px-stat-num{font-size:16px;font-weight:800;color:var(--ink);display:block;}
+.px-stat-label{font-size:11px;color:var(--muted);}
+.px-follow-btn{margin-left:auto;background:var(--px-blue);color:#fff;font-size:13px;font-weight:700;padding:8px 20px;border-radius:6px;cursor:pointer;}
+.px-pulse-badge{display:inline-flex;align-items:center;gap:5px;background:#EEF4FF;color:var(--px-blue);border:1px solid #C0D8FF;padding:3px 10px;border-radius:10px;font-size:11.5px;font-weight:700;margin-left:10px;}
+.px-pulse-dot{width:6px;height:6px;border-radius:50%;background:var(--px-blue);animation:pulse 1.5s infinite;}
+/* Layout */
+.px-layout{display:grid;grid-template-columns:1fr 280px;height:500px;}
+/* Photo wall */
+.px-photo-area{overflow-y:auto;padding:14px 16px;}
+.px-filter-bar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+.px-filter{padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;border:1.5px solid var(--rule);color:var(--muted);background:#fff;}
+.px-filter.active{background:var(--px-dark);color:#fff;border-color:var(--px-dark);}
+.px-photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;}
+.px-photo-tile{border-radius:8px;overflow:hidden;position:relative;cursor:pointer;}
+.px-photo-tile:hover .px-tile-overlay{opacity:1;}
+.px-tile-bg{width:100%;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;font-size:32px;}
+.px-tile-overlay{position:absolute;inset:0;background:rgba(0,0,0,.5);opacity:0;transition:opacity .2s;display:flex;flex-direction:column;justify-content:flex-end;padding:10px;}
+.px-tile-title{font-size:11.5px;color:#fff;font-weight:700;}
+.px-tile-stats{display:flex;gap:8px;margin-top:4px;}
+.px-tile-stat{font-size:10.5px;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:3px;}
+.px-pulse-score{position:absolute;top:8px;left:8px;background:rgba(0,0,0,.7);color:var(--px-gold);font-size:11px;font-weight:700;padding:3px 8px;border-radius:10px;font-family:'Fira Code',monospace;}
+.px-license{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.7);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:8px;}
+/* Right panel */
+.px-right{border-left:1px solid #EBEBEB;overflow-y:auto;display:flex;flex-direction:column;}
+.px-rp-head{padding:14px 16px 8px;font-size:11px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid #F0F0F0;}
+.px-trending-photo{padding:10px 14px;border-bottom:1px solid #F5F5F5;display:flex;gap:10px;cursor:pointer;}
+.px-trending-thumb{width:48px;height:48px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.px-trending-info{flex:1;}
+.px-trending-title{font-size:12.5px;font-weight:700;color:var(--ink);}
+.px-trending-meta{font-size:11px;color:var(--muted);margin-top:2px;}
+.px-pulse-bar-wrap{margin:10px 14px;background:var(--soft);border-radius:8px;padding:12px;}
+.px-pb-head{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.px-pb-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:12px;}
+.px-pb-label{width:80px;color:var(--muted);font-size:11.5px;}
+.px-pb-bar{flex:1;height:6px;background:#E5E5EA;border-radius:3px;overflow:hidden;}
+.px-pb-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--px-blue),#60A5FA);}
+.px-pb-val{width:30px;text-align:right;font-size:11.5px;font-weight:700;color:var(--px-dark);}
+.px-license-section{margin:10px 14px;background:#FFF8E8;border:1px solid #F0D060;border-radius:8px;padding:12px;}
+.px-ls-head{font-size:11.5px;font-weight:700;color:#7A5C00;margin-bottom:6px;}
+.px-license-option{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink);padding:3px 0;}
+.px-statusbar{background:#F8F8F8;border-top:1px solid #EBEBEB;padding:6px 16px;display:flex;gap:14px;font-size:11.5px;color:var(--muted);}
+
+/* ── COMPARISON TABLE ── */
+table.cmp{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin:16px 0;}
+table.cmp thead tr{background:var(--ink);color:#fff;}
+table.cmp th{padding:11px 16px;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:.04em;text-align:left;}
+table.cmp td{padding:10px 16px;background:var(--paper);border-bottom:1px solid var(--rule);font-size:13.5px;color:var(--ink);}
+table.cmp tr:last-child td{border-bottom:none;}
+table.cmp .yes{color:#059669;font-weight:700;}
+table.cmp .par{color:#D97706;}
+table.cmp .no {color:#DC2626;}
+
+/* ── KEY POINTS BOX ── */
+.key-points{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 22px;margin:16px 0;}
+.key-points h4{font-family:'Lora',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.kp-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid var(--soft);font-size:13.5px;}
+.kp-item:last-child{border-bottom:none;}
+.kp-num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+
+/* ── CONCLUSION ── */
+.conclusion{border-radius:10px;overflow:hidden;margin-top:46px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.con-head{background:linear-gradient(90deg,#FF0084,#0063DC);padding:18px 30px;}
+.con-head h3{font-family:'Lora',serif;font-size:21px;color:#fff;font-weight:700;}
+.con-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:24px 30px;}
+.con-body p{font-size:14.5px;color:var(--muted);line-height:1.8;}
+.con-body strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<div class="cover">
+  <div class="cover-tag">Cloud Computing · 10 Mark Exam Answer · Digital Photo Sharing</div>
+  <h1>Sharing Digital Photographs<br>in the <span class="f">Cloud</span> — Real-Time<br>Cloud Photo Platforms</h1>
+  <div class="cover-sub">Three real, production-grade cloud photo sharing platforms · Exam-focused explanation with definitions, features, diagrams &amp; UI mock-ups · No Google Photos, No iCloud</div>
+  <div class="tool-pills">
+    <span class="tp tp-f">📷 Flickr — flickr.com</span>
+    <span class="tp tp-s">🖼 SmugMug — smugmug.com</span>
+    <span class="tp tp-p">⬡ 500px — 500px.com</span>
+  </div>
+  <div class="marks">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- ════ EXAM NOTE ════ -->
+<div class="exam-note">
+  <strong>📝 Exam Tip:</strong> When writing about "Sharing Digital Photographs in Cloud Computing," always cover: (1) Definition, (2) How cloud photo sharing works, (3) At least 2–3 real tools with features, (4) A comparison or diagram, and (5) A conclusion. This answer covers all five for full marks.
+</div>
+
+<!-- ════ INTRO ════ -->
+<div class="sec"><span class="sec-tag st-i">01</span><span class="sec-title">Definition &amp; Introduction</span></div>
+<div class="intro-card">
+  <p><strong>Cloud-based digital photograph sharing</strong> refers to the process of uploading digital photos to a remote cloud server and making them accessible — for viewing, downloading, commenting, or purchasing — to selected individuals or the public, from any internet-connected device, without transferring physical files.</p>
+  <p>Unlike traditional methods (USB transfer, email attachments, CDs), cloud photo sharing provides <span class="hl-f">real-time upload and access</span>, <span class="hl-s">organised album management</span>, <span class="hl-p">global audience reach</span>, automatic backup, and advanced features like community engagement, analytics, and even photo licensing or printing.</p>
+</div>
+
+<!-- Definition boxes for exam keywords -->
+<div class="def-box">
+  <h4>📸 What is a Cloud Photo Sharing Platform?</h4>
+  <p>A cloud photo sharing platform is a web-based service that stores photographs on cloud servers and provides tools to organise them into albums, control who can view or download them, share links, receive comments, and optionally sell or license the images — all through a browser or mobile app.</p>
+</div>
+
+<div class="def-box">
+  <h4>🔑 Key Terminology (Important for Exam)</h4>
+  <p><strong>Album:</strong> A collection of related photos grouped together in the cloud.<br>
+  <strong>Guest Pass:</strong> A secret link that gives non-registered users access to a private album.<br>
+  <strong>Pulse/Rating:</strong> A community score given to photos based on views, likes, and comments.<br>
+  <strong>Licensing:</strong> Allowing others to use your photo for commercial or editorial purposes.<br>
+  <strong>CDN (Content Delivery Network):</strong> A global network of servers that delivers photos quickly to users worldwide.<br>
+  <strong>EXIF Data:</strong> Metadata embedded in a photo — camera model, ISO, shutter speed, GPS location.</p>
+</div>
+
+<!-- ════ FLOW DIAGRAM ════ -->
+<div class="sec"><span class="sec-tag st-c">02</span><span class="sec-title">How Cloud Photo Sharing Works — Diagram</span></div>
+<div class="flow-wrap">
+  <h4>Step-by-Step Process of Cloud Digital Photo Sharing</h4>
+  <div class="flow-row" style="margin-bottom:14px;gap:0;">
+    <div class="fbox fb-u"><div class="fi">📷</div><div class="fn">Capture Photo</div><div class="fs">Camera / Phone</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-f"><div class="fi">⬆</div><div class="fn">Upload to Cloud</div><div class="fs">Browser / App</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-c"><div class="fi">☁️</div><div class="fn">Cloud Server</div><div class="fs">Stored &amp; processed</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">🔗</div><div class="fn">Share Link / Album</div><div class="fs">Public / Private</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">🌍</div><div class="fn">Viewer Access</div><div class="fs">Any device</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:var(--muted);margin:8px 0 14px;">Photos are compressed, backed up, and delivered via CDN · Comments, likes, downloads tracked · EXIF data preserved</div>
+  <div class="flow-row" style="gap:16px;">
+    <div class="fbox fb-f"><div class="fi">📷</div><div class="fn">Flickr</div><div class="fs">Community · Tags</div></div>
+    <div class="fbox fb-s"><div class="fi">🖼</div><div class="fn">SmugMug</div><div class="fs">Professional · Print</div></div>
+    <div class="fbox fb-px"><div class="fi">⬡</div><div class="fn">500px</div><div class="fs">Portfolio · License</div></div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 1: FLICKR ════════════ -->
+<div class="sec"><span class="sec-tag st-1">TOOL 1</span><span class="sec-title">Flickr — flickr.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#0D0D0D,#181818);">
+    <span class="tb-icon">📷</span>
+    <div><div class="tb-name">Flickr</div><div class="tb-url">flickr.com · Free 1,000 photos · Pro plan · 100M+ users · Founded 2004 · Owned by SmugMug</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Flickr is one of the world's oldest and largest cloud photo sharing communities. Users can upload high-resolution photos, organise them into albums and groups, tag them for discovery, and share them with the world or specific people. Flickr is famous for its vibrant community of photographers who explore, comment on, and favourite each other's work.<br><br>
+    <strong>Key Cloud Collaboration &amp; Sharing Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Upload up to 1,000 photos free (unlimited with Pro) in original resolution</div>
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Albums and Collections — organise photos hierarchically in the cloud</div>
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Groups — community pools where multiple users contribute photos to a shared album</div>
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Guest Pass — share private albums with non-Flickr users via secret link</div>
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Privacy controls: Public, Friends only, Family only, Private per photo</div>
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Tags and geotags — searchable by keyword, camera model, or map location</div>
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Creative Commons licensing — allow others to use your photos legally</div>
+      <div class="feat-item"><div class="fdot" style="background:#FF0084;"></div>Stats — real-time view counts, referrers, and most-viewed photos</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 1 — Flickr: TechSympo 2025 Event Photo Album (Group Pool with Community Engagement)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#FF0084;font-size:11px;">🔒</span>flickr.com/groups/techsympo2025/pool · 148 photos · 12 contributors · Public group</div></div>
+  <div class="fl-body">
+    <div class="fl-topbar">
+      <div class="fl-logo"><span>flickr</span></div>
+      <div class="fl-nav">
+        <div class="fl-nav-item">Home</div>
+        <div class="fl-nav-item active">Groups</div>
+        <div class="fl-nav-item">Explore</div>
+        <div class="fl-nav-item">Camera Roll</div>
+      </div>
+      <div class="fl-topbar-right">
+        <div class="fl-avatar" style="background:#FF0084;">AK</div>
+        <div class="fl-upload-btn">Upload</div>
+      </div>
+    </div>
+    <!-- Album bar -->
+    <div class="fl-album-bar">
+      <div>
+        <div class="fl-album-title">📷 TechSympo 2025 — Official Event Photos <div class="fl-sync-pill"><div class="fl-dot"></div>Live</div></div>
+        <div class="fl-album-meta">Group Pool · 148 photos · 12 contributors · 2,847 views · Public</div>
+      </div>
+      <div class="fl-album-actions">
+        <div class="fl-ab-btn fl-ab-primary">⬆ Add to Pool</div>
+        <div class="fl-ab-btn fl-ab-sec">🔗 Share Link</div>
+        <div class="fl-ab-btn fl-ab-sec">📥 Download All</div>
+      </div>
+    </div>
+    <div class="fl-layout">
+      <!-- Photo grid -->
+      <div class="fl-grid-area">
+        <div class="fl-grid-head">
+          <h4>All Photos (148)</h4>
+          <span class="contrib">12 contributors · Adding in real-time</span>
+        </div>
+        <div class="fl-photo-grid">
+          <!-- Featured large tile -->
+          <div class="fl-photo-tile fl-featured" style="aspect-ratio:1;">
+            <div class="fl-tile-bg" style="background:linear-gradient(135deg,#c43e1c,#FF8C00);height:100%;">🎤</div>
+            <div class="fl-tile-overlay" style="opacity:1;background:linear-gradient(0deg,rgba(0,0,0,.75) 0%,transparent 55%);">
+              <div class="fl-tile-title">🎤 Inauguration Ceremony</div>
+              <div class="fl-tile-meta">Hall A · 9:15 AM · 142 ❤ · 38 💬</div>
+              <div class="fl-tile-actions">
+                <div class="fl-ta-btn">❤ 142</div>
+                <div class="fl-ta-btn">💬 38</div>
+              </div>
+            </div>
+          </div>
+          <!-- Regular tiles -->
+          <div class="fl-photo-tile" style="aspect-ratio:1;">
+            <div class="fl-tile-bg" style="background:linear-gradient(135deg,#0078d4,#464eb8);">📊</div>
+            <div class="fl-tile-overlay"><div class="fl-tile-title">Paper Presentation</div><div class="fl-tile-meta">22 ❤</div></div>
+          </div>
+          <div class="fl-photo-tile" style="aspect-ratio:1;">
+            <div class="fl-tile-bg" style="background:linear-gradient(135deg,#217346,#34a853);">🧠</div>
+            <div class="fl-tile-overlay"><div class="fl-tile-title">Technical Quiz</div><div class="fl-tile-meta">18 ❤</div></div>
+          </div>
+          <div class="fl-photo-tile" style="aspect-ratio:1;">
+            <div class="fl-tile-bg" style="background:linear-gradient(135deg,#673ab7,#9c27b0);">💻</div>
+            <div class="fl-tile-overlay"><div class="fl-tile-title">Coding Challenge</div><div class="fl-tile-meta">31 ❤</div></div>
+          </div>
+          <div class="fl-photo-tile" style="aspect-ratio:1;">
+            <div class="fl-tile-bg" style="background:linear-gradient(135deg,#e37400,#fbbc04);">🏆</div>
+            <div class="fl-tile-overlay"><div class="fl-tile-title">Prize Distribution</div><div class="fl-tile-meta">67 ❤</div></div>
+          </div>
+          <div class="fl-photo-tile" style="aspect-ratio:1;">
+            <div class="fl-tile-bg" style="background:linear-gradient(135deg,#059669,#34d399);">🎓</div>
+            <div class="fl-tile-overlay"><div class="fl-tile-title">Group Photo</div><div class="fl-tile-meta">⭐ Most viewed</div></div>
+          </div>
+          <div class="fl-photo-tile" style="aspect-ratio:1;">
+            <div class="fl-tile-bg" style="background:linear-gradient(135deg,#1a3a5a,#0078d4);">🖥️</div>
+            <div class="fl-tile-overlay"><div class="fl-tile-title">Virtual Participants</div><div class="fl-tile-meta">55 ❤</div></div>
+          </div>
+          <div class="fl-photo-tile" style="background:#1A1A1A;display:flex;align-items:center;justify-content:center;aspect-ratio:1;">
+            <div style="color:#555;font-size:12px;text-align:center;">+141 more<br>photos</div>
+          </div>
+        </div>
+      </div>
+      <!-- Sidebar -->
+      <div class="fl-sidebar">
+        <div class="fl-side-section">
+          <div class="fl-ss-head">Group Stats</div>
+          <div class="fl-stat-row"><span>Total Photos</span><span class="fl-stat-val">148</span></div>
+          <div class="fl-stat-row"><span>Contributors</span><span class="fl-stat-val">12</span></div>
+          <div class="fl-stat-row"><span>Total Views</span><span class="fl-stat-val">2,847</span></div>
+          <div class="fl-stat-row"><span>Total Favourites</span><span class="fl-stat-val">486</span></div>
+          <div class="fl-stat-row"><span>Comments</span><span class="fl-stat-val">124</span></div>
+        </div>
+        <div class="fl-side-section">
+          <div class="fl-ss-head">Top Contributors</div>
+          <div class="fl-member-row"><div class="fl-m-av" style="background:#FF0084;">AK</div><div class="fl-m-name">Arjun K. (Admin)</div><div class="fl-m-count">48 photos</div></div>
+          <div class="fl-member-row"><div class="fl-m-av" style="background:#0063DC;">KR</div><div class="fl-m-name">Kavya R.</div><div class="fl-m-count">32 photos</div></div>
+          <div class="fl-member-row"><div class="fl-m-av" style="background:#059669;">SM</div><div class="fl-m-name">Sneha M.</div><div class="fl-m-count">28 photos</div></div>
+          <div class="fl-member-row"><div class="fl-m-av" style="background:#D97706;">PR</div><div class="fl-m-name">Priya R.</div><div class="fl-m-count">24 photos</div></div>
+          <div class="fl-member-row"><div class="fl-m-av" style="background:#7D2AE8;">DR</div><div class="fl-m-name">Dr. Ramesh</div><div class="fl-m-count">16 photos</div></div>
+        </div>
+        <div class="fl-side-section">
+          <div class="fl-ss-head">Tags</div>
+          <div><span class="fl-tag">techsympo2025</span><span class="fl-tag">CSEdept</span><span class="fl-tag">hybrid</span><span class="fl-tag">inauguration</span><span class="fl-tag">paperPresentation</span><span class="fl-tag">Chennai</span><span class="fl-tag">symposium</span><span class="fl-tag">engineering</span></div>
+        </div>
+        <div class="fl-side-section">
+          <div class="fl-ss-head">Recent Comments</div>
+          <div class="fl-comment"><div><div class="fl-c-text"><span class="fl-c-author">@arjun_k</span> "Amazing event! Great to see so many participants online from other states 🙌"</div><div class="fl-c-time">10 min ago</div></div></div>
+          <div class="fl-comment"><div><div class="fl-c-text"><span class="fl-c-author">@kavya_r</span> "Inauguration photo looks stunning! What camera was used?"</div><div class="fl-c-time">25 min ago</div></div></div>
+          <div class="fl-comment"><div><div class="fl-c-text"><span class="fl-c-author">@dr_ramesh</span> "Great documentation of the event. Please add guest pass link for the parents."</div><div class="fl-c-time">1 hr ago</div></div></div>
+        </div>
+        <div class="fl-side-section">
+          <div class="fl-ss-head">🔗 Guest Pass</div>
+          <div style="background:#1F1F1F;border-radius:6px;padding:8px 10px;font-family:'Fira Code',monospace;font-size:10.5px;color:#888;word-break:break-all;">flickr.com/gp/techsympo/xA9bQ...</div>
+          <div style="display:flex;gap:6px;margin-top:8px;"><div style="background:#FF0084;color:#fff;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:5px;cursor:pointer;">📋 Copy Link</div><div style="background:#222;color:#CCC;font-size:11.5px;padding:5px 12px;border-radius:5px;cursor:pointer;">⚙ Settings</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="fl-statusbar">
+      <div class="fl-sync-pill"><div class="fl-dot"></div>Live · 3 contributors uploading now</div>
+      <span>148 photos · 2,847 views · 486 favourites</span>
+      <span style="margin-left:auto;">🔒 Original resolution stored · CC Licensed · CDN delivered</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 2: SMUGMUG ════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-2">TOOL 2</span><span class="sec-title">SmugMug — smugmug.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#1B3F35,#2B6358);">
+    <span class="tb-icon">🖼</span>
+    <div><div class="tb-name">SmugMug</div><div class="tb-url">smugmug.com · Paid plans starting $9/mo · Unlimited storage · Professional photographers · Print store</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> SmugMug is a professional cloud photo sharing and storage platform designed for photographers, event teams, and creatives. It offers <strong>unlimited cloud storage</strong>, a customisable gallery website, an integrated print store, client proofing tools, and granular privacy controls. It is widely used by wedding photographers, event photographers, and academic institutions for sharing high-quality event photos.<br><br>
+    <strong>Key Cloud Sharing Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Unlimited cloud photo storage in original resolution at all plan levels</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Custom gallery website with your own domain name</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Client proofing — clients select photos they want printed or downloaded</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Print store — sell prints, canvas, and merchandise directly from gallery</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Password protection on any album or gallery</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Right-click protection and watermarking to prevent unauthorised use</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Contributor links — invite multiple people to upload to the same album</div>
+      <div class="feat-item"><div class="fdot" style="background:#2B6358;"></div>Download permissions — control who can download originals vs previews</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 2 — SmugMug: Professional Event Gallery with Masonry Layout, Info Panel &amp; Print Store</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>cse-dept.smugmug.com/TechSympo-2025 · Password protected · Unlimited storage</div></div>
+  <div class="sm-body">
+    <div class="sm-topbar">
+      <div class="sm-logo">Smug<span>Mug</span></div>
+      <div class="sm-nav">
+        <div class="sm-nav-item active">Gallery</div>
+        <div class="sm-nav-item">Upload</div>
+        <div class="sm-nav-item">Print Store</div>
+        <div class="sm-nav-item">Clients</div>
+        <div class="sm-nav-item">Stats</div>
+      </div>
+      <div class="sm-topbar-right">
+        <div style="display:flex;"><div style="width:26px;height:26px;border-radius:50%;background:#2B6358;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;">AK</div><div style="width:26px;height:26px;border-radius:50%;background:#C9A84C;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;margin-left:-6px;">KR</div></div>
+        <div class="sm-add-photos">+ Add Photos</div>
+      </div>
+    </div>
+    <!-- Gallery hero -->
+    <div class="sm-gallery-header">
+      <div class="sm-gallery-title">TechSympo 2025 — Official Event Photography</div>
+      <div class="sm-gallery-meta">
+        <span>📷 148 photos</span><span class="sep">·</span>
+        <span>🔒 Password protected</span><span class="sep">·</span>
+        <span>👁 1,240 views</span><span class="sep">·</span>
+        <span>📥 Downloads: With permission</span>
+      </div>
+      <div class="sm-gallery-actions">
+        <div class="sm-ga-btn sm-ga-primary">🛒 Order Prints</div>
+        <div class="sm-ga-btn sm-ga-sec">🔗 Share Gallery</div>
+        <div class="sm-ga-btn sm-ga-sec">⬆ Add Contributor</div>
+        <div class="sm-ga-btn sm-ga-sec">💧 Watermark On</div>
+      </div>
+    </div>
+    <div class="sm-layout">
+      <!-- Albums nav -->
+      <div class="sm-albums-nav">
+        <div class="sm-an-section">Albums</div>
+        <div class="sm-an-item active">📷 All Photos <span class="sm-an-count">148</span></div>
+        <div class="sm-an-item">🎤 Inauguration <span class="sm-an-count">24</span></div>
+        <div class="sm-an-item">📄 Paper Presentation <span class="sm-an-count">38</span></div>
+        <div class="sm-an-item">🧠 Quiz &amp; Coding <span class="sm-an-count">29</span></div>
+        <div class="sm-an-item">🏆 Prize Distribution <span class="sm-an-count">18</span></div>
+        <div class="sm-an-item">🎓 Group Photos <span class="sm-an-count">39</span></div>
+        <div class="sm-an-section" style="margin-top:10px;">Tools</div>
+        <div class="sm-an-item">👤 Client Proofing</div>
+        <div class="sm-an-item">🛒 Print Store</div>
+        <div class="sm-an-item">💧 Watermarking</div>
+        <div class="sm-an-item">📊 Gallery Stats</div>
+        <div class="sm-an-item">🔒 Privacy Settings</div>
+      </div>
+      <!-- Photo masonry -->
+      <div class="sm-photo-area">
+        <div class="sm-photo-toolbar">
+          <div class="sm-pt-btn active">⊞ Mosaic</div>
+          <div class="sm-pt-btn">☰ Slideshow</div>
+          <div class="sm-pt-btn">📥 Download All</div>
+          <div class="sm-pt-btn">🛒 Add to Cart</div>
+          <div style="margin-left:auto;font-size:12px;color:var(--muted);">Sort: Newest ▾</div>
+        </div>
+        <div class="sm-masonry">
+          <div class="sm-photo-card">
+            <div class="sm-card-bg" style="background:linear-gradient(135deg,#1B3F35,#2B6358);height:160px;"><span>🎤</span></div>
+            <div class="sm-card-overlay"><div class="sm-card-title">Inauguration Ceremony</div><div class="sm-card-meta">Hall A · 9:15 AM · 48 ❤</div></div>
+            <div class="sm-card-buy">🛒 Buy Print</div>
+            <div class="sm-card-fav">❤ 48</div>
+          </div>
+          <div class="sm-photo-card">
+            <div class="sm-card-bg" style="background:linear-gradient(135deg,#0078d4,#464eb8);height:110px;"><span>📊</span></div>
+            <div class="sm-card-overlay"><div class="sm-card-title">Paper Presentation</div><div class="sm-card-meta">22 ❤</div></div>
+            <div class="sm-card-fav">❤ 22</div>
+          </div>
+          <div class="sm-photo-card">
+            <div class="sm-card-bg" style="background:linear-gradient(135deg,#e37400,#fbbc04);height:140px;"><span>🏆</span></div>
+            <div class="sm-card-overlay"><div class="sm-card-title">Prize Distribution</div><div class="sm-card-meta">67 ❤ · Top pick</div></div>
+            <div class="sm-card-buy">🛒 Buy Print</div>
+            <div class="sm-card-fav">❤ 67</div>
+          </div>
+          <div class="sm-photo-card">
+            <div class="sm-card-bg" style="background:linear-gradient(135deg,#059669,#34d399);height:120px;"><span>🎓</span></div>
+            <div class="sm-card-overlay"><div class="sm-card-title">Group Photo</div><div class="sm-card-meta">142 ❤ · Most liked</div></div>
+            <div class="sm-card-buy">🛒 Buy Print</div>
+            <div class="sm-card-fav">❤ 142</div>
+          </div>
+          <div class="sm-photo-card">
+            <div class="sm-card-bg" style="background:linear-gradient(135deg,#673ab7,#9c27b0);height:100px;"><span>💻</span></div>
+            <div class="sm-card-overlay"><div class="sm-card-title">Coding Challenge</div><div class="sm-card-meta">31 ❤</div></div>
+            <div class="sm-card-fav">❤ 31</div>
+          </div>
+          <div class="sm-photo-card">
+            <div class="sm-card-bg" style="background:linear-gradient(135deg,#c43e1c,#ff8c00);height:130px;"><span>🤝</span></div>
+            <div class="sm-card-overlay"><div class="sm-card-title">Guest Lecture</div><div class="sm-card-meta">19 ❤</div></div>
+          </div>
+        </div>
+      </div>
+      <!-- Info panel -->
+      <div class="sm-info-panel">
+        <div class="sm-ip-head">Selected Photo</div>
+        <div class="sm-ip-photo-preview" style="background:linear-gradient(135deg,#1B3F35,#2B6358);">🎤</div>
+        <div class="sm-ip-title">Inauguration Ceremony — TechSympo 2025</div>
+        <div class="sm-ip-meta-row"><span class="sm-ip-label">📸 Camera</span><span class="sm-ip-value">Canon EOS R6</span></div>
+        <div class="sm-ip-meta-row"><span class="sm-ip-label">📐 Resolution</span><span class="sm-ip-value">6000 × 4000 px</span></div>
+        <div class="sm-ip-meta-row"><span class="sm-ip-label">📅 Taken</span><span class="sm-ip-value">Mar 28, 9:15 AM</span></div>
+        <div class="sm-ip-meta-row"><span class="sm-ip-label">👁 Views</span><span class="sm-ip-value">340</span></div>
+        <div class="sm-ip-meta-row"><span class="sm-ip-label">❤ Favourites</span><span class="sm-ip-value">48</span></div>
+        <div class="sm-ip-meta-row"><span class="sm-ip-label">💧 Watermark</span><span class="sm-ip-value" style="color:#059669;">✔ Applied</span></div>
+        <div class="sm-share-section">
+          <div class="sm-ss-head">🔗 Share Options</div>
+          <div class="sm-share-btns">
+            <div class="sm-share-btn-row">🔗 Copy gallery link</div>
+            <div class="sm-share-btn-row">📧 Email to clients</div>
+            <div class="sm-share-btn-row">🛒 Order 8×10 print — ₹450</div>
+            <div class="sm-share-btn-row">📥 Download original (2.4 MB)</div>
+            <div class="sm-share-btn-row">💧 Remove watermark for purchase</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sm-statusbar">
+      <span>148 photos · Unlimited storage · All originals preserved</span>
+      <span style="margin-left:auto;">🔒 Password protected · 💧 Watermarked · 🛒 Print store active</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════ TOOL 3: 500px ════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-3">TOOL 3</span><span class="sec-title">500px — 500px.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#111,#1D1D1D);">
+    <span class="tb-icon">⬡</span>
+    <div><div class="tb-name">500px</div><div class="tb-url">500px.com · Free + Awesome plan · 16M+ photographers · Photo licensing marketplace · Pulse rating system</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> 500px is a cloud photo sharing and licensing platform popular among professional and semi-professional photographers. It is known for its unique <strong>Pulse rating system</strong> — an algorithm that scores photos based on views, likes, comments, and favourites within the first hours of upload — and its <strong>built-in licensing marketplace</strong> where photographers can sell usage rights to their photos to buyers worldwide.<br><br>
+    <strong>Key Cloud Sharing Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>Pulse — real-time algorithmic score (0–100) for each uploaded photo</div>
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>Licensing marketplace — sell photos with Exclusive or Non-exclusive license</div>
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>Portfolio — build a public photographer profile with categorised galleries</div>
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>Follow system — follow photographers, see their new uploads in feed</div>
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>Categories — Nature, Architecture, People, Events, Technology, etc.</div>
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>EXIF data display — camera, lens, ISO, shutter speed shown on each photo</div>
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>Editor's Choice and Popular photo rankings — discovery for great work</div>
+      <div class="feat-item"><div class="fdot" style="background:#1D7CE1;"></div>Creative Commons and Rights Managed licensing options per photo</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 3 — 500px: Photographer Portfolio with Pulse Scores, License Options &amp; Analytics</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>500px.com/p/arjun_k_photography · TechSympo 2025 Event Portfolio · 16M+ community</div></div>
+  <div class="px-body">
+    <div class="px-topbar">
+      <div class="px-logo">5<span>00</span>px</div>
+      <div class="px-nav">
+        <div class="px-nav-item">Discover</div>
+        <div class="px-nav-item active">Portfolio</div>
+        <div class="px-nav-item">Licensing</div>
+        <div class="px-nav-item">Blog</div>
+      </div>
+      <div class="px-topbar-right">
+        <div style="font-size:12px;color:var(--muted);">14 photos uploaded</div>
+        <div class="px-upload-btn">+ Upload Photo</div>
+      </div>
+    </div>
+    <!-- Profile header -->
+    <div class="px-profile-header">
+      <div class="px-profile-av">AK</div>
+      <div>
+        <div class="px-profile-name">Arjun Kumar <div class="px-pulse-badge"><div class="px-pulse-dot"></div>Popular</div></div>
+        <div class="px-profile-handle">@arjun_k_photography · Chennai, India</div>
+        <div class="px-profile-stats">
+          <div class="px-stat"><span class="px-stat-num">148</span><span class="px-stat-label">Photos</span></div>
+          <div class="px-stat"><span class="px-stat-num">2.4K</span><span class="px-stat-label">Followers</span></div>
+          <div class="px-stat"><span class="px-stat-num">312</span><span class="px-stat-label">Following</span></div>
+          <div class="px-stat"><span class="px-stat-num">18.4K</span><span class="px-stat-label">Affections</span></div>
+        </div>
+      </div>
+      <div class="px-follow-btn">+ Follow</div>
+    </div>
+    <div class="px-layout">
+      <!-- Photos area -->
+      <div class="px-photo-area">
+        <div class="px-filter-bar">
+          <div class="px-filter active">All</div>
+          <div class="px-filter">Events</div>
+          <div class="px-filter">People</div>
+          <div class="px-filter">Architecture</div>
+          <div class="px-filter">Popular ⭐</div>
+          <div class="px-filter">Licensed 💰</div>
+        </div>
+        <div class="px-photo-grid">
+          <div class="px-photo-tile">
+            <div class="px-tile-bg" style="background:linear-gradient(135deg,#c43e1c,#FF8C00);">🎤</div>
+            <div class="px-tile-overlay">
+              <div class="px-tile-title">Inauguration Ceremony</div>
+              <div class="px-tile-stats">
+                <div class="px-tile-stat">❤ 142</div>
+                <div class="px-tile-stat">💬 38</div>
+                <div class="px-tile-stat">👁 1.2K</div>
+              </div>
+            </div>
+            <div class="px-pulse-score">⚡ 98.4</div>
+            <div class="px-license" style="background:rgba(232,200,74,.9);color:#1A1A1A;">💰 Licensed</div>
+          </div>
+          <div class="px-photo-tile">
+            <div class="px-tile-bg" style="background:linear-gradient(135deg,#059669,#34d399);">🎓</div>
+            <div class="px-tile-overlay">
+              <div class="px-tile-title">Group Photo — All Participants</div>
+              <div class="px-tile-stats"><div class="px-tile-stat">❤ 267</div><div class="px-tile-stat">👁 2.8K</div></div>
+            </div>
+            <div class="px-pulse-score">⚡ 96.1</div>
+            <div class="px-license">CC-BY</div>
+          </div>
+          <div class="px-photo-tile">
+            <div class="px-tile-bg" style="background:linear-gradient(135deg,#e37400,#fbbc04);">🏆</div>
+            <div class="px-tile-overlay">
+              <div class="px-tile-title">Prize Distribution Ceremony</div>
+              <div class="px-tile-stats"><div class="px-tile-stat">❤ 89</div><div class="px-tile-stat">👁 940</div></div>
+            </div>
+            <div class="px-pulse-score">⚡ 91.7</div>
+            <div class="px-license" style="background:rgba(232,200,74,.9);color:#1A1A1A;">💰 Licensed</div>
+          </div>
+          <div class="px-photo-tile">
+            <div class="px-tile-bg" style="background:linear-gradient(135deg,#0078d4,#464eb8);">📊</div>
+            <div class="px-tile-overlay">
+              <div class="px-tile-title">Paper Presentation Session</div>
+              <div class="px-tile-stats"><div class="px-tile-stat">❤ 44</div><div class="px-tile-stat">👁 520</div></div>
+            </div>
+            <div class="px-pulse-score">⚡ 84.3</div>
+            <div class="px-license">All Rights</div>
+          </div>
+          <div class="px-photo-tile">
+            <div class="px-tile-bg" style="background:linear-gradient(135deg,#673ab7,#9c27b0);">💻</div>
+            <div class="px-tile-overlay">
+              <div class="px-tile-title">Coding Challenge Finals</div>
+              <div class="px-tile-stats"><div class="px-tile-stat">❤ 61</div><div class="px-tile-stat">👁 680</div></div>
+            </div>
+            <div class="px-pulse-score">⚡ 79.8</div>
+            <div class="px-license">CC-BY</div>
+          </div>
+          <div class="px-photo-tile">
+            <div class="px-tile-bg" style="background:linear-gradient(135deg,#217346,#34a853);">🧠</div>
+            <div class="px-tile-overlay">
+              <div class="px-tile-title">Technical Quiz Round</div>
+              <div class="px-tile-stats"><div class="px-tile-stat">❤ 33</div><div class="px-tile-stat">👁 410</div></div>
+            </div>
+            <div class="px-pulse-score">⚡ 72.5</div>
+            <div class="px-license">All Rights</div>
+          </div>
+        </div>
+      </div>
+      <!-- Right panel -->
+      <div class="px-right">
+        <div class="px-rp-head">⭐ Top Trending Today</div>
+        <div class="px-trending-photo">
+          <div class="px-trending-thumb" style="background:linear-gradient(135deg,#c43e1c,#FF8C00);">🎤</div>
+          <div class="px-trending-info"><div class="px-trending-title">Inauguration Ceremony</div><div class="px-trending-meta">⚡ Pulse 98.4 · ❤ 142 · 👁 1.2K</div></div>
+        </div>
+        <div class="px-trending-photo">
+          <div class="px-trending-thumb" style="background:linear-gradient(135deg,#059669,#34d399);">🎓</div>
+          <div class="px-trending-info"><div class="px-trending-title">Group Photo</div><div class="px-trending-meta">⚡ Pulse 96.1 · ❤ 267 · 👁 2.8K</div></div>
+        </div>
+        <div class="px-trending-photo">
+          <div class="px-trending-thumb" style="background:linear-gradient(135deg,#e37400,#fbbc04);">🏆</div>
+          <div class="px-trending-info"><div class="px-trending-title">Prize Ceremony</div><div class="px-trending-meta">⚡ Pulse 91.7 · Licensed 💰</div></div>
+        </div>
+        <!-- Pulse analytics -->
+        <div class="px-pulse-bar-wrap">
+          <div class="px-pb-head">📊 Pulse Breakdown — Inauguration Photo</div>
+          <div class="px-pb-row"><span class="px-pb-label">Aesthetics</span><div class="px-pb-bar"><div class="px-pb-fill" style="width:96%;"></div></div><span class="px-pb-val">96</span></div>
+          <div class="px-pb-row"><span class="px-pb-label">Originality</span><div class="px-pb-bar"><div class="px-pb-fill" style="width:94%;"></div></div><span class="px-pb-val">94</span></div>
+          <div class="px-pb-row"><span class="px-pb-label">Technical</span><div class="px-pb-bar"><div class="px-pb-fill" style="width:98%;"></div></div><span class="px-pb-val">98</span></div>
+          <div class="px-pb-row"><span class="px-pb-label">Story</span><div class="px-pb-bar"><div class="px-pb-fill" style="width:92%;"></div></div><span class="px-pb-val">92</span></div>
+        </div>
+        <!-- License section -->
+        <div class="px-license-section">
+          <div class="px-ls-head">💰 Licensing Options</div>
+          <div class="px-license-option">🔵 Non-exclusive · Web use · ₹1,200/image</div>
+          <div class="px-license-option">🟡 Exclusive · All rights · ₹8,500/image</div>
+          <div class="px-license-option">🟢 Creative Commons · CC-BY · Free</div>
+          <div class="px-license-option">⚫ All Rights Reserved · No license</div>
+        </div>
+        <div style="margin:10px 14px;background:#EEF4FF;border:1px solid #C0D8FF;border-radius:8px;padding:10px;font-size:12px;color:#1D4ED8;">
+          <div style="font-weight:700;margin-bottom:3px;">🌍 Global Community</div>
+          <div style="color:var(--muted);">16M+ photographers · Your photos are discoverable globally and can earn passive income through licensing.</div>
+        </div>
+      </div>
+    </div>
+    <div class="px-statusbar">
+      <span>148 photos · 18,400 affections · 2,400 followers</span>
+      <div style="display:inline-flex;align-items:center;gap:5px;background:#EEF4FF;color:var(--px-blue);border:1px solid #C0D8FF;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;"><div class="px-pulse-dot"></div>2 photos in Popular feed</div>
+      <span style="margin-left:auto;">🔒 HTTPS · CDN delivered · EXIF preserved · Licensing active</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════ KEY EXAM POINTS ════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-c">04</span><span class="sec-title">Key Points to Remember (Exam Focus)</span></div>
+<div class="key-points">
+  <h4>📝 Important Points for 10-Mark Answer</h4>
+  <div class="kp-item"><div class="kp-num">1</div><div><strong>Definition:</strong> Cloud photo sharing = uploading digital photographs to a remote server and providing access via links, albums, or public profiles — from any device, anywhere.</div></div>
+  <div class="kp-item"><div class="kp-num">2</div><div><strong>Advantages over traditional sharing:</strong> No physical media required, instant global access, real-time collaboration, automatic backup, privacy controls, and community engagement.</div></div>
+  <div class="kp-item"><div class="kp-num">3</div><div><strong>Flickr</strong> is best for community-based photo sharing with groups, tags, guest passes, and Creative Commons licensing. Used by 100M+ users since 2004.</div></div>
+  <div class="kp-item"><div class="kp-num">4</div><div><strong>SmugMug</strong> is best for professional photographers — unlimited storage, custom gallery websites, client proofing, watermarking, and integrated print store for selling photos.</div></div>
+  <div class="kp-item"><div class="kp-num">5</div><div><strong>500px</strong> is best for portfolio building and photo licensing — real-time Pulse scores, global marketplace, EXIF metadata display, and Creative Commons or Rights Managed licensing options.</div></div>
+  <div class="kp-item"><div class="kp-num">6</div><div><strong>CDN (Content Delivery Network)</strong> is used by all platforms to serve photos quickly worldwide by caching images on servers close to the viewer's location.</div></div>
+  <div class="kp-item"><div class="kp-num">7</div><div><strong>Privacy levels</strong> in cloud photo sharing: Public (anyone), Friends/Family (logged in), Password-protected (secret link), Private (only owner).</div></div>
+  <div class="kp-item"><div class="kp-num">8</div><div><strong>Photo Licensing:</strong> Cloud platforms allow photographers to set usage rights — Creative Commons (free with attribution), Non-exclusive (paid, multiple buyers), Exclusive (paid, single buyer), All Rights Reserved.</div></div>
+</div>
+
+<!-- ════ COMPARISON TABLE ════ -->
+<div class="sec"><span class="sec-tag st-c">05</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead><tr><th>Feature</th><th>📷 Flickr</th><th>🖼 SmugMug</th><th>⬡ 500px</th></tr></thead>
+  <tbody>
+    <tr><td>Primary Purpose</td><td>Community photo sharing</td><td>Professional event &amp; client galleries</td><td>Portfolio &amp; photo licensing</td></tr>
+    <tr><td>Free Storage</td><td class="yes">✔ 1,000 photos free</td><td class="no">✗ Paid plans only</td><td class="yes">✔ Free portfolio</td></tr>
+    <tr><td>Unlimited Storage</td><td class="par">⚠ Pro plan only</td><td class="yes">✔ All paid plans</td><td class="par">⚠ Awesome plan</td></tr>
+    <tr><td>Guest Pass (Private Sharing)</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes (password)</td><td class="no">✗ No</td></tr>
+    <tr><td>Community / Engagement</td><td class="yes">✔ Groups, comments, favourites</td><td class="par">⚠ Limited</td><td class="yes">✔ Pulse, follow, feed</td></tr>
+    <tr><td>Print Store / Selling</td><td class="no">✗ No</td><td class="yes">✔ Integrated store</td><td class="yes">✔ Licensing marketplace</td></tr>
+    <tr><td>Watermarking</td><td class="par">⚠ Basic</td><td class="yes">✔ Yes (built-in)</td><td class="no">✗ No</td></tr>
+    <tr><td>Pulse / Rating System</td><td class="no">✗ No</td><td class="no">✗ No</td><td class="yes">✔ Unique feature</td></tr>
+    <tr><td>EXIF Data Display</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes (detailed)</td></tr>
+    <tr><td>Creative Commons Licensing</td><td class="yes">✔ Yes</td><td class="par">⚠ Basic rights</td><td class="yes">✔ Multiple options</td></tr>
+    <tr><td>Custom Domain / Website</td><td class="no">✗ No</td><td class="yes">✔ Yes</td><td class="no">✗ No</td></tr>
+    <tr><td>Best For</td><td>Event photo communities</td><td>Client galleries, events</td><td>Photography portfolio, licensing</td></tr>
+  </tbody>
+</table>
+
+<!-- ════ CONCLUSION ════ -->
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Sharing digital photographs through cloud platforms has revolutionised the way individuals, event teams, and professional photographers distribute and monetise their visual work. Unlike traditional methods of file transfer, cloud photo sharing provides instant global access, organised album structures, community engagement, privacy controls, and even income generation — all managed through a web browser.
+      <br><br>
+      <strong>📷 Flickr</strong> is the oldest and most community-oriented cloud photo platform with 100M+ users. Its Group Pools allow multiple contributors to upload event photos to a single shared album, while Guest Passes enable sharing with non-registered viewers. Tags, Creative Commons licensing, and real-time stats make it ideal for academic event photo communities like TechSympo 2025.
+      <br><br>
+      <strong>🖼 SmugMug</strong> is designed for professional photographers and event documentation. With unlimited cloud storage, a custom gallery website, watermarking, client proofing, and an integrated print store, it is the most feature-complete platform for organisations that need both professional presentation and commercial capabilities.
+      <br><br>
+      <strong>⬡ 500px</strong> is unique for its real-time Pulse rating algorithm and its built-in photo licensing marketplace. Photographers can earn income by selling Non-exclusive or Exclusive usage rights to their event photos, while their portfolio gains global visibility through 500px's 16M+ community. The detailed Pulse analytics and EXIF metadata display make it invaluable for photographers who want feedback and exposure.
+      <br><br>
+      In summary, cloud photo sharing platforms store photographs securely in the cloud, make them accessible via CDN-powered global delivery, and offer tools for community engagement, professional presentation, and commercial licensing — making them powerful tools for both personal and institutional digital photography in the modern era.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

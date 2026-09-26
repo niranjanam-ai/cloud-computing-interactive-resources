@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Spreadsheet Collaboration – 10 Mark Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Epilogue:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --at-yellow: #FFBF00;
+  --at-orange: #F82B60;
+  --at-teal: #18BFFF;
+  --at-dark: #172B4D;
+  --zoho-blue: #E42527;
+  --zoho-dark: #1A1A2E;
+  --apple-blue: #007AFF;
+  --apple-green: #34C759;
+  --apple-dark: #1C1C1E;
+  --bg: #F7F5F0;
+  --paper: #FFFFFF;
+  --ink: #1A1A1A;
+  --muted: #6B7280;
+  --rule: #E5E0D8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Epilogue',sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.75;}
+
+/* ── COVER ── */
+.cover{
+  background:var(--at-dark);
+  padding:52px 60px 46px;
+  position:relative;overflow:hidden;
+}
+.cover::before{
+  content:'';position:absolute;
+  right:-120px;top:-120px;
+  width:480px;height:480px;border-radius:50%;
+  background:radial-gradient(circle,#FFBF00 0%,transparent 65%);
+  opacity:.12;
+}
+.cover::after{
+  content:'';position:absolute;
+  left:-60px;bottom:-60px;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,#F82B60 0%,transparent 65%);
+  opacity:.15;
+}
+.cover-tag{
+  font-family:'Fira Code',monospace;
+  font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:#FFBF00;margin-bottom:14px;
+}
+.cover h1{
+  font-family:'Fraunces',serif;
+  font-size:36px;line-height:1.2;color:#fff;
+  max-width:740px;font-weight:900;
+}
+.cover h1 em{color:var(--at-yellow);font-style:normal;}
+.cover-sub{margin-top:14px;font-size:13.5px;color:#8896AB;}
+.tool-badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.tb{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:6px;font-size:12.5px;font-weight:600;font-family:'Fira Code',monospace;}
+.tb-at{background:#FFBF00;color:#172B4D;}
+.tb-zo{background:#E42527;color:#fff;}
+.tb-ap{background:#007AFF;color:#fff;}
+.marks{margin-top:28px;display:inline-block;border:1.5px solid #FFBF00;color:#FFBF00;font-family:'Fira Code',monospace;font-size:12px;padding:5px 18px;border-radius:4px;letter-spacing:.08em;}
+
+/* ── WRAP ── */
+.wrap{max-width:960px;margin:0 auto;padding:50px 44px 80px;}
+
+/* ── SECTION ── */
+.sec{display:flex;align-items:center;gap:14px;margin:50px 0 18px;}
+.sec-pill{font-family:'Fira Code',monospace;font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:4px 12px;border-radius:20px;color:#fff;flex-shrink:0;}
+.sec-title{font-family:'Fraunces',serif;font-size:23px;color:var(--ink);font-weight:700;}
+
+/* ── INTRO CARD ── */
+.intro{background:var(--paper);border:1px solid var(--rule);border-left:5px solid var(--at-yellow);border-radius:8px;padding:22px 26px;margin-bottom:10px;}
+.intro p+p{margin-top:10px;}
+.hl{background:#FFF8DC;padding:1px 5px;border-radius:3px;font-weight:600;color:#5C4400;}
+
+/* ── TOOL HEADER ── */
+.tool-header{border-radius:10px;overflow:hidden;margin-bottom:6px;}
+.th-top{padding:16px 24px;display:flex;align-items:center;gap:14px;}
+.th-icon{font-size:30px;}
+.th-name{font-size:17px;font-weight:700;color:#fff;font-family:'Fraunces',serif;}
+.th-url{font-family:'Fira Code',monospace;font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;}
+.th-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:18px 24px;font-size:14px;color:var(--muted);}
+.th-body strong{color:var(--ink);}
+.feat-list{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:10px;}
+.feat-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink);}
+.feat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+
+/* ── MOCK LABEL ── */
+.mock-label{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin:26px 0 10px;}
+.mock-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ── CHROME FRAME ── */
+.win{border:1px solid #D1CBC0;border-radius:12px;overflow:hidden;box-shadow:0 8px 36px rgba(0,0,0,.13);}
+.win-bar{background:#EEECE8;padding:9px 14px;display:flex;align-items:center;gap:8px;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.url-bar{flex:1;background:#fff;border:1px solid #D1CBC0;border-radius:18px;padding:5px 16px;font-size:12px;color:#6B7280;display:flex;align-items:center;gap:7px;}
+
+/* ════════ AIRTABLE ════════ */
+.at-body{background:#fff;font-family:'Epilogue',sans-serif;}
+.at-topbar{background:#172B4D;padding:0 16px;display:flex;align-items:center;gap:0;}
+.at-logo{color:#FFBF00;font-weight:900;font-size:15px;font-family:'Fraunces',serif;padding:10px 16px 10px 0;border-right:1px solid rgba(255,255,255,.1);margin-right:14px;}
+.at-base-name{color:#fff;font-size:13.5px;font-weight:600;}
+.at-tabs{display:flex;margin-left:20px;}
+.at-tab{padding:10px 16px;font-size:12.5px;color:rgba(255,255,255,.6);cursor:pointer;border-bottom:3px solid transparent;}
+.at-tab.active{color:#FFBF00;border-bottom-color:#FFBF00;font-weight:600;}
+.at-toolbar{background:#F7F5F0;border-bottom:1px solid #E5E0D8;padding:7px 16px;display:flex;align-items:center;gap:8px;}
+.at-btn{padding:5px 12px;border:1px solid #D1CBC0;border-radius:5px;font-size:12px;cursor:pointer;background:#fff;color:#172B4D;display:flex;align-items:center;gap:5px;font-weight:500;}
+.at-btn.primary{background:#FFBF00;color:#172B4D;border-color:#FFBF00;font-weight:700;}
+.at-btn.red{background:#F82B60;color:#fff;border-color:#F82B60;}
+.at-layout{display:grid;grid-template-columns:200px 1fr;height:400px;}
+.at-views{background:#F2F0EB;border-right:1px solid #E5E0D8;padding:10px 0;}
+.av-section{font-size:10px;font-weight:700;color:#9CA3AF;text-transform:uppercase;letter-spacing:.1em;padding:8px 14px 4px;}
+.av-item{display:flex;align-items:center;gap:8px;padding:7px 14px;font-size:13px;color:#374151;cursor:pointer;border-radius:0 6px 6px 0;margin-right:6px;}
+.av-item:hover{background:#E5E0D8;}
+.av-item.active{background:#FFF3CC;color:#172B4D;font-weight:600;}
+.at-grid{flex:1;overflow:auto;}
+.at-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.at-table th{background:#F7F5F0;border:1px solid #E5E0D8;padding:8px 12px;text-align:left;font-size:11.5px;font-weight:600;color:#6B7280;white-space:nowrap;}
+.at-table th .col-icon{margin-right:5px;font-size:11px;}
+.at-table td{border:1px solid #F0EDE8;padding:7px 12px;color:#172B4D;vertical-align:middle;}
+.at-table tr:hover td{background:#FAFAF8;}
+.at-cell-edit{background:#FFF3CC !important;border:2px solid #FFBF00 !important;}
+.at-avatar{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;vertical-align:middle;margin-right:4px;}
+.at-badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:11px;font-weight:600;}
+.ab-yellow{background:#FFF3CC;color:#7A5C00;}
+.ab-green{background:#D4EDDA;color:#155724;}
+.ab-blue{background:#D1ECF1;color:#0C5460;}
+.ab-red{background:#F8D7DA;color:#721C24;}
+.ab-purple{background:#E2D9F3;color:#4A235A;}
+.at-collab-bar{background:#172B4D;padding:6px 16px;display:flex;align-items:center;gap:12px;font-size:11.5px;color:rgba(255,255,255,.7);}
+.collab-av{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;border:2px solid #172B4D;}
+.at-progress{width:120px;height:6px;background:rgba(255,255,255,.2);border-radius:3px;overflow:hidden;}
+.at-progress-fill{height:100%;background:#FFBF00;border-radius:3px;}
+
+/* ════════ ZOHO SHEET ════════ */
+.zo-body{background:#fff;}
+.zo-topbar{background:#E42527;padding:0 16px;display:flex;align-items:center;gap:14px;}
+.zo-logo{color:#fff;font-weight:700;font-size:15px;font-family:'Fraunces',serif;padding:9px 0;}
+.zo-file{color:rgba(255,255,255,.85);font-size:13px;}
+.zo-tabs{display:flex;margin-left:16px;}
+.zo-tab{padding:9px 16px;font-size:12.5px;color:rgba(255,255,255,.65);cursor:pointer;border-bottom:3px solid transparent;}
+.zo-tab.active{color:#fff;border-bottom-color:#fff;font-weight:600;}
+.zo-formula-bar{background:#F9F9F9;border-bottom:1px solid #E5E5E5;padding:5px 12px;display:flex;align-items:center;gap:10px;font-size:12.5px;}
+.zo-cell-ref{background:#fff;border:1px solid #ccc;border-radius:3px;padding:3px 8px;font-family:'Fira Code',monospace;font-size:11.5px;width:60px;text-align:center;color:#E42527;font-weight:600;}
+.zo-fx{color:#E42527;font-weight:700;font-size:14px;}
+.zo-formula{font-family:'Fira Code',monospace;font-size:12px;color:#374151;flex:1;}
+.zo-ribbon{background:#fff;border-bottom:2px solid #E42527;padding:5px 14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.zo-btn{padding:4px 10px;border:1px solid #E5E5E5;border-radius:4px;font-size:11.5px;cursor:pointer;background:#fff;color:#374151;display:flex;align-items:center;gap:4px;}
+.zo-btn.primary{background:#E42527;color:#fff;border-color:#E42527;}
+.zo-layout{display:grid;grid-template-columns:48px 1fr;}
+.zo-row-headers{background:#F9F9F9;border-right:1px solid #E5E5E5;}
+.zo-rh{height:30px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#9CA3AF;border-bottom:1px solid #F0F0F0;font-family:'Fira Code',monospace;}
+.zo-grid{overflow:auto;}
+.zo-table{border-collapse:collapse;font-size:12.5px;width:100%;}
+.zo-table th{background:#F9F9F9;border:1px solid #E8E8E8;padding:6px 10px;font-size:11px;font-weight:600;color:#9CA3AF;text-align:center;font-family:'Fira Code',monospace;}
+.zo-table td{border:1px solid #F0F0F0;padding:6px 10px;color:#374151;white-space:nowrap;}
+.zo-table tr:hover td{background:#FFF5F5;}
+.zo-header-row td{background:#FFF0F0;font-weight:700;color:#E42527;border-bottom:2px solid #E42527 !important;}
+.zo-total-row td{background:#FFF0F0;font-weight:700;border-top:2px solid #E42527;}
+.zo-cell-active{background:#FFF0F0 !important;border:2px solid #E42527 !important;}
+.zo-cursor{display:inline-block;width:2px;height:13px;background:#E42527;vertical-align:middle;animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.zo-user-tag{font-size:9px;background:#E42527;color:#fff;padding:1px 5px;border-radius:2px;vertical-align:middle;margin-left:3px;}
+.zo-statusbar{background:#F9F9F9;border-top:1px solid #E5E5E5;padding:5px 14px;display:flex;gap:16px;font-size:11.5px;color:#9CA3AF;}
+
+/* ════════ APPLE NUMBERS ════════ */
+.ap-body{background:#F5F5F7;font-family:'-apple-system','Helvetica Neue',sans-serif;}
+.ap-topbar{background:rgba(28,28,30,.95);backdrop-filter:blur(20px);padding:10px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #333;}
+.ap-logo{color:#007AFF;font-weight:700;font-size:14px;letter-spacing:-.02em;}
+.ap-title{color:#fff;font-size:13.5px;font-weight:500;flex:1;text-align:center;}
+.ap-collab-btn{background:#007AFF;color:#fff;font-size:12px;font-weight:600;padding:5px 14px;border-radius:8px;cursor:pointer;}
+.ap-toolbar{background:rgba(44,44,46,.9);border-bottom:1px solid #3a3a3c;padding:7px 16px;display:flex;align-items:center;gap:8px;}
+.ap-tb-btn{padding:5px 12px;border-radius:8px;font-size:12px;cursor:pointer;background:#3a3a3c;color:#fff;display:flex;align-items:center;gap:4px;border:1px solid #555;}
+.ap-tb-btn.accent{background:#007AFF;border-color:#007AFF;}
+.ap-layout{display:grid;grid-template-columns:180px 1fr 190px;height:420px;}
+.ap-sheets{background:rgba(28,28,30,.95);border-right:1px solid #3a3a3c;padding:10px 0;}
+.ap-sheet-item{padding:8px 14px;font-size:13px;cursor:pointer;color:#aaa;display:flex;align-items:center;gap:7px;border-radius:0 8px 8px 0;margin-right:6px;}
+.ap-sheet-item:hover{background:#3a3a3c;}
+.ap-sheet-item.active{background:#1c3a5a;color:#007AFF;font-weight:600;}
+.ap-canvas{background:#fff;overflow:auto;position:relative;}
+.ap-table{border-collapse:collapse;font-size:12.5px;width:100%;}
+.ap-table th{background:#F2F2F7;border:1px solid #E5E5EA;padding:7px 12px;font-size:11px;font-weight:600;color:#8E8E93;text-align:left;}
+.ap-table td{border:1px solid #F2F2F7;padding:7px 12px;color:#1C1C1E;}
+.ap-table tr:hover td{background:#F8F8FA;}
+.ap-header-row td{background:#007AFF;color:#fff;font-weight:600;}
+.ap-alt-row td{background:#F9F9FB;}
+.ap-total-row td{background:#E8F4FF;font-weight:700;color:#007AFF;border-top:2px solid #007AFF;}
+.ap-cell-selected{background:#E8F4FF !important;border:2px solid #007AFF !important;}
+.ap-collab-cursor{display:inline-flex;align-items:center;gap:4px;background:#34C759;color:#fff;font-size:9px;padding:1px 6px;border-radius:3px;vertical-align:middle;margin-left:4px;}
+.ap-sidebar{background:rgba(28,28,30,.95);border-left:1px solid #3a3a3c;padding:14px;}
+.ap-side-head{font-size:11px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;}
+.ap-collab-user{display:flex;align-items:center;gap:9px;padding:8px;background:#1C1C1E;border-radius:8px;margin-bottom:8px;}
+.ap-ca{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.ap-cu-name{font-size:12.5px;color:#fff;font-weight:500;}
+.ap-cu-status{font-size:11px;color:#8E8E93;}
+.ap-chart-preview{background:#1C1C1E;border-radius:8px;padding:12px;margin-top:14px;}
+.ap-chart-bars{display:flex;align-items:flex-end;gap:5px;height:80px;}
+.ap-bar{flex:1;border-radius:3px 3px 0 0;background:#007AFF;opacity:.85;}
+.ap-statusbar{background:rgba(28,28,30,.95);padding:5px 16px;display:flex;gap:14px;font-size:11px;color:#8E8E93;border-top:1px solid #3a3a3c;}
+
+/* ── COMPARISON TABLE ── */
+table.cmp{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin:16px 0;}
+table.cmp thead tr{background:var(--at-dark);color:#fff;}
+table.cmp th{padding:11px 16px;font-family:'Fira Code',monospace;font-size:11.5px;letter-spacing:.04em;text-align:left;}
+table.cmp td{padding:11px 16px;background:var(--paper);border-bottom:1px solid var(--rule);font-size:13.5px;}
+table.cmp tr:last-child td{border-bottom:none;}
+table.cmp .yes{color:#155724;font-weight:700;}
+table.cmp .no{color:#721C24;}
+table.cmp .par{color:#7A5C00;}
+
+/* ── FLOW DIAGRAM ── */
+.flow-diagram{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:28px;margin:18px 0;}
+.flow-diagram h4{font-family:'Fraunces',serif;font-size:17px;font-weight:700;margin-bottom:20px;color:var(--ink);text-align:center;}
+.flow-row{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.flow-box{border-radius:8px;padding:12px 18px;text-align:center;min-width:120px;border:2px solid;}
+.fb-icon{font-size:24px;margin-bottom:4px;}
+.fb-name{font-size:12px;font-weight:700;}
+.fb-sub{font-family:'Fira Code',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.flow-arrow{font-size:22px;padding:0 8px;color:#9CA3AF;flex-shrink:0;}
+.fb-at{background:#FFF3CC;border-color:#FFBF00;color:#172B4D;}
+.fb-zo{background:#FFECEC;border-color:#E42527;color:#721C24;}
+.fb-ap{background:#E8F4FF;border-color:#007AFF;color:#0A3A6E;}
+.fb-cloud{background:#F0F4FF;border-color:#6366F1;color:#3730A3;}
+.fb-user{background:#F0FDF4;border-color:#34C759;color:#065F46;}
+
+/* ── CONCLUSION ── */
+.conclusion{border-radius:10px;overflow:hidden;margin-top:46px;}
+.con-head{background:linear-gradient(90deg,var(--at-dark),#2D4A7A);padding:18px 30px;}
+.con-head h3{font-family:'Fraunces',serif;font-size:21px;color:#FFBF00;font-weight:700;}
+.con-body{background:#0D1B2A;padding:24px 30px;}
+.con-body p{font-size:14.5px;color:#B0BEC5;line-height:1.8;}
+.con-body strong{color:#FFBF00;}
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Cloud Computing · 10 Mark Answer · Spreadsheet Collaboration</div>
+  <h1>Collaborating on <em>Spreadsheets</em><br>in the Cloud — Using Real,<br>Existing Tools</h1>
+  <div class="cover-sub">Tools covered: Airtable · Zoho Sheet · Apple Numbers for iCloud &nbsp;|&nbsp; No Microsoft, No Google</div>
+  <div class="tool-badges">
+    <span class="tb tb-at">🟡 Airtable — airtable.com</span>
+    <span class="tb tb-zo">🔴 Zoho Sheet — zoho.com/sheet</span>
+    <span class="tb tb-ap">🔵 Apple Numbers — iCloud.com</span>
+  </div>
+  <div class="marks">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- SECTION 1: INTRO -->
+<div class="sec"><span class="sec-pill" style="background:#FFBF00;color:#172B4D;">01</span><span class="sec-title">What is Cloud Spreadsheet Collaboration?</span></div>
+<div class="intro">
+  <p><strong>Cloud spreadsheet collaboration</strong> refers to the ability of <span class="hl">multiple users in different locations</span> to simultaneously open, edit, format, and analyze the same spreadsheet stored on a cloud server — with all changes reflected in real time for every participant, without emailing files back and forth.</p>
+  <p>Unlike traditional spreadsheet software installed on a single computer, cloud-based spreadsheet tools store data on remote servers and provide access through a web browser or app. This enables <span class="hl">live co-editing, version control, commenting, role-based access, and automatic saving</span> — making it ideal for teams, institutions, and event organizers.</p>
+  <p>The three real, widely-used cloud spreadsheet tools covered below (excluding Microsoft and Google) are: <strong>Airtable</strong>, <strong>Zoho Sheet</strong>, and <strong>Apple Numbers for iCloud</strong>.</p>
+</div>
+
+<!-- FLOW DIAGRAM -->
+<div class="sec"><span class="sec-pill" style="background:#6366F1;">02</span><span class="sec-title">How Cloud Spreadsheet Collaboration Works</span></div>
+<div class="flow-diagram">
+  <h4>General Architecture of Cloud Spreadsheet Collaboration</h4>
+  <div class="flow-row">
+    <div class="flow-box fb-user"><div class="fb-icon">👩‍💻</div><div class="fb-name">User A</div><div class="fb-sub">Chennai</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box fb-cloud"><div class="fb-icon">☁️</div><div class="fb-name">Cloud Server</div><div class="fb-sub">Airtable / Zoho / iCloud</div></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box fb-user"><div class="fb-icon">👨‍💻</div><div class="fb-name">User B</div><div class="fb-sub">Bangalore</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:var(--muted);margin:10px 0;">↕ Changes sync instantly · No file sending required · Works in browser or app</div>
+  <div class="flow-row">
+    <div class="flow-box fb-at"><div class="fb-icon">🟡</div><div class="fb-name">Airtable</div><div class="fb-sub">Grid + Database</div></div>
+    <div class="flow-arrow">·</div>
+    <div class="flow-box fb-zo"><div class="fb-icon">🔴</div><div class="fb-name">Zoho Sheet</div><div class="fb-sub">Formula + Analysis</div></div>
+    <div class="flow-arrow">·</div>
+    <div class="flow-box fb-ap"><div class="fb-icon">🔵</div><div class="fb-name">Apple Numbers</div><div class="fb-sub">Design + iCloud</div></div>
+  </div>
+</div>
+
+<!-- ══════════ TOOL 1: AIRTABLE ══════════ -->
+<div class="sec"><span class="sec-pill" style="background:#FFBF00;color:#172B4D;">TOOL 1</span><span class="sec-title">Airtable — airtable.com</span></div>
+
+<div class="tool-header">
+  <div class="th-top" style="background:linear-gradient(90deg,#172B4D,#2D4A7A);">
+    <span class="th-icon">🟡</span>
+    <div>
+      <div class="th-name">Airtable</div>
+      <div class="th-url">airtable.com · Free plan + Pro plans · Used by 300,000+ organizations worldwide</div>
+    </div>
+  </div>
+  <div class="th-body">
+    <strong>What it is:</strong> Airtable is a cloud-based spreadsheet-database hybrid. It looks like a spreadsheet but has the power of a database. Multiple team members can collaborate on the same "base" (spreadsheet) in real time from any device.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-list">
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Real-time multi-user editing with colored cursors per collaborator</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Comments on individual cells — @mention teammates</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Multiple views: Grid, Calendar, Kanban, Gallery, Form</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Role-based access: Owner, Editor, Commenter, Read-only</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Rich field types: Attachments, checkboxes, dropdowns, ratings, links</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Revision history — see who changed what and when</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Automations — trigger emails or notifications when data changes</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#FFBF00;"></div>Share via link — anyone with the link can view or edit</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 1 — Airtable: TechSympo 2025 Event Registration Base (Real-time Collaboration)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#34C759;font-size:11px;">🔒</span>airtable.com/appTechSympo2025/tblRegistrations/viw3kQsympo</div><div style="font-size:11.5px;color:var(--muted);margin-left:10px;display:flex;align-items:center;gap:6px;"><span style="background:#FFBF00;color:#172B4D;font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;">3 collaborators</span></div></div>
+  <div class="at-body">
+    <!-- Topbar -->
+    <div class="at-topbar">
+      <div class="at-logo">⊛ Airtable</div>
+      <div class="at-base-name">TechSympo 2025</div>
+      <div class="at-tabs">
+        <div class="at-tab active">Registrations</div>
+        <div class="at-tab">Budget</div>
+        <div class="at-tab">Schedule</div>
+        <div class="at-tab">Results</div>
+        <div class="at-tab">+ Add table</div>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;"><div class="collab-av" style="background:#F82B60;">KR</div><div class="collab-av" style="background:#18BFFF;margin-left:-6px;">AM</div><div class="collab-av" style="background:#FFBF00;color:#172B4D;margin-left:-6px;">PR</div></div>
+        <div style="background:#FFBF00;color:#172B4D;font-size:12px;font-weight:700;padding:5px 14px;border-radius:5px;cursor:pointer;">🔗 Share</div>
+      </div>
+    </div>
+    <!-- Toolbar -->
+    <div class="at-toolbar">
+      <div class="at-btn primary">+ Add record</div>
+      <div class="at-btn">🔽 Filter</div>
+      <div class="at-btn">↕ Sort</div>
+      <div class="at-btn">👁 Group</div>
+      <div class="at-btn">🔍 Search</div>
+      <div style="margin-left:auto;display:flex;gap:6px;">
+        <div class="at-btn">📊 Grid</div>
+        <div class="at-btn">📅 Calendar</div>
+        <div class="at-btn">🗂 Kanban</div>
+      </div>
+    </div>
+    <!-- Layout -->
+    <div class="at-layout">
+      <!-- Views sidebar -->
+      <div class="at-views">
+        <div class="av-section">Views</div>
+        <div class="av-item active">📊 All Registrations</div>
+        <div class="av-item">✅ Confirmed Only</div>
+        <div class="av-item">🌐 Online Participants</div>
+        <div class="av-item">🏛 On-Campus</div>
+        <div class="av-item">📋 State-wise</div>
+        <div class="av-section" style="margin-top:12px;">Forms</div>
+        <div class="av-item">📝 Registration Form</div>
+        <div class="av-section" style="margin-top:12px;">Automations</div>
+        <div class="av-item" style="font-size:12px;">⚡ Confirm Email</div>
+        <div class="av-item" style="font-size:12px;">⚡ Notify on New</div>
+      </div>
+      <!-- Grid -->
+      <div class="at-grid">
+        <table class="at-table">
+          <thead>
+            <tr>
+              <th style="width:30px;"><input type="checkbox"></th>
+              <th><span class="col-icon">Aa</span>Participant Name</th>
+              <th><span class="col-icon">🏛</span>College</th>
+              <th><span class="col-icon">📍</span>State</th>
+              <th><span class="col-icon">💻</span>Mode</th>
+              <th><span class="col-icon">🏷</span>Event Category</th>
+              <th><span class="col-icon">✅</span>Status</th>
+              <th><span class="col-icon">📎</span>Abstract</th>
+              <th><span class="col-icon">⭐</span>Score</th>
+              <th>+</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox" checked></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="at-avatar" style="background:#F82B60;">KR</div>Kavya Rajan</div></td>
+              <td>VIT Vellore</td>
+              <td>Tamil Nadu</td>
+              <td><span class="at-badge ab-blue">🌐 Online</span></td>
+              <td><span class="at-badge ab-yellow">📄 Paper Presentation</span></td>
+              <td><span class="at-badge ab-green">✔ Confirmed</span></td>
+              <td style="color:#18BFFF;font-size:12px;">📎 Abstract.pdf</td>
+              <td>⭐⭐⭐⭐</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="at-avatar" style="background:#18BFFF;">AK</div>Arjun Kumar</div></td>
+              <td>PESIT Bangalore</td>
+              <td>Karnataka</td>
+              <td><span class="at-badge ab-blue">🌐 Online</span></td>
+              <td><span class="at-badge ab-purple">🧠 Technical Quiz</span></td>
+              <td><span class="at-badge ab-green">✔ Confirmed</span></td>
+              <td style="color:#9CA3AF;font-size:12px;">—</td>
+              <td>⭐⭐⭐⭐⭐</td>
+              <td></td>
+            </tr>
+            <tr class="">
+              <td><input type="checkbox"></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="at-avatar" style="background:#FFBF00;color:#172B4D;">PR</div>Priya Ramesh</div></td>
+              <td class="at-cell-edit">DTU Delhi &nbsp;<span style="font-size:9px;background:#FFBF00;color:#172B4D;padding:1px 5px;border-radius:2px;font-weight:700;">Editing · PR</span></td>
+              <td>Delhi</td>
+              <td><span class="at-badge ab-blue">🌐 Online</span></td>
+              <td><span class="at-badge ab-yellow">📄 Paper Presentation</span></td>
+              <td><span class="at-badge ab-yellow">⏳ Pending</span></td>
+              <td style="color:#18BFFF;font-size:12px;">📎 Paper.pdf</td>
+              <td>—</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="at-avatar" style="background:#34C759;">SM</div>Sneha Menon</div></td>
+              <td>TKM Kollam</td>
+              <td>Kerala</td>
+              <td><span class="at-badge ab-yellow">🏛 On-Campus</span></td>
+              <td><span class="at-badge ab-blue">💻 Coding Challenge</span></td>
+              <td><span class="at-badge ab-green">✔ Confirmed</span></td>
+              <td style="color:#9CA3AF;font-size:12px;">—</td>
+              <td>⭐⭐⭐</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="at-avatar" style="background:#F82B60;">RT</div>Ravi Teja</div></td>
+              <td>JNTU Hyderabad</td>
+              <td>Telangana</td>
+              <td><span class="at-badge ab-blue">🌐 Online</span></td>
+              <td><span class="at-badge ab-purple">🏗 Project Expo</span></td>
+              <td><span class="at-badge ab-red">✗ Cancelled</span></td>
+              <td style="color:#18BFFF;font-size:12px;">📎 Expo.pdf</td>
+              <td>—</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td><div style="display:flex;align-items:center;gap:7px;"><div class="at-avatar" style="background:#6366F1;">MK</div>Meera Kumar</div></td>
+              <td>CET Trivandrum</td>
+              <td>Kerala</td>
+              <td><span class="at-badge ab-yellow">🏛 On-Campus</span></td>
+              <td><span class="at-badge ab-purple">🧠 Technical Quiz</span></td>
+              <td><span class="at-badge ab-green">✔ Confirmed</span></td>
+              <td style="color:#9CA3AF;font-size:12px;">—</td>
+              <td>⭐⭐⭐⭐</td>
+              <td></td>
+            </tr>
+            <tr style="background:#FAFAF8;">
+              <td colspan="10" style="padding:8px 12px;font-size:12px;color:#9CA3AF;">+ Add a record &nbsp;·&nbsp; 312 total records · Showing 1–6</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Collab bar -->
+    <div class="at-collab-bar">
+      <span>👥 Active now:</span>
+      <div class="collab-av" style="background:#F82B60;">KR</div><span style="color:#fff;">Kavya</span>
+      <div class="collab-av" style="background:#18BFFF;margin-left:8px;">AM</div><span style="color:#fff;">Arjun</span>
+      <div class="collab-av" style="background:#FFBF00;color:#172B4D;margin-left:8px;">PR</div><span style="color:#fff;">Priya · editing Row 3</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;">
+        <span>Completion:</span>
+        <div class="at-progress"><div class="at-progress-fill" style="width:72%;"></div></div>
+        <span style="color:#FFBF00;font-weight:600;">72% confirmed</span>
+        <span>🔄 Auto-saved · 2s ago</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TOOL 2: ZOHO SHEET ══════════ -->
+<div class="sec"><span class="sec-pill" style="background:#E42527;">TOOL 2</span><span class="sec-title">Zoho Sheet — zoho.com/sheet</span></div>
+
+<div class="tool-header">
+  <div class="th-top" style="background:linear-gradient(90deg,#B71C1C,#E42527);">
+    <span class="th-icon">🔴</span>
+    <div>
+      <div class="th-name">Zoho Sheet</div>
+      <div class="th-url">zoho.com/sheet · Part of Zoho Workplace · Free for up to 5 users · 75M+ Zoho users worldwide</div>
+    </div>
+  </div>
+  <div class="th-body">
+    <strong>What it is:</strong> Zoho Sheet is a full-featured cloud spreadsheet tool from Zoho — comparable to Excel Online but completely independent of Microsoft and Google. It supports real-time collaboration, hundreds of functions, charts, pivot tables, and integrates with Zoho CRM, Zoho Forms, and Zoho Analytics.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-list">
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>Live co-editing — see collaborators' cursors in real time</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>Cell-level locking — protect specific cells from editing</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>Comments and chat built into the spreadsheet</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>Import/Export: .xlsx, .csv, .ods, .pdf</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>400+ functions including statistical, financial, and text</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>Pivot tables and advanced charts for data analysis</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>Conditional formatting, data validation, drop-down lists</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#E42527;"></div>Publish sheets as web pages or embed in websites</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 2 — Zoho Sheet: Budget & Expense Tracker with Formula Bar (Live Collaboration)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#34C759;font-size:11px;">🔒</span>sheet.zoho.com/sheet/open/techsympo2025-budget/Budget_Tracker</div><div style="margin-left:10px;font-size:11.5px;color:var(--muted);">2 editing now</div></div>
+  <div class="zo-body">
+    <div class="zo-topbar">
+      <div class="zo-logo">Z Zoho Sheet</div>
+      <div class="zo-file">TechSympo2025_Budget.zsheet</div>
+      <div class="zo-tabs">
+        <div class="zo-tab active">File</div>
+        <div class="zo-tab">Edit</div>
+        <div class="zo-tab">View</div>
+        <div class="zo-tab">Insert</div>
+        <div class="zo-tab">Format</div>
+        <div class="zo-tab">Data</div>
+        <div class="zo-tab">Chart</div>
+        <div class="zo-tab">Collaborate</div>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;"><div class="collab-av" style="background:#E42527;width:24px;height:24px;font-size:10px;">AK</div><div class="collab-av" style="background:#2196F3;width:24px;height:24px;font-size:10px;margin-left:-6px;">SM</div></div>
+        <div style="background:#E42527;color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:4px;cursor:pointer;">Share</div>
+      </div>
+    </div>
+    <div class="zo-ribbon">
+      <div class="zo-btn">✂</div><div class="zo-btn">📋</div><div class="zo-btn"><b>B</b></div><div class="zo-btn"><i>I</i></div><div class="zo-btn"><u>U</u></div>
+      <div style="width:1px;height:20px;background:#E5E5E5;margin:0 4px;"></div>
+      <div class="zo-btn">Σ</div><div class="zo-btn primary">📊 Chart</div><div class="zo-btn">🔽 Filter</div><div class="zo-btn">↕ Sort</div><div class="zo-btn primary">🔗 Share</div>
+      <div style="margin-left:auto;font-size:11.5px;color:var(--muted);">Auto-saved · 🔄 All changes synced</div>
+    </div>
+    <div class="zo-formula-bar">
+      <div class="zo-cell-ref">E9</div>
+      <div class="zo-fx">fx</div>
+      <div class="zo-formula">=SUMIF(B3:B8,"Confirmed",D3:D8)</div>
+    </div>
+    <div style="display:flex;height:340px;">
+      <div class="zo-row-headers">
+        <div class="zo-rh" style="background:#F0F0F0;font-weight:700;color:#9CA3AF;">ROW</div>
+        <div class="zo-rh" style="background:#FFF0F0;font-weight:700;color:#E42527;">1</div>
+        <div class="zo-rh">2</div><div class="zo-rh">3</div><div class="zo-rh">4</div>
+        <div class="zo-rh">5</div><div class="zo-rh">6</div><div class="zo-rh">7</div>
+        <div class="zo-rh">8</div>
+        <div class="zo-rh" style="background:#FFF0F0;font-weight:700;color:#E42527;">9</div>
+        <div class="zo-rh">10</div>
+      </div>
+      <div class="zo-grid">
+        <table class="zo-table">
+          <thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead>
+          <tbody>
+            <tr class="zo-header-row">
+              <td colspan="7" style="text-align:center;font-size:13.5px;">TechSympo 2025 — Budget Tracker &nbsp;|&nbsp; <span style="font-weight:400;font-size:12px;color:rgba(228,37,39,.7);">Shared · 4 editors · Last edit: Arjun · 1 min ago</span></td>
+            </tr>
+            <tr>
+              <td style="font-weight:700;background:#FFF5F5;">Budget Item</td>
+              <td style="font-weight:700;background:#FFF5F5;">Status</td>
+              <td style="font-weight:700;background:#FFF5F5;">Allocated (₹)</td>
+              <td style="font-weight:700;background:#FFF5F5;">Spent (₹)</td>
+              <td style="font-weight:700;background:#FFF5F5;">Balance (₹)</td>
+              <td style="font-weight:700;background:#FFF5F5;">Owner</td>
+              <td style="font-weight:700;background:#FFF5F5;">Remarks</td>
+            </tr>
+            <tr>
+              <td>🎤 Inauguration</td><td><span class="at-badge ab-green">Confirmed</span></td>
+              <td>15,000</td><td>12,400</td>
+              <td style="color:#107c10;font-weight:600;">=C3-D3 → 2,600</td>
+              <td>Arjun K.</td><td>✔ Stage arranged</td>
+            </tr>
+            <tr>
+              <td>📡 AV Equipment</td><td><span class="at-badge ab-green">Confirmed</span></td>
+              <td>20,000</td><td>18,500</td>
+              <td style="color:#107c10;font-weight:600;">1,500</td>
+              <td>Suresh M.</td><td>✔ Vendor paid</td>
+            </tr>
+            <tr>
+              <td class="zo-cell-active">🍱 Catering<span class="zo-cursor"></span><span class="zo-user-tag">Sneha editing</span></td>
+              <td><span class="at-badge ab-yellow">In Progress</span></td>
+              <td>25,000</td><td>19,800</td>
+              <td style="color:#107c10;font-weight:600;">5,200</td>
+              <td>Sneha M.</td><td>Partial payment</td>
+            </tr>
+            <tr>
+              <td>🎁 Prizes & Certs</td><td><span class="at-badge ab-green">Confirmed</span></td>
+              <td>10,000</td><td>8,750</td>
+              <td style="color:#107c10;font-weight:600;">1,250</td>
+              <td>Kavya S.</td><td>✔ Ordered</td>
+            </tr>
+            <tr>
+              <td>🖨 Printing</td><td><span class="at-badge ab-green">Confirmed</span></td>
+              <td>5,000</td><td>3,200</td>
+              <td style="color:#107c10;font-weight:600;">1,800</td>
+              <td>Arjun K.</td><td>✔ Complete</td>
+            </tr>
+            <tr>
+              <td>📡 Streaming Setup</td><td><span class="at-badge ab-yellow">In Progress</span></td>
+              <td>8,000</td><td>5,500</td>
+              <td style="color:#107c10;font-weight:600;">2,500</td>
+              <td>Ravi T.</td><td>Testing ongoing</td>
+            </tr>
+            <tr class="zo-total-row">
+              <td>TOTAL</td><td>—</td>
+              <td style="font-weight:700;">₹83,000</td>
+              <td style="font-weight:700;">₹68,150</td>
+              <td style="color:#E42527;font-weight:700;">=SUMIF → ₹14,850</td>
+              <td colspan="2" style="font-size:11.5px;color:var(--muted);">82% utilized · On track</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="zo-statusbar">
+      <span>📊 Sheet 1 of 4: Budget</span>
+      <span>SUM: ₹68,150 &nbsp;·&nbsp; COUNT: 6 &nbsp;·&nbsp; AVG: ₹11,358</span>
+      <div style="margin-left:auto;display:flex;gap:12px;">
+        <span style="color:#107c10;font-weight:600;">✔ Auto-saved</span>
+        <span>📜 34 versions</span>
+        <span>🔒 SSL Encrypted</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ TOOL 3: APPLE NUMBERS ══════════ -->
+<div class="sec"><span class="sec-pill" style="background:#007AFF;">TOOL 3</span><span class="sec-title">Apple Numbers (iCloud) — icloud.com/numbers</span></div>
+
+<div class="tool-header">
+  <div class="th-top" style="background:linear-gradient(90deg,#1C1C1E,#2C2C2E);">
+    <span class="th-icon">🔵</span>
+    <div>
+      <div class="th-name">Apple Numbers for iCloud</div>
+      <div class="th-url">icloud.com/numbers · Free with Apple ID · Available on Mac, iPad, iPhone, and any web browser</div>
+    </div>
+  </div>
+  <div class="th-body">
+    <strong>What it is:</strong> Apple Numbers is Apple's cloud spreadsheet application, available for free with any Apple ID. When saved to iCloud Drive, spreadsheets can be collaborated on in real time from a browser (icloud.com) or the Numbers app on any Apple device — or even shared with Windows users via a browser link.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-list">
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Real-time collaboration via iCloud — collaborator cursors visible</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Share via link — works in browser for non-Apple users too</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Beautiful pre-built templates for reports, budgets, schedules</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Interactive charts that update automatically with data</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Multiple tables on one sheet — rich layout control</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Data from forms automatically populate Numbers sheets</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Export to Excel, PDF, CSV with one click</div>
+      <div class="feat-item"><div class="feat-dot" style="background:#007AFF;"></div>Password protection for shared spreadsheets</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 3 — Apple Numbers (iCloud): Results & Scoring Sheet (Collaborative)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#34C759;font-size:11px;">🔒</span>icloud.com/numbers/TechSympo2025_Results · Collaboration: ON · 3 participants</div></div>
+  <div class="ap-body">
+    <div class="ap-topbar">
+      <div class="ap-logo"> Numbers</div>
+      <div class="ap-title">TechSympo2025_Results.numbers · iCloud</div>
+      <div style="display:flex;align-items:center;gap:8px;margin-right:10px;">
+        <div style="display:flex;"><div class="collab-av" style="background:#007AFF;width:24px;height:24px;font-size:10px;">KS</div><div class="collab-av" style="background:#34C759;width:24px;height:24px;font-size:10px;margin-left:-6px;">AK</div><div class="collab-av" style="background:#FF9500;width:24px;height:24px;font-size:10px;margin-left:-6px;">DR</div></div>
+        <div class="ap-collab-btn">👥 Collaborate</div>
+      </div>
+    </div>
+    <div class="ap-toolbar">
+      <div class="ap-tb-btn">+ Table</div>
+      <div class="ap-tb-btn">📊 Chart</div>
+      <div class="ap-tb-btn">🖼 Image</div>
+      <div class="ap-tb-btn">✍ Text</div>
+      <div style="width:1px;height:20px;background:#555;margin:0 6px;"></div>
+      <div class="ap-tb-btn">Σ Formula</div>
+      <div class="ap-tb-btn">🔢 Format</div>
+      <div style="margin-left:auto;display:flex;gap:6px;">
+        <div class="ap-tb-btn">📤 Export</div>
+        <div class="ap-tb-btn accent">🔗 Share Link</div>
+      </div>
+    </div>
+    <div class="ap-layout">
+      <!-- Sheets panel -->
+      <div class="ap-sheets">
+        <div style="padding:10px 14px;font-size:10.5px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:.1em;">Sheets</div>
+        <div class="ap-sheet-item active">📊 Results</div>
+        <div class="ap-sheet-item">📋 Registrations</div>
+        <div class="ap-sheet-item">💰 Budget</div>
+        <div class="ap-sheet-item">📅 Schedule</div>
+        <div class="ap-sheet-item" style="color:#007AFF;font-size:12.5px;">+ Add Sheet</div>
+        <div style="padding:10px 14px;font-size:10.5px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:.1em;margin-top:14px;">View</div>
+        <div class="ap-sheet-item">🔍 Zoom: 100%</div>
+        <div class="ap-sheet-item">📐 Page Layout</div>
+        <div class="ap-sheet-item">📖 Print Preview</div>
+      </div>
+      <!-- Canvas -->
+      <div class="ap-canvas">
+        <div style="padding:14px 18px;">
+          <div style="font-size:11.5px;font-weight:700;color:#8E8E93;text-transform:uppercase;letter-spacing:.08em;margin-bottom:10px;">TABLE 1 — Event Results &amp; Scores</div>
+          <table class="ap-table" style="width:100%;">
+            <thead>
+              <tr><th>#</th><th>Participant</th><th>College</th><th>State</th><th>Event</th><th>Judge 1</th><th>Judge 2</th><th>Judge 3</th><th>Total/30</th><th>Rank</th></tr>
+            </thead>
+            <tbody>
+              <tr class="ap-header-row">
+                <td colspan="10" style="text-align:center;font-size:13px;">📊 TechSympo 2025 — Paper Presentation Results &nbsp;|&nbsp; <span style="font-weight:400;font-size:11.5px;opacity:.8;">Last updated by Dr. Ramesh · 3 min ago</span></td>
+              </tr>
+              <tr>
+                <td style="color:#8E8E93;font-size:12px;">1</td>
+                <td style="font-weight:600;">Kavya Rajan</td>
+                <td style="font-size:12.5px;">VIT Vellore</td>
+                <td>Tamil Nadu</td>
+                <td style="font-size:12.5px;">Paper Presentation</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">9</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">8</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;" class="ap-cell-selected">9 <span class="ap-collab-cursor">DR</span></td>
+                <td style="text-align:center;font-weight:700;color:#34C759;font-size:14px;">26</td>
+                <td style="text-align:center;font-weight:700;color:#FFD700;font-size:14px;">🥇 1st</td>
+              </tr>
+              <tr class="ap-alt-row">
+                <td style="color:#8E8E93;font-size:12px;">2</td>
+                <td style="font-weight:600;">Arjun Kumar</td>
+                <td style="font-size:12.5px;">PESIT Bangalore</td>
+                <td>Karnataka</td>
+                <td style="font-size:12.5px;">Paper Presentation</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">8</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">9</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">8</td>
+                <td style="text-align:center;font-weight:700;color:#34C759;font-size:14px;">25</td>
+                <td style="text-align:center;font-weight:700;color:#C0C0C0;font-size:14px;">🥈 2nd</td>
+              </tr>
+              <tr>
+                <td style="color:#8E8E93;font-size:12px;">3</td>
+                <td style="font-weight:600;">Priya Ramesh</td>
+                <td style="font-size:12.5px;">DTU Delhi</td>
+                <td>Delhi</td>
+                <td style="font-size:12.5px;">Paper Presentation</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">7</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">8</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">7</td>
+                <td style="text-align:center;font-weight:700;color:#34C759;font-size:14px;">22</td>
+                <td style="text-align:center;font-weight:700;color:#CD7F32;font-size:14px;">🥉 3rd</td>
+              </tr>
+              <tr class="ap-alt-row">
+                <td style="color:#8E8E93;font-size:12px;">4</td>
+                <td style="font-weight:600;">Sneha Menon</td>
+                <td style="font-size:12.5px;">TKM Kollam</td>
+                <td>Kerala</td>
+                <td style="font-size:12.5px;">Paper Presentation</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">6</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">7</td>
+                <td style="text-align:center;font-weight:600;color:#007AFF;">7</td>
+                <td style="text-align:center;font-weight:700;color:#FF9500;font-size:14px;">20</td>
+                <td style="text-align:center;color:#6B7280;">4th</td>
+              </tr>
+              <tr class="ap-total-row">
+                <td colspan="5" style="font-size:12.5px;">Average Score (All Participants)</td>
+                <td style="text-align:center;">7.5</td>
+                <td style="text-align:center;">8.0</td>
+                <td style="text-align:center;">7.75</td>
+                <td style="text-align:center;font-size:14px;">23.25</td>
+                <td style="font-size:12px;">AVG</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Sidebar -->
+      <div class="ap-sidebar">
+        <div class="ap-side-head">Collaborators</div>
+        <div class="ap-collab-user">
+          <div class="ap-ca" style="background:#007AFF;">KS</div>
+          <div><div class="ap-cu-name">Kavya S.</div><div class="ap-cu-status">🔵 Results Sheet</div></div>
+        </div>
+        <div class="ap-collab-user">
+          <div class="ap-ca" style="background:#34C759;">AK</div>
+          <div><div class="ap-cu-name">Arjun K.</div><div class="ap-cu-status">🟢 Registrations</div></div>
+        </div>
+        <div class="ap-collab-user">
+          <div class="ap-ca" style="background:#FF9500;">DR</div>
+          <div><div class="ap-cu-name">Dr. Ramesh</div><div class="ap-cu-status">🟠 Scoring · Row 1</div></div>
+        </div>
+        <div class="ap-chart-preview">
+          <div style="font-size:10.5px;font-weight:700;color:#8E8E93;margin-bottom:8px;">SCORE CHART</div>
+          <div class="ap-chart-bars">
+            <div class="ap-bar" style="height:87%;background:#007AFF;"></div>
+            <div class="ap-bar" style="height:83%;background:#34C759;"></div>
+            <div class="ap-bar" style="height:73%;background:#FF9500;"></div>
+            <div class="ap-bar" style="height:67%;background:#FF3B30;"></div>
+          </div>
+          <div style="display:flex;gap:4px;margin-top:5px;font-size:9.5px;color:#8E8E93;">
+            <div style="flex:1;text-align:center;">Kavya</div>
+            <div style="flex:1;text-align:center;">Arjun</div>
+            <div style="flex:1;text-align:center;">Priya</div>
+            <div style="flex:1;text-align:center;">Sneha</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;background:#1C1C1E;border-radius:8px;padding:10px;border:1px solid #3a3a3c;">
+          <div style="font-size:10.5px;font-weight:700;color:#8E8E93;margin-bottom:5px;">SHARE SETTINGS</div>
+          <div style="font-size:12px;color:#fff;margin-bottom:4px;">🔗 Link: Anyone</div>
+          <div style="font-size:12px;color:#34C759;font-weight:600;">✎ Can Edit</div>
+          <div style="font-size:11px;color:#8E8E93;margin-top:4px;">Expires: Apr 30, 2025</div>
+        </div>
+        <div style="margin-top:10px;background:#0D2A0D;border-radius:8px;padding:8px;text-align:center;">
+          <div style="font-size:11.5px;color:#34C759;font-weight:600;">✔ iCloud Synced</div>
+          <div style="font-size:10.5px;color:#8E8E93;margin-top:2px;">All changes saved</div>
+        </div>
+      </div>
+    </div>
+    <div class="ap-statusbar">
+      <span>📋 4 Sheets</span>
+      <span>SUM: 93 &nbsp;·&nbsp; AVG: 23.25 &nbsp;·&nbsp; MIN: 20 &nbsp;·&nbsp; MAX: 26</span>
+      <div style="margin-left:auto;display:flex;gap:12px;">
+        <span style="color:#34C759;font-weight:600;">☁ iCloud Saved</span>
+        <span>👥 3 collaborators active</span>
+        <span>📤 Export as .xlsx</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="sec"><span class="sec-pill" style="background:#6366F1;">04</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead><tr><th>Feature</th><th>🟡 Airtable</th><th>🔴 Zoho Sheet</th><th>🔵 Apple Numbers</th></tr></thead>
+  <tbody>
+    <tr><td>Real-time Collaboration</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes (iCloud)</td></tr>
+    <tr><td>Works in Browser (No Install)</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes (icloud.com)</td></tr>
+    <tr><td>Free Plan Available</td><td class="yes">✔ Yes (5 members)</td><td class="yes">✔ Yes (5 users)</td><td class="yes">✔ Free with Apple ID</td></tr>
+    <tr><td>Formula Support</td><td class="par">⚠ Basic</td><td class="yes">✔ 400+ functions</td><td class="yes">✔ Full support</td></tr>
+    <tr><td>Database-style Fields</td><td class="yes">✔ Yes (core feature)</td><td class="no">✗ No</td><td class="no">✗ No</td></tr>
+    <tr><td>Charts & Visualizations</td><td class="par">⚠ Limited</td><td class="yes">✔ Full charts</td><td class="yes">✔ Beautiful charts</td></tr>
+    <tr><td>Automations</td><td class="yes">✔ Yes (built-in)</td><td class="par">⚠ Via Zoho Flow</td><td class="no">✗ No</td></tr>
+    <tr><td>Export to .xlsx / .csv</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td></tr>
+    <tr><td>Best For</td><td>Data tracking, events</td><td>Accounting, analysis</td><td>Clean reports, scoring</td></tr>
+  </tbody>
+</table>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Cloud spreadsheet collaboration has evolved far beyond Microsoft Excel and Google Sheets. Three powerful, real, and widely-used alternatives are:
+      <br><br>
+      <strong>🟡 Airtable</strong> — ideal when the spreadsheet needs to function like a structured database, with rich field types (attachments, dropdowns, checkboxes), multiple views (Kanban, Calendar, Form), automations, and team-wide collaboration. Used heavily by event teams, startups, and educators worldwide.
+      <br><br>
+      <strong>🔴 Zoho Sheet</strong> — a full-featured cloud spreadsheet with 400+ functions, pivot tables, charts, conditional formatting, and real-time co-editing. It integrates seamlessly with Zoho CRM, Zoho Forms, and Zoho Analytics — making it a strong enterprise choice, especially in India where Zoho has massive adoption.
+      <br><br>
+      <strong>🔵 Apple Numbers (iCloud)</strong> — a beautifully designed cloud spreadsheet available free to all Apple ID holders. With real-time iCloud collaboration, browser access for non-Apple users, interactive charts, and elegant templates, it is ideal for scoring sheets, reports, and structured data that needs to look professional.
+      <br><br>
+      All three tools store data securely in the cloud, enable simultaneous multi-user editing, auto-save all changes, and provide sharing options with access control — making them excellent choices for cloud-based spreadsheet collaboration in academic and professional settings.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

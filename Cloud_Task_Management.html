@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Schedule & Task Management – 10 Mark Exam Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--as-coral:#E8385A;--as-light:#FFF0F4;--tr-blue:#0052CC;--tr-sky:#0079BF;--tr-light:#E6EEFF;--cu-purple:#7B68EE;--cu-light:#EDE9FE;--bg:#F4F3F0;--paper:#FFFFFF;--ink:#1A1A1A;--muted:#6B7280;--rule:#E4E2DC;--soft:#F0EEE9;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Manrope',sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.75;}
+
+.cover{background:linear-gradient(150deg,#FFF5F8 0%,#FFF0F4 30%,#EDE9FE 70%,#E6EEFF 100%);padding:54px 64px 48px;border-bottom:3px solid;border-image:linear-gradient(90deg,#E8385A,#7B68EE,#0052CC) 1;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;right:-80px;top:-80px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(232,56,90,.09) 0%,transparent 65%);}
+.cover::after{content:'';position:absolute;left:-60px;bottom:-60px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(123,104,238,.08) 0%,transparent 65%);}
+.cover-tag{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cu-purple);margin-bottom:14px;}
+.cover h1{font-family:'Crimson Pro',serif;font-size:40px;line-height:1.18;color:var(--ink);max-width:760px;font-weight:700;}
+.cover h1 .a{color:var(--as-coral);} .cover h1 .t{color:var(--tr-sky);} .cover h1 .c{color:var(--cu-purple);}
+.cover-sub{margin-top:12px;font-size:13.5px;color:var(--muted);max-width:680px;}
+.tool-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.tp{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:700;font-family:'Fira Code',monospace;border:1.5px solid;}
+.tp-a{background:var(--as-light);border-color:var(--as-coral);color:var(--as-coral);}
+.tp-t{background:var(--tr-light);border-color:var(--tr-blue);color:var(--tr-blue);}
+.tp-c{background:var(--cu-light);border-color:var(--cu-purple);color:var(--cu-purple);}
+.marks{margin-top:26px;display:inline-block;background:var(--ink);color:#fff;font-family:'Fira Code',monospace;font-size:12px;padding:6px 20px;border-radius:4px;letter-spacing:.07em;}
+
+.wrap{max-width:980px;margin:0 auto;padding:50px 44px 80px;}
+.exam-note{background:#FFFBEA;border:1.5px solid #F0D060;border-left:5px solid #D4A017;border-radius:8px;padding:14px 20px;margin:22px 0 10px;font-size:13.5px;}
+.exam-note strong{color:#7A5C00;}
+
+.sec{display:flex;align-items:center;gap:14px;margin:50px 0 18px;}
+.sec-tag{font-family:'Fira Code',monospace;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 13px;border-radius:20px;flex-shrink:0;border:1.5px solid;}
+.st-i{background:var(--as-light);color:var(--as-coral);border-color:#FFAABA;}
+.st-1{background:var(--as-light);color:var(--as-coral);border-color:#FFAABA;}
+.st-2{background:var(--tr-light);border-color:#7BA9FF;color:var(--tr-blue);}
+.st-3{background:var(--cu-light);border-color:#B5ADFF;color:var(--cu-purple);}
+.st-c{background:var(--soft);color:var(--muted);border-color:var(--rule);}
+.sec-title{font-family:'Crimson Pro',serif;font-size:23px;color:var(--ink);font-weight:700;}
+
+.intro-card{background:var(--paper);border:1px solid var(--rule);border-left:5px solid var(--cu-purple);border-radius:8px;padding:22px 26px;margin-bottom:10px;}
+.intro-card p+p{margin-top:10px;}
+.hl-a{background:var(--as-light);color:var(--as-coral);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-t{background:var(--tr-light);color:var(--tr-blue);padding:1px 5px;border-radius:3px;font-weight:700;}
+.hl-c{background:var(--cu-light);color:var(--cu-purple);padding:1px 5px;border-radius:3px;font-weight:700;}
+
+.def-box{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 22px;margin:12px 0;}
+.def-box h4{font-family:'Crimson Pro',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.def-box p{font-size:13.5px;color:var(--muted);}
+
+.flow-wrap{background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:26px;margin:16px 0;}
+.flow-wrap h4{font-family:'Crimson Pro',serif;font-size:16px;font-weight:700;text-align:center;margin-bottom:20px;color:var(--ink);}
+.flow-row{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;}
+.fbox{border-radius:8px;padding:12px 14px;text-align:center;min-width:110px;border:2px solid;}
+.fi{font-size:22px;margin-bottom:4px;} .fn{font-size:11.5px;font-weight:700;} .fs{font-family:'Fira Code',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.farr{font-size:20px;padding:0 6px;color:#C7C7CC;flex-shrink:0;}
+.fb-u{background:var(--soft);border-color:var(--rule);color:var(--ink);}
+.fb-a{background:var(--as-light);border-color:var(--as-coral);color:var(--as-coral);}
+.fb-t{background:var(--tr-light);border-color:var(--tr-blue);color:var(--tr-blue);}
+.fb-c{background:var(--cu-light);border-color:var(--cu-purple);color:var(--cu-purple);}
+.fb-cl{background:#F0F9FF;border-color:#7DD3FC;color:#0369A1;}
+
+.tool-banner{border-radius:10px;overflow:hidden;margin-bottom:8px;}
+.tb-head{padding:16px 24px;display:flex;align-items:center;gap:14px;}
+.tb-icon{font-size:30px;}
+.tb-name{font-family:'Crimson Pro',serif;font-size:18px;font-weight:700;color:#fff;}
+.tb-url{font-family:'Fira Code',monospace;font-size:11px;color:rgba(255,255,255,.6);margin-top:2px;}
+.tb-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:18px 24px;color:var(--muted);font-size:14px;}
+.tb-body strong{color:var(--ink);}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:10px;}
+.feat-item{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:var(--ink);}
+.fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+
+.mock-label{font-family:'Fira Code',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin:26px 0 10px;}
+.mock-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+.win{border:1px solid #D1CBC0;border-radius:12px;overflow:hidden;box-shadow:0 8px 36px rgba(0,0,0,.12);}
+.win-bar{background:#EEECE8;padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #E0DDD8;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.url-bar{flex:1;background:#fff;border:1px solid #D6D3D1;border-radius:18px;padding:5px 16px;font-size:12px;color:#9CA3AF;display:flex;align-items:center;gap:7px;}
+.live-pill{display:inline-flex;align-items:center;gap:5px;padding:2px 10px;border-radius:10px;font-size:11px;font-weight:700;}
+.live-dot{width:6px;height:6px;border-radius:50%;animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.25;}}
+
+/* ── ASANA ── */
+.as-body{background:#fff;font-family:'Manrope',sans-serif;}
+.as-topbar{background:#fff;border-bottom:1px solid #EBEBEB;padding:0 16px;display:flex;align-items:center;gap:12px;height:52px;}
+.as-logo{display:flex;align-items:center;gap:8px;}
+.as-logo-icon{width:28px;height:28px;background:linear-gradient(135deg,#F06A9E,#E8385A);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;}
+.as-logo-text{font-family:'Crimson Pro',serif;font-weight:700;font-size:18px;color:var(--ink);}
+.as-search{flex:1;max-width:340px;background:#F5F4F0;border:1px solid #E8E6E0;border-radius:8px;padding:7px 14px;font-size:13px;color:#9CA3AF;display:flex;align-items:center;gap:8px;margin:0 14px;}
+.as-topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.as-av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fff;}
+.as-new-btn{background:var(--as-coral);color:#fff;font-size:12.5px;font-weight:700;padding:7px 16px;border-radius:8px;cursor:pointer;}
+.as-layout{display:grid;grid-template-columns:210px 1fr 250px;height:530px;}
+.as-sidebar{background:#FAF9F7;border-right:1px solid #EBEBEB;overflow-y:auto;padding:10px 0;}
+.as-sidebar-section{font-family:'Fira Code',monospace;font-size:10px;font-weight:500;color:#9CA3AF;text-transform:uppercase;letter-spacing:.12em;padding:8px 16px 4px;}
+.as-sidebar-item{display:flex;align-items:center;gap:9px;padding:8px 16px;font-size:13px;color:var(--ink);cursor:pointer;border-radius:0 8px 8px 0;margin-right:6px;}
+.as-sidebar-item:hover{background:#F0EEE9;}
+.as-sidebar-item.active{background:#FFF0F4;color:var(--as-coral);font-weight:700;}
+.as-count-badge{margin-left:auto;background:#F0EEE9;color:var(--muted);font-size:10.5px;font-weight:700;padding:1px 6px;border-radius:8px;}
+.as-main{display:flex;flex-direction:column;overflow:hidden;}
+.as-project-header{padding:14px 20px 0;border-bottom:1px solid #F0EEE9;}
+.as-project-title{font-family:'Crimson Pro',serif;font-size:20px;font-weight:700;color:var(--ink);}
+.as-view-tabs{display:flex;gap:0;margin-top:10px;}
+.as-vt{padding:8px 16px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;font-weight:500;}
+.as-vt.active{color:var(--as-coral);border-bottom-color:var(--as-coral);font-weight:700;}
+.as-progress-wrap{padding:10px 20px;border-bottom:1px solid #F0EEE9;display:flex;align-items:center;gap:12px;}
+.as-progress-track{flex:1;height:6px;background:#F0EEE9;border-radius:3px;overflow:hidden;}
+.as-progress-fill{height:100%;background:linear-gradient(90deg,var(--as-coral),#F06A9E);border-radius:3px;}
+.as-progress-label{font-size:12px;font-weight:700;color:var(--as-coral);white-space:nowrap;}
+.as-toolbar{padding:8px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #F5F4F0;}
+.as-tb-btn{padding:5px 12px;border:1px solid #E4E2DC;border-radius:6px;font-size:12px;cursor:pointer;background:#fff;color:var(--muted);font-weight:500;}
+.as-tb-btn.primary{background:var(--as-coral);color:#fff;border-color:var(--as-coral);font-weight:700;}
+.as-task-list{flex:1;overflow-y:auto;}
+.as-section-head{display:flex;align-items:center;gap:8px;padding:10px 20px 6px;background:#FAF9F7;border-bottom:1px solid #F0EEE9;position:sticky;top:0;z-index:2;}
+.as-sh-name{font-size:12.5px;font-weight:700;color:var(--ink);}
+.as-sh-count{font-size:11px;color:var(--muted);background:#EBEBEB;padding:1px 7px;border-radius:8px;}
+.as-sh-add{font-size:11.5px;color:var(--as-coral);font-weight:600;cursor:pointer;margin-left:auto;}
+.as-task-row{display:grid;grid-template-columns:26px 1fr 110px 90px 80px 100px;gap:0;padding:8px 20px;border-bottom:1px solid #F5F4F0;align-items:center;cursor:pointer;}
+.as-task-row:hover{background:#FFFAF9;}
+.as-check{width:16px;height:16px;border-radius:50%;border:2px solid #D6D3D1;flex-shrink:0;}
+.as-check.done{background:var(--as-coral);border-color:var(--as-coral);color:#fff;font-size:9px;display:flex;align-items:center;justify-content:center;}
+.as-check.done::after{content:'✓';}
+.as-task-name{font-size:13px;color:var(--ink);font-weight:500;display:flex;align-items:center;gap:6px;}
+.as-task-name.struck{text-decoration:line-through;color:var(--muted);}
+.as-priority{font-size:10px;font-weight:700;padding:2px 6px;border-radius:8px;}
+.ap-high{background:#FECDD3;color:#BE123C;} .ap-med{background:#FEF3C7;color:#92400E;} .ap-low{background:#D1FAE5;color:#065F46;} .ap-urg{background:#FEE2E2;color:#DC2626;}
+.as-assignee{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--muted);}
+.as-due{font-size:11.5px;color:var(--muted);font-family:'Fira Code',monospace;}
+.as-due.today{color:var(--as-coral);font-weight:700;}
+.as-status{font-size:11px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.ss-todo{background:#F5F4F0;color:#6B7280;} .ss-prog{background:#DBEAFE;color:#1D4ED8;} .ss-done{background:#D1FAE5;color:#065F46;} .ss-block{background:#FEE2E2;color:#DC2626;}
+.as-statusbar{background:#FAF9F7;border-top:1px solid #EBEBEB;padding:6px 20px;display:flex;align-items:center;gap:12px;font-size:11.5px;color:var(--muted);}
+.as-detail{background:#FAFAF8;border-left:1px solid #EBEBEB;overflow-y:auto;display:flex;flex-direction:column;}
+.as-detail-head{padding:14px 16px;border-bottom:1px solid #EBEBEB;}
+.as-detail-title{font-family:'Crimson Pro',serif;font-size:15px;font-weight:700;color:var(--ink);}
+.as-field-row{padding:8px 16px;border-bottom:1px solid #F5F4F0;display:flex;gap:10px;font-size:12.5px;}
+.as-field-label{color:var(--muted);width:75px;flex-shrink:0;font-size:12px;}
+.as-field-value{color:var(--ink);font-weight:600;flex:1;}
+.as-subtasks{padding:10px 16px;}
+.as-st-head{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.as-subtask{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12.5px;border-bottom:1px solid #F5F4F0;}
+.as-subtask:last-child{border-bottom:none;}
+.as-st-check{width:14px;height:14px;border-radius:50%;border:1.5px solid #D6D3D1;flex-shrink:0;}
+.as-st-check.done{background:var(--as-coral);border-color:var(--as-coral);color:#fff;font-size:8px;display:flex;align-items:center;justify-content:center;}
+.as-st-check.done::after{content:'✓';}
+.as-comment-section{padding:10px 16px;}
+.as-comment{display:flex;gap:8px;margin-bottom:8px;}
+.as-c-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0;}
+.as-c-body{background:#F5F4F0;border-radius:0 8px 8px 8px;padding:8px 10px;flex:1;}
+.as-c-author{font-size:11px;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.as-c-text{font-size:12px;color:var(--muted);line-height:1.5;}
+.as-c-time{font-size:10.5px;color:#D6D3D1;margin-top:3px;}
+
+/* ── TRELLO ── */
+.tr-body{background:#0052CC;}
+.tr-topbar{background:rgba(0,0,0,.25);padding:0 16px;display:flex;align-items:center;gap:12px;height:44px;border-bottom:1px solid rgba(255,255,255,.15);}
+.tr-logo{font-family:'Crimson Pro',serif;font-weight:700;font-size:17px;color:#fff;display:flex;align-items:center;gap:6px;}
+.tr-logo-icon{width:22px;height:22px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:12px;}
+.tr-board-name{font-size:14px;font-weight:700;color:#fff;border-left:1px solid rgba(255,255,255,.3);padding-left:12px;}
+.tr-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.tr-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid rgba(255,255,255,.4);}
+.tr-invite-btn{background:rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;cursor:pointer;border:1px solid rgba(255,255,255,.3);}
+.tr-board{display:flex;gap:10px;padding:12px;overflow-x:auto;height:508px;align-items:flex-start;}
+.tr-list{background:#F1F2F4;border-radius:10px;width:238px;flex-shrink:0;max-height:100%;display:flex;flex-direction:column;}
+.tr-list-header{padding:10px 12px 8px;display:flex;align-items:center;justify-content:space-between;}
+.tr-list-title{font-size:13.5px;font-weight:700;color:var(--ink);}
+.tr-list-count{font-size:11px;color:var(--muted);background:#DDD;padding:1px 6px;border-radius:8px;}
+.tr-cards{overflow-y:auto;padding:0 8px 8px;display:flex;flex-direction:column;gap:6px;}
+.tr-card{background:#fff;border-radius:8px;padding:10px 12px;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.08);border:1.5px solid transparent;}
+.tr-card:hover{border-color:#0052CC;}
+.tr-card.selected{border-color:#0052CC;box-shadow:0 0 0 2px rgba(0,82,204,.2);}
+.tr-card-labels{display:flex;gap:4px;margin-bottom:7px;flex-wrap:wrap;}
+.tr-label{height:8px;border-radius:4px;}
+.tr-card-title{font-size:13px;font-weight:600;color:var(--ink);line-height:1.45;margin-bottom:7px;}
+.tr-card-meta{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.tr-due{font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:5px;display:flex;align-items:center;gap:3px;font-family:'Fira Code',monospace;}
+.tr-due.green{background:#D1FAE5;color:#065F46;} .tr-due.amber{background:#FEF3C7;color:#92400E;} .tr-due.red{background:#FEE2E2;color:#DC2626;} .tr-due.blue{background:#DBEAFE;color:#1D4ED8;}
+.tr-card-avs{display:flex;margin-left:auto;}
+.tr-card-av{width:20px;height:20px;border-radius:50%;font-size:8.5px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;border:1.5px solid #fff;margin-left:-5px;}
+.tr-card-av:first-child{margin-left:0;}
+.tr-checklist-mini{font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:3px;}
+.tr-checklist-mini.done{color:#065F46;font-weight:700;}
+.tr-add-card{display:flex;align-items:center;gap:6px;padding:8px 12px;color:var(--muted);font-size:13px;cursor:pointer;border-radius:6px;margin:0 4px 4px;}
+.tr-add-card:hover{background:#DDD;color:var(--ink);}
+
+/* ── CLICKUP ── */
+.cu-body{background:#fff;}
+.cu-topbar{background:#7B68EE;padding:0 16px;display:flex;align-items:center;gap:12px;height:52px;}
+.cu-logo{font-family:'Crimson Pro',serif;font-weight:700;font-size:18px;color:#fff;display:flex;align-items:center;gap:8px;}
+.cu-logo-icon{width:26px;height:26px;background:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;}
+.cu-workspace{font-size:13px;color:rgba(255,255,255,.8);}
+.cu-topbar-right{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.cu-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,.4);}
+.cu-new-task{background:#fff;color:var(--cu-purple);font-size:12.5px;font-weight:700;padding:6px 14px;border-radius:6px;cursor:pointer;}
+.cu-layout{display:grid;grid-template-columns:210px 1fr 255px;height:520px;}
+.cu-sidebar{background:#F9F8FF;border-right:1px solid #EDE9FE;overflow-y:auto;padding:10px 0;}
+.cu-sidebar-section{font-family:'Fira Code',monospace;font-size:10px;font-weight:500;color:#A78BFA;text-transform:uppercase;letter-spacing:.12em;padding:8px 14px 4px;}
+.cu-sidebar-item{display:flex;align-items:center;gap:9px;padding:8px 14px;font-size:13px;color:var(--ink);cursor:pointer;border-radius:0 8px 8px 0;margin-right:6px;}
+.cu-sidebar-item:hover{background:var(--cu-light);}
+.cu-sidebar-item.active{background:var(--cu-light);color:var(--cu-purple);font-weight:700;}
+.cu-space-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.cu-team-section{padding:10px 14px;}
+.cu-ts-head{font-size:10.5px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.cu-member{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:12.5px;color:var(--ink);}
+.cu-m-av{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:700;color:#fff;flex-shrink:0;}
+.cu-m-status{display:flex;align-items:center;gap:3px;margin-left:auto;}
+.sdot{width:6px;height:6px;border-radius:50%;}
+.cu-main{display:flex;flex-direction:column;overflow:hidden;}
+.cu-view-bar{background:#fff;border-bottom:1px solid #EDE9FE;padding:8px 16px;display:flex;align-items:center;gap:8px;}
+.cu-view-btn{padding:5px 14px;border-radius:20px;font-size:12.5px;font-weight:600;cursor:pointer;color:var(--muted);border:1.5px solid var(--rule);}
+.cu-view-btn.active{background:var(--cu-purple);color:#fff;border-color:var(--cu-purple);}
+.cu-gantt{flex:1;overflow:auto;display:flex;flex-direction:column;}
+.cu-gantt-header{display:grid;grid-template-columns:210px 1fr;background:#F9F8FF;border-bottom:1px solid #EDE9FE;position:sticky;top:0;z-index:3;}
+.cu-gh-task{padding:8px 16px;font-size:11px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.07em;}
+.cu-gh-days{display:flex;border-left:1px solid #EDE9FE;}
+.cu-gh-day{width:28px;flex-shrink:0;text-align:center;font-size:10px;color:#C4B5FD;border-right:1px solid #F3F0FF;padding:4px 0;font-family:'Fira Code',monospace;}
+.cu-gh-day.today-day{background:var(--cu-purple);color:#fff;}
+.cu-gantt-rows{flex:1;position:relative;}
+.cu-gantt-row{display:grid;grid-template-columns:210px 1fr;border-bottom:1px solid #F5F3FF;align-items:center;min-height:36px;}
+.cu-gantt-row:hover{background:#FAFAFF;}
+.cu-gr-label{padding:6px 14px;font-size:12.5px;color:var(--ink);display:flex;align-items:center;gap:8px;border-right:1px solid #EDE9FE;}
+.cu-gr-label.section-label{background:#F3F0FF;font-weight:700;color:var(--cu-purple);font-size:12px;}
+.cu-task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.cu-gr-bar-area{position:relative;height:36px;overflow:hidden;}
+.cu-bar{position:absolute;height:18px;top:9px;border-radius:4px;display:flex;align-items:center;padding:0 6px;font-size:10px;font-weight:700;color:#fff;overflow:hidden;white-space:nowrap;}
+.cu-today-line{position:absolute;top:0;bottom:0;width:2px;background:var(--cu-purple);z-index:2;pointer-events:none;}
+.cu-today-line::before{content:'TODAY';position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:8px;font-weight:700;color:var(--cu-purple);white-space:nowrap;font-family:'Fira Code',monospace;}
+.cu-right{background:#F9F8FF;border-left:1px solid #EDE9FE;overflow-y:auto;}
+.cu-rp-head{padding:14px 14px 8px;font-size:11px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid #EDE9FE;}
+.cu-task-card{padding:12px 14px;border-bottom:1px solid #EDE9FE;}
+.cu-tc-color{height:3px;border-radius:2px;margin-bottom:10px;}
+.cu-tc-title{font-family:'Crimson Pro',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px;}
+.cu-tc-row{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid #F3F0FF;font-size:12.5px;}
+.cu-tc-row:last-child{border-bottom:none;}
+.cu-tc-icon{font-size:13px;flex-shrink:0;width:18px;text-align:center;}
+.cu-tc-label{color:var(--muted);font-size:12px;}
+.cu-tc-value{font-weight:600;color:var(--ink);font-size:12px;}
+.cu-priority-badge{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.pb-urgent{background:#FEE2E2;color:#DC2626;} .pb-high{background:#FECDD3;color:#BE123C;} .pb-normal{background:#DBEAFE;color:#1D4ED8;}
+.cu-custom-fields{padding:10px 14px;border-bottom:1px solid #EDE9FE;}
+.cu-cf-head{font-size:11px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px;}
+.cu-cf-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:12px;border-bottom:1px solid #F3F0FF;}
+.cu-cf-row:last-child{border-bottom:none;}
+.cu-cf-label{color:var(--muted);} .cu-cf-val{font-weight:700;color:var(--ink);}
+.cu-progress-ring{padding:12px 14px;text-align:center;}
+.cu-pr-head{font-size:11px;font-weight:700;color:#A78BFA;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+.cu-ring-bg{fill:none;stroke:#EDE9FE;stroke-width:6;}
+.cu-ring-fill{fill:none;stroke:var(--cu-purple);stroke-width:6;stroke-linecap:round;stroke-dasharray:188;stroke-dashoffset:47;transform:rotate(-90deg);transform-origin:50% 50%;}
+.cu-ring-text{font-size:16px;font-weight:800;fill:var(--cu-purple);}
+.cu-statusbar{background:#F9F8FF;border-top:1px solid #EDE9FE;padding:6px 14px;display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--muted);}
+
+/* ── KEY POINTS ── */
+.key-points{background:var(--paper);border:1px solid var(--rule);border-radius:8px;padding:18px 22px;margin:16px 0;}
+.key-points h4{font-family:'Crimson Pro',serif;font-size:15px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.kp-item{display:flex;align-items:flex-start;gap:10px;padding:6px 0;border-bottom:1px solid var(--soft);font-size:13.5px;}
+.kp-item:last-child{border-bottom:none;}
+.kp-num{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+
+table.cmp{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin:16px 0;}
+table.cmp thead tr{background:var(--ink);color:#fff;}
+table.cmp th{padding:11px 16px;font-family:'Fira Code',monospace;font-size:11px;letter-spacing:.04em;text-align:left;}
+table.cmp td{padding:10px 16px;background:var(--paper);border-bottom:1px solid var(--rule);font-size:13.5px;color:var(--ink);}
+table.cmp tr:last-child td{border-bottom:none;}
+table.cmp .yes{color:#059669;font-weight:700;} table.cmp .par{color:#D97706;} table.cmp .no{color:#DC2626;}
+
+.conclusion{border-radius:10px;overflow:hidden;margin-top:46px;box-shadow:0 4px 20px rgba(0,0,0,.08);}
+.con-head{background:linear-gradient(90deg,#E8385A,#7B68EE,#0052CC);padding:18px 30px;}
+.con-head h3{font-family:'Crimson Pro',serif;font-size:21px;color:#fff;font-weight:700;}
+.con-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:24px 30px;}
+.con-body p{font-size:14.5px;color:var(--muted);line-height:1.8;}
+.con-body strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Cloud Computing · 10 Mark Exam Answer · Schedules &amp; Task Management</div>
+  <h1>Schedule &amp; Task<br>Management in the Cloud —<br><span class="a">Asana</span>, <span class="t">Trello</span> &amp; <span class="c">ClickUp</span></h1>
+  <div class="cover-sub">Three real, widely-used cloud task management platforms · Exam-focused with definitions, diagrams, realistic UI screenshots &amp; comparison · No Microsoft/Google tools</div>
+  <div class="tool-pills">
+    <span class="tp tp-a">✅ Asana — asana.com</span>
+    <span class="tp tp-t">📋 Trello — trello.com</span>
+    <span class="tp tp-c">⚡ ClickUp — clickup.com</span>
+  </div>
+  <div class="marks">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<div class="exam-note">
+  <strong>📝 Exam Tip:</strong> For "Schedule and Task Management in Cloud Computing," always include: (1) Definition, (2) Advantages over offline tools, (3) 2–3 real platforms with features, (4) Workflow diagram, (5) Comparison table, and (6) Conclusion. Use TechSympo 2025 examples throughout for a contextual, application-oriented answer that earns full marks.
+</div>
+
+<div class="sec"><span class="sec-tag st-i">01</span><span class="sec-title">Definition &amp; Introduction</span></div>
+<div class="intro-card">
+  <p><strong>Cloud-based Schedule and Task Management</strong> refers to the use of internet-hosted applications that allow teams to <strong>create tasks, assign responsibilities, set deadlines, track progress, and manage project schedules</strong> collaboratively in real time — from any device, anywhere in the world, without installing software.</p>
+  <p>Unlike traditional to-do lists or local spreadsheets, cloud task management provides <span class="hl-a">real-time visibility</span> of every task's status to the entire team, <span class="hl-t">visual Kanban boards</span> for intuitive workflow management, and <span class="hl-c">Gantt charts</span> for timeline-based project scheduling — all automatically saved and synced in the cloud.</p>
+  <p>The three platforms covered are: <span class="hl-a"><strong>Asana</strong></span> (structured list and timeline management), <span class="hl-t"><strong>Trello</strong></span> (Kanban board-based visual workflow), and <span class="hl-c"><strong>ClickUp</strong></span> (all-in-one platform with Gantt, Docs, Goals, and Dashboards).</p>
+</div>
+
+<div class="def-box">
+  <h4>📘 Key Terminology for Exam</h4>
+  <p>
+    <strong>Task:</strong> A single unit of work with a title, assignee, due date, and status (To Do / In Progress / Done).<br>
+    <strong>Kanban Board:</strong> A visual board with columns representing workflow stages — tasks move as cards between columns.<br>
+    <strong>Gantt Chart:</strong> A horizontal bar chart showing tasks plotted against a timeline — used to visualise schedules and dependencies.<br>
+    <strong>Milestone:</strong> A key project checkpoint (e.g., "Registration Closes", "Event Day").<br>
+    <strong>Dependency:</strong> Task B cannot start until Task A is complete — e.g., "Live Stream Setup" depends on "AV Equipment Test".<br>
+    <strong>Subtask:</strong> A smaller work item nested inside a main task — breaks complex work into steps.<br>
+    <strong>Assignee:</strong> The specific team member responsible for completing a task.<br>
+    <strong>Sprint:</strong> A fixed work period (1–2 weeks) during which a defined set of tasks must be completed.
+  </p>
+</div>
+
+<div class="sec"><span class="sec-tag st-c">02</span><span class="sec-title">Cloud Task Management — Workflow Diagram</span></div>
+<div class="flow-wrap">
+  <h4>How Cloud Task Management Works — Step by Step</h4>
+  <div class="flow-row" style="margin-bottom:14px;">
+    <div class="fbox fb-u"><div class="fi">📋</div><div class="fn">Create Task</div><div class="fs">Title · Due · Priority</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-cl"><div class="fi">☁️</div><div class="fn">Cloud Sync</div><div class="fs">Stored instantly</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">👤</div><div class="fn">Assign Member</div><div class="fs">Email alert sent</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">🔄</div><div class="fn">Update Status</div><div class="fs">To Do → Done</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">📊</div><div class="fn">Track Progress</div><div class="fs">All see real-time</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:var(--muted);margin:8px 0 14px;">No email chains · Full audit trail · Auto-reminders · Works on all devices</div>
+  <div class="flow-row" style="gap:16px;">
+    <div class="fbox fb-a"><div class="fi">✅</div><div class="fn">Asana</div><div class="fs">List + Timeline</div></div>
+    <div class="fbox fb-t"><div class="fi">📋</div><div class="fn">Trello</div><div class="fs">Kanban Board</div></div>
+    <div class="fbox fb-c"><div class="fi">⚡</div><div class="fn">ClickUp</div><div class="fs">Gantt + All Views</div></div>
+  </div>
+</div>
+
+<!-- ══ TOOL 1: ASANA ══ -->
+<div class="sec"><span class="sec-tag st-1">TOOL 1</span><span class="sec-title">Asana — asana.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#2D1B2E,#E8385A);">
+    <span class="tb-icon">✅</span>
+    <div><div class="tb-name">Asana</div><div class="tb-url">asana.com · Free up to 15 users · 130,000+ paying customers · Used in 190 countries</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Asana is a cloud task and project management tool where work is organised in structured lists with sections, subtasks, priorities, assignees, and due dates. It offers multiple views — List, Board, Timeline (Gantt), and Calendar — all syncing in real time across the team.<br><br>
+    <strong>Key Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Task list with priority, assignee, due date, status, and custom fields</div>
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Subtasks — break complex tasks into smaller actionable steps</div>
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Timeline view (Gantt) — visual project schedule with task dependencies</div>
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Progress tracking — see % completion and task counts in real time</div>
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Rule-based automation — auto-assign or notify when status changes</div>
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Task comments and @mentions — collaborate within each task card</div>
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Milestones — mark critical checkpoints like "Event Day" or "Reg Closes"</div>
+      <div class="feat-item"><div class="fdot" style="background:#E8385A;"></div>Workload view — see which team members are over or under-tasked</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 1 — Asana: TechSympo 2025 Project List View with Task Detail Panel (Real-time)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>app.asana.com/0/techsympo2025/list · 5 members · Real-time sync active</div></div>
+  <div class="as-body">
+    <div class="as-topbar">
+      <div class="as-logo"><div class="as-logo-icon">⬡</div><div class="as-logo-text">Asana</div></div>
+      <div class="as-search"><span>🔍</span>Search tasks…</div>
+      <div class="as-topbar-right">
+        <div class="live-pill" style="background:#FFF0F4;color:#E8385A;border:1px solid #FFAABA;"><div class="live-dot" style="background:#E8385A;"></div>5 active</div>
+        <div style="display:flex;">
+          <div class="as-av" style="background:#E8385A;">AK</div><div class="as-av" style="background:#0078d4;margin-left:-6px;">KR</div>
+          <div class="as-av" style="background:#059669;margin-left:-6px;">SM</div><div class="as-av" style="background:#7C3AED;margin-left:-6px;">PR</div>
+          <div class="as-av" style="background:#D97706;margin-left:-6px;">DR</div>
+        </div>
+        <div class="as-new-btn">+ Add Task</div>
+      </div>
+    </div>
+    <div class="as-layout">
+      <div class="as-sidebar">
+        <div class="as-sidebar-section">Projects</div>
+        <div class="as-sidebar-item active"><span>🎯</span>TechSympo 2025<span class="as-count-badge">24</span></div>
+        <div class="as-sidebar-item"><span>📋</span>Registration Drive</div>
+        <div class="as-sidebar-item"><span>🎤</span>Speaker Coordination</div>
+        <div class="as-sidebar-item"><span>💻</span>Tech Infrastructure</div>
+        <div class="as-sidebar-section" style="margin-top:8px;">Views</div>
+        <div class="as-sidebar-item active"><span>☰</span>List</div>
+        <div class="as-sidebar-item"><span>⊞</span>Board</div>
+        <div class="as-sidebar-item"><span>📅</span>Timeline</div>
+        <div class="as-sidebar-item"><span>🗓</span>Calendar</div>
+        <div class="as-sidebar-item"><span>📊</span>Workload</div>
+        <div class="as-sidebar-section" style="margin-top:8px;">My Work</div>
+        <div class="as-sidebar-item"><span>📌</span>My Tasks<span class="as-count-badge">8</span></div>
+        <div class="as-sidebar-item"><span>🔔</span>Inbox<span class="as-count-badge" style="background:#FFF0F4;color:#E8385A;">3</span></div>
+      </div>
+      <div class="as-main">
+        <div class="as-project-header">
+          <div class="as-project-title">🎯 TechSympo 2025</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;margin-bottom:0;">Annual National Level Technical Symposium · CSE Department · Hybrid Mode</div>
+          <div class="as-view-tabs">
+            <div class="as-vt active">☰ List</div><div class="as-vt">⊞ Board</div>
+            <div class="as-vt">📅 Timeline</div><div class="as-vt">📊 Progress</div>
+          </div>
+        </div>
+        <div class="as-progress-wrap">
+          <div style="font-size:12px;color:var(--muted);">Overall Progress</div>
+          <div class="as-progress-track"><div class="as-progress-fill" style="width:62%;"></div></div>
+          <div class="as-progress-label">62% complete · 15/24 tasks done</div>
+        </div>
+        <div class="as-toolbar">
+          <div class="as-tb-btn primary">+ Add Task</div>
+          <div class="as-tb-btn">🔽 Filter</div><div class="as-tb-btn">↕ Sort</div><div class="as-tb-btn">👥 Group</div>
+          <div style="margin-left:auto;font-size:12px;color:var(--muted);">Event Day in 5 days · Mar 28</div>
+        </div>
+        <div class="as-task-list">
+          <div class="as-section-head"><span class="as-sh-name">📋 Pre-Event Planning</span><span class="as-sh-count">8 tasks</span><span class="as-sh-add">+ Add task</span></div>
+          <div style="display:grid;grid-template-columns:26px 1fr 110px 90px 80px 100px;gap:0;padding:6px 20px;font-size:11px;font-weight:700;color:#9CA3AF;border-bottom:1px solid #F5F4F0;">
+            <div></div><div>Task Name</div><div>Assignee</div><div>Due Date</div><div>Priority</div><div>Status</div>
+          </div>
+          <div class="as-task-row">
+            <div class="as-check done"></div>
+            <div class="as-task-name struck">Create event brochure &amp; poster</div>
+            <div class="as-assignee"><div class="as-av" style="background:#E8385A;width:20px;height:20px;font-size:8px;">KR</div>Kavya</div>
+            <div class="as-due">Mar 15</div><div class="as-priority ap-med">Medium</div>
+            <div class="as-status ss-done">✓ Done</div>
+          </div>
+          <div class="as-task-row">
+            <div class="as-check done"></div>
+            <div class="as-task-name struck">Set up registration form (Zoho Forms)</div>
+            <div class="as-assignee"><div class="as-av" style="background:#059669;width:20px;height:20px;font-size:8px;">SM</div>Sneha</div>
+            <div class="as-due">Mar 6</div><div class="as-priority ap-high">High</div>
+            <div class="as-status ss-done">✓ Done</div>
+          </div>
+          <div class="as-task-row">
+            <div class="as-check"></div>
+            <div class="as-task-name" style="font-weight:600;">Confirm all judges &amp; guest speakers<span class="as-priority ap-high">High</span></div>
+            <div class="as-assignee"><div class="as-av" style="background:#E8385A;width:20px;height:20px;font-size:8px;">AK</div>Arjun</div>
+            <div class="as-due today">TODAY</div><div class="as-priority ap-high">High</div>
+            <div class="as-status ss-prog">● In Progress</div>
+          </div>
+          <div class="as-section-head"><span class="as-sh-name">🎉 Event Day — Mar 28</span><span class="as-sh-count">10 tasks</span><span class="as-sh-add">+ Add task</span></div>
+          <div class="as-task-row">
+            <div class="as-check"></div>
+            <div class="as-task-name">Set up stage &amp; AV equipment in Hall A</div>
+            <div class="as-assignee"><div class="as-av" style="background:#0078d4;width:20px;height:20px;font-size:8px;">KR</div>Kavya</div>
+            <div class="as-due">Mar 28</div><div class="as-priority ap-high">High</div>
+            <div class="as-status ss-todo">○ To Do</div>
+          </div>
+          <div class="as-task-row" style="background:#FFFAF9;">
+            <div class="as-check" style="border-color:#E8385A;"></div>
+            <div class="as-task-name" style="color:#E8385A;font-weight:700;">🔴 Launch Live Stream for online participants<span class="as-priority ap-urg">Urgent</span></div>
+            <div class="as-assignee"><div class="as-av" style="background:#7C3AED;width:20px;height:20px;font-size:8px;">PR</div>Priya</div>
+            <div class="as-due today">Mar 28 9AM</div><div class="as-priority ap-urg">Urgent</div>
+            <div class="as-status ss-todo">○ To Do</div>
+          </div>
+          <div class="as-task-row">
+            <div class="as-check"></div>
+            <div class="as-task-name">Coordinate paper presentation panels (3 rooms)</div>
+            <div class="as-assignee"><div class="as-av" style="background:#D97706;width:20px;height:20px;font-size:8px;">DR</div>Dr. R</div>
+            <div class="as-due">Mar 28</div><div class="as-priority ap-med">Medium</div>
+            <div class="as-status ss-todo">○ To Do</div>
+          </div>
+          <div class="as-section-head"><span class="as-sh-name">📦 Post-Event</span><span class="as-sh-count">6 tasks</span><span class="as-sh-add">+ Add task</span></div>
+          <div class="as-task-row">
+            <div class="as-check"></div>
+            <div class="as-task-name">Send e-certificates to all participants</div>
+            <div class="as-assignee"><div class="as-av" style="background:#059669;width:20px;height:20px;font-size:8px;">SM</div>Sneha</div>
+            <div class="as-due">Mar 30</div><div class="as-priority ap-med">Medium</div>
+            <div class="as-status ss-todo">○ To Do</div>
+          </div>
+          <div class="as-task-row">
+            <div class="as-check"></div>
+            <div class="as-task-name">Upload recordings to Drive &amp; share links</div>
+            <div class="as-assignee"><div class="as-av" style="background:#0078d4;width:20px;height:20px;font-size:8px;">KR</div>Kavya</div>
+            <div class="as-due">Mar 29</div><div class="as-priority ap-low">Low</div>
+            <div class="as-status ss-block">⚠ Blocked</div>
+          </div>
+        </div>
+        <div class="as-statusbar">
+          <div class="live-pill" style="background:#FFF0F4;color:#E8385A;border:1px solid #FFAABA;"><div class="live-dot" style="background:#E8385A;"></div>Live · 5 collaborators</div>
+          <span>24 tasks · 15 done · 9 remaining</span>
+          <span style="margin-left:auto;">🔔 Reminders ON · Automations active</span>
+        </div>
+      </div>
+      <!-- Detail panel -->
+      <div class="as-detail">
+        <div class="as-detail-head"><div class="as-detail-title">🔴 Launch Live Stream</div></div>
+        <div class="as-field-row"><div class="as-field-label">Assignee</div><div class="as-field-value" style="display:flex;align-items:center;gap:6px;"><div class="as-av" style="background:#7C3AED;width:18px;height:18px;font-size:7px;">PR</div>Priya R.</div></div>
+        <div class="as-field-row"><div class="as-field-label">Due Date</div><div class="as-field-value" style="color:#E8385A;">Mar 28 · 9:00 AM</div></div>
+        <div class="as-field-row"><div class="as-field-label">Priority</div><div class="as-field-value"><span class="as-priority ap-urg">🔴 Urgent</span></div></div>
+        <div class="as-field-row"><div class="as-field-label">Status</div><div class="as-field-value"><span class="as-status ss-todo">○ To Do</span></div></div>
+        <div class="as-field-row"><div class="as-field-label">Project</div><div class="as-field-value">🎯 TechSympo 2025</div></div>
+        <div class="as-subtasks">
+          <div class="as-st-head">Subtasks (4)</div>
+          <div class="as-subtask"><div class="as-st-check done"></div><span>Test stream quality (720p/1080p)</span></div>
+          <div class="as-subtask"><div class="as-st-check done"></div><span>Share stream link in Teams channel</span></div>
+          <div class="as-subtask"><div class="as-st-check"></div><span>Go live at 9:00 AM sharp</span></div>
+          <div class="as-subtask"><div class="as-st-check"></div><span>Monitor viewer count &amp; chat</span></div>
+        </div>
+        <div class="as-comment-section">
+          <div class="as-st-head">Comments</div>
+          <div class="as-comment">
+            <div class="as-c-av" style="background:#E8385A;">AK</div>
+            <div class="as-c-body"><div class="as-c-author">Arjun K.</div><div class="as-c-text">Priya please test the stream during tech check (Mar 26). Backup stream key must be ready.</div><div class="as-c-time">2 days ago</div></div>
+          </div>
+          <div class="as-comment">
+            <div class="as-c-av" style="background:#7C3AED;">PR</div>
+            <div class="as-c-body"><div class="as-c-author">Priya R.</div><div class="as-c-text">Done! Test successful. Backup key saved in shared Drive.</div><div class="as-c-time">Yesterday</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOOL 2: TRELLO ══ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-2">TOOL 2</span><span class="sec-title">Trello — trello.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#0041A3,#0052CC);">
+    <span class="tb-icon">📋</span>
+    <div><div class="tb-name">Trello</div><div class="tb-url">trello.com · Free forever · Atlassian · 50M+ users · Kanban-first cloud task management</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Trello is a cloud-based visual project management tool built on the <strong>Kanban methodology</strong>. Work is organised as Cards on a Board with Lists (columns) representing workflow stages. Team members drag and drop cards between columns to update status — all changes are synced in real time to every team member.<br><br>
+    <strong>Key Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Kanban boards — visual columns (To Do / In Progress / Review / Done)</div>
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Cards — tasks with labels, checklists, attachments, due dates, members</div>
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Drag-and-drop — move cards between lists to update status instantly</div>
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Power-Ups — Calendar, Time Tracking, Voting, GitHub integration</div>
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Butler automation — auto-move cards when due date arrives or status changes</div>
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Colour labels — categorise cards by type (Technical, Logistics, Content)</div>
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Checklists inside cards — break tasks into smaller steps with completion tracking</div>
+      <div class="feat-item"><div class="fdot" style="background:#0052CC;"></div>Activity log — every change by every member recorded with timestamp</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 2 — Trello: TechSympo 2025 Kanban Board (4 Lists with Labelled Task Cards)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>trello.com/b/TechSympo2025 · Kanban Board · 5 members · Real-time updates</div></div>
+  <div class="tr-body">
+    <div class="tr-topbar">
+      <div class="tr-logo"><div class="tr-logo-icon">📋</div>Trello</div>
+      <div class="tr-board-name">TechSympo 2025 — Event Planning Board</div>
+      <div class="tr-topbar-right">
+        <div style="display:flex;"><div class="tr-av" style="background:#E8385A;">AK</div><div class="tr-av" style="background:#0079BF;margin-left:-6px;">KR</div><div class="tr-av" style="background:#61BD4F;margin-left:-6px;">SM</div><div class="tr-av" style="background:#7C3AED;margin-left:-6px;">PR</div><div class="tr-av" style="background:#D97706;margin-left:-6px;">DR</div></div>
+        <div style="background:rgba(255,255,255,.15);color:#fff;font-size:12px;padding:4px 10px;border-radius:5px;cursor:pointer;">🔽 Filters</div>
+        <div class="tr-invite-btn">+ Invite</div>
+        <div class="live-pill" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);"><div class="live-dot" style="background:#61BD4F;"></div>Live</div>
+      </div>
+    </div>
+    <div class="tr-board">
+      <!-- TO DO -->
+      <div class="tr-list">
+        <div class="tr-list-header"><div class="tr-list-title">📥 To Do <span class="tr-list-count">7</span></div><div style="color:var(--muted);cursor:pointer;font-size:16px;">⋯</div></div>
+        <div class="tr-cards">
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#F2D600;width:40px;"></div><div class="tr-label" style="background:#0052CC;width:30px;"></div></div>
+            <div class="tr-card-title">Set up stage &amp; AV equipment in Hall A</div>
+            <div class="tr-card-meta"><div class="tr-due amber">📅 Mar 28</div><div class="tr-checklist-mini">☑ 0/4</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#0079BF;">KR</div></div></div>
+          </div>
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#EB5A46;width:50px;"></div></div>
+            <div class="tr-card-title">🔴 Launch Live Stream for online attendees</div>
+            <div class="tr-card-meta"><div class="tr-due red">🔴 Mar 28 9AM</div><div class="tr-checklist-mini">☑ 2/4</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#7C3AED;">PR</div></div></div>
+          </div>
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#61BD4F;width:35px;"></div></div>
+            <div class="tr-card-title">Prepare welcome address PPT (Principal's speech)</div>
+            <div class="tr-card-meta"><div class="tr-due amber">📅 Mar 27</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#E8385A;">AK</div></div></div>
+          </div>
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#C377E0;width:40px;"></div></div>
+            <div class="tr-card-title">Print banner &amp; certificates (physical copies)</div>
+            <div class="tr-card-meta"><div class="tr-due amber">📅 Mar 27</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#D97706;">DR</div></div></div>
+          </div>
+        </div>
+        <div class="tr-add-card">+ Add a card</div>
+      </div>
+      <!-- IN PROGRESS -->
+      <div class="tr-list">
+        <div class="tr-list-header"><div class="tr-list-title">🔄 In Progress <span class="tr-list-count">5</span></div><div style="color:var(--muted);cursor:pointer;font-size:16px;">⋯</div></div>
+        <div class="tr-cards">
+          <div class="tr-card selected">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#0052CC;width:45px;"></div></div>
+            <div class="tr-card-title">Confirm all judges &amp; get their availability</div>
+            <div class="tr-card-meta"><div class="tr-due blue">TODAY</div><div class="tr-checklist-mini done">☑ 3/3</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#E8385A;">AK</div><div class="tr-card-av" style="background:#D97706;">DR</div></div></div>
+          </div>
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#C377E0;width:40px;"></div></div>
+            <div class="tr-card-title">Send reminder emails to all registered participants</div>
+            <div class="tr-card-meta"><div class="tr-due amber">📅 Mar 25</div><div class="tr-checklist-mini">☑ 1/2</div><div style="font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:3px;">📎 2</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#61BD4F;">SM</div></div></div>
+          </div>
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#F2D600;width:35px;"></div><div class="tr-label" style="background:#0052CC;width:35px;"></div></div>
+            <div class="tr-card-title">Final rehearsal &amp; AV check at auditorium</div>
+            <div class="tr-card-meta"><div class="tr-due blue">Mar 24</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#E8385A;">AK</div><div class="tr-card-av" style="background:#0079BF;">KR</div><div class="tr-card-av" style="background:#61BD4F;">SM</div></div></div>
+          </div>
+        </div>
+        <div class="tr-add-card">+ Add a card</div>
+      </div>
+      <!-- REVIEW -->
+      <div class="tr-list">
+        <div class="tr-list-header"><div class="tr-list-title">🔍 Review <span class="tr-list-count">3</span></div><div style="color:var(--muted);cursor:pointer;font-size:16px;">⋯</div></div>
+        <div class="tr-cards">
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#61BD4F;width:50px;"></div></div>
+            <div class="tr-card-title">TechSympo 2025 event brochure — final version</div>
+            <div class="tr-card-meta"><div class="tr-due green">✔ Mar 18</div><div style="font-size:10.5px;color:var(--muted);">📎 3</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#0079BF;">KR</div><div class="tr-card-av" style="background:#D97706;">DR</div></div></div>
+          </div>
+          <div class="tr-card">
+            <div class="tr-card-labels"><div class="tr-label" style="background:#C377E0;width:40px;"></div></div>
+            <div class="tr-card-title">Social media posts for symposium promotion</div>
+            <div class="tr-card-meta"><div class="tr-due green">✔ Mar 20</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#61BD4F;">SM</div></div></div>
+          </div>
+        </div>
+        <div class="tr-add-card">+ Add a card</div>
+      </div>
+      <!-- DONE -->
+      <div class="tr-list">
+        <div class="tr-list-header"><div class="tr-list-title">✅ Done <span class="tr-list-count">9</span></div><div style="color:var(--muted);cursor:pointer;font-size:16px;">⋯</div></div>
+        <div class="tr-cards">
+          <div class="tr-card" style="opacity:.65;"><div class="tr-card-labels"><div class="tr-label" style="background:#61BD4F;width:50px;"></div></div><div class="tr-card-title" style="text-decoration:line-through;">Create online registration form (Zoho Forms)</div><div class="tr-card-meta"><div class="tr-due green">✔ Mar 6</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#61BD4F;">SM</div></div></div></div>
+          <div class="tr-card" style="opacity:.65;"><div class="tr-card-labels"><div class="tr-label" style="background:#EB5A46;width:40px;"></div></div><div class="tr-card-title" style="text-decoration:line-through;">Book auditorium &amp; seminar halls for Mar 28</div><div class="tr-card-meta"><div class="tr-due green">✔ Mar 10</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#E8385A;">AK</div></div></div></div>
+          <div class="tr-card" style="opacity:.65;"><div class="tr-card-labels"><div class="tr-label" style="background:#F2D600;width:35px;"></div></div><div class="tr-card-title" style="text-decoration:line-through;">Sponsor confirmation &amp; payment collection</div><div class="tr-card-meta"><div class="tr-due green">✔ Mar 15</div><div class="tr-card-avs"><div class="tr-card-av" style="background:#D97706;">DR</div></div></div></div>
+          <div style="text-align:center;font-size:12px;color:var(--muted);padding:8px 0;">+ 6 more completed</div>
+        </div>
+        <div class="tr-add-card">+ Add a card</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TOOL 3: CLICKUP ══ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-3">TOOL 3</span><span class="sec-title">ClickUp — clickup.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#5B21B6,#7B68EE);">
+    <span class="tb-icon">⚡</span>
+    <div><div class="tb-name">ClickUp</div><div class="tb-url">clickup.com · Free forever · 800,000+ teams · All-in-one: Tasks, Docs, Goals, Gantt, Dashboards, Time Tracking</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> ClickUp is the most feature-rich cloud project management platform. It supports 15+ views including List, Board, Gantt, Calendar, and Mind Map. It uniquely combines tasks, docs, goals, sprints, time tracking, and dashboards into a single platform — making it suitable for every type of project from simple to-do lists to complex multi-team event planning.<br><br>
+    <strong>Key Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>15+ views — List, Board, Gantt, Calendar, Mind Map, Table, Timeline</div>
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>Gantt chart — drag-to-resize bars, automatic dependency arrows, critical path</div>
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>Goals &amp; OKRs — link tasks directly to measurable team targets</div>
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>Native time tracking — log time per task, view team workload heat map</div>
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>Custom fields — add dropdowns, numbers, ratings, dates to any task</div>
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>ClickUp Docs — write SOPs and project notes alongside tasks</div>
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>Dashboards — real-time charts: task completion, burndown, workload</div>
+      <div class="feat-item"><div class="fdot" style="background:#7B68EE;"></div>Team status indicators — see who is online, away, or offline in real time</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 3 — ClickUp: TechSympo 2025 Gantt Chart with Task Dependencies, Today Line &amp; Detail Panel</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>app.clickup.com/techsympo2025/gantt · Gantt View · 5 members · Today: Mar 23</div></div>
+  <div class="cu-body">
+    <div class="cu-topbar">
+      <div class="cu-logo"><div class="cu-logo-icon">⚡</div>ClickUp</div>
+      <div class="cu-workspace">TechSympo 2025 / Event Planning</div>
+      <div class="cu-topbar-right">
+        <div class="live-pill" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3);"><div class="live-dot" style="background:#C4B5FD;"></div>Live</div>
+        <div style="display:flex;"><div class="cu-av" style="background:#E8385A;">AK</div><div class="cu-av" style="background:#0078d4;margin-left:-6px;">KR</div><div class="cu-av" style="background:#059669;margin-left:-6px;">SM</div><div class="cu-av" style="background:#D97706;margin-left:-6px;">PR</div><div class="cu-av" style="background:#7C3AED;margin-left:-6px;">DR</div></div>
+        <div class="cu-new-task">+ Task</div>
+      </div>
+    </div>
+    <div class="cu-layout">
+      <div class="cu-sidebar">
+        <div class="cu-sidebar-section">Spaces</div>
+        <div class="cu-sidebar-item active"><div class="cu-space-dot" style="background:#E8385A;"></div>Event Planning</div>
+        <div class="cu-sidebar-item"><div class="cu-space-dot" style="background:#0078d4;"></div>Registration</div>
+        <div class="cu-sidebar-item"><div class="cu-space-dot" style="background:#059669;"></div>Speaker Mgmt</div>
+        <div class="cu-sidebar-item"><div class="cu-space-dot" style="background:#7B68EE;"></div>Tech Setup</div>
+        <div class="cu-sidebar-section" style="margin-top:8px;">Views</div>
+        <div class="cu-sidebar-item"><span>☰</span>List</div>
+        <div class="cu-sidebar-item"><span>⊞</span>Board</div>
+        <div class="cu-sidebar-item active"><span>📊</span>Gantt</div>
+        <div class="cu-sidebar-item"><span>📅</span>Calendar</div>
+        <div class="cu-sidebar-item"><span>📈</span>Dashboard</div>
+        <div class="cu-sidebar-item"><span>🎯</span>Goals</div>
+        <div class="cu-team-section">
+          <div class="cu-ts-head">Team (5)</div>
+          <div class="cu-member"><div class="cu-m-av" style="background:#E8385A;">AK</div><div><div>Arjun K.</div><div style="font-size:10px;color:var(--muted);">Coordinator</div></div><div class="cu-m-status"><div class="sdot" style="background:#22C55E;"></div><span style="font-size:10px;color:#22C55E;">Online</span></div></div>
+          <div class="cu-member"><div class="cu-m-av" style="background:#0078d4;">KR</div><div><div>Kavya R.</div><div style="font-size:10px;color:var(--muted);">AV Lead</div></div><div class="cu-m-status"><div class="sdot" style="background:#22C55E;"></div><span style="font-size:10px;color:#22C55E;">Online</span></div></div>
+          <div class="cu-member"><div class="cu-m-av" style="background:#059669;">SM</div><div><div>Sneha M.</div><div style="font-size:10px;color:var(--muted);">Registrations</div></div><div class="cu-m-status"><div class="sdot" style="background:#FCD34D;"></div><span style="font-size:10px;color:#D97706;">Away</span></div></div>
+          <div class="cu-member"><div class="cu-m-av" style="background:#7C3AED;">PR</div><div><div>Priya R.</div><div style="font-size:10px;color:var(--muted);">Tech</div></div><div class="cu-m-status"><div class="sdot" style="background:#22C55E;"></div><span style="font-size:10px;color:#22C55E;">Online</span></div></div>
+          <div class="cu-member"><div class="cu-m-av" style="background:#D97706;">DR</div><div><div>Dr. Ramesh</div><div style="font-size:10px;color:var(--muted);">Faculty</div></div><div class="cu-m-status"><div class="sdot" style="background:#E5E7EB;"></div><span style="font-size:10px;color:var(--muted);">Offline</span></div></div>
+        </div>
+      </div>
+      <!-- Gantt -->
+      <div class="cu-main">
+        <div class="cu-view-bar">
+          <div style="font-weight:700;font-size:13.5px;color:var(--ink);">📊 TechSympo 2025 — Gantt Chart</div>
+          <div style="display:flex;border:1.5px solid #EDE9FE;border-radius:20px;overflow:hidden;margin-left:10px;">
+            <div class="cu-view-btn" style="border:none;border-radius:0;">List</div>
+            <div class="cu-view-btn active" style="border:none;border-radius:0;">Gantt</div>
+            <div class="cu-view-btn" style="border:none;border-radius:0;">Board</div>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:8px;font-size:12px;color:var(--muted);">
+            <div style="padding:4px 10px;background:var(--cu-light);color:var(--cu-purple);border-radius:5px;font-weight:600;cursor:pointer;">Today ▾</div>
+            <div style="padding:4px 10px;border:1px solid var(--rule);border-radius:5px;cursor:pointer;">📅 Mar 2025</div>
+          </div>
+        </div>
+        <div class="cu-gantt">
+          <div class="cu-gantt-header">
+            <div class="cu-gh-task">Task / Schedule</div>
+            <div class="cu-gh-days">
+              <div class="cu-gh-day">14</div><div class="cu-gh-day">15</div><div class="cu-gh-day">16</div><div class="cu-gh-day">17</div>
+              <div class="cu-gh-day">18</div><div class="cu-gh-day">19</div><div class="cu-gh-day">20</div><div class="cu-gh-day">21</div>
+              <div class="cu-gh-day">22</div><div class="cu-gh-day today-day">23</div><div class="cu-gh-day">24</div><div class="cu-gh-day">25</div>
+              <div class="cu-gh-day">26</div><div class="cu-gh-day">27</div><div class="cu-gh-day">28</div><div class="cu-gh-day">29</div><div class="cu-gh-day">30</div>
+            </div>
+          </div>
+          <div class="cu-gantt-rows" style="position:relative;">
+            <div class="cu-today-line" style="left:calc(210px + 9*28px + 14px);"></div>
+            <div class="cu-gantt-row" style="background:#F3F0FF;"><div class="cu-gr-label section-label">📋 Pre-Event Planning</div><div class="cu-gr-bar-area"></div></div>
+            <div class="cu-gantt-row"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#059669;"></div>Registration Form Setup</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#059669;left:0;width:84px;opacity:.7;">✓ Done</div></div></div>
+            <div class="cu-gantt-row"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#0078d4;"></div>Event Brochure Design</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#0078d4;left:28px;width:112px;opacity:.7;">✓ Done</div></div></div>
+            <div class="cu-gantt-row"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#D97706;"></div>Speaker Confirmation</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#D97706;left:84px;width:112px;">60% · In Progress</div></div></div>
+            <div class="cu-gantt-row" style="background:#F3F0FF;"><div class="cu-gr-label section-label">🔧 Setup &amp; Rehearsal</div><div class="cu-gr-bar-area"></div></div>
+            <div class="cu-gantt-row"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#E8385A;"></div>Final Rehearsal &amp; AV Check</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#E8385A;left:280px;width:56px;">Rehearsal</div></div></div>
+            <div class="cu-gantt-row"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#7B68EE;"></div>Tech Check &amp; Stream Test</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#7B68EE;left:336px;width:28px;">TC</div></div></div>
+            <div class="cu-gantt-row"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#94A3B8;"></div>Venue &amp; Stage Decoration</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#94A3B8;left:364px;width:28px;">VD</div></div></div>
+            <div class="cu-gantt-row" style="background:#F3F0FF;"><div class="cu-gr-label section-label">🎉 Event Day — Mar 28</div><div class="cu-gr-bar-area"></div></div>
+            <div class="cu-gantt-row" style="background:#FFF8FF;"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#E8385A;"></div>🎤 Inauguration Ceremony</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:linear-gradient(90deg,#E8385A,#F06A9E);left:392px;width:56px;font-weight:700;">Inauguration</div></div></div>
+            <div class="cu-gantt-row" style="background:#FFF8FF;"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#0078d4;"></div>📄 Paper Presentation</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#0078d4;left:392px;width:84px;top:18px;">Paper Presentation</div></div></div>
+            <div class="cu-gantt-row" style="background:#FFF8FF;"><div class="cu-gr-label"><div class="cu-task-dot" style="background:#059669;"></div>🏆 Valediction &amp; Prize</div><div class="cu-gr-bar-area"><div class="cu-bar" style="background:#059669;left:448px;width:42px;">Valediction</div></div></div>
+          </div>
+        </div>
+        <div class="cu-statusbar">
+          <div class="live-pill" style="background:var(--cu-light);color:var(--cu-purple);border:1px solid #C4B5FD;"><div class="live-dot" style="background:#7B68EE;"></div>Syncing live</div>
+          <span>24 tasks · 62% complete · Gantt view</span>
+          <span style="margin-left:auto;">⏱ Time tracking ON · Dependencies enabled</span>
+        </div>
+      </div>
+      <!-- Right panel -->
+      <div class="cu-right">
+        <div class="cu-rp-head">Task Details</div>
+        <div class="cu-task-card">
+          <div class="cu-tc-color" style="background:linear-gradient(90deg,#E8385A,#F06A9E);"></div>
+          <div class="cu-tc-title">🎤 Inauguration Ceremony</div>
+          <div class="cu-tc-row"><div class="cu-tc-icon">📅</div><div class="cu-tc-label">Date</div><div class="cu-tc-value">Mar 28, 2025</div></div>
+          <div class="cu-tc-row"><div class="cu-tc-icon">⏰</div><div class="cu-tc-label">Time</div><div class="cu-tc-value">9:00 – 10:00 AM</div></div>
+          <div class="cu-tc-row"><div class="cu-tc-icon">👤</div><div class="cu-tc-label">Assignee</div><div class="cu-tc-value" style="display:flex;align-items:center;gap:5px;"><div class="cu-m-av" style="background:#E8385A;width:18px;height:18px;font-size:7px;">AK</div>Arjun K.</div></div>
+          <div class="cu-tc-row"><div class="cu-tc-icon">🚨</div><div class="cu-tc-label">Priority</div><div class="cu-tc-value"><span class="cu-priority-badge pb-urgent">🔴 Urgent</span></div></div>
+          <div class="cu-tc-row"><div class="cu-tc-icon">🔗</div><div class="cu-tc-label">Depends on</div><div class="cu-tc-value" style="color:#7B68EE;">Stage Setup ✓</div></div>
+          <div class="cu-tc-row"><div class="cu-tc-icon">📂</div><div class="cu-tc-label">List</div><div class="cu-tc-value">Event Day — Mar 28</div></div>
+        </div>
+        <div class="cu-custom-fields">
+          <div class="cu-cf-head">Custom Fields</div>
+          <div class="cu-cf-row"><span class="cu-cf-label">📍 Venue</span><span class="cu-cf-val">Hall A + Online</span></div>
+          <div class="cu-cf-row"><span class="cu-cf-label">👥 Audience</span><span class="cu-cf-val">300+ hybrid</span></div>
+          <div class="cu-cf-row"><span class="cu-cf-label">⏱ Tracked</span><span class="cu-cf-val" style="color:#7B68EE;">3h 20m</span></div>
+          <div class="cu-cf-row"><span class="cu-cf-label">📋 Checklist</span><span class="cu-cf-val" style="color:#059669;">4/6 done</span></div>
+        </div>
+        <div class="cu-progress-ring">
+          <div class="cu-pr-head">Project Progress</div>
+          <svg viewBox="0 0 80 80" width="80" height="80" style="display:block;margin:0 auto 8px;">
+            <circle class="cu-ring-bg" cx="40" cy="40" r="30"/>
+            <circle class="cu-ring-fill" cx="40" cy="40" r="30"/>
+            <text x="40" y="44" text-anchor="middle" class="cu-ring-text">62%</text>
+          </svg>
+          <div style="font-size:12px;color:var(--muted);text-align:center;">15 of 24 tasks complete</div>
+          <div style="margin-top:8px;background:var(--cu-light);border:1px solid #C4B5FD;border-radius:8px;padding:8px 10px;font-size:12px;color:var(--cu-purple);font-weight:700;text-align:center;">📅 5 days until Event Day</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEY POINTS -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-c">04</span><span class="sec-title">Key Points for Exam</span></div>
+<div class="key-points">
+  <h4>📝 8 Important Points to Write</h4>
+  <div class="kp-item"><div class="kp-num">1</div><div><strong>Definition:</strong> Cloud task management = using internet-hosted software to create, assign, prioritise, and track project tasks in real time across a distributed team from any device.</div></div>
+  <div class="kp-item"><div class="kp-num">2</div><div><strong>Advantage over offline tools:</strong> All team members see updates instantly, no file sharing needed, automatic reminders, full audit trail, cloud backup, and multi-device access from anywhere.</div></div>
+  <div class="kp-item"><div class="kp-num">3</div><div><strong>Asana</strong> uses a structured List view with sections, subtasks, priorities, and a Timeline (Gantt) view. Best for teams needing clear task ownership, deadlines, and progress tracking with percentage completion.</div></div>
+  <div class="kp-item"><div class="kp-num">4</div><div><strong>Trello</strong> uses the Kanban methodology — tasks are Cards moved between Lists (columns: To Do → In Progress → Review → Done) via drag-and-drop. Best for visual, intuitive workflow management.</div></div>
+  <div class="kp-item"><div class="kp-num">5</div><div><strong>ClickUp</strong> is the most comprehensive — 15+ views including Gantt, Board, List, Calendar, and Mind Map. It includes Goals, Docs, Time Tracking, and Dashboards — a single platform for all project management needs.</div></div>
+  <div class="kp-item"><div class="kp-num">6</div><div><strong>Kanban Board:</strong> A visual method where tasks as cards move through columns representing progress stages. Ideal for event committees tracking tasks like registration setup, AV arrangement, and post-event follow-up.</div></div>
+  <div class="kp-item"><div class="kp-num">7</div><div><strong>Gantt Chart:</strong> A bar chart showing tasks plotted against time. Used to plan schedules, visualise task dependencies (one task blocks another), and track overall progress — essential for multi-week event planning like TechSympo 2025.</div></div>
+  <div class="kp-item"><div class="kp-num">8</div><div><strong>Task Dependencies:</strong> Task B cannot start until Task A completes. Example: "Launch Live Stream" depends on "AV Equipment Setup being complete." ClickUp and Asana support dependency arrows in Gantt view.</div></div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="sec"><span class="sec-tag st-c">05</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead><tr><th>Feature</th><th>✅ Asana</th><th>📋 Trello</th><th>⚡ ClickUp</th></tr></thead>
+  <tbody>
+    <tr><td>Primary View</td><td>List + Timeline (Gantt)</td><td>Kanban Board</td><td>15+ views (Gantt, Board, List…)</td></tr>
+    <tr><td>Free Plan</td><td class="yes">✔ Up to 15 users</td><td class="yes">✔ Unlimited users</td><td class="yes">✔ Unlimited users</td></tr>
+    <tr><td>Gantt Chart</td><td class="yes">✔ Timeline view</td><td class="par">⚠ Via Power-Up only</td><td class="yes">✔ Native built-in Gantt</td></tr>
+    <tr><td>Task Dependencies</td><td class="yes">✔ Yes</td><td class="no">✗ No</td><td class="yes">✔ Yes (visual arrows)</td></tr>
+    <tr><td>Subtasks</td><td class="yes">✔ Multi-level subtasks</td><td class="par">⚠ Checklist items only</td><td class="yes">✔ Multi-level subtasks</td></tr>
+    <tr><td>Automations</td><td class="yes">✔ Rules engine</td><td class="yes">✔ Butler automation</td><td class="yes">✔ Advanced automations</td></tr>
+    <tr><td>Time Tracking</td><td class="par">⚠ Via integration</td><td class="par">⚠ Via Power-Up</td><td class="yes">✔ Native time tracking</td></tr>
+    <tr><td>Built-in Docs</td><td class="par">⚠ Via integration</td><td class="no">✗ No</td><td class="yes">✔ Native ClickUp Docs</td></tr>
+    <tr><td>Goals / OKRs</td><td class="yes">✔ Goals feature</td><td class="no">✗ No</td><td class="yes">✔ Goals + OKRs</td></tr>
+    <tr><td>Real-time Team Status</td><td class="par">⚠ Basic presence</td><td class="par">⚠ Avatar indicators</td><td class="yes">✔ Online/Away/Offline</td></tr>
+    <tr><td>Best For</td><td>Structured task lists, project tracking</td><td>Visual Kanban, simple workflows</td><td>Complex projects, all-in-one management</td></tr>
+  </tbody>
+</table>
+
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Cloud-based Schedule and Task Management has fundamentally changed how teams plan, coordinate, and execute projects. Instead of paper to-do lists or locally saved spreadsheets, teams now use cloud platforms where all tasks are visible, assigned, and tracked in real time from any device — eliminating email chains and manual follow-ups.
+      <br><br>
+      <strong>✅ Asana</strong> excels at structured task management with its list-based layout, sections, subtasks, priorities, and Timeline Gantt view. Its progress bar and 62% completion indicator give project coordinators instant visibility into overall project health, making it ideal for managing TechSympo 2025's 24 tasks across 3 phases.
+      <br><br>
+      <strong>📋 Trello</strong> is the most accessible cloud task management tool — its Kanban board of draggable cards across To Do / In Progress / Review / Done columns provides an immediately visual and intuitive workflow that any team member can understand without training. Butler automations, Power-Ups for calendar views, and colour labels make it powerful yet simple for event teams.
+      <br><br>
+      <strong>⚡ ClickUp</strong> is the most comprehensive platform — combining tasks, Gantt charts with dependency arrows, native docs, goals, time tracking, custom fields, and real-time team status indicators (Online/Away/Offline) in one cloud environment. The circular 62% progress ring, "5 days until Event Day" countdown, and Gantt bars showing task blocks from Mar 14 to Mar 30 make the entire project schedule instantly readable for all stakeholders.
+      <br><br>
+      All three tools store task data securely in the cloud, provide real-time collaboration for distributed teams, send automatic reminders, maintain a full audit log of changes, and work seamlessly across desktop, mobile, and browser — making them indispensable tools for modern cloud-based project and event management.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>

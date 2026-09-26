@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud File Storage & Sharing – 10 Mark Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --db-blue: #0061FF;
+  --db-light: #E8F0FF;
+  --db-dark: #002E99;
+  --box-blue: #0061D5;
+  --box-light: #E5EEFF;
+  --box-teal: #009EB4;
+  --pc-blue: #1E6FEB;
+  --pc-teal: #00C2B2;
+  --pc-light: #E6F8F7;
+  --bg: #F6F5F1;
+  --paper: #FFFFFF;
+  --ink: #1C1C1E;
+  --muted: #636366;
+  --rule: #E5E5EA;
+  --soft: #F2F2F7;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Source Sans 3', sans-serif; background:var(--bg); color:var(--ink); font-size:14.5px; line-height:1.75; }
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(160deg, #FAFBFF 0%, #EBF0FF 45%, #E5F8F7 100%);
+  padding:54px 64px 48px;
+  border-bottom: 3px solid;
+  border-image: linear-gradient(90deg, #0061FF, #009EB4, #1E6FEB) 1;
+  position:relative; overflow:hidden;
+}
+.cover::before { content:''; position:absolute; right:-100px; top:-100px; width:460px; height:460px; border-radius:50%; background:radial-gradient(circle, rgba(0,97,255,.09) 0%, transparent 65%); }
+.cover::after  { content:''; position:absolute; left:-60px; bottom:-60px; width:340px; height:340px; border-radius:50%; background:radial-gradient(circle, rgba(0,194,178,.08) 0%, transparent 65%); }
+.cover-tag { font-family:'Fira Code',monospace; font-size:10.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--db-blue); margin-bottom:14px; }
+.cover h1 { font-family:'Merriweather',serif; font-size:36px; line-height:1.22; color:var(--ink); max-width:760px; font-weight:900; }
+.cover h1 .d { color:var(--db-blue); }
+.cover h1 .b { color:var(--box-blue); }
+.cover h1 .p { color:var(--pc-teal); }
+.cover-sub { margin-top:13px; font-size:13.5px; color:var(--muted); max-width:660px; }
+.tool-pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:24px; }
+.tp { display:inline-flex; align-items:center; gap:8px; padding:7px 16px; border-radius:6px; font-size:12px; font-weight:700; font-family:'Fira Code',monospace; border:1.5px solid; }
+.tp-d { background:var(--db-light); border-color:var(--db-blue); color:var(--db-blue); }
+.tp-b { background:var(--box-light); border-color:var(--box-blue); color:var(--box-blue); }
+.tp-p { background:var(--pc-light); border-color:var(--pc-teal); color:var(--pc-teal); }
+.marks { margin-top:26px; display:inline-block; background:var(--ink); color:#fff; font-family:'Fira Code',monospace; font-size:12px; padding:6px 20px; border-radius:4px; letter-spacing:.07em; }
+
+/* ── WRAP ── */
+.wrap { max-width:980px; margin:0 auto; padding:50px 44px 80px; }
+
+/* ── SECTION ── */
+.sec { display:flex; align-items:center; gap:14px; margin:52px 0 18px; }
+.sec-tag { font-family:'Fira Code',monospace; font-size:10px; font-weight:500; letter-spacing:.15em; text-transform:uppercase; padding:4px 13px; border-radius:20px; flex-shrink:0; border:1.5px solid; }
+.st-i  { background:var(--db-light); color:var(--db-blue); border-color:#9BBEFF; }
+.st-1  { background:var(--db-light); color:var(--db-blue); border-color:#9BBEFF; }
+.st-2  { background:var(--box-light); color:var(--box-blue); border-color:#99BEFF; }
+.st-3  { background:var(--pc-light); color:var(--pc-teal); border-color:#80E8E1; }
+.st-c  { background:var(--soft); color:var(--muted); border-color:var(--rule); }
+.sec-title { font-family:'Merriweather',serif; font-size:22px; color:var(--ink); font-weight:700; }
+
+/* ── INTRO CARD ── */
+.intro-card { background:var(--paper); border:1px solid var(--rule); border-left:5px solid var(--db-blue); border-radius:8px; padding:22px 26px; margin-bottom:10px; }
+.intro-card p+p { margin-top:10px; }
+.hl-d { background:var(--db-light); color:var(--db-blue); padding:1px 5px; border-radius:3px; font-weight:700; }
+.hl-b { background:var(--box-light); color:var(--box-blue); padding:1px 5px; border-radius:3px; font-weight:700; }
+.hl-p { background:var(--pc-light); color:var(--pc-teal); padding:1px 5px; border-radius:3px; font-weight:700; }
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap { background:var(--paper); border:1px solid var(--rule); border-radius:10px; padding:26px; margin:16px 0; }
+.flow-wrap h4 { font-family:'Merriweather',serif; font-size:16px; font-weight:700; text-align:center; margin-bottom:20px; color:var(--ink); }
+.flow-row { display:flex; align-items:center; justify-content:center; flex-wrap:wrap; }
+.fbox { border-radius:8px; padding:12px 16px; text-align:center; min-width:118px; border:2px solid; }
+.fi { font-size:24px; margin-bottom:4px; }
+.fn { font-size:12px; font-weight:700; }
+.fs { font-family:'Fira Code',monospace; font-size:10px; color:var(--muted); margin-top:2px; }
+.farr { font-size:20px; padding:0 7px; color:#C7C7CC; flex-shrink:0; }
+.fb-u { background:var(--soft); border-color:var(--rule); color:var(--ink); }
+.fb-c { background:var(--db-light); border-color:var(--db-blue); color:var(--db-blue); }
+.fb-d { background:var(--db-light); border-color:var(--db-blue); color:var(--db-blue); }
+.fb-b { background:var(--box-light); border-color:var(--box-blue); color:var(--box-blue); }
+.fb-p { background:var(--pc-light); border-color:var(--pc-teal); color:var(--pc-teal); }
+
+/* ── TOOL BANNER ── */
+.tool-banner { border-radius:10px; overflow:hidden; margin-bottom:8px; }
+.tb-head { padding:16px 24px; display:flex; align-items:center; gap:14px; }
+.tb-icon { font-size:30px; }
+.tb-name { font-family:'Merriweather',serif; font-size:17px; font-weight:700; color:#fff; }
+.tb-url { font-family:'Fira Code',monospace; font-size:11px; color:rgba(255,255,255,.6); margin-top:2px; }
+.tb-body { background:var(--paper); border:1px solid var(--rule); border-top:none; border-radius:0 0 10px 10px; padding:18px 24px; color:var(--muted); font-size:14px; }
+.tb-body strong { color:var(--ink); }
+.feat-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px 20px; margin-top:10px; }
+.feat-item { display:flex; align-items:flex-start; gap:8px; font-size:13.5px; color:var(--ink); }
+.fdot { width:7px; height:7px; border-radius:50%; flex-shrink:0; margin-top:7px; }
+
+/* ── MOCK LABEL ── */
+.mock-label { font-family:'Fira Code',monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:10px; margin:26px 0 10px; }
+.mock-label::after { content:''; flex:1; height:1px; background:var(--rule); }
+
+/* ── CHROME FRAME ── */
+.win { border:1px solid #C7C7CC; border-radius:12px; overflow:hidden; box-shadow:0 8px 34px rgba(0,0,0,.11); }
+.win-bar { background:#ECECEC; padding:9px 14px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #DCDCDC; }
+.dot { width:12px; height:12px; border-radius:50%; }
+.dr{background:#FF5F57;} .dy{background:#FEBC2E;} .dg{background:#28C840;}
+.url-bar { flex:1; background:#fff; border:1px solid #DCDCDC; border-radius:18px; padding:5px 16px; font-size:12px; color:#8E8E93; display:flex; align-items:center; gap:7px; }
+
+/* ══════════════════ DROPBOX ══════════════════ */
+.db-body { background:#fff; font-family:'Source Sans 3',sans-serif; }
+.db-topbar { background:#fff; border-bottom:1px solid #EBEBEB; padding:0 16px; display:flex; align-items:center; gap:12px; height:54px; }
+.db-logo { display:flex; align-items:center; gap:8px; font-family:'Merriweather',serif; font-weight:900; font-size:18px; color:var(--db-blue); }
+.db-logo-icon { width:28px; height:28px; background:var(--db-blue); border-radius:6px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; }
+.db-search { flex:1; max-width:400px; background:var(--soft); border:1px solid #E5E5EA; border-radius:8px; padding:8px 14px; font-size:13px; color:#8E8E93; display:flex; align-items:center; gap:8px; margin:0 16px; }
+.db-topbar-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
+.db-avatar { width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:#fff; }
+.db-upgrade { background:var(--db-blue); color:#fff; font-size:12.5px; font-weight:700; padding:7px 16px; border-radius:8px; cursor:pointer; }
+.db-layout { display:grid; grid-template-columns:220px 1fr; height:500px; }
+.db-nav { background:#FAFAFA; border-right:1px solid #EBEBEB; padding:12px 0; }
+.db-nav-section { font-family:'Fira Code',monospace; font-size:10px; font-weight:500; color:#8E8E93; text-transform:uppercase; letter-spacing:.12em; padding:8px 16px 4px; }
+.db-nav-item { display:flex; align-items:center; gap:9px; padding:8px 16px; font-size:13.5px; color:#3A3A3C; cursor:pointer; border-radius:0 8px 8px 0; margin-right:8px; }
+.db-nav-item:hover { background:#F2F2F7; }
+.db-nav-item.active { background:#E8F0FF; color:var(--db-blue); font-weight:600; }
+.db-nav-item .icon { font-size:16px; width:20px; text-align:center; }
+.db-main { display:flex; flex-direction:column; }
+.db-breadcrumb { padding:12px 20px; font-size:13px; color:var(--muted); display:flex; align-items:center; gap:6px; border-bottom:1px solid #F2F2F7; }
+.db-bc-link { color:var(--db-blue); cursor:pointer; font-weight:600; }
+.db-bc-sep { color:#C7C7CC; }
+.db-toolbar { padding:10px 20px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #EBEBEB; }
+.db-btn { padding:6px 14px; border:1px solid #DCDCDC; border-radius:8px; font-size:12.5px; cursor:pointer; background:#fff; color:#3A3A3C; display:flex; align-items:center; gap:6px; font-weight:500; }
+.db-btn:hover { background:#F2F2F7; }
+.db-btn.primary { background:var(--db-blue); color:#fff; border-color:var(--db-blue); font-weight:700; }
+.db-view-toggle { display:flex; border:1px solid #DCDCDC; border-radius:6px; overflow:hidden; margin-left:auto; }
+.db-vt { padding:6px 10px; font-size:13px; cursor:pointer; color:var(--muted); }
+.db-vt.active { background:var(--db-light); color:var(--db-blue); }
+.db-files { flex:1; overflow-y:auto; }
+.db-file-header { display:grid; grid-template-columns:40px 1fr 140px 120px 100px 80px; gap:0; padding:8px 20px; font-size:11.5px; font-weight:700; color:#8E8E93; border-bottom:1px solid #F2F2F7; }
+.db-file-row { display:grid; grid-template-columns:40px 1fr 140px 120px 100px 80px; gap:0; padding:9px 20px; border-bottom:1px solid #F8F8F8; align-items:center; cursor:pointer; }
+.db-file-row:hover { background:#F8F9FF; }
+.db-file-row.selected { background:#EBF2FF; }
+.db-file-icon { font-size:22px; }
+.db-file-name { font-size:13.5px; color:#1C1C1E; font-weight:500; display:flex; align-items:center; gap:8px; }
+.db-file-name .shared-icon { color:var(--db-blue); font-size:12px; }
+.db-file-modified { font-size:12.5px; color:var(--muted); }
+.db-file-size { font-size:12.5px; color:var(--muted); }
+.db-file-members { display:flex; gap:-4px; }
+.db-member-av { width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:8.5px; font-weight:700; color:#fff; border:1.5px solid #fff; margin-left:-5px; }
+.db-member-av:first-child { margin-left:0; }
+.db-share-chip { display:inline-flex; align-items:center; gap:4px; background:var(--db-light); color:var(--db-blue); font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:10px; }
+.db-menu-dot { color:#C7C7CC; font-size:16px; cursor:pointer; }
+.db-statusbar { background:#FAFAFA; border-top:1px solid #EBEBEB; padding:6px 20px; display:flex; gap:16px; font-size:11.5px; color:var(--muted); }
+.db-sync-pill { display:inline-flex; align-items:center; gap:5px; background:#E8F8F0; color:#059669; border:1px solid #A7F3D0; padding:2px 10px; border-radius:10px; font-size:11px; font-weight:700; }
+.db-sync-dot { width:6px; height:6px; border-radius:50%; background:#10B981; animation:pulse 1.5s infinite; }
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* Share dialog */
+.share-dialog { position:absolute; right:20px; top:50px; width:320px; background:#fff; border-radius:12px; box-shadow:0 8px 40px rgba(0,0,0,.18); border:1px solid #EBEBEB; z-index:10; overflow:hidden; }
+.sd-head { padding:16px 18px 12px; border-bottom:1px solid #F2F2F7; }
+.sd-title { font-size:14.5px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+.sd-input { background:var(--soft); border:1.5px solid #DCDCDC; border-radius:8px; padding:8px 12px; font-size:13px; color:#8E8E93; display:flex; align-items:center; gap:8px; }
+.sd-body { padding:14px 18px; }
+.sd-section-label { font-size:11px; font-weight:700; color:#8E8E93; text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px; }
+.sd-member { display:flex; align-items:center; gap:9px; padding:6px 0; border-bottom:1px solid #F8F8F8; }
+.sd-member:last-child { border-bottom:none; }
+.sd-member-av { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#fff; flex-shrink:0; }
+.sd-member-info { flex:1; }
+.sd-member-name { font-size:13px; font-weight:600; color:var(--ink); }
+.sd-member-role { font-size:11px; color:var(--muted); }
+.sd-role-select { font-size:12px; color:var(--db-blue); font-weight:600; cursor:pointer; background:var(--db-light); padding:3px 8px; border-radius:6px; }
+.sd-link-section { background:var(--soft); border-radius:8px; padding:10px 12px; margin-top:12px; }
+.sd-link-label { font-size:11.5px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.sd-link-url { font-family:'Fira Code',monospace; font-size:10.5px; color:var(--muted); word-break:break-all; }
+.sd-link-copy { background:var(--db-blue); color:#fff; font-size:12px; font-weight:700; padding:5px 14px; border-radius:6px; cursor:pointer; margin-top:8px; display:inline-block; }
+
+/* ══════════════════ BOX ══════════════════ */
+.box-body { background:#fff; }
+.box-topbar { background:#fff; border-bottom:1px solid #E8E8E8; padding:0 18px; display:flex; align-items:center; gap:14px; height:54px; }
+.box-logo { font-family:'Merriweather',serif; font-weight:900; font-size:20px; color:var(--box-blue); letter-spacing:-.02em; }
+.box-search { flex:1; max-width:380px; background:var(--soft); border:1px solid #E5E5EA; border-radius:24px; padding:8px 16px; font-size:13px; color:#8E8E93; display:flex; align-items:center; gap:8px; }
+.box-topbar-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
+.box-new-btn { background:var(--box-blue); color:#fff; font-size:13px; font-weight:700; padding:7px 18px; border-radius:6px; cursor:pointer; }
+.box-layout { display:grid; grid-template-columns:220px 1fr 280px; height:500px; }
+.box-nav { background:#F9F9F9; border-right:1px solid #E8E8E8; padding:12px 0; }
+.box-nav-section { font-size:10.5px; font-weight:700; color:#8E8E93; text-transform:uppercase; letter-spacing:.1em; padding:8px 16px 4px; }
+.box-nav-item { display:flex; align-items:center; gap:9px; padding:8px 16px; font-size:13.5px; color:#3A3A3C; cursor:pointer; }
+.box-nav-item:hover { background:#F0F0F0; }
+.box-nav-item.active { background:#E5EEFF; color:var(--box-blue); font-weight:600; }
+.box-main { display:flex; flex-direction:column; overflow:hidden; }
+.box-folder-header { padding:16px 20px 10px; border-bottom:1px solid #F0F0F0; }
+.box-folder-title { font-family:'Merriweather',serif; font-size:18px; font-weight:700; color:var(--ink); margin-bottom:4px; }
+.box-folder-meta { font-size:12.5px; color:var(--muted); display:flex; gap:12px; align-items:center; }
+.box-toolbar2 { padding:8px 20px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #F0F0F0; }
+.box-btn { padding:6px 12px; border:1px solid #DCDCDC; border-radius:6px; font-size:12.5px; cursor:pointer; background:#fff; color:#3A3A3C; display:flex; align-items:center; gap:5px; }
+.box-btn:hover { background:#F5F5F5; }
+.box-btn.primary { background:var(--box-blue); color:#fff; border-color:var(--box-blue); }
+.box-files { flex:1; overflow-y:auto; }
+.box-file-row { display:flex; align-items:center; padding:10px 20px; border-bottom:1px solid #F8F8F8; cursor:pointer; gap:12px; }
+.box-file-row:hover { background:#F8F9FF; }
+.box-file-row.selected { background:#EBF1FF; }
+.box-file-icon-wrap { width:36px; height:36px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+.box-file-info { flex:1; }
+.box-file-name { font-size:13.5px; font-weight:600; color:var(--ink); }
+.box-file-meta { font-size:11.5px; color:var(--muted); margin-top:1px; }
+.box-file-shared { display:flex; align-items:center; gap:5px; margin-left:auto; }
+.box-permission-badge { font-size:10.5px; padding:2px 8px; border-radius:10px; font-weight:700; }
+.bp-edit { background:#E5EEFF; color:var(--box-blue); }
+.bp-view { background:#F0F0F0; color:#636366; }
+.bp-own  { background:#E8F8F0; color:#059669; }
+.box-activity { border-left:1px solid #E8E8E8; overflow-y:auto; }
+.ba-head { padding:14px 16px 8px; font-size:12px; font-weight:700; color:#8E8E93; text-transform:uppercase; letter-spacing:.08em; border-bottom:1px solid #F0F0F0; }
+.ba-item { display:flex; gap:10px; padding:10px 14px; border-bottom:1px solid #F8F8F8; }
+.ba-av { width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; color:#fff; flex-shrink:0; margin-top:2px; }
+.ba-text { font-size:12px; color:var(--ink); line-height:1.5; }
+.ba-time { font-size:10.5px; color:var(--muted); margin-top:2px; }
+.ba-file { color:var(--box-blue); font-weight:600; }
+.box-statusbar { background:#F9F9F9; border-top:1px solid #E8E8E8; padding:6px 20px; display:flex; gap:16px; font-size:11.5px; color:var(--muted); }
+
+/* ══════════════════ pCLOUD ══════════════════ */
+.pc-body { background:#fff; }
+.pc-topbar { background:#fff; border-bottom:1px solid #E5E5EA; padding:0 16px; display:flex; align-items:center; gap:12px; height:54px; }
+.pc-logo { font-family:'Merriweather',serif; font-weight:900; font-size:18px; display:flex; align-items:center; gap:8px; }
+.pc-logo-mark { width:30px; height:30px; background:linear-gradient(135deg,var(--pc-blue),var(--pc-teal)); border-radius:8px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; }
+.pc-logo-text { color:var(--pc-blue); }
+.pc-search { flex:1; max-width:380px; background:var(--soft); border:1px solid #E5E5EA; border-radius:24px; padding:8px 16px; font-size:13px; color:#8E8E93; display:flex; align-items:center; gap:8px; margin:0 16px; }
+.pc-topbar-right { margin-left:auto; display:flex; align-items:center; gap:10px; }
+.pc-upgrade { background:linear-gradient(135deg,var(--pc-blue),var(--pc-teal)); color:#fff; font-size:12.5px; font-weight:700; padding:7px 16px; border-radius:8px; cursor:pointer; }
+.pc-layout { display:grid; grid-template-columns:210px 1fr 260px; height:500px; }
+.pc-nav { background:#FAFCFF; border-right:1px solid #E5E5EA; padding:10px 0; }
+.pc-nav-section { font-size:10.5px; font-weight:700; color:#8E8E93; text-transform:uppercase; letter-spacing:.1em; padding:8px 16px 4px; }
+.pc-nav-item { display:flex; align-items:center; gap:9px; padding:8px 16px; font-size:13.5px; color:#3A3A3C; cursor:pointer; border-radius:0 8px 8px 0; margin-right:6px; }
+.pc-nav-item:hover { background:#F0F5FF; }
+.pc-nav-item.active { background:#E6F0FF; color:var(--pc-blue); font-weight:600; }
+.pc-storage-widget { margin:14px 12px; background:var(--soft); border-radius:10px; padding:12px; }
+.pc-storage-label { font-size:11px; font-weight:700; color:var(--muted); margin-bottom:6px; display:flex; justify-content:space-between; }
+.pc-storage-bar { height:6px; background:#E5E5EA; border-radius:3px; overflow:hidden; margin-bottom:4px; }
+.pc-storage-fill { height:100%; background:linear-gradient(90deg,var(--pc-blue),var(--pc-teal)); border-radius:3px; width:32%; }
+.pc-storage-text { font-size:10.5px; color:var(--muted); }
+.pc-main { display:flex; flex-direction:column; overflow:hidden; }
+.pc-folder-bar { padding:12px 20px 8px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #F0F0F0; }
+.pc-folder-title { font-size:15px; font-weight:700; color:var(--ink); flex:1; }
+.pc-toolbar3 { padding:8px 20px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #F0F0F0; }
+.pc-btn { padding:6px 12px; border:1px solid #DCDCDC; border-radius:7px; font-size:12.5px; cursor:pointer; background:#fff; color:#3A3A3C; display:flex; align-items:center; gap:5px; }
+.pc-btn.primary { background:linear-gradient(135deg,var(--pc-blue),var(--pc-teal)); color:#fff; border:none; font-weight:700; }
+.pc-files { flex:1; overflow-y:auto; padding:8px 12px; }
+.pc-file-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+.pc-file-card { border:1px solid #E5E5EA; border-radius:10px; overflow:hidden; cursor:pointer; transition:all .15s; }
+.pc-file-card:hover { border-color:var(--pc-blue); box-shadow:0 2px 12px rgba(30,111,235,.12); }
+.pc-file-card.selected { border-color:var(--pc-blue); background:#F0F5FF; }
+.pc-file-thumb { height:80px; display:flex; align-items:center; justify-content:center; font-size:32px; position:relative; }
+.pc-file-thumb .shared-badge { position:absolute; top:6px; right:6px; background:var(--pc-blue); color:#fff; font-size:9px; font-weight:700; padding:2px 5px; border-radius:4px; }
+.pc-file-info { padding:8px 10px; border-top:1px solid #F0F0F0; }
+.pc-fn { font-size:12px; font-weight:700; color:var(--ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.pc-fd { font-size:10.5px; color:var(--muted); margin-top:2px; }
+.pc-members-row { display:flex; margin-top:4px; }
+.pc-av { width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:7px; font-weight:700; color:#fff; border:1px solid #fff; margin-left:-4px; }
+.pc-av:first-child { margin-left:0; }
+.pc-right-panel { border-left:1px solid #E5E5EA; display:flex; flex-direction:column; }
+.pc-rp-head { padding:14px 16px 10px; font-size:13px; font-weight:700; color:var(--ink); border-bottom:1px solid #F0F0F0; display:flex; align-items:center; justify-content:space-between; }
+.pc-file-detail { padding:14px; border-bottom:1px solid #F0F0F0; }
+.pc-fd-icon { font-size:40px; text-align:center; margin-bottom:8px; }
+.pc-fd-name { font-size:14px; font-weight:700; color:var(--ink); text-align:center; margin-bottom:10px; }
+.pc-fd-meta { font-size:12px; }
+.pc-fd-row { display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid #F8F8F8; }
+.pc-fd-row:last-child { border-bottom:none; }
+.pc-fd-label { color:var(--muted); }
+.pc-fd-value { font-weight:600; color:var(--ink); font-size:12px; }
+.pc-share-section { padding:12px 14px; }
+.pc-ss-head { font-size:11.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.07em; margin-bottom:8px; }
+.pc-link-row { display:flex; gap:6px; margin-bottom:10px; }
+.pc-link-input { flex:1; background:var(--soft); border:1px solid #E5E5EA; border-radius:6px; padding:6px 10px; font-family:'Fira Code',monospace; font-size:10.5px; color:var(--muted); }
+.pc-copy-btn { background:var(--pc-blue); color:#fff; font-size:12px; font-weight:700; padding:6px 12px; border-radius:6px; cursor:pointer; white-space:nowrap; }
+.pc-permissions { display:flex; flex-direction:column; gap:6px; }
+.pc-perm-row { display:flex; align-items:center; justify-content:space-between; font-size:12.5px; }
+.pc-perm-label { color:var(--ink); }
+.pc-toggle { width:36px; height:20px; background:#E5E5EA; border-radius:10px; position:relative; cursor:pointer; }
+.pc-toggle.on { background:var(--pc-teal); }
+.pc-toggle::after { content:''; position:absolute; width:16px; height:16px; border-radius:50%; background:#fff; top:2px; left:2px; box-shadow:0 1px 3px rgba(0,0,0,.2); transition:left .2s; }
+.pc-toggle.on::after { left:18px; }
+.pc-expire-row { background:var(--soft); border-radius:6px; padding:7px 10px; font-size:12px; color:var(--muted); margin-top:6px; display:flex; align-items:center; gap:6px; }
+.pc-statusbar { background:#FAFCFF; border-top:1px solid #E5E5EA; padding:6px 20px; display:flex; gap:14px; font-size:11.5px; color:var(--muted); grid-column:1/-1; }
+
+/* ── COMPARISON TABLE ── */
+table.cmp { width:100%; border-collapse:collapse; border-radius:8px; overflow:hidden; margin:16px 0; }
+table.cmp thead tr { background:var(--ink); color:#fff; }
+table.cmp th { padding:11px 16px; font-family:'Fira Code',monospace; font-size:11px; letter-spacing:.04em; text-align:left; }
+table.cmp td { padding:10px 16px; background:var(--paper); border-bottom:1px solid var(--rule); font-size:13.5px; color:var(--ink); }
+table.cmp tr:last-child td { border-bottom:none; }
+table.cmp .yes { color:#059669; font-weight:700; }
+table.cmp .par { color:#D97706; }
+table.cmp .no  { color:#DC2626; }
+
+/* ── CONCLUSION ── */
+.conclusion { border-radius:10px; overflow:hidden; margin-top:46px; box-shadow:0 4px 20px rgba(0,0,0,.08); }
+.con-head { background:linear-gradient(90deg,#0061FF,#009EB4); padding:18px 30px; }
+.con-head h3 { font-family:'Merriweather',serif; font-size:21px; color:#fff; font-weight:700; }
+.con-body { background:var(--paper); border:1px solid var(--rule); border-top:none; border-radius:0 0 10px 10px; padding:24px 30px; }
+.con-body p { font-size:14.5px; color:var(--muted); line-height:1.8; }
+.con-body strong { color:var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ════ COVER ════ -->
+<div class="cover">
+  <div class="cover-tag">Cloud Computing · 10 Mark Answer · File Storage &amp; Sharing</div>
+  <h1>Storing &amp; Sharing Files and<br>Other Online Content<br>in the <span class="d">Cloud</span></h1>
+  <div class="cover-sub">Three real, production-grade cloud storage platforms with ultra-realistic UI screenshots · No Google Drive, No Microsoft OneDrive · Light theme</div>
+  <div class="tool-pills">
+    <span class="tp tp-d">📦 Dropbox — dropbox.com</span>
+    <span class="tp tp-b">📋 Box — box.com</span>
+    <span class="tp tp-p">☁ pCloud — pcloud.com</span>
+  </div>
+  <div class="marks">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- ════ INTRO ════ -->
+<div class="sec"><span class="sec-tag st-i">01</span><span class="sec-title">What is Cloud File Storage &amp; Sharing?</span></div>
+<div class="intro-card">
+  <p><strong>Cloud file storage and sharing</strong> refers to saving files — documents, presentations, videos, images, spreadsheets, code — on a remote server maintained by a cloud provider, and making those files accessible to authorised users from any device, anywhere in the world, through a web browser or app.</p>
+  <p>Unlike traditional local storage (USB drives, hard disks), cloud storage provides <strong>automatic synchronisation</strong> across all devices, <strong>version history</strong> to recover older copies of files, <strong>fine-grained sharing controls</strong> (view-only, comment, edit), <strong>link-based sharing</strong> with passwords and expiry dates, and <strong>real-time collaboration</strong> on supported file types.</p>
+  <p>The three tools covered here — <span class="hl-d">Dropbox</span>, <span class="hl-b">Box</span>, and <span class="hl-p">pCloud</span> — are all real, widely-used platforms used by millions of individuals, teams, and enterprises worldwide for cloud file storage and content sharing.</p>
+</div>
+
+<!-- ════ FLOW DIAGRAM ════ -->
+<div class="sec"><span class="sec-tag st-c">02</span><span class="sec-title">How Cloud File Storage &amp; Sharing Works</span></div>
+<div class="flow-wrap">
+  <h4>Architecture — Cloud File Storage &amp; Sharing Model</h4>
+  <div class="flow-row" style="margin-bottom:14px;">
+    <div class="fbox fb-u"><div class="fi">👩‍💻</div><div class="fn">User / Team</div><div class="fs">Upload file</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-c"><div class="fi">☁️</div><div class="fn">Cloud Server</div><div class="fs">Stored &amp; encrypted</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">🔗</div><div class="fn">Share Link</div><div class="fs">View / Edit / Download</div></div>
+    <div class="farr">→</div>
+    <div class="fbox fb-u"><div class="fi">📱💻🖥️</div><div class="fn">Any Device</div><div class="fs">Browser or App</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:var(--muted);margin:8px 0 14px;">↕ Files sync across all devices · Version history kept · Access control enforced · Encrypted at rest &amp; in transit</div>
+  <div class="flow-row" style="gap:16px;">
+    <div class="fbox fb-d"><div class="fi">📦</div><div class="fn">Dropbox</div><div class="fs">Sync-first · Smart Sync</div></div>
+    <div class="fbox fb-b"><div class="fi">📋</div><div class="fn">Box</div><div class="fs">Enterprise · Workflow</div></div>
+    <div class="fbox fb-p"><div class="fi">☁</div><div class="fn">pCloud</div><div class="fs">Lifetime plan · Crypto</div></div>
+  </div>
+</div>
+
+<!-- ════════════════ TOOL 1: DROPBOX ════════════════ -->
+<div class="sec"><span class="sec-tag st-1">TOOL 1</span><span class="sec-title">Dropbox — dropbox.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#002E99,#0061FF);">
+    <span class="tb-icon">📦</span>
+    <div><div class="tb-name">Dropbox</div><div class="tb-url">dropbox.com · Free 2 GB · Plus/Business plans · 700M+ registered users · Founded 2007</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Dropbox is one of the world's first and most popular cloud file storage services. It lets users store any type of file in the cloud and access it from any device. Files placed in the Dropbox folder on a computer sync automatically to the cloud and to all other linked devices in real time.<br><br>
+    <strong>Key Features for Storage &amp; Sharing:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Smart Sync — files stored in cloud, appear on desktop without using disk space</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Share folder or file via link — set view-only or edit permissions</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Password-protect shared links and set expiry dates</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Version history — restore deleted or older files (30–180 days)</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Shared folders — team members access same folder in real time</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Paper — built-in collaborative note and document editor</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Dropbox Transfer — send large files (up to 100 GB) with one link</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061FF;"></div>Dropbox Replay — share and review video files with timestamps</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 1 — Dropbox Web: TechSympo 2025 Shared Team Folder + Share Dialog</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>dropbox.com/home/TechSympo%202025 · Shared folder · 5 members</div></div>
+  <div class="db-body">
+    <div class="db-topbar">
+      <div class="db-logo"><div class="db-logo-icon">📦</div>Dropbox</div>
+      <div class="db-search"><span>🔍</span> Search Dropbox</div>
+      <div class="db-topbar-right">
+        <div style="font-size:12px;color:var(--muted);">2.1 GB of 2 GB used</div>
+        <div class="db-avatar" style="background:#0061FF;">AK</div>
+        <div class="db-upgrade">Upgrade</div>
+      </div>
+    </div>
+    <div class="db-layout">
+      <!-- Nav -->
+      <div class="db-nav">
+        <div class="db-nav-item active"><span class="icon">🏠</span>Home</div>
+        <div class="db-nav-item"><span class="icon">⭐</span>Starred</div>
+        <div class="db-nav-item"><span class="icon">👥</span>Shared</div>
+        <div class="db-nav-item"><span class="icon">📁</span>All Files</div>
+        <div class="db-nav-item"><span class="icon">🕐</span>Recents</div>
+        <div class="db-nav-item"><span class="icon">🗑</span>Deleted Files</div>
+        <div class="db-nav-section" style="margin-top:12px;">Shared Folders</div>
+        <div class="db-nav-item active"><span class="icon">📂</span>TechSympo 2025</div>
+        <div class="db-nav-item" style="padding-left:28px;font-size:12.5px;"><span class="icon">📂</span>Registrations</div>
+        <div class="db-nav-item" style="padding-left:28px;font-size:12.5px;"><span class="icon">📂</span>Presentations</div>
+        <div class="db-nav-item" style="padding-left:28px;font-size:12.5px;"><span class="icon">📂</span>Recordings</div>
+        <div class="db-nav-section" style="margin-top:10px;">Dropbox Paper</div>
+        <div class="db-nav-item" style="font-size:12.5px;"><span class="icon">📄</span>Event Notes</div>
+      </div>
+      <!-- Main -->
+      <div class="db-main" style="position:relative;">
+        <div class="db-breadcrumb">
+          <span class="db-bc-link">All Files</span><span class="db-bc-sep">/</span>
+          <span class="db-bc-link">TechSympo 2025</span>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+            <div class="db-sync-pill"><div class="db-sync-dot"></div>Synced</div>
+            <div style="display:flex;"><div class="db-member-av" style="background:#0061FF;width:22px;height:22px;font-size:9px;">AK</div><div class="db-member-av" style="background:#E42527;width:22px;height:22px;font-size:9px;">KR</div><div class="db-member-av" style="background:#059669;width:22px;height:22px;font-size:9px;">SM</div><div class="db-member-av" style="background:#D97706;width:22px;height:22px;font-size:9px;">PR</div><div class="db-member-av" style="background:#7D2AE8;width:22px;height:22px;font-size:9px;">DR</div></div>
+            <span style="font-size:12px;color:var(--muted);">5 members</span>
+          </div>
+        </div>
+        <div class="db-toolbar">
+          <div class="db-btn primary">⬆ Upload</div>
+          <div class="db-btn">📁 New folder</div>
+          <div class="db-btn">📝 Create</div>
+          <div class="db-btn">🔗 Share</div>
+          <div class="db-view-toggle"><div class="db-vt active">☰</div><div class="db-vt">⊞</div></div>
+        </div>
+        <div class="db-files">
+          <div class="db-file-header">
+            <div></div><div>Name</div><div>Modified</div><div>Members</div><div>Size</div><div></div>
+          </div>
+          <div class="db-file-row">
+            <div class="db-file-icon">📂</div>
+            <div class="db-file-name">Registrations <span class="db-share-chip">👥 Shared</span></div>
+            <div class="db-file-modified">Mar 26, 2025</div>
+            <div class="db-file-members"><div class="db-member-av" style="background:#0061FF;">AK</div><div class="db-member-av" style="background:#E42527;">KR</div><div class="db-member-av" style="background:#059669;">SM</div></div>
+            <div class="db-file-size">—</div>
+            <div class="db-menu-dot">⋯</div>
+          </div>
+          <div class="db-file-row selected">
+            <div class="db-file-icon">📂</div>
+            <div class="db-file-name">Presentations <span class="db-share-chip">👥 Shared</span></div>
+            <div class="db-file-modified">Mar 25, 2025</div>
+            <div class="db-file-members"><div class="db-member-av" style="background:#0061FF;">AK</div><div class="db-member-av" style="background:#7D2AE8;">DR</div></div>
+            <div class="db-file-size">—</div>
+            <div class="db-menu-dot">⋯</div>
+          </div>
+          <div class="db-file-row">
+            <div class="db-file-icon">📊</div>
+            <div class="db-file-name">SymposiumBudget_2025.xlsx</div>
+            <div class="db-file-modified">Mar 24 · Arjun</div>
+            <div class="db-file-members"><div class="db-member-av" style="background:#0061FF;">AK</div><div class="db-member-av" style="background:#E42527;">KR</div></div>
+            <div class="db-file-size">245 KB</div>
+            <div class="db-menu-dot">⋯</div>
+          </div>
+          <div class="db-file-row">
+            <div class="db-file-icon">📑</div>
+            <div class="db-file-name">EventBrochure_Final.pdf <span class="shared-icon">🔗</span></div>
+            <div class="db-file-modified">Mar 22</div>
+            <div class="db-file-members"><div class="db-member-av" style="background:#059669;">SM</div></div>
+            <div class="db-file-size">3.2 MB</div>
+            <div class="db-menu-dot">⋯</div>
+          </div>
+          <div class="db-file-row">
+            <div class="db-file-icon">🎬</div>
+            <div class="db-file-name">Keynote_Recording.mp4</div>
+            <div class="db-file-modified">Today · Kavya</div>
+            <div class="db-file-members"><div class="db-member-av" style="background:#E42527;">KR</div><div class="db-member-av" style="background:#7D2AE8;">DR</div><div class="db-member-av" style="background:#059669;">SM</div></div>
+            <div class="db-file-size">2.1 GB</div>
+            <div class="db-menu-dot">⋯</div>
+          </div>
+          <div class="db-file-row">
+            <div class="db-file-icon">🏆</div>
+            <div class="db-file-name">Certificates_All.pdf <span class="db-share-chip">🌐 Link</span></div>
+            <div class="db-file-modified">Today</div>
+            <div class="db-file-members"><div class="db-member-av" style="background:#D97706;">PR</div></div>
+            <div class="db-file-size">18.4 MB</div>
+            <div class="db-menu-dot">⋯</div>
+          </div>
+          <div class="db-file-row">
+            <div class="db-file-icon">📷</div>
+            <div class="db-file-name">EventPhotos_Day1.zip</div>
+            <div class="db-file-modified">Today · Sneha</div>
+            <div class="db-file-members"><div class="db-member-av" style="background:#059669;">SM</div></div>
+            <div class="db-file-size">480 MB</div>
+            <div class="db-menu-dot">⋯</div>
+          </div>
+        </div>
+        <div class="db-statusbar">
+          <span>📁 7 items · 4 folders, 3 files</span>
+          <div class="db-sync-pill"><div class="db-sync-dot"></div>All files synced</div>
+          <span style="margin-left:auto;">🔒 AES-256 encrypted · Version history: 30 days</span>
+        </div>
+        <!-- Share Dialog floating -->
+        <div class="share-dialog">
+          <div class="sd-head">
+            <div class="sd-title">🔗 Share "TechSympo 2025"</div>
+            <div class="sd-input">✉️ <span>Add people or groups…</span></div>
+          </div>
+          <div class="sd-body">
+            <div class="sd-section-label">People with access</div>
+            <div class="sd-member"><div class="sd-member-av" style="background:#0061FF;">AK</div><div class="sd-member-info"><div class="sd-member-name">Demo User (you)</div><div class="sd-member-role">demo.user@example.com</div></div><div class="sd-role-select">Owner</div></div>
+            <div class="sd-member"><div class="sd-member-av" style="background:#E42527;">KR</div><div class="sd-member-info"><div class="sd-member-name">Kavya Rajan</div><div class="sd-member-role">collaborator1@example.com</div></div><div class="sd-role-select">Can edit</div></div>
+            <div class="sd-member"><div class="sd-member-av" style="background:#059669;">SM</div><div class="sd-member-info"><div class="sd-member-name">Sneha Menon</div><div class="sd-member-role">collaborator2@example.com</div></div><div class="sd-role-select">Can view</div></div>
+            <div class="sd-member"><div class="sd-member-av" style="background:#7D2AE8;">DR</div><div class="sd-member-info"><div class="sd-member-name">Dr. Ramesh (Faculty)</div><div class="sd-member-role">faculty.demo@example.com</div></div><div class="sd-role-select">Can edit</div></div>
+            <div class="sd-link-section">
+              <div class="sd-link-label">🌐 Shareable link (view only)</div>
+              <div class="sd-link-url">https://www.dropbox.com/sh/techsympo2025/AABxyz...</div>
+              <div style="display:flex;gap:6px;margin-top:8px;">
+                <div class="sd-link-copy">📋 Copy link</div>
+                <div style="padding:5px 10px;border:1px solid #DCDCDC;border-radius:6px;font-size:12px;cursor:pointer;color:var(--muted);">🔒 Add password</div>
+                <div style="padding:5px 10px;border:1px solid #DCDCDC;border-radius:6px;font-size:12px;cursor:pointer;color:var(--muted);">📅 Set expiry</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TOOL 2: BOX ════════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-2">TOOL 2</span><span class="sec-title">Box — box.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#004699,#0061D5);">
+    <span class="tb-icon">📋</span>
+    <div><div class="tb-name">Box</div><div class="tb-url">box.com · Free 10 GB · Business plans · 100,000+ companies · 68% of Fortune 500 use Box</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> Box is an enterprise-grade cloud content management and file sharing platform. Unlike Dropbox which focuses on sync, Box focuses on <strong>content workflow, compliance, and secure collaboration</strong>. It is trusted by healthcare, finance, and government organisations for storing and sharing sensitive files with strict access controls.<br><br>
+    <strong>Key Features for Storage &amp; Sharing:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Granular permissions: Owner, Co-owner, Editor, Viewer Uploader, Previewer, Viewer</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Box Notes — collaborative rich-text document inside Box</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Activity stream — full audit trail of every action on every file</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Box Sign — legally binding e-signatures on documents</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Classification labels — mark files as Confidential, Internal, Public</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Integrations: Slack, Zoom, Salesforce, Microsoft 365, Adobe Sign</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Version history up to 100 versions per file</div>
+      <div class="feat-item"><div class="fdot" style="background:#0061D5;"></div>Box Relay — automated approval workflows (e.g. approve before publishing)</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 2 — Box: Shared Folder View with Activity Feed &amp; Granular Permissions</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>app.box.com/folder/TechSympo2025-main · Shared with team · 100,000+ files supported</div></div>
+  <div class="box-body">
+    <div class="box-topbar">
+      <div class="box-logo">Box</div>
+      <div class="box-search"><span>🔍</span> Search Box</div>
+      <div class="box-topbar-right">
+        <div style="font-size:12px;color:var(--muted);">7.2 GB of 10 GB</div>
+        <div style="display:flex;"><div class="db-member-av" style="background:#0061D5;width:26px;height:26px;font-size:10px;">AK</div><div class="db-member-av" style="background:#E42527;width:26px;height:26px;font-size:10px;margin-left:-6px;">KR</div><div class="db-member-av" style="background:#059669;width:26px;height:26px;font-size:10px;margin-left:-6px;">SM</div></div>
+        <div class="box-new-btn">+ New</div>
+      </div>
+    </div>
+    <div class="box-layout">
+      <!-- Nav -->
+      <div class="box-nav">
+        <div class="box-nav-item active">🏠 All Files</div>
+        <div class="box-nav-item">⭐ Favourites</div>
+        <div class="box-nav-item">👥 Shared with Me</div>
+        <div class="box-nav-item">🕐 Recents</div>
+        <div class="box-nav-item">🗑 Trash</div>
+        <div class="box-nav-section" style="margin-top:12px;">Folders</div>
+        <div class="box-nav-item active">📂 TechSympo 2025</div>
+        <div class="box-nav-item" style="padding-left:28px;font-size:12.5px;">📂 Registrations</div>
+        <div class="box-nav-item" style="padding-left:28px;font-size:12.5px;">📂 Presentations</div>
+        <div class="box-nav-item" style="padding-left:28px;font-size:12.5px;">📂 Recordings</div>
+        <div class="box-nav-section" style="margin-top:10px;">Apps</div>
+        <div class="box-nav-item" style="font-size:12.5px;">✍ Box Sign</div>
+        <div class="box-nav-item" style="font-size:12.5px;">⚡ Box Relay</div>
+        <div class="box-nav-item" style="font-size:12.5px;">📝 Box Notes</div>
+      </div>
+      <!-- Main -->
+      <div class="box-main">
+        <div class="box-folder-header">
+          <div class="box-folder-title">📂 TechSympo 2025</div>
+          <div class="box-folder-meta">
+            <span>24 items</span><span>·</span><span>7.2 GB</span><span>·</span>
+            <span style="display:flex;align-items:center;gap:5px;"><div class="db-member-av" style="background:#0061D5;width:20px;height:20px;font-size:9px;">AK</div><div class="db-member-av" style="background:#E42527;width:20px;height:20px;font-size:9px;margin-left:-5px;">KR</div><div class="db-member-av" style="background:#059669;width:20px;height:20px;font-size:9px;margin-left:-5px;">SM</div><span style="margin-left:4px;font-size:12px;">+2 collaborators</span></span>
+            <span style="background:#E5EEFF;color:#0061D5;font-size:11px;padding:2px 8px;border-radius:10px;font-weight:700;margin-left:4px;">🏷 Internal</span>
+          </div>
+        </div>
+        <div class="box-toolbar2">
+          <div class="box-btn primary">⬆ Upload</div>
+          <div class="box-btn">📁 New Folder</div>
+          <div class="box-btn">🔗 Invite People</div>
+          <div class="box-btn">✍ Box Sign</div>
+          <div class="box-btn">🔍 Filter</div>
+          <div style="margin-left:auto;font-size:11.5px;color:var(--muted);">Sort: Modified ▾</div>
+        </div>
+        <div class="box-files">
+          <div class="box-file-row">
+            <div class="box-file-icon-wrap" style="background:#EEF4FF;">📂</div>
+            <div class="box-file-info"><div class="box-file-name">Registrations</div><div class="box-file-meta">Modified Mar 26 · Arjun Kumar · 48 files</div></div>
+            <div class="box-file-shared"><div class="db-member-av" style="background:#0061D5;width:20px;height:20px;font-size:8px;">AK</div><div class="db-member-av" style="background:#E42527;width:20px;height:20px;font-size:8px;margin-left:-5px;">KR</div><span class="box-permission-badge bp-edit">Editor</span></div>
+          </div>
+          <div class="box-file-row selected">
+            <div class="box-file-icon-wrap" style="background:#EEF4FF;">📂</div>
+            <div class="box-file-info"><div class="box-file-name">Presentations</div><div class="box-file-meta">Modified Mar 25 · Kavya Rajan · 12 files</div></div>
+            <div class="box-file-shared"><div class="db-member-av" style="background:#0061D5;width:20px;height:20px;font-size:8px;">AK</div><div class="db-member-av" style="background:#7D2AE8;width:20px;height:20px;font-size:8px;margin-left:-5px;">DR</div><span class="box-permission-badge bp-own">Owner</span></div>
+          </div>
+          <div class="box-file-row">
+            <div class="box-file-icon-wrap" style="background:#E8F8F0;">📊</div>
+            <div class="box-file-info"><div class="box-file-name">SymposiumBudget_2025.xlsx</div><div class="box-file-meta">Modified 2 hours ago · Arjun Kumar · 245 KB · v4</div></div>
+            <div class="box-file-shared"><div class="db-member-av" style="background:#0061D5;width:20px;height:20px;font-size:8px;">AK</div><div class="db-member-av" style="background:#E42527;width:20px;height:20px;font-size:8px;margin-left:-5px;">KR</div><span class="box-permission-badge bp-edit">Editor</span></div>
+          </div>
+          <div class="box-file-row">
+            <div class="box-file-icon-wrap" style="background:#FFF3E0;">📑</div>
+            <div class="box-file-info"><div class="box-file-name">EventBrochure_Final.pdf <span style="background:#E8F8F0;color:#059669;font-size:10px;padding:1px 6px;border-radius:8px;font-weight:700;margin-left:6px;">✍ Signed</span></div><div class="box-file-meta">Modified Mar 22 · Dr. Ramesh · 3.2 MB · v2</div></div>
+            <div class="box-file-shared"><div class="db-member-av" style="background:#7D2AE8;width:20px;height:20px;font-size:8px;">DR</div><span class="box-permission-badge bp-view">Viewer</span></div>
+          </div>
+          <div class="box-file-row">
+            <div class="box-file-icon-wrap" style="background:#FDE8E8;">🎬</div>
+            <div class="box-file-info"><div class="box-file-name">Keynote_Recording.mp4</div><div class="box-file-meta">Added today · Kavya Rajan · 2.1 GB · Processing...</div></div>
+            <div class="box-file-shared"><div class="db-member-av" style="background:#E42527;width:20px;height:20px;font-size:8px;">KR</div><span class="box-permission-badge bp-view">Previewer</span></div>
+          </div>
+          <div class="box-file-row">
+            <div class="box-file-icon-wrap" style="background:#F3EBFF;">📝</div>
+            <div class="box-file-info"><div class="box-file-name">EventPlanningNotes (Box Note)</div><div class="box-file-meta">Edited 30 min ago · 3 collaborators editing</div></div>
+            <div class="box-file-shared"><div class="db-member-av" style="background:#0061D5;width:20px;height:20px;font-size:8px;">AK</div><div class="db-member-av" style="background:#E42527;width:20px;height:20px;font-size:8px;margin-left:-5px;">KR</div><div class="db-member-av" style="background:#059669;width:20px;height:20px;font-size:8px;margin-left:-5px;">SM</div><span class="box-permission-badge bp-edit">Editor</span></div>
+          </div>
+        </div>
+        <div class="box-statusbar">
+          <span>24 items · 7.2 GB</span>
+          <div class="db-sync-pill"><div class="db-sync-dot"></div>All synced</div>
+          <span style="margin-left:auto;">🏷 Classification: Internal · 🔒 AES-256 · Version history: 100 versions</span>
+        </div>
+      </div>
+      <!-- Activity stream -->
+      <div class="box-activity">
+        <div class="ba-head">Activity Feed</div>
+        <div class="ba-item"><div class="ba-av" style="background:#E42527;">KR</div><div><div class="ba-text"><strong>Kavya R.</strong> uploaded <span class="ba-file">Keynote_Recording.mp4</span></div><div class="ba-time">2 minutes ago</div></div></div>
+        <div class="ba-item"><div class="ba-av" style="background:#0061D5;">AK</div><div><div class="ba-text"><strong>Arjun K.</strong> edited <span class="ba-file">SymposiumBudget_2025.xlsx</span> (v4)</div><div class="ba-time">2 hours ago</div></div></div>
+        <div class="ba-item"><div class="ba-av" style="background:#7D2AE8;">DR</div><div><div class="ba-text"><strong>Dr. Ramesh</strong> signed <span class="ba-file">EventBrochure_Final.pdf</span> via Box Sign</div><div class="ba-time">Mar 22</div></div></div>
+        <div class="ba-item"><div class="ba-av" style="background:#059669;">SM</div><div><div class="ba-text"><strong>Sneha M.</strong> shared link for <span class="ba-file">Certificates_All.pdf</span></div><div class="ba-time">Today</div></div></div>
+        <div class="ba-item"><div class="ba-av" style="background:#D97706;">PR</div><div><div class="ba-text"><strong>Priya R.</strong> previewed <span class="ba-file">EventBrochure_Final.pdf</span></div><div class="ba-time">Yesterday</div></div></div>
+        <div class="ba-item"><div class="ba-av" style="background:#E42527;">KR</div><div><div class="ba-text"><strong>Kavya R.</strong> added comment on <span class="ba-file">SymposiumBudget_2025.xlsx</span></div><div class="ba-time">Mar 24</div></div></div>
+        <div class="ba-item"><div class="ba-av" style="background:#0061D5;">AK</div><div><div class="ba-text"><strong>Arjun K.</strong> created folder <span class="ba-file">Presentations</span></div><div class="ba-time">Mar 20</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TOOL 3: pCLOUD ════════════════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-3">TOOL 3</span><span class="sec-title">pCloud — pcloud.com</span></div>
+<div class="tool-banner">
+  <div class="tb-head" style="background:linear-gradient(90deg,#155CC4,#1E6FEB,#00C2B2);">
+    <span class="tb-icon">☁</span>
+    <div><div class="tb-name">pCloud</div><div class="tb-url">pcloud.com · Free 10 GB · Lifetime plans available · 20M+ users · Swiss-based · pCloud Crypto</div></div>
+  </div>
+  <div class="tb-body">
+    <strong>What it is:</strong> pCloud is a European cloud storage service known for its unique <strong>lifetime storage plans</strong> (pay once, use forever) and its optional <strong>pCloud Crypto</strong> — a zero-knowledge client-side encryption folder where even pCloud cannot access your files. It is ideal for storing sensitive academic and event files with maximum privacy.<br><br>
+    <strong>Key Features for Storage &amp; Sharing:</strong>
+    <div class="feat-grid">
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>Lifetime plan — pay once, get 500 GB or 2 TB forever (no subscription)</div>
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>pCloud Crypto — zero-knowledge client-side encrypted folder</div>
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>Share via link with download permission, expiry date, and password</div>
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>pCloud Drive — virtual cloud drive, no local disk space used</div>
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>Built-in media player — play audio/video directly from cloud</div>
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>Automatic photo backup from mobile devices</div>
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>File versioning — 30-day trash and version history</div>
+      <div class="feat-item"><div class="fdot" style="background:#1E6FEB;"></div>Folder sharing with team — set upload-only or full access</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Screenshot Clone 3 — pCloud: File Manager with Sharing Panel, Crypto Folder &amp; Link Settings</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#059669;font-size:11px;">🔒</span>my.pcloud.com/#page=filemanager&folder=TechSympo2025 · 20M+ users trust pCloud</div></div>
+  <div class="pc-body">
+    <div class="pc-topbar">
+      <div class="pc-logo"><div class="pc-logo-mark">☁</div><div class="pc-logo-text">pCloud</div></div>
+      <div class="pc-search"><span>🔍</span> Search files…</div>
+      <div class="pc-topbar-right">
+        <div style="font-size:12px;color:var(--muted);">3.2 GB / 10 GB free</div>
+        <div class="db-avatar" style="background:#1E6FEB;width:30px;height:30px;font-size:12px;">AK</div>
+        <div class="pc-upgrade">⬆ Upgrade to Lifetime</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:210px 1fr 260px;height:500px;">
+      <!-- Nav -->
+      <div class="pc-nav">
+        <div class="pc-nav-item active">🏠 My Files</div>
+        <div class="pc-nav-item">👥 Shared</div>
+        <div class="pc-nav-item">🕐 Recent</div>
+        <div class="pc-nav-item">🗑 Trash</div>
+        <div class="pc-nav-item" style="color:#1E6FEB;font-weight:700;">🔐 Crypto Folder</div>
+        <div class="pc-nav-section" style="margin-top:10px;">Folders</div>
+        <div class="pc-nav-item active">📂 TechSympo 2025</div>
+        <div class="pc-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Registrations</div>
+        <div class="pc-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Presentations</div>
+        <div class="pc-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Recordings</div>
+        <div class="pc-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Certificates</div>
+        <!-- Storage widget -->
+        <div class="pc-storage-widget">
+          <div class="pc-storage-label"><span>Storage Used</span><span>3.2 / 10 GB</span></div>
+          <div class="pc-storage-bar"><div class="pc-storage-fill"></div></div>
+          <div class="pc-storage-text">32% used · Upgrade for lifetime 500 GB</div>
+        </div>
+        <div style="margin:0 12px;background:linear-gradient(135deg,#1E6FEB,#00C2B2);border-radius:8px;padding:10px;text-align:center;cursor:pointer;">
+          <div style="font-size:13px;font-weight:700;color:#fff;">🔐 pCloud Crypto</div>
+          <div style="font-size:10.5px;color:rgba(255,255,255,.8);margin-top:3px;">Zero-knowledge encryption</div>
+        </div>
+      </div>
+      <!-- Main -->
+      <div class="pc-main">
+        <div class="pc-folder-bar">
+          <div class="pc-folder-title">📂 TechSympo 2025</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="db-sync-pill"><div class="db-sync-dot"></div>Synced</div>
+          </div>
+        </div>
+        <div class="pc-toolbar3">
+          <div class="pc-btn primary">⬆ Upload</div>
+          <div class="pc-btn">📁 New Folder</div>
+          <div class="pc-btn">🔗 Share</div>
+          <div class="pc-btn">⊞</div>
+          <div class="pc-btn">☰</div>
+          <div style="margin-left:auto;font-size:11.5px;color:var(--muted);">24 items · 3.2 GB</div>
+        </div>
+        <div class="pc-files">
+          <div class="pc-file-grid">
+            <div class="pc-file-card">
+              <div class="pc-file-thumb" style="background:#EEF4FF;"><span>📂</span></div>
+              <div class="pc-file-info"><div class="pc-fn">Registrations</div><div class="pc-fd">48 files · Shared</div><div class="pc-members-row"><div class="pc-av" style="background:#1E6FEB;">AK</div><div class="pc-av" style="background:#E42527;">KR</div><div class="pc-av" style="background:#059669;">SM</div></div></div>
+            </div>
+            <div class="pc-file-card">
+              <div class="pc-file-thumb" style="background:#EEF4FF;"><span>📂</span></div>
+              <div class="pc-file-info"><div class="pc-fn">Presentations</div><div class="pc-fd">12 files</div><div class="pc-members-row"><div class="pc-av" style="background:#1E6FEB;">AK</div><div class="pc-av" style="background:#7D2AE8;">DR</div></div></div>
+            </div>
+            <div class="pc-file-card selected">
+              <div class="pc-file-thumb" style="background:#E6F8F7;"><span>📂</span><div class="shared-badge">🔗 Link</div></div>
+              <div class="pc-file-info"><div class="pc-fn">Certificates</div><div class="pc-fd">Link active · Expires Apr 5</div></div>
+            </div>
+            <div class="pc-file-card">
+              <div class="pc-file-thumb" style="background:#E8F0FF;"><span>📊</span></div>
+              <div class="pc-file-info"><div class="pc-fn">Budget_2025.xlsx</div><div class="pc-fd">245 KB · Mar 24</div></div>
+            </div>
+            <div class="pc-file-card">
+              <div class="pc-file-thumb" style="background:#FFF3E0;"><span>📑</span></div>
+              <div class="pc-file-info"><div class="pc-fn">EventBrochure.pdf</div><div class="pc-fd">3.2 MB · Mar 22</div></div>
+            </div>
+            <div class="pc-file-card">
+              <div class="pc-file-thumb" style="background:#FDE8E8;"><span>🎬</span><div class="shared-badge">▶ Play</div></div>
+              <div class="pc-file-info"><div class="pc-fn">Keynote_Record.mp4</div><div class="pc-fd">2.1 GB · Today</div></div>
+            </div>
+            <div class="pc-file-card">
+              <div class="pc-file-thumb" style="background:#FFF0FE;"><span>📷</span></div>
+              <div class="pc-file-info"><div class="pc-fn">EventPhotos.zip</div><div class="pc-fd">480 MB · Today</div></div>
+            </div>
+            <div class="pc-file-card" style="border-color:#1E6FEB;background:linear-gradient(135deg,rgba(30,111,235,.05),rgba(0,194,178,.05));">
+              <div class="pc-file-thumb" style="background:linear-gradient(135deg,rgba(30,111,235,.1),rgba(0,194,178,.1));"><span>🔐</span></div>
+              <div class="pc-file-info"><div class="pc-fn" style="color:#1E6FEB;">Crypto Folder</div><div class="pc-fd" style="color:#00C2B2;">Zero-knowledge encrypted</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="pc-statusbar" style="grid-column:1/-1;">
+          <span>📁 24 items · 3.2 GB</span>
+          <div class="db-sync-pill"><div class="db-sync-dot"></div>All synced</div>
+          <span style="margin-left:auto;">🔒 TLS + AES-256 · Version history: 30 days · Servers: EU</span>
+        </div>
+      </div>
+      <!-- Right panel -->
+      <div class="pc-right-panel">
+        <div class="pc-rp-head">
+          <span>File Details</span>
+          <span style="font-size:11px;color:var(--muted);cursor:pointer;">✕</span>
+        </div>
+        <div class="pc-file-detail">
+          <div class="pc-fd-icon">📂</div>
+          <div class="pc-fd-name">Certificates</div>
+          <div class="pc-fd-meta">
+            <div class="pc-fd-row"><span class="pc-fd-label">Type</span><span class="pc-fd-value">Shared Folder</span></div>
+            <div class="pc-fd-row"><span class="pc-fd-label">Items</span><span class="pc-fd-value">18 files</span></div>
+            <div class="pc-fd-row"><span class="pc-fd-label">Size</span><span class="pc-fd-value">18.4 MB</span></div>
+            <div class="pc-fd-row"><span class="pc-fd-label">Modified</span><span class="pc-fd-value">Today, 2:45 PM</span></div>
+            <div class="pc-fd-row"><span class="pc-fd-label">Created by</span><span class="pc-fd-value">Arjun K.</span></div>
+          </div>
+        </div>
+        <div class="pc-share-section">
+          <div class="pc-ss-head">🔗 Share Link Settings</div>
+          <div class="pc-link-row">
+            <div class="pc-link-input">https://u.pcloud.com/..#certificates</div>
+            <div class="pc-copy-btn">📋 Copy</div>
+          </div>
+          <div class="pc-permissions">
+            <div class="pc-perm-row"><span class="pc-perm-label">Download allowed</span><div class="pc-toggle on"></div></div>
+            <div class="pc-perm-row"><span class="pc-perm-label">Password protected</span><div class="pc-toggle on"></div></div>
+            <div class="pc-perm-row"><span class="pc-perm-label">Upload to folder</span><div class="pc-toggle"></div></div>
+            <div class="pc-perm-row"><span class="pc-perm-label">Traffic limit</span><div class="pc-toggle"></div></div>
+          </div>
+          <div class="pc-expire-row">📅 Expires: <strong style="color:var(--ink);">April 5, 2025</strong></div>
+          <div style="margin-top:8px;background:linear-gradient(135deg,rgba(30,111,235,.08),rgba(0,194,178,.08));border:1px solid #A8D8F0;border-radius:8px;padding:10px;font-size:12px;">
+            <div style="font-weight:700;color:#1E6FEB;margin-bottom:3px;">🔐 pCloud Crypto</div>
+            <div style="color:var(--muted);">Move sensitive files to Crypto Folder for zero-knowledge encryption. Even pCloud cannot read them.</div>
+          </div>
+          <div style="margin-top:8px;background:#E6F8F7;border:1px solid #80E8E1;border-radius:8px;padding:8px;text-align:center;font-size:11.5px;color:#00877A;font-weight:700;">✔ Synced · EU servers · GDPR compliant</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ COMPARISON TABLE ════ -->
+<div class="sec" style="margin-top:44px;"><span class="sec-tag st-c">04</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead><tr><th>Feature</th><th>📦 Dropbox</th><th>📋 Box</th><th>☁ pCloud</th></tr></thead>
+  <tbody>
+    <tr><td>Free Storage</td><td>2 GB</td><td class="yes">10 GB</td><td class="yes">10 GB</td></tr>
+    <tr><td>Lifetime Plan (Pay Once)</td><td class="no">✗ No</td><td class="no">✗ No</td><td class="yes">✔ Yes (unique!)</td></tr>
+    <tr><td>Smart Sync (no local space)</td><td class="yes">✔ Smart Sync</td><td class="yes">✔ Drive app</td><td class="yes">✔ pCloud Drive</td></tr>
+    <tr><td>Link Sharing with Expiry</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td></tr>
+    <tr><td>Password-protected Links</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td><td class="yes">✔ Yes</td></tr>
+    <tr><td>Version History</td><td class="yes">✔ 30–180 days</td><td class="yes">✔ 100 versions</td><td class="yes">✔ 30 days</td></tr>
+    <tr><td>Audit Trail / Activity Log</td><td class="par">⚠ Basic</td><td class="yes">✔ Full audit log</td><td class="par">⚠ Basic</td></tr>
+    <tr><td>Zero-knowledge Encryption</td><td class="no">✗ No</td><td class="no">✗ No</td><td class="yes">✔ pCloud Crypto</td></tr>
+    <tr><td>Built-in Document Editor</td><td class="yes">✔ Dropbox Paper</td><td class="yes">✔ Box Notes</td><td class="no">✗ No</td></tr>
+    <tr><td>E-Signatures</td><td class="yes">✔ Dropbox Sign</td><td class="yes">✔ Box Sign</td><td class="no">✗ No</td></tr>
+    <tr><td>Best For</td><td>Teams, sync-first workflow</td><td>Enterprise, compliance, audit</td><td>Privacy, lifetime value</td></tr>
+  </tbody>
+</table>
+
+<!-- ════ CONCLUSION ════ -->
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Cloud-based file storage and sharing has completely transformed how individuals and teams manage their files and online content. Rather than relying on physical drives or email attachments, cloud platforms enable secure, instant, multi-device access with full control over who can view, edit, or download each file.
+      <br><br>
+      <strong>📦 Dropbox</strong> pioneered cloud sync with its Smart Sync technology, enabling users to access files on any device without consuming local disk space. Its Dropbox Transfer feature allows sending large files (up to 100 GB) via a single link, and Dropbox Paper provides collaborative document editing — making it ideal for creative and academic teams sharing event materials.
+      <br><br>
+      <strong>📋 Box</strong> is the enterprise standard for cloud content management, trusted by 68% of Fortune 500 companies. Its granular permission system (six levels of access per user), full audit activity feed, Box Sign for legally binding e-signatures, Box Relay for approval workflows, and classification labels (Internal, Confidential, Public) make it the most feature-rich platform for organizations that need compliance and visibility over file access.
+      <br><br>
+      <strong>☁ pCloud</strong> stands out with its unique <strong>lifetime plans</strong> — a one-time payment for 500 GB or 2 TB of storage forever — and its <strong>pCloud Crypto</strong> feature, which provides zero-knowledge client-side encryption where even pCloud cannot read your files. This makes it the most privacy-conscious and cost-efficient option, especially for individuals and educational institutions storing sensitive data in the cloud.
+      <br><br>
+      All three tools store files encrypted in the cloud, support sharing via secure links with expiry and password options, provide version history for recovery, and sync files across all devices — making them powerful solutions for storing and sharing files and online content in the cloud.
+    </p>
+  </div>
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>

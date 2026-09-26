@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Database Collaboration – 10 Mark Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sb-green: #3ECF8E;
+  --sb-dark: #1C1C1C;
+  --sb-panel: #1E1E1E;
+  --sb-border: #2D2D2D;
+  --ps-purple: #5B21B6;
+  --ps-violet: #7C3AED;
+  --ps-light: #EDE9FE;
+  --mg-green: #00ED64;
+  --mg-dark: #001E2B;
+  --mg-mid: #023430;
+  --mg-card: #00344E;
+  --bg: #0F0F0F;
+  --paper: #FFFFFF;
+  --ink: #F5F5F5;
+  --muted: #9CA3AF;
+  --rule: #2A2A2A;
+  --warm: #F7F4EF;
+  --ink-dark: #1A1A1A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.75;}
+
+/* ── COVER ── */
+.cover{
+  background: linear-gradient(135deg, #0F0F0F 0%, #1A1A2E 50%, #0F0F0F 100%);
+  padding:54px 62px 48px;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--rule);
+}
+.cover::before{
+  content:'';position:absolute;right:-80px;top:-80px;
+  width:440px;height:440px;border-radius:50%;
+  background:radial-gradient(circle,#3ECF8E 0%,transparent 65%);opacity:.08;
+}
+.cover::after{
+  content:'';position:absolute;left:-60px;bottom:-60px;
+  width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(circle,#00ED64 0%,transparent 65%);opacity:.07;
+}
+.cover-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:#3ECF8E;margin-bottom:16px;
+}
+.cover h1{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:38px;line-height:1.18;color:#fff;max-width:760px;
+}
+.cover h1 .g{color:#3ECF8E;}
+.cover h1 .v{color:#7C3AED;}
+.cover h1 .m{color:#00ED64;}
+.cover-sub{margin-top:14px;font-size:13.5px;color:#6B7280;line-height:1.6;}
+.tool-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;}
+.tb{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:6px;font-size:12px;font-weight:600;font-family:'IBM Plex Mono',monospace;border:1.5px solid;}
+.tb-sb{background:rgba(62,207,142,.12);border-color:#3ECF8E;color:#3ECF8E;}
+.tb-ps{background:rgba(124,58,237,.12);border-color:#7C3AED;color:#A78BFA;}
+.tb-mg{background:rgba(0,237,100,.1);border-color:#00ED64;color:#00ED64;}
+.marks{margin-top:28px;display:inline-block;background:#3ECF8E;color:#0F0F0F;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;padding:6px 20px;border-radius:4px;letter-spacing:.06em;}
+
+/* ── WRAP ── */
+.wrap{max-width:970px;margin:0 auto;padding:50px 44px 80px;}
+
+/* ── SECTION ── */
+.sec{display:flex;align-items:center;gap:14px;margin:52px 0 20px;}
+.sec-chip{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:4px 13px;border-radius:20px;flex-shrink:0;}
+.sc-intro{background:rgba(62,207,142,.15);color:#3ECF8E;border:1px solid rgba(62,207,142,.3);}
+.sc-1{background:rgba(62,207,142,.15);color:#3ECF8E;border:1px solid rgba(62,207,142,.3);}
+.sc-2{background:rgba(124,58,237,.15);color:#A78BFA;border:1px solid rgba(124,58,237,.3);}
+.sc-3{background:rgba(0,237,100,.12);color:#00ED64;border:1px solid rgba(0,237,100,.3);}
+.sc-cmp{background:rgba(255,255,255,.08);color:#D1D5DB;border:1px solid rgba(255,255,255,.12);}
+.sc-con{background:rgba(62,207,142,.15);color:#3ECF8E;border:1px solid rgba(62,207,142,.3);}
+.sec-title{font-family:'Syne',sans-serif;font-size:22px;color:#fff;font-weight:700;}
+
+/* ── INTRO CARD ── */
+.intro-card{
+  background:#161616;border:1px solid var(--rule);
+  border-left:4px solid #3ECF8E;border-radius:8px;
+  padding:22px 26px;margin-bottom:10px;color:#D1D5DB;
+}
+.intro-card p+p{margin-top:10px;}
+.hl{background:rgba(62,207,142,.15);color:#3ECF8E;padding:1px 5px;border-radius:3px;font-weight:600;}
+.hl-v{background:rgba(124,58,237,.15);color:#A78BFA;padding:1px 5px;border-radius:3px;font-weight:600;}
+.hl-m{background:rgba(0,237,100,.12);color:#00ED64;padding:1px 5px;border-radius:3px;font-weight:600;}
+
+/* ── FLOW DIAGRAM ── */
+.flow-wrap{background:#161616;border:1px solid var(--rule);border-radius:10px;padding:28px;margin:18px 0;}
+.flow-wrap h4{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;text-align:center;margin-bottom:22px;}
+.flow-row{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;}
+.fbox{border-radius:8px;padding:13px 18px;text-align:center;min-width:128px;border:1.5px solid;}
+.fbox-icon{font-size:26px;margin-bottom:5px;}
+.fbox-name{font-size:12.5px;font-weight:700;font-family:'Syne',sans-serif;}
+.fbox-sub{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.farrow{font-size:22px;padding:0 8px;color:#3A3A3A;flex-shrink:0;}
+.fb-user{background:rgba(255,255,255,.04);border-color:#3A3A3A;color:#D1D5DB;}
+.fb-net{background:rgba(62,207,142,.06);border-color:#3ECF8E;color:#3ECF8E;}
+.fb-sb{background:rgba(62,207,142,.08);border-color:#3ECF8E;color:#3ECF8E;}
+.fb-ps{background:rgba(124,58,237,.08);border-color:#7C3AED;color:#A78BFA;}
+.fb-mg{background:rgba(0,237,100,.06);border-color:#00ED64;color:#00ED64;}
+
+/* ── TOOL BANNER ── */
+.tool-banner{border-radius:10px;overflow:hidden;margin-bottom:8px;}
+.tool-banner-head{padding:16px 24px;display:flex;align-items:center;gap:14px;}
+.tbn-icon{font-size:30px;}
+.tbn-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:#fff;}
+.tbn-url{font-family:'IBM Plex Mono',monospace;font-size:11px;color:rgba(255,255,255,.55);margin-top:2px;}
+.tool-banner-body{background:#161616;border:1px solid var(--rule);border-top:none;border-radius:0 0 10px 10px;padding:18px 24px;color:#D1D5DB;font-size:14px;}
+.tool-banner-body strong{color:#fff;}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-top:10px;}
+.feat-row{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;color:#D1D5DB;}
+.fdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px;}
+
+/* ── MOCK LABEL ── */
+.mock-label{font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#4B5563;display:flex;align-items:center;gap:10px;margin:26px 0 10px;}
+.mock-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* ── CHROME ── */
+.win{border:1px solid #2A2A2A;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.5);}
+.win-bar{background:#1A1A1A;padding:9px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #2A2A2A;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dr{background:#FF5F57;}.dy{background:#FEBC2E;}.dg{background:#28C840;}
+.url-bar{flex:1;background:#252525;border:1px solid #333;border-radius:16px;padding:5px 16px;font-size:12px;color:#6B7280;display:flex;align-items:center;gap:7px;}
+
+/* ════════════════ SUPABASE ════════════════ */
+.sb-body{background:#1C1C1C;font-family:'IBM Plex Sans',sans-serif;}
+.sb-topbar{background:#1C1C1C;border-bottom:1px solid #2D2D2D;padding:0 16px;display:flex;align-items:center;gap:14px;height:48px;}
+.sb-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:#3ECF8E;display:flex;align-items:center;gap:6px;}
+.sb-project{color:#D1D5DB;font-size:13px;}
+.sb-project span{color:#6B7280;margin:0 6px;}
+.sb-topbar-actions{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.sb-share-btn{background:#3ECF8E;color:#0F0F0F;font-size:12px;font-weight:700;padding:5px 14px;border-radius:6px;cursor:pointer;}
+.sb-layout{display:grid;grid-template-columns:220px 1fr;height:520px;}
+.sb-nav{background:#191919;border-right:1px solid #2D2D2D;padding:10px 0;}
+.sb-nav-section{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:#4B5563;text-transform:uppercase;letter-spacing:.12em;padding:8px 16px 4px;}
+.sb-nav-item{display:flex;align-items:center;gap:9px;padding:7px 16px;font-size:13px;color:#9CA3AF;cursor:pointer;border-radius:0 6px 6px 0;margin-right:6px;}
+.sb-nav-item:hover{background:#252525;color:#D1D5DB;}
+.sb-nav-item.active{background:#1A2E1A;color:#3ECF8E;font-weight:600;}
+.sb-main{display:flex;flex-direction:column;overflow:hidden;}
+.sb-table-header{background:#1E1E1E;border-bottom:1px solid #2D2D2D;padding:8px 16px;display:flex;align-items:center;gap:8px;}
+.sb-tbl-btn{padding:5px 12px;border:1px solid #333;border-radius:5px;font-size:12px;cursor:pointer;background:#252525;color:#D1D5DB;display:flex;align-items:center;gap:5px;}
+.sb-tbl-btn:hover{background:#2D2D2D;}
+.sb-tbl-btn.green{background:#3ECF8E;color:#0F0F0F;border-color:#3ECF8E;font-weight:700;}
+.sb-table-wrap{flex:1;overflow:auto;}
+.sb-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.sb-table th{background:#222;border:1px solid #2D2D2D;padding:8px 14px;text-align:left;font-size:11px;font-weight:600;color:#6B7280;white-space:nowrap;font-family:'IBM Plex Mono',monospace;}
+.sb-table th .type-badge{display:inline-block;background:#2A2A2A;color:#4B5563;font-size:9px;padding:1px 5px;border-radius:3px;margin-left:5px;}
+.sb-table td{border:1px solid #262626;padding:7px 14px;color:#D1D5DB;}
+.sb-table tr:hover td{background:#252525;}
+.sb-table td.pk{color:#3ECF8E;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;}
+.sb-table td.fk{color:#A78BFA;font-family:'IBM Plex Mono',monospace;font-size:12px;}
+.sb-table td.ts{color:#6B7280;font-family:'IBM Plex Mono',monospace;font-size:11px;}
+.sb-cell-edit{background:#1A2E1A !important;border:1.5px solid #3ECF8E !important;}
+.sb-row-new{background:#1A1E1A !important;}
+.sb-row-new td{color:#3ECF8E;font-style:italic;}
+.sb-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;}
+.sb-green{background:rgba(62,207,142,.15);color:#3ECF8E;}
+.sb-yellow{background:rgba(255,193,7,.12);color:#FFC107;}
+.sb-red{background:rgba(239,68,68,.12);color:#EF4444;}
+.sb-blue{background:rgba(59,130,246,.12);color:#60A5FA;}
+.sb-collab-strip{background:#1A2E1A;border-top:1px solid #2D3D2D;padding:6px 16px;display:flex;align-items:center;gap:10px;font-size:11.5px;color:#6B7280;}
+.sc-av{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;}
+.sb-realtime-pill{display:inline-flex;align-items:center;gap:5px;background:rgba(62,207,142,.1);border:1px solid rgba(62,207,142,.3);padding:2px 10px;border-radius:10px;font-size:11px;color:#3ECF8E;}
+.sb-pulse{width:6px;height:6px;border-radius:50%;background:#3ECF8E;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.7);}}
+.sb-sql-pane{background:#151515;border-top:1px solid #2D2D2D;padding:12px 16px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.6;}
+.kw{color:#3ECF8E;}.fn{color:#A78BFA;}.str{color:#F9A825;}.cmt{color:#4B5563;}.num{color:#60A5FA;}
+
+/* ════════════════ PLANETSCALE ════════════════ */
+.ps-body{background:#0D0D0D;font-family:'IBM Plex Sans',sans-serif;}
+.ps-topbar{background:#0D0D0D;border-bottom:1px solid #1E1E1E;padding:0 18px;display:flex;align-items:center;gap:14px;height:50px;}
+.ps-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:16px;color:#fff;display:flex;align-items:center;gap:8px;}
+.ps-logo-dot{width:8px;height:8px;border-radius:50%;background:#7C3AED;}
+.ps-org{font-size:13px;color:#6B7280;}
+.ps-topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.ps-btn-main{background:#7C3AED;color:#fff;font-size:12px;font-weight:700;padding:5px 16px;border-radius:6px;cursor:pointer;}
+.ps-layout{display:grid;grid-template-columns:220px 1fr;height:480px;}
+.ps-sidebar{background:#0D0D0D;border-right:1px solid #1E1E1E;padding:12px 0;}
+.ps-sidebar-section{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#3A3A3A;text-transform:uppercase;letter-spacing:.12em;padding:8px 16px 4px;}
+.ps-nav-item{display:flex;align-items:center;gap:9px;padding:8px 16px;font-size:13px;color:#6B7280;cursor:pointer;}
+.ps-nav-item:hover{background:#151515;color:#D1D5DB;}
+.ps-nav-item.active{background:#1A0E2E;color:#A78BFA;font-weight:600;}
+.ps-main{overflow:auto;display:flex;flex-direction:column;}
+.ps-branch-bar{background:#111;border-bottom:1px solid #1E1E1E;padding:8px 16px;display:flex;align-items:center;gap:10px;}
+.ps-branch{display:inline-flex;align-items:center;gap:6px;background:#1A0E2E;border:1px solid #4C1D95;color:#A78BFA;font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:4px 12px;border-radius:20px;}
+.ps-branch-main{background:#1A1A1A;border-color:#333;color:#6B7280;}
+.ps-arrow{color:#3A3A3A;font-size:14px;margin:0 4px;}
+.ps-schema-wrap{padding:16px;flex:1;overflow:auto;}
+.ps-schema-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:#fff;margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.ps-table-card{background:#111;border:1px solid #1E1E1E;border-radius:8px;overflow:hidden;margin-bottom:12px;}
+.ps-table-card-head{background:#151515;padding:9px 14px;display:flex;align-items:center;gap:9px;border-bottom:1px solid #1E1E1E;}
+.ps-table-name{font-family:'Syne',sans-serif;font-size:13.5px;font-weight:700;color:#fff;}
+.ps-rows-badge{font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#6B7280;background:#1E1E1E;padding:2px 8px;border-radius:10px;margin-left:auto;}
+.ps-field{display:grid;grid-template-columns:160px 100px 60px 1fr;gap:0;border-bottom:1px solid #1A1A1A;padding:6px 14px;font-size:12.5px;align-items:center;}
+.ps-field:last-child{border-bottom:none;}
+.ps-field:hover{background:#151515;}
+.ps-field-name{font-family:'IBM Plex Mono',monospace;color:#D1D5DB;font-size:12px;}
+.ps-field-name.pk-field{color:#7C3AED;}
+.ps-field-type{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#6B7280;}
+.ps-field-key{font-size:10px;}
+.ps-pk{color:#7C3AED;font-weight:700;}
+.ps-fk{color:#A78BFA;}
+.ps-idx{color:#6B7280;}
+.ps-deploy-pane{background:#0D0E1A;border-top:1px solid #1E1E1E;padding:12px 16px;}
+.ps-deploy-head{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#A78BFA;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.ps-deploy-row{display:flex;align-items:center;gap:10px;padding:7px 10px;background:#111;border-radius:6px;margin-bottom:6px;font-size:12.5px;border:1px solid #1E1E1E;}
+.ps-deploy-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.ps-d-green{background:#22C55E;} .ps-d-amber{background:#F59E0B;} .ps-d-blue{background:#60A5FA;}
+.ps-collab-bar{background:#0A0A0A;border-top:1px solid #1E1E1E;padding:6px 16px;display:flex;align-items:center;gap:10px;font-size:11.5px;color:#4B5563;}
+
+/* ════════════════ MONGODB ATLAS ════════════════ */
+.mg-body{background:#001E2B;font-family:'IBM Plex Sans',sans-serif;}
+.mg-topbar{background:#001E2B;border-bottom:1px solid #023430;padding:0 18px;display:flex;align-items:center;gap:14px;height:50px;}
+.mg-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:15px;color:#fff;display:flex;align-items:center;gap:7px;}
+.mg-logo-leaf{color:#00ED64;font-size:20px;}
+.mg-breadcrumb{font-size:13px;color:#6B7280;}
+.mg-topbar-right{margin-left:auto;display:flex;align-items:center;gap:10px;}
+.mg-btn-main{background:#00ED64;color:#001E2B;font-size:12px;font-weight:700;padding:5px 16px;border-radius:6px;cursor:pointer;}
+.mg-layout{display:grid;grid-template-columns:210px 1fr;height:500px;}
+.mg-sidebar{background:#00253B;border-right:1px solid #023430;padding:10px 0;}
+.mg-sidebar-section{font-family:'IBM Plex Mono',monospace;font-size:10px;color:#2A6B5A;text-transform:uppercase;letter-spacing:.12em;padding:8px 14px 4px;}
+.mg-nav-item{display:flex;align-items:center;gap:9px;padding:7px 14px;font-size:13px;color:#6B9BA0;cursor:pointer;}
+.mg-nav-item:hover{background:#00344E;}
+.mg-nav-item.active{background:#023430;color:#00ED64;font-weight:600;}
+.mg-main{display:flex;flex-direction:column;overflow:hidden;}
+.mg-toolbar{background:#001E2B;border-bottom:1px solid #023430;padding:8px 16px;display:flex;align-items:center;gap:8px;}
+.mg-tbl-btn{padding:5px 12px;border:1px solid #023430;border-radius:5px;font-size:12px;cursor:pointer;background:#00253B;color:#9CA3AF;display:flex;align-items:center;gap:5px;}
+.mg-tbl-btn.green{background:#00ED64;color:#001E2B;border-color:#00ED64;font-weight:700;}
+.mg-tbl-btn:hover{background:#00344E;}
+.mg-docs-wrap{flex:1;overflow:auto;padding:14px 16px;}
+.mg-collection-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.mg-collection-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:#fff;}
+.mg-doc-count{font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2A6B5A;background:#023430;padding:2px 8px;border-radius:10px;}
+.mg-doc-card{background:#00253B;border:1px solid #023430;border-radius:8px;padding:12px 14px;margin-bottom:8px;cursor:pointer;position:relative;}
+.mg-doc-card:hover{border-color:#00ED64;background:#002E45;}
+.mg-doc-card.editing{border-color:#00ED64;background:#002230;}
+.mg-edit-tag{position:absolute;top:8px;right:10px;background:#00ED64;color:#001E2B;font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:10px;font-family:'IBM Plex Mono',monospace;}
+.mg-json{font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:1.7;color:#9CA3AF;}
+.mg-key{color:#00ED64;}
+.mg-str{color:#E8D44D;}
+.mg-num{color:#60A5FA;}
+.mg-bool{color:#F472B6;}
+.mg-id{color:#A78BFA;}
+.mg-agg-pane{background:#00253B;border-top:1px solid #023430;padding:12px 16px;}
+.mg-agg-head{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:#00ED64;margin-bottom:8px;}
+.mg-agg-code{font-family:'IBM Plex Mono',monospace;font-size:12px;color:#9CA3AF;line-height:1.65;}
+.mg-collab-bar{background:#001219;border-top:1px solid #023430;padding:6px 16px;display:flex;align-items:center;gap:10px;font-size:11.5px;color:#2A6B5A;}
+.mg-pulse{width:6px;height:6px;border-radius:50%;background:#00ED64;animation:pulse 1.5s infinite;}
+
+/* ── COMPARISON TABLE ── */
+table.cmp{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin:16px 0;font-size:13.5px;}
+table.cmp thead tr{background:#111;color:#fff;}
+table.cmp th{padding:11px 16px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;text-align:left;color:#9CA3AF;}
+table.cmp td{padding:10px 16px;background:#161616;border-bottom:1px solid #222;color:#D1D5DB;}
+table.cmp tr:last-child td{border-bottom:none;}
+table.cmp .yes{color:#3ECF8E;font-weight:700;}
+table.cmp .par{color:#F59E0B;}
+table.cmp .no{color:#EF4444;}
+table.cmp .tool-head{font-family:'Syne',sans-serif;font-weight:700;color:#fff;font-size:13px;}
+
+/* ── CONCLUSION ── */
+.conclusion{border-radius:10px;overflow:hidden;margin-top:46px;}
+.con-head{background:linear-gradient(90deg,#1A2E1A,#0D2E0D);padding:18px 30px;border-bottom:1px solid #2D3D2D;}
+.con-head h3{font-family:'Syne',sans-serif;font-size:20px;color:#3ECF8E;font-weight:700;}
+.con-body{background:#0D0D0D;border:1px solid #2A2A2A;border-top:none;border-radius:0 0 10px 10px;padding:24px 30px;}
+.con-body p{font-size:14.5px;color:#9CA3AF;line-height:1.8;}
+.con-body strong{color:#D1D5DB;}
+</style>
+</head>
+<body>
+
+<!-- ════════════════ COVER ════════════════ -->
+<div class="cover">
+  <div class="cover-eyebrow">Cloud Computing · 10 Mark Answer · Database Collaboration</div>
+  <h1>Collaborating on<br><span class="g">Databases</span> in the Cloud —<br>Real Tools, Real Interfaces</h1>
+  <div class="cover-sub">
+    Three real, production-grade cloud database platforms · No Google, No Microsoft<br>
+    Each with live collaboration, real-time sync, and team access controls
+  </div>
+  <div class="tool-row">
+    <span class="tb tb-sb">🟢 Supabase — supabase.com</span>
+    <span class="tb tb-ps">🟣 PlanetScale — planetscale.com</span>
+    <span class="tb tb-mg">🍃 MongoDB Atlas — mongodb.com/atlas</span>
+  </div>
+  <div class="marks">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- ════ INTRO ════ -->
+<div class="sec"><span class="sec-chip sc-intro">01</span><span class="sec-title">What is Cloud Database Collaboration?</span></div>
+<div class="intro-card">
+  <p><strong style="color:#fff;">Cloud database collaboration</strong> refers to storing a database on a remote cloud server and allowing <span class="hl">multiple developers, data analysts, or team members</span> to simultaneously access, query, update, and manage that database from different locations — without needing a local server or emailing database dumps.</p>
+  <p>Unlike traditional databases installed on a single machine, cloud databases provide <span class="hl">real-time synchronization</span>, <span class="hl-v">role-based team access</span>, <span class="hl-m">branching</span>, automatic backups, audit logs, and browser-based query editors — enabling true multi-user database collaboration. This is essential for teams building applications, managing event data, or doing data analysis.</p>
+  <p>The three tools covered in this answer are: <span class="hl"><strong>Supabase</strong></span> (PostgreSQL in the cloud), <span class="hl-v"><strong>PlanetScale</strong></span> (MySQL-compatible with Git-like branching), and <span class="hl-m"><strong>MongoDB Atlas</strong></span> (cloud NoSQL document database) — all real, widely-used, production-grade platforms.</p>
+</div>
+
+<!-- ════ FLOW DIAGRAM ════ -->
+<div class="sec"><span class="sec-chip sc-cmp">02</span><span class="sec-title">How Cloud Database Collaboration Works</span></div>
+<div class="flow-wrap">
+  <h4>Architecture: Cloud Database Collaboration Model</h4>
+  <div class="flow-row" style="margin-bottom:16px;">
+    <div class="fbox fb-user"><div class="fbox-icon">👨‍💻</div><div class="fbox-name">Developer A</div><div class="fbox-sub">Chennai</div></div>
+    <div class="farrow">→</div>
+    <div class="fbox fb-net"><div class="fbox-icon">🌐</div><div class="fbox-name">Internet / HTTPS</div><div class="fbox-sub">Secure connection</div></div>
+    <div class="farrow">→</div>
+    <div class="fbox fb-sb"><div class="fbox-icon">☁️</div><div class="fbox-name">Cloud DB Server</div><div class="fbox-sub">Supabase / PlanetScale / Atlas</div></div>
+    <div class="farrow">→</div>
+    <div class="fbox fb-net"><div class="fbox-icon">🌐</div><div class="fbox-name">Internet / HTTPS</div><div class="fbox-sub">Secure connection</div></div>
+    <div class="farrow">→</div>
+    <div class="fbox fb-user"><div class="fbox-icon">👩‍💻</div><div class="fbox-name">Developer B</div><div class="fbox-sub">Bangalore</div></div>
+  </div>
+  <div style="text-align:center;font-size:13px;color:#4B5563;margin:10px 0 14px;">↕ Both users see the same live data · Changes sync instantly · No file transfer needed</div>
+  <div class="flow-row">
+    <div class="fbox fb-sb"><div class="fbox-icon">🟢</div><div class="fbox-name">Supabase</div><div class="fbox-sub">PostgreSQL · REST + Realtime</div></div>
+    <div class="farrow" style="color:#2A2A2A;">·</div>
+    <div class="fbox fb-ps"><div class="fbox-icon">🟣</div><div class="fbox-name">PlanetScale</div><div class="fbox-sub">MySQL · Branch + Deploy</div></div>
+    <div class="farrow" style="color:#2A2A2A;">·</div>
+    <div class="fbox fb-mg"><div class="fbox-icon">🍃</div><div class="fbox-name">MongoDB Atlas</div><div class="fbox-sub">NoSQL · Documents + Charts</div></div>
+  </div>
+</div>
+
+<!-- ════════════════ TOOL 1: SUPABASE ════════════════ -->
+<div class="sec"><span class="sec-chip sc-1">TOOL 1</span><span class="sec-title">Supabase — supabase.com</span></div>
+
+<div class="tool-banner">
+  <div class="tool-banner-head" style="background:linear-gradient(90deg,#1A2E1A,#1C3022);">
+    <span class="tbn-icon">🟢</span>
+    <div>
+      <div class="tbn-name">Supabase</div>
+      <div class="tbn-url">supabase.com · Open-source Firebase alternative · PostgreSQL · Used by 1M+ developers</div>
+    </div>
+  </div>
+  <div class="tool-banner-body">
+    <strong>What it is:</strong> Supabase is an open-source cloud database platform built on PostgreSQL. It provides a full browser-based dashboard where multiple team members can collaboratively design tables, write SQL queries, manage data, and set up Row Level Security — all in real time. It also provides a real-time API so that any data change in the database is instantly pushed to connected clients.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>Browser-based Table Editor — insert, update, delete rows collaboratively</div>
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>SQL Editor — run queries together, save and share queries with team</div>
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>Real-time subscriptions — changes in DB push instantly to all connected users</div>
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>Role-based team access: Owner, Developer, Read-only</div>
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>Row Level Security (RLS) — fine-grained data access policies</div>
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>Logs and Audit trail — see all API calls and changes</div>
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>Auto-generated REST and GraphQL APIs from table schema</div>
+      <div class="feat-row"><div class="fdot" style="background:#3ECF8E;"></div>Free tier: 2 projects, 500MB database, unlimited API requests</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 1 — Supabase Dashboard: Table Editor + Real-time Collaboration on Participant DB</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#3ECF8E;font-size:11px;">🔒</span>supabase.com/dashboard/project/techsympo2025/editor/table/participants</div><div style="margin-left:10px;display:flex;align-items:center;gap:6px;"><div class="sb-realtime-pill"><div class="sb-pulse"></div>Realtime ON</div></div></div>
+  <div class="sb-body">
+    <!-- Topbar -->
+    <div class="sb-topbar">
+      <div class="sb-logo">⬡ Supabase</div>
+      <div class="sb-project">TechSympo2025 <span>/</span> Table Editor <span>/</span> participants</div>
+      <div class="sb-topbar-actions">
+        <div style="display:flex;"><div class="sc-av" style="background:#3ECF8E;color:#0F0F0F;">AK</div><div class="sc-av" style="background:#A78BFA;margin-left:-6px;">PR</div><div class="sc-av" style="background:#60A5FA;margin-left:-6px;">SM</div></div>
+        <div class="sb-share-btn">+ Invite</div>
+      </div>
+    </div>
+    <div class="sb-layout">
+      <!-- Nav -->
+      <div class="sb-nav">
+        <div class="sb-nav-section">Database</div>
+        <div class="sb-nav-item active">🗃 Table Editor</div>
+        <div class="sb-nav-item">💻 SQL Editor</div>
+        <div class="sb-nav-item">📊 Database</div>
+        <div class="sb-nav-item">🔌 API Docs</div>
+        <div class="sb-nav-section" style="margin-top:10px;">Tables</div>
+        <div class="sb-nav-item active" style="font-size:12.5px;">👥 participants</div>
+        <div class="sb-nav-item" style="font-size:12.5px;">📅 sessions</div>
+        <div class="sb-nav-item" style="font-size:12.5px;">🏆 results</div>
+        <div class="sb-nav-item" style="font-size:12.5px;">💬 feedback</div>
+        <div class="sb-nav-item" style="font-size:12.5px;">💰 budget</div>
+        <div class="sb-nav-section" style="margin-top:10px;">Auth & Settings</div>
+        <div class="sb-nav-item" style="font-size:12.5px;">🔐 Auth Users</div>
+        <div class="sb-nav-item" style="font-size:12.5px;">🛡 RLS Policies</div>
+        <div class="sb-nav-item" style="font-size:12.5px;">📜 Logs</div>
+      </div>
+      <!-- Main -->
+      <div class="sb-main">
+        <div class="sb-table-header">
+          <div class="sb-tbl-btn green">+ Insert Row</div>
+          <div class="sb-tbl-btn">🔽 Filter</div>
+          <div class="sb-tbl-btn">↕ Sort</div>
+          <div class="sb-tbl-btn">🔍 Search</div>
+          <div style="margin-left:auto;display:flex;align-items:center;gap:8px;font-size:11.5px;color:#4B5563;">
+            <span>312 rows</span>
+            <div class="sb-realtime-pill"><div class="sb-pulse"></div> 3 active editors</div>
+          </div>
+        </div>
+        <div class="sb-table-wrap">
+          <table class="sb-table">
+            <thead>
+              <tr>
+                <th><input type="checkbox" style="accent-color:#3ECF8E;"></th>
+                <th>id <span class="type-badge">uuid · PK</span></th>
+                <th>name <span class="type-badge">text</span></th>
+                <th>college <span class="type-badge">text</span></th>
+                <th>state <span class="type-badge">text</span></th>
+                <th>mode <span class="type-badge">enum</span></th>
+                <th>event_category <span class="type-badge">text</span></th>
+                <th>status <span class="type-badge">enum</span></th>
+                <th>created_at <span class="type-badge">timestamptz</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox" style="accent-color:#3ECF8E;"></td>
+                <td class="pk">a1b2c3d4...</td>
+                <td>Kavya Rajan</td><td>VIT Vellore</td><td>Tamil Nadu</td>
+                <td><span class="sb-badge sb-blue">online</span></td>
+                <td>paper_presentation</td>
+                <td><span class="sb-badge sb-green">confirmed</span></td>
+                <td class="ts">2025-03-18 09:14:22</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" style="accent-color:#3ECF8E;"></td>
+                <td class="pk">b2c3d4e5...</td>
+                <td>Arjun Kumar</td><td>PESIT Bangalore</td><td>Karnataka</td>
+                <td><span class="sb-badge sb-blue">online</span></td>
+                <td>technical_quiz</td>
+                <td><span class="sb-badge sb-green">confirmed</span></td>
+                <td class="ts">2025-03-19 11:02:45</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" style="accent-color:#3ECF8E;"></td>
+                <td class="pk">c3d4e5f6...</td>
+                <td class="sb-cell-edit">Priya Ramesh &nbsp;<span style="font-size:9px;background:#3ECF8E;color:#0F0F0F;padding:1px 6px;border-radius:2px;font-family:'IBM Plex Mono',monospace;">AK editing</span></td>
+                <td>DTU Delhi</td><td>Delhi</td>
+                <td><span class="sb-badge sb-blue">online</span></td>
+                <td>paper_presentation</td>
+                <td><span class="sb-badge sb-yellow">pending</span></td>
+                <td class="ts">2025-03-20 14:38:10</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" style="accent-color:#3ECF8E;"></td>
+                <td class="pk">d4e5f6g7...</td>
+                <td>Sneha Menon</td><td>TKM Kollam</td><td>Kerala</td>
+                <td><span class="sb-badge sb-yellow">on_campus</span></td>
+                <td>project_expo</td>
+                <td><span class="sb-badge sb-green">confirmed</span></td>
+                <td class="ts">2025-03-21 08:55:30</td>
+              </tr>
+              <tr>
+                <td><input type="checkbox" style="accent-color:#3ECF8E;"></td>
+                <td class="pk">e5f6g7h8...</td>
+                <td>Ravi Teja</td><td>JNTU Hyderabad</td><td>Telangana</td>
+                <td><span class="sb-badge sb-blue">online</span></td>
+                <td>coding_challenge</td>
+                <td><span class="sb-badge sb-red">cancelled</span></td>
+                <td class="ts">2025-03-22 17:22:05</td>
+              </tr>
+              <tr class="sb-row-new">
+                <td><input type="checkbox" style="accent-color:#3ECF8E;"></td>
+                <td class="pk" style="color:#3ECF8E;opacity:.5;">auto-gen...</td>
+                <td style="color:#3ECF8E;opacity:.7;">+ New row being added by SM...</td>
+                <td></td><td></td><td></td><td></td><td></td><td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- SQL pane -->
+        <div class="sb-sql-pane">
+          <div class="cmt" style="margin-bottom:4px;">-- Shared query · Auto-complete enabled · Run by Priya R.</div>
+          <div><span class="kw">SELECT</span> state, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_participants,</div>
+          <div>&nbsp;&nbsp;<span class="fn">SUM</span>(<span class="kw">CASE WHEN</span> status = <span class="str">'confirmed'</span> <span class="kw">THEN</span> <span class="num">1</span> <span class="kw">ELSE</span> <span class="num">0</span> <span class="kw">END</span>) <span class="kw">AS</span> confirmed</div>
+          <div><span class="kw">FROM</span> participants <span class="kw">GROUP BY</span> state <span class="kw">ORDER BY</span> total_participants <span class="kw">DESC</span>;</div>
+        </div>
+        <div class="sb-collab-strip">
+          <div class="sb-realtime-pill"><div class="sb-pulse"></div> Realtime sync active</div>
+          <div class="sc-av" style="background:#3ECF8E;color:#0F0F0F;width:20px;height:20px;font-size:9px;">AK</div><span style="color:#3ECF8E;">Arjun · editing row 3</span>
+          <div class="sc-av" style="background:#A78BFA;width:20px;height:20px;font-size:9px;margin-left:10px;">PR</div><span style="color:#A78BFA;">Priya · running query</span>
+          <div class="sc-av" style="background:#60A5FA;width:20px;height:20px;font-size:9px;margin-left:10px;">SM</div><span style="color:#60A5FA;">Sneha · adding row</span>
+          <div style="margin-left:auto;color:#3ECF8E;font-family:'IBM Plex Mono',monospace;font-size:11px;">✔ Auto-saved · RLS enforced · 312 rows</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TOOL 2: PLANETSCALE ════════════════ -->
+<div class="sec"><span class="sec-chip sc-2">TOOL 2</span><span class="sec-title">PlanetScale — planetscale.com</span></div>
+
+<div class="tool-banner">
+  <div class="tool-banner-head" style="background:linear-gradient(90deg,#1A0E2E,#200E3A);">
+    <span class="tbn-icon">🟣</span>
+    <div>
+      <div class="tbn-name">PlanetScale</div>
+      <div class="tbn-url">planetscale.com · MySQL-compatible · Git-like branching for DB schemas · Used by YouTube, GitHub &amp; more</div>
+    </div>
+  </div>
+  <div class="tool-banner-body">
+    <strong>What it is:</strong> PlanetScale is a cloud-hosted MySQL-compatible database platform with a unique feature: <strong>Git-like branching for database schemas</strong>. Just like code branches in Git, teams can create separate database branches for development, testing, and production — and deploy schema changes safely without downtime. Multiple developers collaborate on the database without conflicts.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Database branching — create dev/staging/production branches like Git</div>
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Deploy Requests — team reviews schema changes before applying to production</div>
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Browser-based query console — run SQL collaboratively</div>
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Non-blocking schema changes — zero downtime deployments</div>
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Team roles: Admin, Developer, Viewer per organization</div>
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Audit log — full history of who changed what and when</div>
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Automatic daily backups and point-in-time restore</div>
+      <div class="feat-row"><div class="fdot" style="background:#7C3AED;"></div>Insights — query performance analytics for the team</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 2 — PlanetScale Dashboard: Schema Browser + Branch Management (Team Collaboration)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#7C3AED;font-size:11px;">🔒</span>app.planetscale.com/techsympo-org/sympo-db/branches</div><div style="margin-left:10px;font-size:11.5px;color:#4B5563;">3 team members</div></div>
+  <div class="ps-body">
+    <div class="ps-topbar">
+      <div class="ps-logo"><div class="ps-logo-dot"></div>PlanetScale</div>
+      <div class="ps-org">techsympo-org / sympo-db</div>
+      <div class="ps-topbar-right">
+        <div style="display:flex;"><div class="sc-av" style="background:#7C3AED;width:24px;height:24px;font-size:10px;">AK</div><div class="sc-av" style="background:#EC4899;width:24px;height:24px;font-size:10px;margin-left:-6px;">KR</div><div class="sc-av" style="background:#06B6D4;width:24px;height:24px;font-size:10px;margin-left:-6px;">DR</div></div>
+        <div class="ps-btn-main">+ New Branch</div>
+      </div>
+    </div>
+    <div class="ps-layout">
+      <div class="ps-sidebar">
+        <div class="ps-sidebar-section">Branches</div>
+        <div class="ps-nav-item active">🌿 main (production)</div>
+        <div class="ps-nav-item">🔀 dev/add-feedback-table</div>
+        <div class="ps-nav-item">🔀 feature/results-schema</div>
+        <div class="ps-sidebar-section" style="margin-top:10px;">Database</div>
+        <div class="ps-nav-item">🗂 Schema</div>
+        <div class="ps-nav-item">💻 Console</div>
+        <div class="ps-nav-item">📊 Insights</div>
+        <div class="ps-nav-item">📋 Deploy Requests</div>
+        <div class="ps-sidebar-section" style="margin-top:10px;">Team</div>
+        <div class="ps-nav-item">👥 Members (3)</div>
+        <div class="ps-nav-item">📜 Audit Log</div>
+        <div class="ps-nav-item">⚙ Settings</div>
+      </div>
+      <div class="ps-main">
+        <div class="ps-branch-bar">
+          <span style="font-size:12px;color:#6B7280;font-family:'IBM Plex Mono',monospace;">Current branch:</span>
+          <div class="ps-branch">🌿 main</div>
+          <span style="font-size:12px;color:#4B5563;">← merged from</span>
+          <div class="ps-branch" style="background:#111;border-color:#2D2D2D;color:#6B7280;">🔀 feature/results-schema</div>
+          <div style="margin-left:auto;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:#22C55E;font-size:11.5px;padding:3px 12px;border-radius:10px;font-weight:600;font-family:'IBM Plex Mono',monospace;">✔ Production · Live</div>
+        </div>
+        <div class="ps-schema-wrap">
+          <div class="ps-schema-title">
+            📋 Schema — sympo_db
+            <span style="font-size:11px;font-weight:400;color:#6B7280;font-family:'IBM Plex Mono',monospace;">5 tables · MySQL 8.0 compatible</span>
+          </div>
+          <!-- Table: participants -->
+          <div class="ps-table-card">
+            <div class="ps-table-card-head">
+              <span style="color:#7C3AED;font-size:14px;">🗃</span>
+              <div class="ps-table-name">participants</div>
+              <div class="ps-rows-badge">312 rows</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name pk-field">id</div>
+              <div class="ps-field-type">BIGINT UNSIGNED</div>
+              <div class="ps-field-key ps-pk">PK 🔑</div>
+              <div style="font-size:11px;color:#4B5563;">AUTO_INCREMENT · PRIMARY KEY</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name">name</div>
+              <div class="ps-field-type">VARCHAR(255)</div>
+              <div class="ps-field-key ps-idx">IDX</div>
+              <div style="font-size:11px;color:#4B5563;">NOT NULL · Indexed for search</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name">college</div>
+              <div class="ps-field-type">VARCHAR(255)</div>
+              <div class="ps-field-key"></div>
+              <div style="font-size:11px;color:#4B5563;">NOT NULL</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name">state</div>
+              <div class="ps-field-type">VARCHAR(100)</div>
+              <div class="ps-field-key ps-idx">IDX</div>
+              <div style="font-size:11px;color:#4B5563;">Indexed · Used in GROUP BY queries</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name">mode</div>
+              <div class="ps-field-type">ENUM</div>
+              <div class="ps-field-key"></div>
+              <div style="font-size:11px;color:#4B5563;">'online', 'on_campus'</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name">status</div>
+              <div class="ps-field-type">ENUM</div>
+              <div class="ps-field-key ps-idx">IDX</div>
+              <div style="font-size:11px;color:#4B5563;">'confirmed', 'pending', 'cancelled'</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name">session_id</div>
+              <div class="ps-field-type">BIGINT UNSIGNED</div>
+              <div class="ps-field-key ps-fk">FK 🔗</div>
+              <div style="font-size:11px;color:#A78BFA;">→ sessions.id · CASCADE DELETE</div>
+            </div>
+            <div class="ps-field">
+              <div class="ps-field-name">created_at</div>
+              <div class="ps-field-type">TIMESTAMP</div>
+              <div class="ps-field-key"></div>
+              <div style="font-size:11px;color:#4B5563;">DEFAULT CURRENT_TIMESTAMP</div>
+            </div>
+          </div>
+          <!-- Deploy Requests -->
+          <div class="ps-deploy-pane">
+            <div class="ps-deploy-head">📋 Recent Deploy Requests (Schema Changes by Team)</div>
+            <div class="ps-deploy-row">
+              <div class="ps-deploy-dot ps-d-green"></div>
+              <div style="flex:1;"><div style="font-size:12.5px;color:#D1D5DB;font-weight:600;">Add feedback table · <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#22C55E;">Merged</span></div><div style="font-size:11px;color:#6B7280;">Opened by Kavya R. · Approved by Dr. Ramesh · Mar 24</div></div>
+              <div style="background:#22C55E;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;">MERGED</div>
+            </div>
+            <div class="ps-deploy-row">
+              <div class="ps-deploy-dot ps-d-amber"></div>
+              <div style="flex:1;"><div style="font-size:12.5px;color:#D1D5DB;font-weight:600;">Add results.score column · <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#F59E0B;">In Review</span></div><div style="font-size:11px;color:#6B7280;">Opened by Arjun K. · Awaiting review · Mar 26</div></div>
+              <div style="background:#F59E0B;color:#0F0F0F;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;">IN REVIEW</div>
+            </div>
+            <div class="ps-deploy-row">
+              <div class="ps-deploy-dot ps-d-blue"></div>
+              <div style="flex:1;"><div style="font-size:12.5px;color:#D1D5DB;font-weight:600;">Index state column · <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#60A5FA;">Open</span></div><div style="font-size:11px;color:#6B7280;">Opened by Priya R. · Mar 27</div></div>
+              <div style="background:#60A5FA;color:#0F0F0F;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;">OPEN</div>
+            </div>
+          </div>
+        </div>
+        <div class="ps-collab-bar">
+          <span>👥 Team (3):</span>
+          <div class="sc-av" style="background:#7C3AED;width:20px;height:20px;font-size:9px;">AK</div><span style="color:#A78BFA;">Arjun · Deploy Request open</span>
+          <div class="sc-av" style="background:#EC4899;width:20px;height:20px;font-size:9px;margin-left:8px;">KR</div><span style="color:#EC4899;">Kavya · Reviewing schema</span>
+          <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4B5563;">Non-blocking changes · Zero downtime · Daily backups</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TOOL 3: MONGODB ATLAS ════════════════ -->
+<div class="sec"><span class="sec-chip sc-3">TOOL 3</span><span class="sec-title">MongoDB Atlas — mongodb.com/atlas</span></div>
+
+<div class="tool-banner">
+  <div class="tool-banner-head" style="background:linear-gradient(90deg,#001E2B,#002E45);">
+    <span class="tbn-icon">🍃</span>
+    <div>
+      <div class="tbn-name">MongoDB Atlas</div>
+      <div class="tbn-url">mongodb.com/atlas · Cloud NoSQL Database · 40,000+ organizations · Free M0 cluster available</div>
+    </div>
+  </div>
+  <div class="tool-banner-body">
+    <strong>What it is:</strong> MongoDB Atlas is the fully managed cloud version of MongoDB — the world's most popular NoSQL database. It stores data as flexible JSON-like <strong>documents</strong> instead of rigid rows and columns, making it ideal for storing varied data like event registrations, feedback, and media. Multiple team members collaborate via the Atlas UI with a shared cluster.<br><br>
+    <strong>Key Collaboration Features:</strong>
+    <div class="feat-grid">
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Atlas Data Explorer — browse, edit, and query documents in browser</div>
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Aggregation Pipeline Builder — build complex queries visually with team</div>
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Atlas Charts — create live dashboards from DB data, shared with team</div>
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Organization + Project roles: Org Owner, Project Owner, Read-only</div>
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Atlas Search — full-text search index on any field, team-configurable</div>
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Realm Sync — real-time data sync across devices and users</div>
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Continuous backups with point-in-time restore</div>
+      <div class="feat-row"><div class="fdot" style="background:#00ED64;"></div>Activity Feed — team audit trail of all cluster changes</div>
+    </div>
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 3 — MongoDB Atlas: Data Explorer + Document View (Team Collaboration on Participant Collection)</div>
+<div class="win">
+  <div class="win-bar"><div class="dot dr"></div><div class="dot dy"></div><div class="dot dg"></div><div class="url-bar"><span style="color:#00ED64;font-size:11px;">🔒</span>cloud.mongodb.com/v2/techsympo-org/clusters/sympo-cluster/collections/participants</div></div>
+  <div class="mg-body">
+    <div class="mg-topbar">
+      <div class="mg-logo"><span class="mg-logo-leaf">🍃</span>MongoDB Atlas</div>
+      <div class="mg-breadcrumb">techsympo-org / sympo-cluster / sympo_db / participants</div>
+      <div class="mg-topbar-right">
+        <div style="display:flex;"><div class="sc-av" style="background:#00ED64;color:#001E2B;width:24px;height:24px;font-size:10px;">KR</div><div class="sc-av" style="background:#A78BFA;width:24px;height:24px;font-size:10px;margin-left:-6px;">SM</div><div class="sc-av" style="background:#F472B6;width:24px;height:24px;font-size:10px;margin-left:-6px;">AK</div></div>
+        <div class="mg-btn-main">+ Insert Document</div>
+      </div>
+    </div>
+    <div class="mg-layout">
+      <div class="mg-sidebar">
+        <div class="mg-sidebar-section">Collections</div>
+        <div class="mg-nav-item active">👥 participants (312)</div>
+        <div class="mg-nav-item">📅 sessions (8)</div>
+        <div class="mg-nav-item">🏆 results (48)</div>
+        <div class="mg-nav-item">💬 feedback (178)</div>
+        <div class="mg-nav-item">💰 budget (6)</div>
+        <div class="mg-sidebar-section" style="margin-top:10px;">Tools</div>
+        <div class="mg-nav-item">📊 Aggregation</div>
+        <div class="mg-nav-item">🔍 Atlas Search</div>
+        <div class="mg-nav-item">📈 Atlas Charts</div>
+        <div class="mg-nav-item">🗄 Schema Analyzer</div>
+        <div class="mg-sidebar-section" style="margin-top:10px;">Cluster</div>
+        <div class="mg-nav-item">⚙ Metrics</div>
+        <div class="mg-nav-item">📜 Activity Feed</div>
+        <div class="mg-nav-item">👥 Database Access</div>
+      </div>
+      <div class="mg-main">
+        <div class="mg-toolbar">
+          <div class="mg-tbl-btn green">+ Insert</div>
+          <div class="mg-tbl-btn">🔽 Filter</div>
+          <div class="mg-tbl-btn">📊 Explain</div>
+          <div class="mg-tbl-btn">🔍 Find</div>
+          <div style="margin-left:auto;font-size:11.5px;color:#2A6B5A;font-family:'IBM Plex Mono',monospace;">312 documents · sympo_db.participants</div>
+        </div>
+        <div class="mg-docs-wrap">
+          <div class="mg-collection-head">
+            <div class="mg-collection-name">participants</div>
+            <div class="mg-doc-count">312 documents</div>
+            <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11.5px;color:#2A6B5A;"><div class="mg-pulse"></div>Live · 3 editors</div>
+          </div>
+          <!-- Document 1 -->
+          <div class="mg-doc-card">
+            <div class="mg-json">
+              {<br>
+              &nbsp;&nbsp;<span class="mg-key">"_id"</span>: <span class="mg-id">ObjectId("65f8a2b1c3d4e5f6a7b8c9d0")</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"name"</span>: <span class="mg-str">"Kavya Rajan"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"college"</span>: <span class="mg-str">"VIT Vellore"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"state"</span>: <span class="mg-str">"Tamil Nadu"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"mode"</span>: <span class="mg-str">"online"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"events"</span>: [<span class="mg-str">"paper_presentation"</span>, <span class="mg-str">"technical_quiz"</span>],<br>
+              &nbsp;&nbsp;<span class="mg-key">"status"</span>: <span class="mg-str">"confirmed"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"score"</span>: <span class="mg-num">26</span>, &nbsp;<span class="mg-key">"rank"</span>: <span class="mg-num">1</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"abstract_url"</span>: <span class="mg-str">"https://drive.../abstract_kavya.pdf"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"created_at"</span>: <span class="mg-str">ISODate("2025-03-18T09:14:22Z")</span><br>
+              }
+            </div>
+          </div>
+          <!-- Document 2 - being edited -->
+          <div class="mg-doc-card editing">
+            <div class="mg-edit-tag">✎ AK editing</div>
+            <div class="mg-json">
+              {<br>
+              &nbsp;&nbsp;<span class="mg-key">"_id"</span>: <span class="mg-id">ObjectId("65f9b3c2d4e5f6a7b8c9d1e2")</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"name"</span>: <span class="mg-str">"Arjun Kumar"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"college"</span>: <span class="mg-str">"PESIT Bangalore"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"state"</span>: <span class="mg-str">"Karnataka"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"mode"</span>: <span class="mg-str">"online"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"events"</span>: [<span class="mg-str">"technical_quiz"</span>],<br>
+              &nbsp;&nbsp;<span class="mg-key">"status"</span>: <span class="mg-str">"confirmed"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"score"</span>: <span style="background:rgba(0,237,100,.2);padding:1px 5px;border-radius:3px;" class="mg-num">25 ← being updated</span><br>
+              }
+            </div>
+          </div>
+          <!-- Document 3 -->
+          <div class="mg-doc-card">
+            <div class="mg-json">
+              {<br>
+              &nbsp;&nbsp;<span class="mg-key">"_id"</span>: <span class="mg-id">ObjectId("65fab4d3e5f6a7b8c9d2e3f4")</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"name"</span>: <span class="mg-str">"Sneha Menon"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"state"</span>: <span class="mg-str">"Kerala"</span>, &nbsp;<span class="mg-key">"mode"</span>: <span class="mg-str">"on_campus"</span>,<br>
+              &nbsp;&nbsp;<span class="mg-key">"events"</span>: [<span class="mg-str">"project_expo"</span>, <span class="mg-str">"coding_challenge"</span>],<br>
+              &nbsp;&nbsp;<span class="mg-key">"status"</span>: <span class="mg-str">"confirmed"</span>, &nbsp;<span class="mg-key">"score"</span>: <span class="mg-num">22</span><br>
+              }
+            </div>
+          </div>
+        </div>
+        <!-- Aggregation pane -->
+        <div class="mg-agg-pane">
+          <div class="mg-agg-head">🔗 Aggregation Pipeline · Built by Team · State-wise Participant Count</div>
+          <div class="mg-agg-code">
+            <span style="color:#6B7280;">db.participants.aggregate([</span><br>
+            &nbsp;&nbsp;{ <span class="mg-key">"$match"</span>: { <span class="mg-key">"status"</span>: <span class="mg-str">"confirmed"</span> } },<br>
+            &nbsp;&nbsp;{ <span class="mg-key">"$group"</span>: { <span class="mg-key">"_id"</span>: <span class="mg-str">"$state"</span>, <span class="mg-key">"count"</span>: { <span class="mg-key">"$sum"</span>: <span class="mg-num">1</span> } } },<br>
+            &nbsp;&nbsp;{ <span class="mg-key">"$sort"</span>: { <span class="mg-key">"count"</span>: <span class="mg-num">-1</span> } }<br>
+            <span style="color:#6B7280;">])</span>
+          </div>
+        </div>
+        <div class="mg-collab-bar">
+          <div style="display:flex;align-items:center;gap:6px;"><div class="mg-pulse"></div><span>Live sync</span></div>
+          <div class="sc-av" style="background:#00ED64;color:#001E2B;width:20px;height:20px;font-size:9px;">KR</div><span style="color:#00ED64;">Kavya · browsing</span>
+          <div class="sc-av" style="background:#A78BFA;width:20px;height:20px;font-size:9px;margin-left:8px;">SM</div><span style="color:#A78BFA;">Sneha · aggregation pipeline</span>
+          <div class="sc-av" style="background:#F472B6;width:20px;height:20px;font-size:9px;margin-left:8px;">AK</div><span style="color:#F472B6;">Arjun · editing doc 2</span>
+          <div style="margin-left:auto;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#2A6B5A;">✔ M0 Free Cluster · Auto-backup daily · TLS encrypted</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="sec"><span class="sec-chip sc-cmp">04</span><span class="sec-title">Comparison of All Three Tools</span></div>
+<table class="cmp">
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th class="tool-head">🟢 Supabase</th>
+      <th class="tool-head">🟣 PlanetScale</th>
+      <th class="tool-head">🍃 MongoDB Atlas</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>Database Type</td><td>PostgreSQL (Relational)</td><td>MySQL (Relational)</td><td>NoSQL (Document)</td></tr>
+    <tr><td>Real-time Sync</td><td class="yes">✔ Built-in Realtime</td><td class="par">⚠ Via app layer</td><td class="yes">✔ Atlas Realm Sync</td></tr>
+    <tr><td>Browser-based UI</td><td class="yes">✔ Full Dashboard</td><td class="yes">✔ Full Dashboard</td><td class="yes">✔ Atlas UI</td></tr>
+    <tr><td>Team Roles & Access</td><td class="yes">✔ Owner/Dev/Read</td><td class="yes">✔ Admin/Dev/Viewer</td><td class="yes">✔ Org/Project/Role</td></tr>
+    <tr><td>Schema Branching</td><td class="no">✗ No</td><td class="yes">✔ Git-like branching</td><td class="no">✗ No</td></tr>
+    <tr><td>Visual Query Builder</td><td class="par">⚠ SQL Editor only</td><td class="par">⚠ SQL Console</td><td class="yes">✔ Aggregation Builder</td></tr>
+    <tr><td>Built-in Charts</td><td class="par">⚠ Via extensions</td><td class="par">⚠ Insights only</td><td class="yes">✔ Atlas Charts</td></tr>
+    <tr><td>Free Tier</td><td class="yes">✔ 500MB, 2 projects</td><td class="yes">✔ Hobby plan</td><td class="yes">✔ M0 (512MB)</td></tr>
+    <tr><td>Audit / History</td><td class="yes">✔ Logs dashboard</td><td class="yes">✔ Full Audit Log</td><td class="yes">✔ Activity Feed</td></tr>
+    <tr><td>Best For</td><td>Web apps, real-time features</td><td>Safe schema changes in teams</td><td>Flexible/nested data</td></tr>
+  </tbody>
+</table>
+
+<!-- CONCLUSION -->
+<div class="conclusion">
+  <div class="con-head"><h3>Conclusion</h3></div>
+  <div class="con-body">
+    <p>
+      Cloud database collaboration allows teams distributed across locations to work on the same live database simultaneously — without local servers, file sharing, or data conflicts. Three powerful, real-world tools achieve this in distinct ways:
+      <br><br>
+      <strong style="color:#3ECF8E;">🟢 Supabase</strong> provides a full PostgreSQL database with a browser-based Table Editor, real-time subscriptions, SQL editor, and row-level security — ideal for teams building web applications or managing structured relational data collaboratively.
+      <br><br>
+      <strong style="color:#A78BFA;">🟣 PlanetScale</strong> brings Git-like database branching to MySQL — teams can create schema branches, open Deploy Requests for peer review, and merge changes to production without any downtime, making it uniquely safe for collaborative database development.
+      <br><br>
+      <strong style="color:#00ED64;">🍃 MongoDB Atlas</strong> provides a cloud-hosted NoSQL document database with a rich browser UI, a visual Aggregation Pipeline Builder, and Atlas Charts for real-time dashboards — ideal for flexible, nested, or rapidly evolving data structures shared across teams.
+      <br><br>
+      All three tools are <strong>real, production-grade, and widely used</strong> by thousands of organizations globally. They offer free tiers, encrypted connections, automatic backups, role-based team access, and audit logs — making cloud database collaboration secure, scalable, and truly teamwork-friendly.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
