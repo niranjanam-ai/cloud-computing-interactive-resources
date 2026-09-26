@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Collaboration Tools – Master Cheatsheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@400;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:   #0D0D0D;
+  --paper: #FAFAF7;
+  --rule:  #E8E4DC;
+  --muted: #7A7468;
+  --accent:#FF3B30;
+
+  /* topic colours */
+  --c-platform: #0066CC;
+  --c-spread:   #217346;
+  --c-db:       #3ECF8E;
+  --c-pres:     #A259FF;
+  --c-file:     #0061FF;
+  --c-photo:    #FF0084;
+  --c-cal:      #E42527;
+  --c-task:     #FF5263;
+  --c-contact:  #FF7A59;
+  --c-word:     #191919;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Barlow', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ── COVER ── */
+.cover {
+  background: var(--ink);
+  padding: 44px 52px 36px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 4px solid var(--accent);
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  right: -60px; top: -60px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 60px solid rgba(255,59,48,.12);
+}
+.cover-eyebrow {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #FF3B30; margin-bottom: 10px;
+}
+.cover h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 58px; line-height: 1.0;
+  color: #fff; letter-spacing: .02em;
+  max-width: 700px;
+}
+.cover h1 span { color: var(--accent); }
+.cover-sub {
+  font-size: 13.5px; color: #888;
+  margin-top: 10px; max-width: 600px;
+}
+.cover-stats {
+  display: flex; gap: 28px;
+  margin-top: 22px;
+}
+.cs-item { text-align: center; }
+.cs-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; color: var(--accent);
+  line-height: 1;
+}
+.cs-label { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: .1em; }
+
+/* ── BODY ── */
+.body { padding: 36px 52px 60px; }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; flex-wrap: wrap; gap: 8px;
+  margin-bottom: 32px;
+  padding: 14px 18px;
+  background: #F5F4F0;
+  border-radius: 8px;
+  border: 1px solid var(--rule);
+}
+.legend-title {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px; font-weight: 500; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--muted);
+  width: 100%; margin-bottom: 6px;
+}
+.legend-item {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11.5px; font-weight: 600; color: var(--ink);
+}
+.legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+
+/* ── TOPIC SECTION ── */
+.topic-section { margin-bottom: 30px; }
+.topic-header {
+  display: grid;
+  grid-template-columns: 4px 1fr;
+  gap: 0 14px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.topic-stripe { height: 100%; border-radius: 2px; min-height: 28px; }
+.topic-title-wrap {}
+.topic-number {
+  font-family: 'Fira Code', monospace;
+  font-size: 9.5px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 1px;
+}
+.topic-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 19px; font-weight: 800;
+  color: var(--ink); text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+/* ── TOOL CARDS GRID ── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.tool-card {
+  border-radius: 8px;
+  border: 1.5px solid var(--rule);
+  overflow: hidden;
+  background: var(--paper);
+  transition: box-shadow .15s;
+}
+.tool-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+.tc-header {
+  padding: 10px 13px 8px;
+  display: flex; align-items: flex-start; gap: 9px;
+}
+.tc-color-bar { width: 3px; border-radius: 2px; min-height: 40px; flex-shrink: 0; }
+.tc-info { flex: 1; }
+.tc-tool-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 16px; font-weight: 800;
+  color: var(--ink); line-height: 1.1;
+  text-transform: uppercase; letter-spacing: .02em;
+}
+.tc-url {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px; color: var(--muted);
+  margin-top: 2px;
+}
+.tc-type-badge {
+  font-size: 9px; font-weight: 700;
+  padding: 2px 6px; border-radius: 10px;
+  text-transform: uppercase; letter-spacing: .06em;
+  margin-top: 4px; display: inline-block;
+  color: #fff;
+}
+.tc-features {
+  padding: 0 13px 10px;
+  border-top: 1px solid var(--rule);
+}
+.tc-feat {
+  display: flex; align-items: flex-start; gap: 6px;
+  padding: 4px 0;
+  font-size: 12px; color: #3A3830;
+  border-bottom: 1px solid #F5F4F0;
+  line-height: 1.4;
+}
+.tc-feat:last-child { border-bottom: none; }
+.tc-feat-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  flex-shrink: 0; margin-top: 5px;
+}
+.tc-unique {
+  font-size: 10px; font-weight: 700;
+  font-family: 'Fira Code', monospace;
+  padding: 3px 7px; margin: 6px 13px 10px;
+  border-radius: 4px; display: inline-block;
+}
+
+/* ── QUICK REFERENCE TABLE ── */
+.qr-section { margin-top: 36px; }
+.qr-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: .04em;
+  color: var(--ink); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.qr-title::after { content:''; flex:1; height:2px; background:var(--ink); }
+table.qr {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+table.qr thead tr { background: var(--ink); color: #fff; }
+table.qr th {
+  padding: 10px 14px;
+  font-family: 'Fira Code', monospace;
+  font-size: 10.5px; letter-spacing: .06em;
+  text-align: left; font-weight: 500;
+  text-transform: uppercase;
+}
+table.qr td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  vertical-align: middle;
+}
+table.qr tr:last-child td { border-bottom: none; }
+table.qr tr:hover td { background: #F5F4F0; }
+.qr-topic-cell {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.qr-tool-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px; border-radius: 5px;
+  font-size: 11.5px; font-weight: 700;
+  margin: 2px; color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  letter-spacing: .03em;
+}
+.qr-free { color: #065F46; font-weight: 700; font-size: 11.5px; }
+.qr-paid { color: var(--muted); font-size: 11.5px; }
+.qr-unique-feat {
+  font-family: 'Fira Code', monospace;
+  font-size: 10.5px; color: var(--muted);
+  font-style: italic;
+}
+
+/* ── FOOTER STRIP ── */
+.footer {
+  background: var(--ink);
+  padding: 18px 52px;
+  display: flex; align-items: center;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.footer-left {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px; color: #fff; letter-spacing: .04em;
+}
+.footer-left span { color: var(--accent); }
+.footer-right {
+  font-family: 'Fira Code', monospace;
+  font-size: 10.5px; color: #555;
+}
+
+/* page break for print */
+@media print {
+  .page-break { page-break-before: always; }
+  body { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── COVER ── -->
+<div class="cover">
+  <div class="cover-eyebrow">Cloud Computing · Complete Study Reference</div>
+  <h1>Cloud Collaboration<br>Tools <span>Cheatsheet</span></h1>
+  <div class="cover-sub">Every real, production-grade cloud tool covered across all 10 collaboration topics — from Spreadsheets to Word Processing. No Google, No Microsoft.</div>
+  <div class="cover-stats">
+    <div class="cs-item"><div class="cs-num">10</div><div class="cs-label">Topics Covered</div></div>
+    <div class="cs-item"><div class="cs-num">30</div><div class="cs-label">Cloud Tools</div></div>
+    <div class="cs-item"><div class="cs-num">3</div><div class="cs-label">Tools Per Topic</div></div>
+    <div class="cs-item"><div class="cs-num">100%</div><div class="cs-label">Real Platforms</div></div>
+  </div>
+</div>
+
+<div class="body">
+
+<!-- ── LEGEND ── -->
+<div class="legend">
+  <div class="legend-title">Topic Colour Legend</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#217346;"></div>Spreadsheets</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#3ECF8E;"></div>Databases</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#A259FF;"></div>Presentations</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#0061FF;"></div>File Storage</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#FF0084;"></div>Photo Sharing</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#E42527;"></div>Calendars</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#FF5263;"></div>Task Management</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#FF7A59;"></div>Contact Management</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#191919;"></div>Word Processing</div>
+</div>
+
+<!-- ══════════════════ TOPIC 1: SPREADSHEETS ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#217346;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 01 · Cloud Collaboration</div>
+      <div class="topic-name">📊 Collaborating on Spreadsheets</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <!-- Airtable -->
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#FFBF00;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Airtable</div>
+          <div class="tc-url">airtable.com</div>
+          <div class="tc-type-badge" style="background:#FFBF00;color:#172B4D;">Spreadsheet-Database Hybrid</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FFBF00;"></div>Real-time co-editing with coloured cursors per user</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FFBF00;"></div>Multiple views: Grid, Kanban, Calendar, Gallery, Form</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FFBF00;"></div>Rich field types: attachments, checkboxes, dropdowns</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FFBF00;"></div>Automations, @mentions, revision history</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF3CC;color:#7A5C00;">★ Unique: Multiple views (Grid, Kanban, Form in one)</div>
+    </div>
+
+    <!-- Zoho Sheet -->
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#E42527;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Zoho Sheet</div>
+          <div class="tc-url">zoho.com/sheet</div>
+          <div class="tc-type-badge" style="background:#E42527;">Full Cloud Spreadsheet</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>400+ functions including statistical, financial, text</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Live co-editing with cell-level locking</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Pivot tables, advanced charts, conditional formatting</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Import/Export: .xlsx, .csv, .ods, .pdf</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF0F0;color:#7A0000;">★ Unique: 400+ functions — closest to Excel in cloud</div>
+    </div>
+
+    <!-- Apple Numbers -->
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#007AFF;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Apple Numbers</div>
+          <div class="tc-url">icloud.com/numbers</div>
+          <div class="tc-type-badge" style="background:#007AFF;">iCloud Spreadsheet</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#007AFF;"></div>Real-time iCloud collaboration across all Apple devices</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#007AFF;"></div>Beautiful pre-built templates for reports, budgets</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#007AFF;"></div>Interactive charts that update automatically with data</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#007AFF;"></div>Free with Apple ID · Browser access for non-Apple users</div>
+      </div>
+      <div class="tc-unique" style="background:#EEF4FF;color:#0A3A6E;">★ Unique: Free lifetime plan + beautiful Apple design</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 2: DATABASES ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#3ECF8E;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 02 · Cloud Collaboration</div>
+      <div class="topic-name">🗄 Collaborating on Databases</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#3ECF8E;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Supabase</div>
+          <div class="tc-url">supabase.com</div>
+          <div class="tc-type-badge" style="background:#3ECF8E;color:#0F0F0F;">PostgreSQL Cloud DB</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#3ECF8E;"></div>Browser Table Editor — insert, update rows collaboratively</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#3ECF8E;"></div>Built-in Realtime subscriptions — changes push instantly</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#3ECF8E;"></div>Row Level Security (RLS) — fine-grained access control</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#3ECF8E;"></div>Auto-generated REST + GraphQL APIs from schema</div>
+      </div>
+      <div class="tc-unique" style="background:#E0F5F0;color:#065F46;">★ Unique: Built-in Realtime subscriptions (live push)</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#7C3AED;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">PlanetScale</div>
+          <div class="tc-url">planetscale.com</div>
+          <div class="tc-type-badge" style="background:#7C3AED;">MySQL Cloud DB</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>Git-like DB branching — dev/staging/production branches</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>Deploy Requests — team reviews schema changes before apply</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>Non-blocking schema changes — zero downtime deployments</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>Full Audit Log + query performance Insights</div>
+      </div>
+      <div class="tc-unique" style="background:#EDE9FE;color:#4C1D95;">★ Unique: Git-like database branching (no other DB has this)</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#00ED64;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">MongoDB Atlas</div>
+          <div class="tc-url">mongodb.com/atlas</div>
+          <div class="tc-type-badge" style="background:#00344E;color:#00ED64;">NoSQL Document DB</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00ED64;"></div>Atlas Data Explorer — browse &amp; edit JSON documents in browser</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00ED64;"></div>Visual Aggregation Pipeline Builder</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00ED64;"></div>Atlas Charts — live dashboards from DB data, shared with team</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00ED64;"></div>Flexible JSON documents — no fixed schema required</div>
+      </div>
+      <div class="tc-unique" style="background:#E0F5F0;color:#065F46;">★ Unique: Atlas Charts — visual dashboards from DB data</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 3: PRESENTATIONS ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#A259FF;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 03 · Cloud Collaboration</div>
+      <div class="topic-name">📽 Collaborating on Presentations</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#A259FF;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Canva</div>
+          <div class="tc-url">canva.com</div>
+          <div class="tc-type-badge" style="background:#A259FF;">Design-First Presentations</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#A259FF;"></div>Real-time co-editing with coloured cursors on every slide</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#A259FF;"></div>50,000+ templates · AI Magic Design generation</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#A259FF;"></div>Present Live — audience joins via link, follows speaker</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#A259FF;"></div>Brand Kit — shared fonts, colours, logos for consistency</div>
+      </div>
+      <div class="tc-unique" style="background:#F3EBFF;color:#4C1D95;">★ Unique: 50,000+ templates + AI Magic Design</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#2B6BF3;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Prezi</div>
+          <div class="tc-url">prezi.com</div>
+          <div class="tc-type-badge" style="background:#2B6BF3;">Zooming Canvas</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6BF3;"></div>Unique zooming canvas — non-linear storytelling</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6BF3;"></div>Real-time co-editing on shared infinite canvas</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6BF3;"></div>Analytics — see who viewed, which topics, how long</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6BF3;"></div>Prezi Video — present with webcam overlay on content</div>
+      </div>
+      <div class="tc-unique" style="background:#E8F0FE;color:#0D2B6B;">★ Unique: Zooming canvas — topics, not slides</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#E42527;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Zoho Show</div>
+          <div class="tc-url">zoho.com/show</div>
+          <div class="tc-type-badge" style="background:#E42527;">Business Slide Editor</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Real-time co-authoring with live presence indicators</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Slide Locking — prevent edits during faculty review</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Named version history with restore capability</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Broadcast mode — live present to remote audience</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF0F0;color:#7A0000;">★ Unique: Slide Locking — protect approved slides</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 4: FILE STORAGE ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#0061FF;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 04 · Cloud Collaboration</div>
+      <div class="topic-name">☁ Storing &amp; Sharing Files and Online Content</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#0061FF;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Dropbox</div>
+          <div class="tc-url">dropbox.com</div>
+          <div class="tc-type-badge" style="background:#0061FF;">Sync-First Storage</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Smart Sync — cloud files appear on desktop, no disk space</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Share links with password + expiry date controls</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Version history 30–180 days · Dropbox Transfer (100GB)</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Dropbox Paper — collaborative doc editor built-in</div>
+      </div>
+      <div class="tc-unique" style="background:#EBF3FF;color:#002E99;">★ Unique: Dropbox Transfer — send 100GB via one link</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#0061D5;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Box</div>
+          <div class="tc-url">box.com</div>
+          <div class="tc-type-badge" style="background:#0061D5;">Enterprise Content</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061D5;"></div>6 permission levels per user (Owner → Viewer)</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061D5;"></div>Full Audit Activity Feed — every action logged</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061D5;"></div>Box Sign — legally binding e-signatures in browser</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061D5;"></div>Classification labels: Confidential / Internal / Public</div>
+      </div>
+      <div class="tc-unique" style="background:#E5EEFF;color:#004699;">★ Unique: Full audit trail + e-signatures (Box Sign)</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#00C2B2;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">pCloud</div>
+          <div class="tc-url">pcloud.com</div>
+          <div class="tc-type-badge" style="background:#1E6FEB;">Privacy-First Storage</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1E6FEB;"></div>Lifetime plan — pay once, use 500GB/2TB forever</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1E6FEB;"></div>pCloud Crypto — zero-knowledge client-side encryption</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1E6FEB;"></div>Share links with password, expiry, download permission</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1E6FEB;"></div>Built-in media player — play audio/video from cloud</div>
+      </div>
+      <div class="tc-unique" style="background:#E6F8F7;color:#004D40;">★ Unique: Lifetime plan + pCloud Crypto (zero-knowledge)</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 5: PHOTO SHARING ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#FF0084;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 05 · Cloud Collaboration</div>
+      <div class="topic-name">📷 Sharing Digital Photographs</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#FF0084;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Flickr</div>
+          <div class="tc-url">flickr.com</div>
+          <div class="tc-type-badge" style="background:#0063DC;">Community Photo Platform</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF0084;"></div>Group Pools — multiple contributors to shared album</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF0084;"></div>Guest Pass — share private albums via secret link</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF0084;"></div>Tags, geotags, Creative Commons licensing</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF0084;"></div>1,000 free photos · Real-time stats (views, favourites)</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF0F8;color:#880045;">★ Unique: Group Pools — community photo collaboration</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#2B6358;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">SmugMug</div>
+          <div class="tc-url">smugmug.com</div>
+          <div class="tc-type-badge" style="background:#2B6358;">Pro Photo Gallery</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6358;"></div>Unlimited cloud photo storage in original resolution</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6358;"></div>Custom gallery website with own domain name</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6358;"></div>Print store — sell prints/canvas from gallery</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#2B6358;"></div>Watermarking + Right-click protection</div>
+      </div>
+      <div class="tc-unique" style="background:#EFF7F5;color:#004D40;">★ Unique: Integrated print store + client proofing</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#1D7CE1;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">500px</div>
+          <div class="tc-url">500px.com</div>
+          <div class="tc-type-badge" style="background:#161616;color:#E8C84A;">Portfolio + Licensing</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1D7CE1;"></div>Pulse score (0–100) — algorithmic photo quality rating</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1D7CE1;"></div>Licensing marketplace — sell Non-exclusive/Exclusive rights</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1D7CE1;"></div>EXIF data display — camera, ISO, shutter speed shown</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1D7CE1;"></div>16M+ photographer community · Editor's Choice rankings</div>
+      </div>
+      <div class="tc-unique" style="background:#EEF4FF;color:#0A3A6E;">★ Unique: Pulse score + licensing marketplace</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 6: CALENDARS ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#E42527;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 06 · Cloud Collaboration</div>
+      <div class="topic-name">📅 Collaborating on Calendars</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#E42527;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Zoho Calendar</div>
+          <div class="tc-url">zoho.com/calendar</div>
+          <div class="tc-type-badge" style="background:#E42527;">Workplace Calendar</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Shared team calendars — all members see events in real time</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Availability checker — see all members' free/busy slots</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Resource Booking — book rooms, labs, equipment from calendar</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#E42527;"></div>Zoho Meet integration — add video link to any event</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF0F0;color:#7A0000;">★ Unique: Resource Booking (rooms, equipment)</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#00897B;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Teamup</div>
+          <div class="tc-url">teamup.com</div>
+          <div class="tc-type-badge" style="background:#00897B;">Group Scheduling</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00897B;"></div>Sub-calendars — colour-coded layers per team/resource</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00897B;"></div>Link-based access — no account needed to view/add events</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00897B;"></div>8 permission levels per calendar link</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#00897B;"></div>iCal feed — subscribe from any calendar app</div>
+      </div>
+      <div class="tc-unique" style="background:#E0F5F2;color:#004D40;">★ Unique: Sub-calendars + no-login link-based sharing</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#7C3AED;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Fantastical</div>
+          <div class="tc-url">fantastical.app</div>
+          <div class="tc-type-badge" style="background:#7C3AED;">AI-Powered Calendar</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>Natural Language Parsing — type "Meet Kavya Mar 28 11am" → auto-creates event</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>Weather integration — forecast shown per calendar day</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>RSVP attendee tracking — accept/decline per person</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#7C3AED;"></div>CalDAV sync — connects to any cloud calendar provider</div>
+      </div>
+      <div class="tc-unique" style="background:#EDE9FE;color:#4C1D95;">★ Unique: Natural Language Parsing + weather overlay</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 7: TASK MANAGEMENT ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#F06A6A;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 07 · Cloud Collaboration</div>
+      <div class="topic-name">✅ Schedules &amp; Task Management</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#F06A6A;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Asana</div>
+          <div class="tc-url">asana.com</div>
+          <div class="tc-type-badge" style="background:#F06A6A;">Full Project Management</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#F06A6A;"></div>4 views: List, Board (Kanban), Timeline (Gantt), Calendar</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#F06A6A;"></div>Task Dependencies — Task B waits until Task A is done</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#F06A6A;"></div>Milestones, Workload view, Rules &amp; Automation</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#F06A6A;"></div>Portfolio — track multiple projects in one dashboard</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF3F3;color:#7A0000;">★ Unique: Task dependencies + Timeline (Gantt) view</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#0052CC;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Trello</div>
+          <div class="tc-url">trello.com</div>
+          <div class="tc-type-badge" style="background:#0052CC;">Visual Kanban Board</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0052CC;"></div>Kanban cards — drag between To Do → In Progress → Done</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0052CC;"></div>Cards with checklists, due dates, labels, attachments</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0052CC;"></div>Butler Automation — auto-move cards, send alerts</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0052CC;"></div>Power-Ups — add Calendar view, GitHub, Slack integration</div>
+      </div>
+      <div class="tc-unique" style="background:#E5F0FF;color:#003B8E;">★ Unique: Simplest visual Kanban — drag-and-drop workflow</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#DB4035;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Todoist</div>
+          <div class="tc-url">todoist.com</div>
+          <div class="tc-type-badge" style="background:#DB4035;">Priority-Driven Tasks</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#DB4035;"></div>P1–P4 colour flag system (Red/Orange/Blue/Grey)</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#DB4035;"></div>Natural language: "Send report every Friday at 9am P1"</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#DB4035;"></div>Karma system — rewards task completion with points</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#DB4035;"></div>Recurring tasks, custom filters, labels across projects</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF0EF;color:#8B1A15;">★ Unique: P1–P4 flags + Karma gamification system</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 8: CONTACT MANAGEMENT ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#FF7A59;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 08 · Cloud Collaboration</div>
+      <div class="topic-name">👥 Contact Management (CRM)</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#FF7A59;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">HubSpot CRM</div>
+          <div class="tc-url">hubspot.com</div>
+          <div class="tc-type-badge" style="background:#FF7A59;">Free All-in-One CRM</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF7A59;"></div>Free for unlimited users — no seat limit ever</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF7A59;"></div>Activity Timeline — logs all emails, calls, meetings per contact</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF7A59;"></div>Deal pipeline — track contacts through stages</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#FF7A59;"></div>Notes, @mentions, email tracking (open/click)</div>
+      </div>
+      <div class="tc-unique" style="background:#FFF4F1;color:#3D1A00;">★ Unique: Free forever, unlimited users</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#1565C0;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Zoho CRM</div>
+          <div class="tc-url">zoho.com/crm</div>
+          <div class="tc-type-badge" style="background:#1565C0;">AI-Powered CRM</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1565C0;"></div>Zia AI — predicts lead score, best contact time</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1565C0;"></div>SalesSignals — real-time alerts when contact opens email</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1565C0;"></div>Blueprint — enforces defined contact management process</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#1565C0;"></div>Integrates with 40+ Zoho apps</div>
+      </div>
+      <div class="tc-unique" style="background:#EBF3FF;color:#0D47A1;">★ Unique: Zia AI + SalesSignals (real-time email open alerts)</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#25C16F;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Freshsales</div>
+          <div class="tc-url">freshsales.io</div>
+          <div class="tc-type-badge" style="background:#264F8F;">AI + Built-in Calling</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#25C16F;"></div>Freddy AI — auto-scores leads 0–100 based on engagement</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#25C16F;"></div>Built-in browser telephony — call contacts from browser</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#25C16F;"></div>Contact enrichment — auto-fills LinkedIn/Twitter from email</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#25C16F;"></div>Visual Kanban contact pipeline per stage</div>
+      </div>
+      <div class="tc-unique" style="background:#E8F8F0;color:#065F46;">★ Unique: Freddy AI scoring + built-in browser calling</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOPIC 9: WORD PROCESSING ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#191919;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 09 · Cloud Collaboration</div>
+      <div class="topic-name">📝 Collaborating on Word Processing</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#191919;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Notion</div>
+          <div class="tc-url">notion.so</div>
+          <div class="tc-type-badge" style="background:#191919;">Wiki + Block Editor</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#191919;"></div>Block-based editor — drag any content type (text, table, code, video)</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#191919;"></div>Real-time co-editing with coloured named cursors</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#191919;"></div>Page nesting — hierarchical wiki structure</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#191919;"></div>Notion AI — draft, summarise, improve text with AI</div>
+      </div>
+      <div class="tc-unique" style="background:#F5F4F0;color:#1A1917;">★ Unique: Docs + Databases + Tasks in one workspace</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#C0392B;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Zoho Writer</div>
+          <div class="tc-url">zoho.com/writer</div>
+          <div class="tc-type-badge" style="background:#C0392B;">Full Word Processor</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#C0392B;"></div>Tracked Changes — every edit marked; accept/reject each</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#C0392B;"></div>Review Mode — reviewer suggests, cannot overwrite</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#C0392B;"></div>Full .docx / .odt compatibility — import &amp; export</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#C0392B;"></div>Mail Merge + e-Signature integration + offline editing</div>
+      </div>
+      <div class="tc-unique" style="background:#FEF0EE;color:#7B2018;">★ Unique: Tracked Changes + Mail Merge + e-Signature</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#0061FF;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Dropbox Paper</div>
+          <div class="tc-url">paper.dropbox.com</div>
+          <div class="tc-type-badge" style="background:#0061FF;">Minimal Collaborative Doc</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Action items — @mention + due date per checklist item</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Embed rich media — YouTube, code blocks, Google Maps</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Present mode — single-click doc presentation</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#0061FF;"></div>Threaded comments with emoji reactions per highlight</div>
+      </div>
+      <div class="tc-unique" style="background:#EBF3FF;color:#002E99;">★ Unique: Present mode + action items with due dates</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ BONUS: HYBRID EVENT TOOLS ══════════════════ -->
+<div class="topic-section">
+  <div class="topic-header">
+    <div class="topic-stripe" style="background:#0066CC;"></div>
+    <div class="topic-title-wrap">
+      <div class="topic-number">Topic 10 · Cloud Collaboration (Bonus — Q10a)</div>
+      <div class="topic-name">🎤 Hybrid Symposium Collaboration Platforms</div>
+    </div>
+  </div>
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#5059C9;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Microsoft Teams</div>
+          <div class="tc-url">teams.microsoft.com</div>
+          <div class="tc-type-badge" style="background:#5059C9;">Unified Communication</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#5059C9;"></div>Team Channels — separate channels per event track</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#5059C9;"></div>Teams Live Events — broadcast to 10,000+ viewers</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#5059C9;"></div>MS Forms integration — registration, feedback forms</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#5059C9;"></div>Cloud recording auto-saved to SharePoint/OneDrive</div>
+      </div>
+      <div class="tc-unique" style="background:#EEEEFF;color:#2B2B90;">★ Unique: Live Events for 10,000+ concurrent viewers</div>
+    </div>
+
+    <div class="tool-card">
+      <div class="tc-header">
+        <div class="tc-color-bar" style="background:#4285F4;"></div>
+        <div class="tc-info">
+          <div class="tc-tool-name">Google Workspace</div>
+          <div class="tc-url">workspace.google.com</div>
+          <div class="tc-type-badge" style="background:#4285F4;">Integrated Suite</div>
+        </div>
+      </div>
+      <div class="tc-features">
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#4285F4;"></div>Google Meet — HD video conferencing, breakout rooms</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#4285F4;"></div>Google Forms — online registration, auto-spreadsheet</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#4285F4;"></div>Google Drive — central file storage, shareable links</div>
+        <div class="tc-feat"><div class="tc-feat-dot" style="background:#4285F4;"></div>YouTube Live — stream to unlimited viewers for free</div>
+      </div>
+      <div class="tc-unique" style="background:#EEF4FF;color:#002E99;">★ Unique: YouTube Live — unlimited free streaming</div>
+    </div>
+
+    <div class="tool-card" style="border-color:#E8E4DC;background:#FAFAF7;display:flex;align-items:center;justify-content:center;padding:20px;text-align:center;">
+      <div>
+        <div style="font-size:36px;margin-bottom:8px;">📌</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;">Key Principle</div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.6;">Cloud tools enable<br><strong style="color:var(--ink);">hybrid events</strong> — combining physical &amp; online participation through real-time video, file sharing, registration &amp; communication in one integrated cloud ecosystem.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ QUICK REFERENCE TABLE ══════════════════ -->
+<div class="qr-section">
+  <div class="qr-title">Quick Reference — All 30 Tools at a Glance</div>
+  <table class="qr">
+    <thead>
+      <tr>
+        <th style="width:18%;">Topic</th>
+        <th style="width:36%;">Tools Used</th>
+        <th style="width:26%;">Standout / Unique Feature</th>
+        <th style="width:20%;">Free Plan?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#217346;">📊 Spreadsheets</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#FFBF00;color:#172B4D;">Airtable</span>
+          <span class="qr-tool-chip" style="background:#E42527;">Zoho Sheet</span>
+          <span class="qr-tool-chip" style="background:#007AFF;">Apple Numbers</span>
+        </td>
+        <td><div class="qr-unique-feat">Airtable: multi-view (Grid/Kanban/Form)<br>Zoho: 400+ functions<br>Numbers: free with Apple ID</div></td>
+        <td><span class="qr-free">✔ All free</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#3ECF8E;">🗄 Databases</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#3ECF8E;color:#0F0F0F;">Supabase</span>
+          <span class="qr-tool-chip" style="background:#7C3AED;">PlanetScale</span>
+          <span class="qr-tool-chip" style="background:#00344E;color:#00ED64;">MongoDB Atlas</span>
+        </td>
+        <td><div class="qr-unique-feat">Supabase: built-in Realtime push<br>PlanetScale: Git-like DB branching<br>Atlas: visual aggregation builder</div></td>
+        <td><span class="qr-free">✔ All have free tiers</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#A259FF;">📽 Presentations</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#A259FF;">Canva</span>
+          <span class="qr-tool-chip" style="background:#2B6BF3;">Prezi</span>
+          <span class="qr-tool-chip" style="background:#E42527;">Zoho Show</span>
+        </td>
+        <td><div class="qr-unique-feat">Canva: 50K+ templates + AI design<br>Prezi: zooming canvas, not slides<br>Zoho Show: slide locking</div></td>
+        <td><span class="qr-free">✔ All have free tiers</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#0061FF;">☁ File Storage</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#0061FF;">Dropbox</span>
+          <span class="qr-tool-chip" style="background:#0061D5;">Box</span>
+          <span class="qr-tool-chip" style="background:#1E6FEB;">pCloud</span>
+        </td>
+        <td><div class="qr-unique-feat">Dropbox: 100GB transfer link<br>Box: e-signature + audit trail<br>pCloud: lifetime plan + Crypto</div></td>
+        <td><span class="qr-free">✔ Dropbox 2GB · Box/pCloud 10GB</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#FF0084;">📷 Photo Sharing</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#FF0084;">Flickr</span>
+          <span class="qr-tool-chip" style="background:#2B6358;">SmugMug</span>
+          <span class="qr-tool-chip" style="background:#161616;color:#E8C84A;">500px</span>
+        </td>
+        <td><div class="qr-unique-feat">Flickr: group pools + guest pass<br>SmugMug: print store + unlimited<br>500px: Pulse score + licensing</div></td>
+        <td><span class="qr-free">✔ Flickr/500px free · SmugMug paid</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#E42527;">📅 Calendars</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#E42527;">Zoho Calendar</span>
+          <span class="qr-tool-chip" style="background:#00897B;">Teamup</span>
+          <span class="qr-tool-chip" style="background:#7C3AED;">Fantastical</span>
+        </td>
+        <td><div class="qr-unique-feat">Zoho: resource booking (rooms)<br>Teamup: sub-cals + no-login links<br>Fantastical: NLP + weather</div></td>
+        <td><span class="qr-free">✔ Zoho/Teamup free · Fantastical freemium</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#F06A6A;">✅ Task Mgmt.</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#F06A6A;">Asana</span>
+          <span class="qr-tool-chip" style="background:#0052CC;">Trello</span>
+          <span class="qr-tool-chip" style="background:#DB4035;">Todoist</span>
+        </td>
+        <td><div class="qr-unique-feat">Asana: dependencies + Timeline<br>Trello: simplest Kanban board<br>Todoist: P1-P4 flags + Karma</div></td>
+        <td><span class="qr-free">✔ All have generous free plans</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#FF7A59;">👥 Contact Mgmt.</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#FF7A59;">HubSpot CRM</span>
+          <span class="qr-tool-chip" style="background:#1565C0;">Zoho CRM</span>
+          <span class="qr-tool-chip" style="background:#25C16F;color:#001E2B;">Freshsales</span>
+        </td>
+        <td><div class="qr-unique-feat">HubSpot: free unlimited users<br>Zoho: Zia AI + SalesSignals<br>Freshsales: Freddy AI + built-in call</div></td>
+        <td><span class="qr-free">✔ HubSpot forever free · Others 3 users</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#191919;">📝 Word Processing</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#191919;">Notion</span>
+          <span class="qr-tool-chip" style="background:#C0392B;">Zoho Writer</span>
+          <span class="qr-tool-chip" style="background:#0061FF;">Dropbox Paper</span>
+        </td>
+        <td><div class="qr-unique-feat">Notion: wiki + databases + AI<br>Zoho Writer: tracked changes + .docx<br>Paper: present mode + action items</div></td>
+        <td><span class="qr-free">✔ All have free plans</span></td>
+      </tr>
+      <tr>
+        <td><div class="qr-topic-cell" style="color:#0066CC;">🎤 Hybrid Events</div></td>
+        <td>
+          <span class="qr-tool-chip" style="background:#5059C9;">MS Teams</span>
+          <span class="qr-tool-chip" style="background:#4285F4;">Google Workspace</span>
+        </td>
+        <td><div class="qr-unique-feat">Teams: Live Events for 10K+ viewers<br>Google: YouTube Live unlimited free</div></td>
+        <td><span class="qr-free">✔ Google free · Teams freemium</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div><!-- /body -->
+
+<!-- ── FOOTER ── -->
+<div class="footer">
+  <div class="footer-left">Cloud Collaboration <span>Cheatsheet</span> · 10 Topics · 30 Tools</div>
+  <div class="footer-right">Cloud Computing Subject · All tools are real, production-grade platforms · No Google Docs, No Microsoft Office (except Q10a)</div>
+</div>
+
+</body>
+</html>

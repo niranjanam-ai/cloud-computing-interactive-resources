@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloud Collaboration – Microsoft 365 | 10 Mark Answer</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ms-blue: #0078d4;
+  --ms-dark: #0f0f0f;
+  --ms-excel: #217346;
+  --ms-ppt: #c43e1c;
+  --ms-teams: #464eb8;
+  --ms-onedrive: #0078d4;
+  --ms-sharepoint: #038387;
+  --ms-azure: #0089d6;
+  --ms-access: #a4373a;
+  --bg: #f3f2f1;
+  --paper: #ffffff;
+  --ink: #201f1e;
+  --muted: #605e5c;
+  --rule: #e1dfdd;
+  --warm-accent: #ff8c00;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--ink);font-size:14.5px;line-height:1.75;}
+
+/* COVER */
+.cover{background:var(--ms-dark);padding:50px 60px 44px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;right:-100px;top:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,#0078d4 0%,transparent 65%);opacity:.2;}
+.cover::after{content:'';position:absolute;left:-80px;bottom:-80px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,#464eb8 0%,transparent 65%);opacity:.18;}
+.cover-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8a8886;margin-bottom:14px;}
+.cover h1{font-family:'Libre Baskerville',serif;font-size:32px;line-height:1.25;color:#fff;max-width:720px;}
+.cover h1 .accent{color:#0078d4;}
+.cover h1 .tool-name{color:var(--warm-accent);}
+.cover-sub{margin-top:16px;font-size:13.5px;color:#8a8886;}
+.cover-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+.pill{display:inline-flex;align-items:center;gap:7px;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;font-family:'JetBrains Mono',monospace;}
+.pill-blue{background:#0078d4;color:#fff;}
+.pill-green{background:#217346;color:#fff;}
+.pill-red{background:#c43e1c;color:#fff;}
+.pill-teal{background:#038387;color:#fff;}
+.pill-orange{background:#ff8c00;color:#fff;}
+.pill-purple{background:#464eb8;color:#fff;}
+.marks-badge{margin-top:26px;display:inline-block;border:1.5px solid #0078d4;color:#0078d4;font-family:'JetBrains Mono',monospace;font-size:12px;padding:5px 18px;border-radius:4px;letter-spacing:.06em;}
+
+/* WRAP */
+.wrap{max-width:960px;margin:0 auto;padding:48px 44px 80px;}
+
+/* SECTION HEAD */
+.sec{display:flex;align-items:center;gap:14px;margin:48px 0 18px;}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:3px 10px;border-radius:3px;color:#fff;}
+.bg-blue{background:var(--ms-blue);}
+.bg-excel{background:var(--ms-excel);}
+.bg-ppt{background:var(--ms-ppt);}
+.bg-teal{background:var(--ms-sharepoint);}
+.bg-orange{background:var(--warm-accent);}
+.bg-access{background:var(--ms-access);}
+.sec-title{font-family:'Libre Baskerville',serif;font-size:22px;color:var(--ink);}
+
+/* TOPIC BANNER */
+.topic-banner{border-radius:8px;overflow:hidden;margin-bottom:22px;}
+.topic-banner-head{padding:14px 22px;display:flex;align-items:center;gap:12px;}
+.tb-icon{font-size:26px;}
+.tb-title{font-size:16px;font-weight:700;color:#fff;}
+.tb-tool{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.75);margin-top:2px;}
+.topic-banner-body{background:var(--paper);border:1px solid var(--rule);border-top:none;border-radius:0 0 8px 8px;padding:18px 22px;font-size:14px;color:var(--muted);}
+.topic-banner-body strong{color:var(--ink);}
+
+/* MOCK LABEL */
+.mock-label{font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin:24px 0 10px;}
+.mock-label::after{content:'';flex:1;height:1px;background:var(--rule);}
+
+/* CHROME WRAPPER */
+.win{border:1px solid #c8c6c4;border-radius:10px;overflow:hidden;box-shadow:0 6px 28px rgba(0,0,0,.12);font-family:'Segoe UI',Arial,sans-serif;margin-bottom:8px;}
+.win-bar{background:#f3f2f1;padding:8px 12px;display:flex;align-items:center;gap:8px;}
+.wd{width:11px;height:11px;border-radius:50%;}
+.wr{background:#ff5f57;}.wy{background:#febc2e;}.wg{background:#28c840;}
+.url{flex:1;background:#fff;border:1px solid #e1dfdd;border-radius:16px;padding:5px 14px;font-size:12px;color:#605e5c;display:flex;align-items:center;gap:6px;}
+.url .lock{color:#107c10;font-size:11px;}
+
+/* ══════════════ 1. EXCEL ONLINE ══════════════ */
+.excel-body{background:#fff;display:flex;flex-direction:column;}
+.excel-ribbon{background:#217346;padding:0;}
+.er-tabs{display:flex;}
+.er-tab{padding:8px 16px;font-size:12px;color:rgba(255,255,255,.75);cursor:pointer;}
+.er-tab.active{background:rgba(255,255,255,.15);color:#fff;font-weight:600;}
+.er-commands{background:#fff;border-bottom:2px solid #217346;padding:6px 12px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.er-btn{padding:4px 10px;border:1px solid #e1dfdd;border-radius:3px;font-size:11.5px;color:#323130;cursor:pointer;background:#fff;display:flex;align-items:center;gap:4px;}
+.er-btn:hover{background:#f3f2f1;}
+.er-btn.primary{background:#217346;color:#fff;border-color:#217346;}
+.excel-grid-wrap{display:flex;flex:1;}
+.excel-sidebar{width:140px;background:#f9f9f9;border-right:1px solid #e1dfdd;padding:8px 0;}
+.es-item{padding:6px 12px;font-size:12px;color:#323130;cursor:pointer;display:flex;align-items:center;gap:6px;}
+.es-item:hover{background:#f3f2f1;}
+.es-item.active{background:#e6f2e6;color:#107c10;font-weight:600;}
+.excel-main{flex:1;overflow:auto;}
+.excel-formula{background:#f3f2f1;border-bottom:1px solid #e1dfdd;padding:5px 10px;font-size:12px;color:#323130;display:flex;align-items:center;gap:8px;}
+.ef-cell{background:#fff;border:1px solid #e1dfdd;border-radius:2px;padding:3px 8px;font-family:'JetBrains Mono',monospace;font-size:11.5px;width:60px;text-align:center;}
+.ef-eq{color:#217346;font-weight:700;}
+.excel-table{width:100%;border-collapse:collapse;font-size:12px;}
+.excel-table th{background:#217346;color:#fff;padding:7px 10px;text-align:left;font-weight:600;font-size:11.5px;position:sticky;top:0;}
+.excel-table td{padding:6px 10px;border:1px solid #e8e8e8;color:#323130;}
+.excel-table tr:nth-child(even) td{background:#f0f8f0;}
+.excel-table tr:hover td{background:#e6f2e6;}
+.cell-edit{background:#fff3cd;font-weight:600;}
+.co-cursor{display:inline-block;width:2px;height:12px;background:#c43e1c;vertical-align:middle;animation:blink 1s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.user-tag{font-size:9px;background:#c43e1c;color:#fff;padding:1px 5px;border-radius:2px;vertical-align:middle;margin-left:3px;}
+.excel-statusbar{background:#217346;padding:5px 12px;display:flex;gap:16px;font-size:11px;color:rgba(255,255,255,.8);}
+.share-pill-excel{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.2);padding:2px 10px;border-radius:10px;font-size:11px;color:#fff;}
+
+/* ══════════════ 2. AZURE SQL / AIRTABLE DB ══════════════ */
+.db-body{background:#fff;}
+.db-topbar{background:#a4373a;padding:0 0 0 0;}
+.db-nav-tabs{display:flex;background:#a4373a;}
+.db-tab{padding:10px 18px;font-size:12.5px;color:rgba(255,255,255,.7);cursor:pointer;border-bottom:3px solid transparent;}
+.db-tab.active{color:#fff;border-bottom-color:#fff;font-weight:600;}
+.db-toolbar{background:#fff;border-bottom:1px solid #e1dfdd;padding:7px 14px;display:flex;align-items:center;gap:8px;}
+.db-btn{padding:5px 12px;border:1px solid #e1dfdd;border-radius:3px;font-size:12px;color:#323130;cursor:pointer;background:#f3f2f1;display:flex;align-items:center;gap:5px;}
+.db-btn.primary{background:#a4373a;color:#fff;border-color:#a4373a;}
+.db-layout{display:grid;grid-template-columns:200px 1fr;height:360px;}
+.db-nav{border-right:1px solid #e1dfdd;padding:10px 0;background:#faf9f8;}
+.db-nav-section{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:8px 14px 4px;}
+.db-nav-item{padding:7px 14px;font-size:12.5px;color:#323130;cursor:pointer;display:flex;align-items:center;gap:8px;}
+.db-nav-item:hover{background:#f3f2f1;}
+.db-nav-item.active{background:#fce8e8;color:#a4373a;font-weight:600;}
+.db-main{padding:14px 18px;overflow:auto;}
+.db-main h4{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;}
+.db-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.db-table th{background:#a4373a;color:#fff;padding:8px 12px;text-align:left;font-weight:600;font-size:11.5px;}
+.db-table td{padding:7px 12px;border-bottom:1px solid #f3f2f1;color:#323130;}
+.db-table tr:hover td{background:#fff5f5;}
+.db-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:600;}
+.db-green{background:#dff6dd;color:#107c10;}
+.db-blue{background:#dce8f5;color:#0078d4;}
+.db-amber{background:#fff4ce;color:#7a5c00;}
+.db-red{background:#fde7e9;color:#a4373a;}
+.db-query{background:#1e1e1e;padding:14px 18px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.65;border-top:1px solid #333;}
+.sql-kw{color:#569cd6;}
+.sql-fn{color:#dcdcaa;}
+.sql-str{color:#ce9178;}
+.sql-cmt{color:#6a9955;}
+.db-users{display:flex;gap:8px;padding:10px 18px;border-top:1px solid #e1dfdd;background:#faf9f8;align-items:center;}
+.db-user-av{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #fff;}
+
+/* ══════════════ 3. POWERPOINT ONLINE ══════════════ */
+.ppt-body{background:#f3f2f1;display:flex;flex-direction:column;}
+.ppt-ribbon{background:#c43e1c;}
+.ppt-tabs{display:flex;}
+.ppt-tab{padding:8px 16px;font-size:12px;color:rgba(255,255,255,.7);cursor:pointer;}
+.ppt-tab.active{background:rgba(255,255,255,.15);color:#fff;font-weight:600;}
+.ppt-toolbar{background:#fff;border-bottom:2px solid #c43e1c;padding:6px 14px;display:flex;align-items:center;gap:6px;}
+.ppt-btn{padding:4px 10px;border:1px solid #e1dfdd;border-radius:3px;font-size:11.5px;cursor:pointer;background:#fff;color:#323130;display:flex;align-items:center;gap:4px;}
+.ppt-btn:hover{background:#f3f2f1;}
+.ppt-btn.primary{background:#c43e1c;color:#fff;border-color:#c43e1c;}
+.ppt-layout{display:grid;grid-template-columns:160px 1fr 200px;height:420px;}
+.ppt-slides-panel{background:#3b3a39;overflow-y:auto;padding:10px 8px;display:flex;flex-direction:column;gap:8px;}
+.ppt-slide-thumb{background:#fff;border-radius:4px;overflow:hidden;cursor:pointer;border:2px solid transparent;position:relative;}
+.ppt-slide-thumb.active{border-color:#c43e1c;}
+.ppt-slide-thumb img{width:100%;display:block;}
+.slide-num{position:absolute;bottom:4px;right:6px;font-size:9px;color:#605e5c;}
+.ppt-canvas{background:#525659;display:flex;align-items:center;justify-content:center;padding:24px;}
+.slide-main{background:#fff;width:100%;max-width:560px;aspect-ratio:16/9;border-radius:4px;box-shadow:0 4px 24px rgba(0,0,0,.3);overflow:hidden;position:relative;}
+.slide-bg-1{background:linear-gradient(135deg,#c43e1c 0%,#1e1e1e 100%);}
+.slide-bg-2{background:linear-gradient(135deg,#0078d4 0%,#1e1e1e 100%);}
+.slide-bg-3{background:linear-gradient(135deg,#217346 0%,#1e1e1e 100%);}
+.slide-content{padding:24px 28px;height:100%;display:flex;flex-direction:column;justify-content:center;}
+.slide-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:10px;font-family:'Libre Baskerville',serif;}
+.slide-subtitle{font-size:13px;color:rgba(255,255,255,.75);}
+.slide-bullet{font-size:12px;color:rgba(255,255,255,.85);padding:4px 0;display:flex;gap:8px;}
+.slide-bullet::before{content:'▶';color:var(--warm-accent);font-size:9px;margin-top:4px;flex-shrink:0;}
+.ppt-notes{border-right:1px solid #e1dfdd;background:#fff;padding:12px;display:flex;flex-direction:column;gap:10px;}
+.ppt-notes-head{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;}
+.collab-user{display:flex;align-items:center;gap:8px;padding:8px;background:#f9f9f9;border-radius:6px;}
+.cu-av{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0;}
+.cu-info .cu-name{font-size:12px;font-weight:600;color:#323130;}
+.cu-info .cu-action{font-size:11px;color:var(--muted);}
+.ppt-statusbar{background:#c43e1c;padding:5px 14px;display:flex;gap:14px;justify-content:space-between;font-size:11px;color:rgba(255,255,255,.85);}
+
+/* ══════════════ 4. ONEDRIVE ══════════════ */
+.od-body{background:#fff;}
+.od-topbar{background:#0078d4;padding:10px 16px;display:flex;align-items:center;gap:12px;}
+.od-logo{font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:7px;}
+.od-search{flex:1;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:7px 16px;font-size:12.5px;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:7px;}
+.od-layout{display:grid;grid-template-columns:210px 1fr;height:400px;}
+.od-nav{border-right:1px solid #e1dfdd;padding:10px 0;background:#faf9f8;}
+.od-nav-item{padding:7px 16px;font-size:13px;color:#323130;cursor:pointer;display:flex;align-items:center;gap:9px;border-radius:0 20px 20px 0;margin-right:6px;}
+.od-nav-item:hover{background:#f3f2f1;}
+.od-nav-item.active{background:#dce8f5;color:#0078d4;font-weight:600;}
+.od-main{padding:16px 20px;}
+.od-main-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.od-main-head h4{font-size:14px;font-weight:600;color:#323130;}
+.od-view-toggle{display:flex;border:1px solid #e1dfdd;border-radius:4px;overflow:hidden;}
+.od-vt-btn{padding:5px 10px;font-size:12px;cursor:pointer;color:var(--muted);}
+.od-vt-btn.active{background:#0078d4;color:#fff;}
+.od-files-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.od-file{border:1px solid #e1dfdd;border-radius:8px;overflow:hidden;cursor:pointer;transition:all .15s;}
+.od-file:hover{border-color:#0078d4;box-shadow:0 2px 10px rgba(0,120,212,.15);}
+.od-thumb{height:80px;display:flex;align-items:center;justify-content:center;font-size:28px;}
+.od-file-info{padding:8px 10px;border-top:1px solid #f3f2f1;}
+.od-fn{font-size:12px;color:#323130;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.od-fd{font-size:11px;color:var(--muted);margin-top:2px;}
+.od-shared{display:inline-flex;align-items:center;gap:4px;background:#dce8f5;color:#0078d4;font-size:10px;font-weight:600;padding:1px 6px;border-radius:8px;margin-top:3px;}
+.od-statusbar{background:#f3f2f1;border-top:1px solid #e1dfdd;padding:6px 18px;display:flex;gap:16px;font-size:11.5px;color:var(--muted);}
+
+/* ══════════════ 5. FLICKR / ICLOUD-STYLE PHOTO SHARING ══════════════ */
+.photo-body{background:#1a1a1a;}
+.photo-topbar{background:#0f0f0f;padding:10px 18px;display:flex;align-items:center;gap:14px;border-bottom:1px solid #333;}
+.photo-logo{font-size:15px;font-weight:700;color:#ff0084;display:flex;align-items:center;gap:7px;}
+.photo-nav{display:flex;gap:0;margin-left:20px;}
+.pn-item{padding:8px 16px;font-size:13px;color:#aaa;cursor:pointer;border-bottom:2px solid transparent;}
+.pn-item:hover{color:#fff;}
+.pn-item.active{color:#fff;border-bottom-color:#ff0084;font-weight:600;}
+.photo-grid-area{padding:16px 18px;}
+.photo-grid-area h4{font-size:12px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px;}
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
+.photo-tile{border-radius:6px;overflow:hidden;position:relative;cursor:pointer;aspect-ratio:1;}
+.photo-tile:hover .photo-overlay{opacity:1;}
+.photo-tile-img{width:100%;height:100%;object-fit:cover;display:flex;align-items:center;justify-content:center;font-size:36px;}
+.photo-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;transition:opacity .2s;display:flex;flex-direction:column;justify-content:flex-end;padding:8px;}
+.po-title{font-size:11px;color:#fff;font-weight:600;}
+.po-meta{font-size:10px;color:#ccc;margin-top:2px;}
+.photo-tile.featured{grid-column:1/3;grid-row:1/3;}
+.photo-sidebar{width:200px;background:#111;border-left:1px solid #333;padding:14px;}
+.ps-head{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px;}
+.ps-album{display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #222;cursor:pointer;}
+.ps-album-thumb{width:36px;height:36px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.ps-album-info .pa-name{font-size:12px;color:#e8e8e8;font-weight:500;}
+.ps-album-info .pa-count{font-size:10.5px;color:#888;}
+.photo-info-panel{display:flex;flex-direction:column;}
+.photo-layout-main{display:grid;grid-template-columns:1fr 200px;height:420px;}
+
+/* SUMMARY TABLE */
+table.sum{width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;margin:16px 0;}
+table.sum thead tr{background:var(--ms-dark);color:#fff;}
+table.sum th{padding:11px 16px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.04em;text-align:left;}
+table.sum td{padding:10px 16px;background:var(--paper);border-bottom:1px solid var(--rule);font-size:13.5px;}
+table.sum tr:last-child td{border-bottom:none;}
+table.sum .tool{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--ms-blue);font-weight:600;}
+
+/* CONCLUSION */
+.conclusion{border-radius:10px;overflow:hidden;margin-top:44px;}
+.conclusion-head{padding:18px 30px;background:linear-gradient(90deg,#0078d4,#464eb8);}
+.conclusion-head h3{font-family:'Libre Baskerville',serif;font-size:20px;color:#fff;}
+.conclusion-body{background:var(--ms-dark);padding:24px 30px;}
+.conclusion-body p{font-size:14.5px;color:#c8c6c4;line-height:1.8;}
+
+/* DIVIDER */
+.topic-divider{display:flex;align-items:center;gap:14px;margin:40px 0 0;}
+.td-line{flex:1;height:1px;background:linear-gradient(90deg,var(--rule),transparent);}
+.td-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;padding:3px 12px;border-radius:20px;color:#fff;font-weight:600;flex-shrink:0;}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ COVER ═══════════════════════════ -->
+<div class="cover">
+  <div class="cover-eyebrow">Cloud Computing · Collaboration Topics · 10 Mark Answer</div>
+  <h1>Cloud Collaboration using <span class="tool-name">Microsoft 365</span> —<br>Spreadsheets, Databases, Presentations,<br>File Sharing &amp; <span class="accent">Photo Sharing</span></h1>
+  <div class="cover-sub">A real, existing cloud platform · All tools are live products · Mock-ups show actual UI layouts</div>
+  <div class="cover-pills">
+    <span class="pill pill-green">📊 Excel Online · Spreadsheets</span>
+    <span class="pill pill-purple" style="background:#a4373a;">🗄 Azure SQL · Databases</span>
+    <span class="pill pill-red">📽 PowerPoint Online · Presentations</span>
+    <span class="pill pill-blue">☁ OneDrive · File Sharing</span>
+    <span class="pill pill-orange">📷 Flickr · Photo Sharing</span>
+  </div>
+  <div class="marks-badge">▲ 10 MARKS ANSWER</div>
+</div>
+
+<div class="wrap">
+
+<!-- ═══════════════════════════ INTRO ═══════════════════════════ -->
+<div class="sec"><span class="sec-num bg-blue">INTRO</span><span class="sec-title">What is Cloud Collaboration?</span></div>
+<div style="background:var(--paper);border:1px solid var(--rule);border-left:5px solid #0078d4;border-radius:6px;padding:20px 24px;margin-bottom:10px;">
+  <p style="margin-bottom:10px;">Cloud collaboration refers to the use of cloud-based tools that allow <strong>multiple users in different locations</strong> to work together on shared documents, databases, presentations, files, and media in real time — without needing to be on the same network or install heavy software.</p>
+  <p>The cloud platform used in this answer is <strong>Microsoft 365</strong> (formerly Office 365) — a real, widely-used suite from Microsoft that includes Excel Online, PowerPoint Online, OneDrive, SharePoint, and Azure. For photo sharing, <strong>Flickr</strong> is used — a dedicated cloud photo-sharing platform.</p>
+</div>
+
+<!-- ═══════════════════════════ TOPIC 1: SPREADSHEETS ═══════════════════════════ -->
+<div class="topic-divider"><div class="td-line"></div><span class="td-tag" style="background:#217346;">TOPIC 1</span><div class="td-line" style="background:linear-gradient(90deg,transparent,var(--rule));"></div></div>
+<div class="sec"><span class="sec-num bg-excel">01</span><span class="sec-title">Collaborating on Spreadsheets — Microsoft Excel Online</span></div>
+
+<div class="topic-banner">
+  <div class="topic-banner-head" style="background:#217346;"><span class="tb-icon">📊</span><div><div class="tb-title">Microsoft Excel Online</div><div class="tb-tool">office.com/launch/excel · Part of Microsoft 365</div></div></div>
+  <div class="topic-banner-body">
+    <strong>Definition:</strong> Cloud-based spreadsheet collaboration means multiple users can simultaneously open, edit, and analyze the same Excel workbook stored on OneDrive or SharePoint — with all changes visible in real time.<br><br>
+    <strong>Key Features:</strong> Real-time co-authoring with colored cursors per user · Auto-save to cloud every few seconds · Version history — restore any previous version · Comments and @mentions to tag collaborators · Shared charts and pivot tables · Works in browser — no installation needed · Accessible from any device (laptop, phone, tablet).
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 1 — Microsoft Excel Online: Real-time Collaborative Spreadsheet</div>
+<div class="win">
+  <div class="win-bar"><div class="wd wr"></div><div class="wd wy"></div><div class="wd wg"></div><div class="url"><span class="lock">🔒</span>excel.office.com · SymposiumBudget_2025.xlsx · Saved to OneDrive</div><div style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:5px;"><span style="width:20px;height:20px;border-radius:50%;background:#217346;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">AK</span><span style="width:20px;height:20px;border-radius:50%;background:#c43e1c;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">PR</span><span style="width:20px;height:20px;border-radius:50%;background:#0078d4;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">SM</span><span style="font-size:11px;color:#107c10;font-weight:600;margin-left:4px;">3 editing</span></div></div>
+  <div class="excel-body">
+    <div class="excel-ribbon">
+      <div class="er-tabs"><div class="er-tab active">Home</div><div class="er-tab">Insert</div><div class="er-tab">Formulas</div><div class="er-tab">Data</div><div class="er-tab">Review</div><div class="er-tab">Share</div></div>
+    </div>
+    <div class="er-commands">
+      <div class="er-btn">✂ Cut</div><div class="er-btn">📋 Copy</div><div class="er-btn">📌 Paste</div>
+      <div style="width:1px;height:20px;background:#e1dfdd;margin:0 4px;"></div>
+      <div class="er-btn"><b>B</b></div><div class="er-btn"><i>I</i></div><div class="er-btn"><u>U</u></div>
+      <div style="width:1px;height:20px;background:#e1dfdd;margin:0 4px;"></div>
+      <div class="er-btn">Σ Sum</div><div class="er-btn">% Format</div><div class="er-btn">📊 Chart</div>
+      <div style="margin-left:auto;display:flex;gap:6px;align-items:center;">
+        <div class="er-btn primary">🔗 Share</div>
+        <span class="share-pill-excel">👥 Shared with 12 people</span>
+      </div>
+    </div>
+    <div class="excel-grid-wrap">
+      <div class="excel-sidebar">
+        <div class="es-item active">📊 Budget</div>
+        <div class="es-item">📋 Registrations</div>
+        <div class="es-item">📈 Summary</div>
+        <div class="es-item">📅 Schedule</div>
+      </div>
+      <div class="excel-main">
+        <div class="excel-formula"><div class="ef-cell">D8</div><div class="ef-eq">fx</div><span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:#217346;">=SUM(D3:D7)</span></div>
+        <table class="excel-table">
+          <thead><tr><th style="width:30px;">#</th><th>A — Event Item</th><th>B — Allocated (₹)</th><th>C — Spent (₹)</th><th>D — Balance (₹)</th><th>E — Responsible</th><th>F — Status</th></tr></thead>
+          <tbody>
+            <tr><td style="color:#888;font-size:11px;">1</td><td colspan="6" style="background:#e6f2e6;font-weight:700;color:#107c10;font-size:12px;">TechSympo 2025 — Budget Tracker &nbsp;|&nbsp; Last edited: Priya · 2 min ago</td></tr>
+            <tr><td style="color:#888;font-size:11px;">2</td><td style="font-weight:700;background:#f3f2f1;">Category</td><td style="font-weight:700;background:#f3f2f1;">Allocated</td><td style="font-weight:700;background:#f3f2f1;">Spent</td><td style="font-weight:700;background:#f3f2f1;">Balance</td><td style="font-weight:700;background:#f3f2f1;">Owner</td><td style="font-weight:700;background:#f3f2f1;">Status</td></tr>
+            <tr><td style="color:#888;font-size:11px;">3</td><td>🎤 Inauguration Setup</td><td>₹15,000</td><td>₹12,400</td><td style="color:#107c10;font-weight:600;">₹2,600</td><td>Arjun K.</td><td><span style="background:#dff6dd;color:#107c10;font-size:11px;padding:1px 7px;border-radius:10px;">Done</span></td></tr>
+            <tr><td style="color:#888;font-size:11px;">4</td><td>📡 AV Equipment &amp; Streaming</td><td>₹20,000</td><td>₹18,500</td><td style="color:#107c10;font-weight:600;">₹1,500</td><td>Suresh M.</td><td><span style="background:#dff6dd;color:#107c10;font-size:11px;padding:1px 7px;border-radius:10px;">Done</span></td></tr>
+            <tr><td style="color:#888;font-size:11px;">5</td><td>🍱 Catering &amp; Refreshments</td><td>₹25,000</td><td class="cell-edit">₹19,800 <span class="co-cursor"></span><span class="user-tag">Priya</span></td><td style="color:#107c10;font-weight:600;">₹5,200</td><td>Priya R.</td><td><span style="background:#fff4ce;color:#7a5c00;font-size:11px;padding:1px 7px;border-radius:10px;">In Progress</span></td></tr>
+            <tr><td style="color:#888;font-size:11px;">6</td><td>🎁 Prizes &amp; Certificates</td><td>₹10,000</td><td>₹8,750</td><td style="color:#107c10;font-weight:600;">₹1,250</td><td>Kavya S.</td><td><span style="background:#dff6dd;color:#107c10;font-size:11px;padding:1px 7px;border-radius:10px;">Done</span></td></tr>
+            <tr><td style="color:#888;font-size:11px;">7</td><td>🖨 Printing &amp; Stationery</td><td>₹5,000</td><td>₹3,200</td><td style="color:#107c10;font-weight:600;">₹1,800</td><td>Arjun K.</td><td><span style="background:#dff6dd;color:#107c10;font-size:11px;padding:1px 7px;border-radius:10px;">Done</span></td></tr>
+            <tr><td style="color:#888;font-size:11px;">8</td><td style="font-weight:700;">TOTAL</td><td style="font-weight:700;">₹75,000</td><td style="font-weight:700;">₹62,650</td><td style="font-weight:700;color:#217346;">₹12,350</td><td></td><td><span style="background:#dce8f5;color:#0078d4;font-size:11px;padding:1px 7px;border-radius:10px;">83% Used</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="excel-statusbar"><span>📊 Sheet: Budget</span><span>Σ Average: ₹10,530 &nbsp;|&nbsp; Count: 5 &nbsp;|&nbsp; Sum: ₹62,650</span><div style="margin-left:auto;display:flex;gap:8px;"><span class="share-pill-excel">🔄 Auto-saved</span><span class="share-pill-excel">📜 Version History</span></div></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ TOPIC 2: DATABASES ═══════════════════════════ -->
+<div class="topic-divider" style="margin-top:44px;"><div class="td-line"></div><span class="td-tag" style="background:#a4373a;">TOPIC 2</span><div class="td-line" style="background:linear-gradient(90deg,transparent,var(--rule));"></div></div>
+<div class="sec"><span class="sec-num bg-access">02</span><span class="sec-title">Collaborating on Databases — Microsoft Azure SQL &amp; SharePoint Lists</span></div>
+
+<div class="topic-banner">
+  <div class="topic-banner-head" style="background:#a4373a;"><span class="tb-icon">🗄</span><div><div class="tb-title">Azure SQL Database + SharePoint Lists</div><div class="tb-tool">portal.azure.com + sharepoint.com · Microsoft Cloud</div></div></div>
+  <div class="topic-banner-body">
+    <strong>Definition:</strong> Cloud database collaboration allows teams to store, access, query, and manage structured data from any location through a browser, without needing a local database server.<br><br>
+    <strong>Key Features:</strong> Azure SQL — fully managed relational database in the cloud · SharePoint Lists — simple list-based database for team data · Real-time multi-user data entry and editing · Role-based access (Read / Edit / Admin) · Automatic backups and recovery · SQL query support for advanced filtering · Integrates with Excel, Power BI and Power Automate for reporting.
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 2 — SharePoint List + Azure SQL: Participant Database View</div>
+<div class="win">
+  <div class="win-bar"><div class="wd wr"></div><div class="wd wy"></div><div class="wd wg"></div><div class="url"><span class="lock">🔒</span>techsympo.sharepoint.com/sites/symposium/lists/Participants</div></div>
+  <div class="db-body">
+    <div class="db-nav-tabs">
+      <div class="db-tab active">📋 Participant List</div>
+      <div class="db-tab">📊 Views</div>
+      <div class="db-tab">⚡ Automate</div>
+      <div class="db-tab">🔗 Integrate</div>
+    </div>
+    <div class="db-toolbar">
+      <div class="db-btn primary">+ New Item</div>
+      <div class="db-btn">✏ Edit in Grid</div>
+      <div class="db-btn">🔽 Filter</div>
+      <div class="db-btn">📊 Export to Excel</div>
+      <div class="db-btn">⚡ Power Automate</div>
+      <div style="margin-left:auto;font-size:12px;color:var(--muted);">Showing 1–10 of 312 entries</div>
+    </div>
+    <div class="db-layout">
+      <div class="db-nav">
+        <div class="db-nav-section">Lists</div>
+        <div class="db-nav-item active">👥 Participants</div>
+        <div class="db-nav-item">📄 Paper Submissions</div>
+        <div class="db-nav-item">🏆 Results</div>
+        <div class="db-nav-item">📅 Sessions</div>
+        <div class="db-nav-section" style="margin-top:10px;">Reports</div>
+        <div class="db-nav-item">📈 State-wise Stats</div>
+        <div class="db-nav-item">📊 Event-wise Count</div>
+      </div>
+      <div class="db-main" style="padding:0;display:flex;flex-direction:column;">
+        <div style="flex:1;overflow:auto;padding:12px 16px;">
+          <table class="db-table" style="width:100%;">
+            <thead><tr><th>#</th><th>Name</th><th>College</th><th>State</th><th>Mode</th><th>Event</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>001</td><td>Kavya Rajan</td><td>VIT Vellore</td><td>Tamil Nadu</td><td><span class="db-badge db-green">Online</span></td><td>Paper Presentation</td><td><span class="db-badge db-blue">Confirmed</span></td></tr>
+              <tr><td>002</td><td>Arjun Kumar</td><td>PESIT Bangalore</td><td>Karnataka</td><td><span class="db-badge db-green">Online</span></td><td>Technical Quiz</td><td><span class="db-badge db-blue">Confirmed</span></td></tr>
+              <tr><td>003</td><td>Sneha Menon</td><td>TKM Kollam</td><td>Kerala</td><td><span class="db-badge db-amber">On-Campus</span></td><td>Project Expo</td><td><span class="db-badge db-blue">Confirmed</span></td></tr>
+              <tr><td>004</td><td>Ravi Teja</td><td>JNTU Hyderabad</td><td>Telangana</td><td><span class="db-badge db-green">Online</span></td><td>Coding Challenge</td><td><span class="db-badge db-amber">Pending</span></td></tr>
+              <tr><td>005</td><td>Priya Sharma</td><td>DTU Delhi</td><td>Delhi</td><td><span class="db-badge db-green">Online</span></td><td>Paper Presentation</td><td><span class="db-badge db-blue">Confirmed</span></td></tr>
+              <tr><td>006</td><td>Meera Pillai</td><td>CET Trivandrum</td><td>Kerala</td><td><span class="db-badge db-amber">On-Campus</span></td><td>Technical Quiz</td><td><span class="db-badge db-blue">Confirmed</span></td></tr>
+              <tr><td>007</td><td>Kiran Das</td><td>BITS Pilani</td><td>Rajasthan</td><td><span class="db-badge db-green">Online</span></td><td>Project Expo</td><td><span class="db-badge db-red">Cancelled</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="db-query">
+          <div style="color:#6a9955;margin-bottom:6px;">-- Auto-generated query · Azure SQL · Read by Power BI</div>
+          <div><span class="sql-kw">SELECT</span> Name, State, Mode, Event, <span class="sql-fn">COUNT</span>(*) <span class="sql-kw">AS</span> Total</div>
+          <div><span class="sql-kw">FROM</span> <span class="sql-str">Participants</span></div>
+          <div><span class="sql-kw">WHERE</span> Status = <span class="sql-str">'Confirmed'</span></div>
+          <div><span class="sql-kw">GROUP BY</span> State <span class="sql-kw">ORDER BY</span> Total <span class="sql-kw">DESC</span></div>
+        </div>
+        <div class="db-users">
+          <div style="font-size:11.5px;color:var(--muted);margin-right:6px;">Currently editing:</div>
+          <div class="db-user-av" style="background:#217346;">AK</div>
+          <div class="db-user-av" style="background:#c43e1c;">PR</div>
+          <div class="db-user-av" style="background:#0078d4;">SM</div>
+          <div style="font-size:11.5px;color:var(--muted);margin-left:4px;">3 collaborators · All changes synced</div>
+          <div style="margin-left:auto;font-size:11px;background:#dff6dd;color:#107c10;padding:3px 10px;border-radius:10px;font-weight:600;">✔ Auto-saved · Azure Backup Active</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ TOPIC 3: PRESENTATIONS ═══════════════════════════ -->
+<div class="topic-divider" style="margin-top:44px;"><div class="td-line"></div><span class="td-tag" style="background:#c43e1c;">TOPIC 3</span><div class="td-line" style="background:linear-gradient(90deg,transparent,var(--rule));"></div></div>
+<div class="sec"><span class="sec-num bg-ppt">03</span><span class="sec-title">Collaborating on Presentations — Microsoft PowerPoint Online</span></div>
+
+<div class="topic-banner">
+  <div class="topic-banner-head" style="background:#c43e1c;"><span class="tb-icon">📽</span><div><div class="tb-title">Microsoft PowerPoint Online</div><div class="tb-tool">powerpoint.office.com · Part of Microsoft 365</div></div></div>
+  <div class="topic-banner-body">
+    <strong>Definition:</strong> Cloud presentation collaboration allows multiple users to create, edit, and present slides together in real time from any browser, with each person's changes reflected instantly.<br><br>
+    <strong>Key Features:</strong> Real-time co-authoring — see where teammates are working on each slide · Presence indicators with colored cursors · Comments on individual slides or objects · Presenter Coach (AI feedback on delivery) · Present Live — audience joins via link and follows along · Designer AI suggests professional slide layouts · Version history with named versions · Share link with view-only or edit access.
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 3 — PowerPoint Online: Collaborative Symposium Presentation</div>
+<div class="win">
+  <div class="win-bar"><div class="wd wr"></div><div class="wd wy"></div><div class="wd wg"></div><div class="url"><span class="lock">🔒</span>powerpoint.office.com · TechSympo2025_Keynote.pptx · 4 editors</div></div>
+  <div class="ppt-body">
+    <div class="ppt-ribbon"><div class="ppt-tabs"><div class="ppt-tab active">Home</div><div class="ppt-tab">Insert</div><div class="ppt-tab">Design</div><div class="ppt-tab">Transitions</div><div class="ppt-tab">Animations</div><div class="ppt-tab">Slide Show</div><div class="ppt-tab">Review</div></div></div>
+    <div class="ppt-toolbar">
+      <div class="ppt-btn">📋 Paste</div><div class="ppt-btn">✏ Text</div><div class="ppt-btn">🖼 Image</div><div class="ppt-btn">📊 Chart</div><div class="ppt-btn">🔷 Shape</div>
+      <div style="width:1px;height:20px;background:#e1dfdd;margin:0 6px;"></div>
+      <div class="ppt-btn primary">🎤 Present Live</div>
+      <div class="ppt-btn primary" style="background:#0078d4;border-color:#0078d4;">🔗 Share</div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:6px;font-size:11px;">
+        <span style="width:22px;height:22px;border-radius:50%;background:#217346;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">AK</span>
+        <span style="width:22px;height:22px;border-radius:50%;background:#c43e1c;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">PR</span>
+        <span style="width:22px;height:22px;border-radius:50%;background:#0078d4;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;">KS</span>
+        <span style="color:#107c10;font-weight:600;">+1 more editing</span>
+      </div>
+    </div>
+    <div class="ppt-layout">
+      <!-- Slide thumbnails -->
+      <div class="ppt-slides-panel">
+        <div class="ppt-slide-thumb active" style="padding:8px;">
+          <div style="background:linear-gradient(135deg,#c43e1c,#1e1e1e);border-radius:3px;padding:10px 8px;text-align:center;">
+            <div style="font-size:9px;font-weight:700;color:#fff;">TechSympo 2025</div>
+            <div style="font-size:7px;color:rgba(255,255,255,.7);">National Tech Symposium</div>
+          </div>
+          <div class="slide-num">1</div>
+        </div>
+        <div class="ppt-slide-thumb" style="padding:8px;">
+          <div style="background:linear-gradient(135deg,#0078d4,#1e1e1e);border-radius:3px;padding:10px 8px;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Cloud in Education</div>
+            <div style="font-size:6px;color:rgba(255,255,255,.6);margin-top:3px;">• Definition<br>• Benefits</div>
+          </div>
+          <div class="slide-num">2</div>
+        </div>
+        <div class="ppt-slide-thumb" style="padding:8px;">
+          <div style="background:linear-gradient(135deg,#217346,#1e1e1e);border-radius:3px;padding:10px 8px;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Microsoft 365 Tools</div>
+            <div style="font-size:6px;color:rgba(255,255,255,.6);margin-top:3px;">• Excel Online<br>• Teams<br>• OneDrive</div>
+          </div>
+          <div class="slide-num">3</div>
+        </div>
+        <div class="ppt-slide-thumb" style="padding:8px;border-color:#217346;">
+          <div style="background:linear-gradient(135deg,#ff8c00,#1e1e1e);border-radius:3px;padding:10px 8px;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Hybrid Event Setup</div>
+          </div>
+          <div class="slide-num" style="color:#217346;font-weight:700;">4 ✎</div>
+        </div>
+        <div class="ppt-slide-thumb" style="padding:8px;">
+          <div style="background:linear-gradient(135deg,#464eb8,#1e1e1e);border-radius:3px;padding:10px 8px;">
+            <div style="font-size:8px;font-weight:700;color:#fff;">Results &amp; Conclusion</div>
+          </div>
+          <div class="slide-num">5</div>
+        </div>
+      </div>
+      <!-- Canvas -->
+      <div class="ppt-canvas">
+        <div class="slide-main">
+          <div class="slide-bg-1 slide-content" style="height:100%;padding:28px 32px;">
+            <div style="font-size:11px;font-weight:600;letter-spacing:.12em;color:rgba(255,255,255,.6);text-transform:uppercase;margin-bottom:10px;">Annual National Level Technical Symposium</div>
+            <div class="slide-title" style="font-size:28px;">TechSympo 2025</div>
+            <div class="slide-subtitle" style="font-size:14px;margin-bottom:16px;">Hybrid Mode · CSE Department</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;">
+              <span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;padding:3px 12px;border-radius:12px;">📅 March 28, 2025</span>
+              <span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;padding:3px 12px;border-radius:12px;">🏛 CSE Dept. Auditorium</span>
+              <span style="background:rgba(255,255,255,.15);color:#fff;font-size:11px;padding:3px 12px;border-radius:12px;">💻 + Online via Teams</span>
+            </div>
+            <!-- Collaborator cursor indicator -->
+            <div style="position:absolute;top:18px;right:18px;background:rgba(33,115,70,.9);color:#fff;font-size:10px;padding:3px 9px;border-radius:10px;display:flex;align-items:center;gap:5px;">
+              <span style="width:14px;height:14px;border-radius:50%;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#217346;">PR</span>
+              Priya editing title...
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Collaborators panel -->
+      <div class="ppt-notes">
+        <div class="ppt-notes-head">Collaborators</div>
+        <div class="collab-user">
+          <div class="cu-av" style="background:#217346;">AK</div>
+          <div class="cu-info"><div class="cu-name">Arjun K.</div><div class="cu-action">🟢 Slide 1 — editing</div></div>
+        </div>
+        <div class="collab-user">
+          <div class="cu-av" style="background:#c43e1c;">PR</div>
+          <div class="cu-info"><div class="cu-name">Priya R.</div><div class="cu-action">🔴 Slide 1 — title</div></div>
+        </div>
+        <div class="collab-user">
+          <div class="cu-av" style="background:#0078d4;">KS</div>
+          <div class="cu-info"><div class="cu-name">Kavya S.</div><div class="cu-action">🔵 Slide 3 — chart</div></div>
+        </div>
+        <div class="collab-user">
+          <div class="cu-av" style="background:#ff8c00;">DR</div>
+          <div class="cu-info"><div class="cu-name">Dr. Ramesh</div><div class="cu-action">🟠 Slide 5 — comment</div></div>
+        </div>
+        <div style="margin-top:10px;background:#fff4ce;border-radius:6px;padding:9px;font-size:12px;">
+          <div style="font-weight:600;color:#7a5c00;margin-bottom:4px;">💬 Comment — Dr. Ramesh</div>
+          <div style="color:#323130;">"Please add the participation statistics chart to slide 3."</div>
+          <div style="font-size:10.5px;color:var(--muted);margin-top:4px;">2 min ago · Slide 3</div>
+        </div>
+        <div style="margin-top:8px;background:#dff6dd;border-radius:6px;padding:8px;font-size:11.5px;color:#107c10;font-weight:600;">✔ Auto-saved · Version 14 of 14</div>
+      </div>
+    </div>
+    <div class="ppt-statusbar"><span>Slide 1 of 5</span><span>TechSympo2025_Keynote.pptx</span><span>4 collaborators · All synced</span><span>🎤 Present Live Ready</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ TOPIC 4: FILE SHARING ═══════════════════════════ -->
+<div class="topic-divider" style="margin-top:44px;"><div class="td-line"></div><span class="td-tag" style="background:#0078d4;">TOPIC 4</span><div class="td-line" style="background:linear-gradient(90deg,transparent,var(--rule));"></div></div>
+<div class="sec"><span class="sec-num bg-blue">04</span><span class="sec-title">Storing &amp; Sharing Files and Online Content — Microsoft OneDrive</span></div>
+
+<div class="topic-banner">
+  <div class="topic-banner-head" style="background:#0078d4;"><span class="tb-icon">☁</span><div><div class="tb-title">Microsoft OneDrive</div><div class="tb-tool">onedrive.com · 1 TB cloud storage per user (Microsoft 365)</div></div></div>
+  <div class="topic-banner-body">
+    <strong>Definition:</strong> OneDrive is Microsoft's cloud storage and file sharing service that allows users to store any file type in the cloud and share it securely with individuals or groups — with fine-grained access control.<br><br>
+    <strong>Key Features:</strong> 1 TB personal cloud storage per user · Share files with a link — set view-only or edit access · Set expiry dates and passwords on shared links · Sync files across all devices (PC, Mac, phone, tablet) · Automatic photo and document backup · Offline access — synced files work without internet · Version history for all Office files · Integrates directly with Teams, SharePoint, and Outlook.
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 4 — Microsoft OneDrive: TechSympo 2025 Shared File Repository</div>
+<div class="win">
+  <div class="win-bar"><div class="wd wr"></div><div class="wd wy"></div><div class="wd wg"></div><div class="url"><span class="lock">🔒</span>onedrive.live.com · My Files / TechSympo 2025 · Shared with 15 people</div></div>
+  <div class="od-body">
+    <div class="od-topbar">
+      <div class="od-logo">☁ <span>OneDrive</span></div>
+      <div class="od-search"><span style="color:rgba(255,255,255,.7);">🔍</span> Search everything in TechSympo 2025...</div>
+      <div style="display:flex;gap:8px;font-size:12px;">
+        <div style="padding:6px 14px;background:rgba(255,255,255,.2);color:#fff;border-radius:16px;font-weight:600;cursor:pointer;">+ Upload</div>
+        <div style="padding:6px 14px;background:rgba(255,255,255,.2);color:#fff;border-radius:16px;font-weight:600;cursor:pointer;">🔗 Share</div>
+      </div>
+    </div>
+    <div class="od-layout">
+      <div class="od-nav">
+        <div class="od-nav-item active">🏠 Home</div>
+        <div class="od-nav-item">📁 My Files</div>
+        <div class="od-nav-item">🔄 Shared</div>
+        <div class="od-nav-item">👥 Shared with me</div>
+        <div class="od-nav-item">🕐 Recent</div>
+        <div class="od-nav-item">⭐ Starred</div>
+        <div class="od-nav-item">🗑 Recycle Bin</div>
+        <div style="padding:10px 16px;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-top:10px;">TechSympo Folders</div>
+        <div class="od-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Registrations</div>
+        <div class="od-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Presentations</div>
+        <div class="od-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Recordings</div>
+        <div class="od-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Certificates</div>
+        <div class="od-nav-item" style="padding-left:22px;font-size:12.5px;">📂 Photos</div>
+      </div>
+      <div class="od-main">
+        <div class="od-main-head">
+          <h4>📁 TechSympo 2025 — All Files &nbsp;<span style="font-weight:400;color:#0078d4;font-size:13px;cursor:pointer;">Manage access (15 people)</span></h4>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:12px;color:var(--muted);">Sort: Modified ▾</div>
+            <div class="od-view-toggle"><div class="od-vt-btn active">⊞</div><div class="od-vt-btn">≡</div></div>
+          </div>
+        </div>
+        <div class="od-files-grid">
+          <div class="od-file"><div class="od-thumb" style="background:#e6f2e6;">📊</div><div class="od-file-info"><div class="od-fn">SymposiumBudget.xlsx</div><div class="od-fd">Edited 2 min ago</div><div class="od-shared">👥 12 members</div></div></div>
+          <div class="od-file"><div class="od-thumb" style="background:#fce8e6;">📽</div><div class="od-file-info"><div class="od-fn">TechSympo_Keynote.pptx</div><div class="od-fd">Edited 5 min ago</div><div class="od-shared">👥 4 editors</div></div></div>
+          <div class="od-file"><div class="od-thumb" style="background:#dce8f5;">📄</div><div class="od-file-info"><div class="od-fn">EventSchedule.docx</div><div class="od-fd">Mar 22, 2025</div><div class="od-shared">🌐 Anyone with link</div></div></div>
+          <div class="od-file"><div class="od-thumb" style="background:#fde8e8;">🎬</div><div class="od-file-info"><div class="od-fn">Keynote_Recording.mp4</div><div class="od-fd">Today · 2.1 GB</div><div class="od-shared">👥 15 members</div></div></div>
+          <div class="od-file"><div class="od-thumb" style="background:#fff4ce;">📑</div><div class="od-file-info"><div class="od-fn">Brochure_Final.pdf</div><div class="od-fd">Mar 18, 2025</div><div class="od-shared">🌐 Anyone with link</div></div></div>
+          <div class="od-file"><div class="od-thumb" style="background:#e6f9f1;">🏆</div><div class="od-file-info"><div class="od-fn">Certificates_All.pdf</div><div class="od-fd">Today</div><div class="od-shared">👥 15 members</div></div></div>
+          <div class="od-file"><div class="od-thumb" style="background:#f3e8fd;">📋</div><div class="od-file-info"><div class="od-fn">Registrations_DB.xlsx</div><div class="od-fd">Live · 312 rows</div><div class="od-shared">👥 5 admins</div></div></div>
+          <div class="od-file"><div class="od-thumb" style="background:#fff8e6;">📷</div><div class="od-file-info"><div class="od-fn">EventPhotos.zip</div><div class="od-fd">Today · 480 MB</div><div class="od-shared">🌐 Anyone with link</div></div></div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);">
+          <span>☁ 5.8 GB used of 1 TB &nbsp;·&nbsp; All files synced &nbsp;·&nbsp; <span style="color:#0078d4;cursor:pointer;font-weight:600;">Upgrade storage</span></span>
+          <span style="background:#dff6dd;color:#107c10;padding:3px 10px;border-radius:10px;font-weight:600;font-size:11.5px;">🔒 Secure · Encrypted at rest</span>
+        </div>
+      </div>
+    </div>
+    <div class="od-statusbar"><span>📁 24 items · 5.8 GB</span><span>🔄 All files synced to cloud</span><span>📜 Version history available</span><span style="margin-left:auto;">🔒 SSL encrypted · Backed up daily</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ TOPIC 5: PHOTO SHARING ═══════════════════════════ -->
+<div class="topic-divider" style="margin-top:44px;"><div class="td-line"></div><span class="td-tag" style="background:#ff0084;">TOPIC 5</span><div class="td-line" style="background:linear-gradient(90deg,transparent,var(--rule));"></div></div>
+<div class="sec"><span class="sec-num bg-orange">05</span><span class="sec-title">Sharing Digital Photographs — Flickr (Cloud Photo Platform)</span></div>
+
+<div class="topic-banner">
+  <div class="topic-banner-head" style="background:#0f0f0f;"><span class="tb-icon">📷</span><div><div class="tb-title">Flickr — Cloud Photo Sharing Platform</div><div class="tb-tool">flickr.com · 1,000 free photos · Used by 100M+ users worldwide</div></div></div>
+  <div class="topic-banner-body">
+    <strong>Definition:</strong> Cloud photo sharing involves uploading digital photographs to a cloud server and making them accessible to specific people or the public, with tools for organizing, tagging, and commenting on images.<br><br>
+    <strong>Key Features (Flickr):</strong> Upload and store high-resolution photos in the cloud · Organize into Albums and Groups (e.g., TechSympo 2025 Event Photos) · Share albums via a link — public or private · Tag photos with names, events, locations · Others can comment, add notes, and favorite photos · Camera Roll backup — auto-upload from phone · Download originals in full resolution · Embed photos in websites or presentations · Guest Passes — share private photos with non-members.
+  </div>
+</div>
+
+<div class="mock-label">🖼 Mock-up 5 — Flickr: TechSympo 2025 Event Photo Album</div>
+<div class="win">
+  <div class="win-bar"><div class="wd wr"></div><div class="wd wy"></div><div class="wd wg"></div><div class="url"><span class="lock">🔒</span>flickr.com/groups/techsympo2025/pool · 148 photos · Shared album</div></div>
+  <div style="background:#1a1a1a;display:flex;flex-direction:column;">
+    <div class="photo-topbar">
+      <div class="photo-logo">⊛ Flickr</div>
+      <div class="photo-nav">
+        <div class="pn-item">Home</div>
+        <div class="pn-item active">TechSympo 2025</div>
+        <div class="pn-item">Albums</div>
+        <div class="pn-item">Groups</div>
+        <div class="pn-item">Upload</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:10px;align-items:center;">
+        <div style="background:#ff0084;color:#fff;font-size:12px;padding:5px 14px;border-radius:4px;cursor:pointer;font-weight:600;">+ Add Photos</div>
+        <div style="background:#333;color:#ccc;font-size:12px;padding:5px 14px;border-radius:4px;cursor:pointer;">🔗 Share Album</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 200px;">
+      <div class="photo-grid-area">
+        <h4>📷 TechSympo 2025 Event Photos &nbsp;·&nbsp; <span style="color:#ff0084;font-weight:700;">148 photos</span> &nbsp;·&nbsp; <span style="color:#888;">Shared with all participants</span></h4>
+        <div class="photo-grid">
+          <!-- Featured large tile -->
+          <div class="photo-tile featured" style="background:linear-gradient(135deg,#c43e1c,#ff8c00);">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;">🎤</div>
+            <div class="photo-overlay" style="opacity:1;background:linear-gradient(0deg,rgba(0,0,0,.7) 0%,transparent 60%);">
+              <div class="po-title">Inauguration Ceremony</div>
+              <div class="po-meta">Hall A · 9:15 AM · 48 ❤ · 12 💬</div>
+            </div>
+          </div>
+          <!-- Regular tiles -->
+          <div class="photo-tile" style="background:linear-gradient(135deg,#0078d4,#464eb8);">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">📊</div>
+            <div class="photo-overlay">
+              <div class="po-title">Paper Presentation Round 1</div>
+              <div class="po-meta">22 ❤ · 5 💬</div>
+            </div>
+          </div>
+          <div class="photo-tile" style="background:linear-gradient(135deg,#217346,#34a853);">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">🧠</div>
+            <div class="photo-overlay">
+              <div class="po-title">Technical Quiz Finals</div>
+              <div class="po-meta">18 ❤ · 3 💬</div>
+            </div>
+          </div>
+          <div class="photo-tile" style="background:linear-gradient(135deg,#673ab7,#9c27b0);">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">💻</div>
+            <div class="photo-overlay">
+              <div class="po-title">Coding Challenge</div>
+              <div class="po-meta">31 ❤ · 7 💬</div>
+            </div>
+          </div>
+          <div class="photo-tile" style="background:linear-gradient(135deg,#e37400,#fbbc04);">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">🏆</div>
+            <div class="photo-overlay">
+              <div class="po-title">Prize Distribution</div>
+              <div class="po-meta">67 ❤ · 24 💬</div>
+            </div>
+          </div>
+          <div class="photo-tile" style="background:linear-gradient(135deg,#a4373a,#c43e1c);">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">🎓</div>
+            <div class="photo-overlay">
+              <div class="po-title">Group Photo — All Participants</div>
+              <div class="po-meta">142 ❤ · 38 💬</div>
+            </div>
+          </div>
+          <div class="photo-tile" style="background:linear-gradient(135deg,#1a3a5a,#0078d4);">
+            <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;">🖥️</div>
+            <div class="photo-overlay">
+              <div class="po-title">Virtual Participants on Screen</div>
+              <div class="po-meta">55 ❤ · 12 💬</div>
+            </div>
+          </div>
+          <div class="photo-tile" style="background:#222;display:flex;align-items:center;justify-content:center;">
+            <div style="color:#666;font-size:12.5px;text-align:center;">+141 more<br>photos</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;display:flex;align-items:center;justify-content:space-between;">
+          <div style="font-size:11.5px;color:#888;">📷 148 photos · 12 contributors · <span style="color:#ff0084;cursor:pointer;font-weight:600;">Download all as ZIP →</span></div>
+          <div style="background:#ff0084;color:#fff;font-size:11px;padding:3px 12px;border-radius:10px;font-weight:600;cursor:pointer;">🔗 Share Guest Pass</div>
+        </div>
+      </div>
+      <!-- Sidebar -->
+      <div class="photo-sidebar">
+        <div class="ps-head">Albums</div>
+        <div class="ps-album"><div class="ps-album-thumb" style="background:linear-gradient(135deg,#c43e1c,#ff8c00);">🎤</div><div class="ps-album-info"><div class="pa-name">Inauguration</div><div class="pa-count">24 photos</div></div></div>
+        <div class="ps-album"><div class="ps-album-thumb" style="background:linear-gradient(135deg,#0078d4,#464eb8);">📊</div><div class="ps-album-info"><div class="pa-name">Paper Presentation</div><div class="pa-count">38 photos</div></div></div>
+        <div class="ps-album"><div class="ps-album-thumb" style="background:linear-gradient(135deg,#217346,#34a853);">🧠</div><div class="ps-album-info"><div class="pa-name">Quiz &amp; Coding</div><div class="pa-count">29 photos</div></div></div>
+        <div class="ps-album"><div class="ps-album-thumb" style="background:linear-gradient(135deg,#e37400,#fbbc04);">🏆</div><div class="ps-album-info"><div class="pa-name">Prize Distribution</div><div class="pa-count">18 photos</div></div></div>
+        <div class="ps-album"><div class="ps-album-thumb" style="background:linear-gradient(135deg,#673ab7,#c43e1c);">🎓</div><div class="ps-album-info"><div class="pa-name">Group &amp; Candid</div><div class="pa-count">39 photos</div></div></div>
+        <div style="margin-top:14px;">
+          <div class="ps-head">Contributors (12)</div>
+          <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;">
+            <div style="width:28px;height:28px;border-radius:50%;background:#c43e1c;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #333;">AK</div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#217346;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #333;">PR</div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#0078d4;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #333;">KS</div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#673ab7;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #333;">SM</div>
+            <div style="width:28px;height:28px;border-radius:50%;background:#e37400;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;border:2px solid #333;">+8</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;background:#111;border-radius:6px;padding:10px;">
+          <div style="font-size:11px;font-weight:700;color:#888;margin-bottom:5px;">RECENT COMMENT</div>
+          <div style="font-size:11.5px;color:#ccc;">"Amazing event! Great to be part of it from Karnataka 🙌"</div>
+          <div style="font-size:10.5px;color:#888;margin-top:3px;">— Arjun K. · 10 min ago</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ SUMMARY TABLE ═══════════════════════════ -->
+<div class="sec" style="margin-top:48px;"><span class="sec-num bg-blue">06</span><span class="sec-title">Summary — All Topics &amp; Tools</span></div>
+<table class="sum">
+  <thead><tr><th>Collaboration Topic</th><th>Cloud Tool Used</th><th>Key Benefit</th></tr></thead>
+  <tbody>
+    <tr><td>📊 Spreadsheets</td><td class="tool">Microsoft Excel Online</td><td>Real-time co-editing, auto-save, formulas, charts shared across team</td></tr>
+    <tr><td>🗄 Databases</td><td class="tool">Azure SQL + SharePoint Lists</td><td>Cloud-hosted structured data, SQL queries, role-based access, Power BI reporting</td></tr>
+    <tr><td>📽 Presentations</td><td class="tool">Microsoft PowerPoint Online</td><td>Live co-authoring, colored cursors per user, Present Live feature, AI Designer</td></tr>
+    <tr><td>☁ Storing &amp; Sharing Files</td><td class="tool">Microsoft OneDrive</td><td>1 TB cloud storage, shareable links with access control, version history, sync</td></tr>
+    <tr><td>📷 Sharing Photographs</td><td class="tool">Flickr</td><td>High-res photo albums, guest passes, tags, comments, group collaboration, ZIP download</td></tr>
+  </tbody>
+</table>
+
+<!-- ═══════════════════════════ CONCLUSION ═══════════════════════════ -->
+<div class="conclusion">
+  <div class="conclusion-head"><h3>Conclusion</h3></div>
+  <div class="conclusion-body">
+    <p>
+      Cloud collaboration tools eliminate the need for physical presence or local installations. <strong style="color:#74b3f0;">Microsoft 365</strong> provides an all-in-one ecosystem — <strong style="color:#81c995;">Excel Online</strong> enables real-time spreadsheet collaboration with formulas and charts; <strong style="color:#a4373a;color:#f08080;">Azure SQL + SharePoint Lists</strong> provide a shared cloud database with role-based access; <strong style="color:#f4b8a8;">PowerPoint Online</strong> allows multiple team members to build and present slides simultaneously; and <strong style="color:#74b3f0;">OneDrive</strong> acts as the central repository for all files — with 1 TB of secure, synced cloud storage accessible from any device.
+      <br><br>
+      For digital photograph sharing, <strong style="color:#ff6eb4;">Flickr</strong> — a real, widely-used platform — provides organized cloud albums, contributor collaboration, guest pass sharing, and high-resolution downloads. Together, these tools make every aspect of cloud collaboration — from data to documents to photos — seamless, secure, and accessible from anywhere in the world.
+    </p>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
