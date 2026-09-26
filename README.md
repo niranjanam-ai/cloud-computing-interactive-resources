@@ -53,3 +53,5 @@ The resources explore cloud computing through four major areas:
                        │
                        ▼
                 Interactive Quiz
+
+## Author: Niranjana M
